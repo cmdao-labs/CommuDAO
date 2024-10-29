@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react'
 import { ThreeDots } from 'react-loading-icons'
 
 const hrmNft = '0x9cD236a18D1792993beCff9E525902a5B6ef4483'
@@ -9,30 +10,22 @@ const engyToken = '0xBF389F85E4F71a78850Cca36c01430bC5b20e802'
 const dunGEM = '0x222B20bCBBa261DfaaEEe6395f672F15c4d7e88F'
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
-const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunGEMABI }) => {
-    let { address } = useAccount()
-    const youraddr = address
-    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
-        navigate('/dungeon/the-endless-tower/' + address)
-    } else if (intrasubModetext.length === 42) {
-        address = intrasubModetext
-    } else if (address === undefined) {
-    } else {
-        navigate('/dungeon/the-endless-tower/' + address)
+const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunGEMABI }) => {
+    let { address, chain } = useAccount()
+    if (address === undefined) {
+        address = null
     }
-
+    const { open } = useAppKit()
+    const [addr, setAddr] = React.useState(address)
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftCol, setTransferNftCol] = React.useState(null)
     const [transferNftid, setTransferNftid] = React.useState(null)
     const [transferName, setTransferName] = React.useState("")
     const [transferTo, setTransferTo] = React.useState(null)
-
     const [gasselected, setGasselected] = React.useState("ENGY")
     const [gemBalance, setGemBalance] = React.useState(0)
     const [engyBalance, setEngyBalance] = React.useState(0)
-
     const [nft, setNft] = React.useState([])
-
     const [charSlot1, setCharSlot1] = React.useState(null)
     const [charSlot1Level, setCharSlot1Level] = React.useState(null)
     const [weaponOneSlot1, setWeaponOneSlot1] = React.useState(null)
@@ -88,7 +81,6 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
     const [timeToRunoutSlot1, setTimeToRunoutSlot1] = React.useState(null)
     const [isRunoutSlot1, setIsRunoutSlot1] = React.useState(false)
     const [gemPendingSlot1, setGemPendingSlot1] = React.useState(0)
-
     const [charSlot2, setCharSlot2] = React.useState(null)
     const [charSlot2Level, setCharSlot2Level] = React.useState(null)
     const [weaponOneSlot2, setWeaponOneSlot2] = React.useState(null)
@@ -144,7 +136,6 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
     const [timeToRunoutSlot2, setTimeToRunoutSlot2] = React.useState(null)
     const [isRunoutSlot2, setIsRunoutSlot2] = React.useState(false)
     const [gemPendingSlot2, setGemPendingSlot2] = React.useState(0)
-
     const [charSlot3, setCharSlot3] = React.useState(null)
     const [charSlot3Level, setCharSlot3Level] = React.useState(null)
     const [weaponOneSlot3, setWeaponOneSlot3] = React.useState(null)
@@ -200,7 +191,6 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
     const [timeToRunoutSlot3, setTimeToRunoutSlot3] = React.useState(null)
     const [isRunoutSlot3, setIsRunoutSlot3] = React.useState(false)
     const [gemPendingSlot3, setGemPendingSlot3] = React.useState(0)
-
     const [charSlot4, setCharSlot4] = React.useState(null)
     const [charSlot4Level, setCharSlot4Level] = React.useState(null)
     const [weaponOneSlot4, setWeaponOneSlot4] = React.useState(null)
@@ -256,7 +246,6 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
     const [timeToRunoutSlot4, setTimeToRunoutSlot4] = React.useState(null)
     const [isRunoutSlot4, setIsRunoutSlot4] = React.useState(false)
     const [gemPendingSlot4, setGemPendingSlot4] = React.useState(0)
-
     const [charSlot5, setCharSlot5] = React.useState(null)
     const [charSlot5Level, setCharSlot5Level] = React.useState(null)
     const [weaponOneSlot5, setWeaponOneSlot5] = React.useState(null)
@@ -312,7 +301,6 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
     const [timeToRunoutSlot5, setTimeToRunoutSlot5] = React.useState(null)
     const [isRunoutSlot5, setIsRunoutSlot5] = React.useState(false)
     const [gemPendingSlot5, setGemPendingSlot5] = React.useState(0)
-
     const [charSlot6, setCharSlot6] = React.useState(null)
     const [charSlot6Level, setCharSlot6Level] = React.useState(null)
     const [weaponOneSlot6, setWeaponOneSlot6] = React.useState(null)
@@ -368,7 +356,6 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
     const [timeToRunoutSlot6, setTimeToRunoutSlot6] = React.useState(null)
     const [isRunoutSlot6, setIsRunoutSlot6] = React.useState(false)
     const [gemPendingSlot6, setGemPendingSlot6] = React.useState(0)
-
     const [charSlot7, setCharSlot7] = React.useState(null)
     const [charSlot7Level, setCharSlot7Level] = React.useState(null)
     const [weaponOneSlot7, setWeaponOneSlot7] = React.useState(null)
@@ -424,7 +411,6 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
     const [timeToRunoutSlot7, setTimeToRunoutSlot7] = React.useState(null)
     const [isRunoutSlot7, setIsRunoutSlot7] = React.useState(false)
     const [gemPendingSlot7, setGemPendingSlot7] = React.useState(0)
-
     const [charSlot8, setCharSlot8] = React.useState(null)
     const [charSlot8Level, setCharSlot8Level] = React.useState(null)
     const [weaponOneSlot8, setWeaponOneSlot8] = React.useState(null)
@@ -480,7 +466,6 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
     const [timeToRunoutSlot8, setTimeToRunoutSlot8] = React.useState(null)
     const [isRunoutSlot8, setIsRunoutSlot8] = React.useState(false)
     const [gemPendingSlot8, setGemPendingSlot8] = React.useState(0)
-
     const [charSlot9, setCharSlot9] = React.useState(null)
     const [charSlot9Level, setCharSlot9Level] = React.useState(null)
     const [weaponOneSlot9, setWeaponOneSlot9] = React.useState(null)
@@ -536,7 +521,6 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
     const [timeToRunoutSlot9, setTimeToRunoutSlot9] = React.useState(null)
     const [isRunoutSlot9, setIsRunoutSlot9] = React.useState(false)
     const [gemPendingSlot9, setGemPendingSlot9] = React.useState(0)
-
     const [charSlot10, setCharSlot10] = React.useState(null)
     const [charSlot10Level, setCharSlot10Level] = React.useState(null)
     const [weaponOneSlot10, setWeaponOneSlot10] = React.useState(null)
@@ -595,211 +579,96 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
+        console.log("Connected to " + address)
+        if (intrasubModetext === undefined) {
+            navigate('/dungeon/the-endless-tower/' + address)
+        } else if (intrasubModetext.length === 42) {
+            setAddr(intrasubModetext)
+        } else if (address === undefined) {
+            navigate('/dungeon/the-endless-tower/null')
+        } else {
+            navigate('/dungeon/the-endless-tower/' + address)
+        }
         const hrmnftSC = new ethers.Contract(hrmNft, erc721Abi, providerBBQ)
         setNft([])
         
         const thefetch = async () => {
-            const nftEQ1_slot1 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ1_slot1 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
-                args: [address, 0],
+                args: [addr, 0],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot1 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ2_slot1 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
-                args: [address, 0],
+                args: [addr, 0],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot1 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQCard_slot1 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
-                args: [address, 0],
+                args: [addr, 0],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot1 = address !== null && address !== undefined ? await readContract(config, {
+            const nftStatus_slot1 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
-                args: [address, 0],
+                args: [addr, 0],
                 chainId: 190
             }) : [0, 0, false]
-            const data_slot1 = await readContracts(config, {
+            const data_slot1 = addr !== null ? await readContracts(config, {
                 contracts: [
-                    {
+                    { 
                         address: engyToken,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
+                        chainId: 190
                     },
                     {
                         address: dunGEM,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
+                        chainId: 190
                     },
-                    {
-                        address: dunGEM,
-                        abi: dunGEMABI,
-                        functionName: 'calculateRewards',
-                        args: [address, 0],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot1[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot1[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot1[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot1[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot1[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot1[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot1[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot1[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot1[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot1[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot1[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot1[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot1[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot1[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot1[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot1[8])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot1[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot1[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot1[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot1[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot1[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot1[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot1[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot1[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot1[8])],
-                    },
+                    { address: dunGEM, abi: dunGEMABI, functionName: 'calculateRewards', args: [addr, 0], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot1[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot1[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot1[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot1[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot1[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot1[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot1[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot1[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot1[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot1[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot1[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot1[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot1[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot1[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot1[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot1[8])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot1[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot1[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot1[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot1[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot1[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot1[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot1[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot1[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot1[8])], chainId: 190 },
                 ],
-            })
-            console.log(data_slot1)
+            }) : [
+                {result: 0}, {result: 0}, {result: 0}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, 
+            ]
             let nfts = []
             let response0_slot1 = null
             try {
@@ -1283,195 +1152,68 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
             const gemBal = data_slot1[1].result
             const rewardPending = isStaked ? data_slot1[2].result : 0
 
-            const nftEQ1_slot2 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ1_slot2 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
-                args: [address, 1],
+                args: [addr, 1],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot2 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ2_slot2 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
-                args: [address, 1],
+                args: [addr, 1],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot2 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQCard_slot2 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
-                args: [address, 1],
+                args: [addr, 1],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot2 = address !== null && address !== undefined ? await readContract(config, {
+            const nftStatus_slot2 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
-                args: [address, 1],
+                args: [addr, 1],
                 chainId: 190
             }) : [0, 0, false]
-            const data_slot2 = await readContracts(config, {
+            const data_slot2 = addr !== null ? await readContracts(config, {
                 contracts: [
-                    {
-                        address: dunGEM,
-                        abi: dunGEMABI,
-                        functionName: 'calculateRewards',
-                        args: [address, 1],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot2[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot2[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot2[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot2[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot2[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot2[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot2[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot2[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot2[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot2[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot2[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot2[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot2[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot2[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot2[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot2[8])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot2[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot2[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot2[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot2[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot2[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot2[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot2[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot2[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot2[8])],
-                    },
+                    { address: dunGEM, abi: dunGEMABI, functionName: 'calculateRewards', args: [addr, 1], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot2[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot2[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot2[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot2[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot2[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot2[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot2[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot2[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot2[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot2[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot2[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot2[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot2[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot2[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot2[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot2[8])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot2[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot2[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot2[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot2[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot2[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot2[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot2[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot2[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot2[8])], chainId: 190 },
                 ],
-            })
-            console.log(data_slot2)
+            }) : [
+                {result: 0}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, 
+            ]
             let response0_slot2 = null
             try {
                 response0_slot2 = data_slot2[1].status === 'success' ? await fetch(data_slot2[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
@@ -1952,195 +1694,68 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
             const refuelAt2 = Number(nftStatus_slot2[1])
             const rewardPending2 = isStaked2 ? data_slot2[0].result : 0
 
-            const nftEQ1_slot3 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ1_slot3 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
-                args: [address, 2],
+                args: [addr, 2],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot3 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ2_slot3 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
-                args: [address, 2],
+                args: [addr, 2],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot3 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQCard_slot3 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
-                args: [address, 2],
+                args: [addr, 2],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot3 = address !== null && address !== undefined ? await readContract(config, {
+            const nftStatus_slot3 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
-                args: [address, 2],
+                args: [addr, 2],
                 chainId: 190
             }) : [0, 0, false]
-            const data_slot3 = await readContracts(config, {
+            const data_slot3 = addr !== null ? await readContracts(config, {
                 contracts: [
-                    {
-                        address: dunGEM,
-                        abi: dunGEMABI,
-                        functionName: 'calculateRewards',
-                        args: [address, 2],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot3[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot3[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot3[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot3[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot3[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot3[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot3[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot3[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot3[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot3[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot3[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot3[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot3[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot3[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot3[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot3[8])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot3[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot3[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot3[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot3[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot3[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot3[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot3[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot3[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot3[8])],
-                    },
+                    { address: dunGEM, abi: dunGEMABI, functionName: 'calculateRewards', args: [addr, 2], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot3[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot3[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot3[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot3[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot3[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot3[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot3[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot3[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot3[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot3[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot3[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot3[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot3[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot3[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot3[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot3[8])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot3[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot3[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot3[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot3[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot3[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot3[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot3[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot3[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot3[8])], chainId: 190 },
                 ],
-            })
-            console.log(data_slot3)
+            }) : [
+                {result: 0}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, 
+            ]
             let response0_slot3 = null
             try {
                 response0_slot3 = data_slot3[1].status === 'success' ? await fetch(data_slot3[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
@@ -2621,195 +2236,68 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
             const refuelAt3 = Number(nftStatus_slot3[1])
             const rewardPending3 = isStaked3 ? data_slot3[0].result : 0
 
-            const nftEQ1_slot4 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ1_slot4 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
-                args: [address, 3],
+                args: [addr, 3],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot4 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ2_slot4 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
-                args: [address, 3],
+                args: [addr, 3],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot4 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQCard_slot4 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
-                args: [address, 3],
+                args: [addr, 3],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot4 = address !== null && address !== undefined ? await readContract(config, {
+            const nftStatus_slot4 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
-                args: [address, 3],
+                args: [addr, 3],
                 chainId: 190
             }) : [0, 0, false]
-            const data_slot4 = await readContracts(config, {
+            const data_slot4 = addr != null ? await readContracts(config, {
                 contracts: [
-                    {
-                        address: dunGEM,
-                        abi: dunGEMABI,
-                        functionName: 'calculateRewards',
-                        args: [address, 3],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot4[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot4[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot4[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot4[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot4[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot4[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot4[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot4[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot4[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot4[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot4[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot4[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot4[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot4[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot4[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot4[8])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot4[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot4[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot4[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot4[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot4[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot4[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot4[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot4[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot4[8])],
-                    },
+                    { address: dunGEM, abi: dunGEMABI, functionName: 'calculateRewards', args: [addr, 3], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot4[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot4[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot4[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot4[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot4[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot4[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot4[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot4[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot4[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot4[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot4[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot4[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot4[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot4[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot4[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot4[8])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot4[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot4[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot4[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot4[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot4[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot4[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot4[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot4[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot4[8])], chainId: 190 }
                 ],
-            })
-            console.log(data_slot4)
+            }) : [
+                {result: 0}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, 
+            ]
             let response0_slot4 = null
             try {
                 response0_slot4 = data_slot4[1].status === 'success' ? await fetch(data_slot4[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
@@ -3290,195 +2778,68 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
             const refuelAt4 = Number(nftStatus_slot4[1])
             const rewardPending4 = isStaked4 ? data_slot4[0].result : 0
 
-            const nftEQ1_slot5 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ1_slot5 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
-                args: [address, 4],
+                args: [addr, 4],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot5 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ2_slot5 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
-                args: [address, 4],
+                args: [addr, 4],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot5 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQCard_slot5 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
-                args: [address, 4],
+                args: [addr, 4],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot5 = address !== null && address !== undefined ? await readContract(config, {
+            const nftStatus_slot5 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
-                args: [address, 4],
+                args: [addr, 4],
                 chainId: 190
             }) : [0, 0, false]
-            const data_slot5 = await readContracts(config, {
+            const data_slot5 = addr !== null ? await readContracts(config, {
                 contracts: [
-                    {
-                        address: dunGEM,
-                        abi: dunGEMABI,
-                        functionName: 'calculateRewards',
-                        args: [address, 4],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot5[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot5[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot5[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot5[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot5[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot5[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot5[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot5[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot5[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot5[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot5[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot5[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot5[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot5[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot5[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot5[8])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot5[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot5[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot5[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot5[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot5[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot5[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot5[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot5[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot5[8])],
-                    },
+                    { address: dunGEM, abi: dunGEMABI, functionName: 'calculateRewards', args: [addr, 4], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot5[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot5[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot5[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot5[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot5[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot5[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot5[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot5[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot5[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot5[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot5[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot5[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot5[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot5[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot5[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot5[8])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot5[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot5[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot5[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot5[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot5[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot5[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot5[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot5[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot5[8])], chainId: 190 },
                 ],
-            })
-            console.log(data_slot5)
+            }) : [
+                {result: 0}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, 
+            ]
             let response0_slot5 = null
             try {
                 response0_slot5 = data_slot5[1].status === 'success' ? await fetch(data_slot5[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
@@ -3959,195 +3320,68 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
             const refuelAt5 = Number(nftStatus_slot5[1])
             const rewardPending5 = isStaked5 ? data_slot5[0].result : 0
 
-            const nftEQ1_slot6 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ1_slot6 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
-                args: [address, 5],
+                args: [addr, 5],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot6 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ2_slot6 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
-                args: [address, 5],
+                args: [addr, 5],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot6 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQCard_slot6 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
-                args: [address, 5],
+                args: [addr, 5],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot6 = address !== null && address !== undefined ? await readContract(config, {
+            const nftStatus_slot6 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
-                args: [address, 5],
+                args: [addr, 5],
                 chainId: 190
             }) : [0, 0, false]
-            const data_slot6 = await readContracts(config, {
+            const data_slot6 = addr !== null ? await readContracts(config, {
                 contracts: [
-                    {
-                        address: dunGEM,
-                        abi: dunGEMABI,
-                        functionName: 'calculateRewards',
-                        args: [address, 5],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot6[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot6[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot6[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot6[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot6[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot6[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot6[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot6[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot6[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot6[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot6[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot6[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot6[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot6[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot6[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot6[8])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot6[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot6[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot6[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot6[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot6[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot6[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot6[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot6[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot6[8])],
-                    },
+                    { address: dunGEM, abi: dunGEMABI, functionName: 'calculateRewards', args: [addr, 5], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot6[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot6[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot6[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot6[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot6[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot6[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot6[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot6[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot6[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot6[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot6[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot6[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot6[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot6[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot6[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot6[8])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot6[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot6[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot6[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot6[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot6[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot6[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot6[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot6[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot6[8])], chainId: 190 }
                 ],
-            })
-            console.log(data_slot6)
+            }) : [
+                {result: 0}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, 
+            ]
             let response0_slot6 = null
             try {
                 response0_slot6 = data_slot6[1].status === 'success' ? await fetch(data_slot6[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
@@ -4628,195 +3862,68 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
             const refuelAt6 = Number(nftStatus_slot6[1])
             const rewardPending6 = isStaked6 ? data_slot6[0].result : 0
 
-            const nftEQ1_slot7 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ1_slot7 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
-                args: [address, 6],
+                args: [addr, 6],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot7 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ2_slot7 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
-                args: [address, 6],
+                args: [addr, 6],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot7 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQCard_slot7 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
-                args: [address, 6],
+                args: [addr, 6],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot7 = address !== null && address !== undefined ? await readContract(config, {
+            const nftStatus_slot7 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
-                args: [address, 6],
+                args: [addr, 6],
                 chainId: 190
             }) : [0, 0, false]
-            const data_slot7 = await readContracts(config, {
+            const data_slot7 = addr !== null ? await readContracts(config, {
                 contracts: [
-                    {
-                        address: dunGEM,
-                        abi: dunGEMABI,
-                        functionName: 'calculateRewards',
-                        args: [address, 6],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot7[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot7[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot7[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot7[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot7[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot7[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot7[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot7[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot7[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot7[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot7[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot7[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot7[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot7[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot7[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot7[8])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot7[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot7[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot7[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot7[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot7[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot7[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot7[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot7[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot7[8])],
-                    },
+                    { address: dunGEM, abi: dunGEMABI, functionName: 'calculateRewards', args: [addr, 6], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot7[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot7[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot7[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot7[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot7[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot7[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot7[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot7[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot7[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot7[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot7[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot7[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot7[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot7[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot7[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot7[8])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot7[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot7[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot7[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot7[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot7[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot7[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot7[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot7[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot7[8])], chainId: 190 }
                 ],
-            })
-            console.log(data_slot7)
+            }) : [
+                {result: 0}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, 
+            ]
             let response0_slot7 = null
             try {
                 response0_slot7 = data_slot7[1].status === 'success' ? await fetch(data_slot7[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
@@ -5297,195 +4404,68 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
             const refuelAt7 = Number(nftStatus_slot7[1])
             const rewardPending7 = isStaked7 ? data_slot7[0].result : 0
 
-            const nftEQ1_slot8 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ1_slot8 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
-                args: [address, 7],
+                args: [addr, 7],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot8 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ2_slot8 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
-                args: [address, 7],
+                args: [addr, 7],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot8 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQCard_slot8 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
-                args: [address, 7],
+                args: [addr, 7],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot8 = address !== null && address !== undefined ? await readContract(config, {
+            const nftStatus_slot8 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
-                args: [address, 7],
+                args: [addr, 7],
                 chainId: 190
             }) : [0, 0, false]
-            const data_slot8 = await readContracts(config, {
+            const data_slot8 = addr !== null ? await readContracts(config, {
                 contracts: [
-                    {
-                        address: dunGEM,
-                        abi: dunGEMABI,
-                        functionName: 'calculateRewards',
-                        args: [address, 7],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot8[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot8[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot8[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot8[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot8[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot8[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot8[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot8[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot8[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot8[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot8[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot8[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot8[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot8[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot8[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot8[8])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot8[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot8[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot8[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot8[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot8[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot8[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot8[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot8[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot8[8])],
-                    },
+                    { address: dunGEM, abi: dunGEMABI, functionName: 'calculateRewards', args: [addr, 7], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot8[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot8[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot8[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot8[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot8[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot8[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot8[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot8[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot8[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot8[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot8[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot8[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot8[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot8[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot8[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot8[8])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot8[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot8[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot8[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot8[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot8[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot8[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot8[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot8[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot8[8])], chainId: 190 }
                 ],
-            })
-            console.log(data_slot8)
+            }) : [
+                {result: 0}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, 
+            ]
             let response0_slot8 = null
             try {
                 response0_slot8 = data_slot8[1].status === 'success' ? await fetch(data_slot8[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
@@ -5966,195 +4946,68 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
             const refuelAt8 = Number(nftStatus_slot8[1])
             const rewardPending8 = isStaked8 ? data_slot8[0].result : 0
 
-            const nftEQ1_slot9 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ1_slot9 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
-                args: [address, 8],
+                args: [addr, 8],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot9 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ2_slot9 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
-                args: [address, 8],
+                args: [addr, 8],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot9 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQCard_slot9 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
-                args: [address, 8],
+                args: [addr, 8],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot9 = address !== null && address !== undefined ? await readContract(config, {
+            const nftStatus_slot9 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
-                args: [address, 8],
+                args: [addr, 8],
                 chainId: 190
             }) : [0, 0, false]
-            const data_slot9 = await readContracts(config, {
+            const data_slot9 = addr !== null ? await readContracts(config, {
                 contracts: [
-                    {
-                        address: dunGEM,
-                        abi: dunGEMABI,
-                        functionName: 'calculateRewards',
-                        args: [address, 8],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot9[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot9[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot9[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot9[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot9[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot9[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot9[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot9[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot9[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot9[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot9[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot9[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot9[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot9[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot9[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot9[8])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot9[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot9[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot9[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot9[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot9[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot9[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot9[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot9[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot9[8])],
-                    },
+                    { address: dunGEM, abi: dunGEMABI, functionName: 'calculateRewards', args: [addr, 8], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot9[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot9[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot9[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot9[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot9[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot9[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot9[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot9[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot9[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot9[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot9[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot9[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot9[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot9[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot9[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot9[8])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot9[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot9[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot9[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot9[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot9[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot9[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot9[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot9[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot9[8])], chainId: 190 }
                 ],
-            })
-            console.log(data_slot9)
+            }) : [
+                {result: 0}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, 
+            ]
             let response0_slot9 = null
             try {
                 response0_slot9 = data_slot9[1].status === 'success' ? await fetch(data_slot9[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
@@ -6635,195 +5488,68 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
             const refuelAt9 = Number(nftStatus_slot9[1])
             const rewardPending9 = isStaked9 ? data_slot9[0].result : 0
             
-            const nftEQ1_slot10 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ1_slot10 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip',
-                args: [address, 9],
+                args: [addr, 9],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0]
-            const nftEQ2_slot10 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQ2_slot10 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquip2',
-                args: [address, 9],
+                args: [addr, 9],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftEQCard_slot10 = address !== null && address !== undefined ? await readContract(config, {
+            const nftEQCard_slot10 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftEquipCard',
-                args: [address, 9],
+                args: [addr, 9],
                 chainId: 190
             }) : [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            const nftStatus_slot10 = address !== null && address !== undefined ? await readContract(config, {
+            const nftStatus_slot10 = addr !== null ? await readContract(config, {
                 address: dunGEM,
                 abi: dunGEMABI,
                 functionName: 'nftStatus',
-                args: [address, 9],
+                args: [addr, 9],
                 chainId: 190
             }) : [0, 0, false]
-            const data_slot10 = await readContracts(config, {
+            const data_slot10 = addr !== null ? await readContracts(config, {
                 contracts: [
-                    {
-                        address: dunGEM,
-                        abi: dunGEMABI,
-                        functionName: 'calculateRewards',
-                        args: [address, 9],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot10[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot10[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot10[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot10[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot10[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot10[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ1_slot10[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot10[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot10[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot10[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot10[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot10[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot10[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot10[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot10[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQ2_slot10[8])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot10[0])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot10[1])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot10[2])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot10[3])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot10[4])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot10[5])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot10[6])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot10[7])],
-                    },
-                    {
-                        address: hrmNft,
-                        abi: erc721Abi,
-                        functionName: 'tokenURI',
-                        args: [String(nftEQCard_slot10[8])],
-                    },
+                    { address: dunGEM, abi: dunGEMABI, functionName: 'calculateRewards', args: [addr, 9], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot10[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot10[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot10[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot10[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot10[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot10[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ1_slot10[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot10[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot10[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot10[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot10[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot10[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot10[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot10[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot10[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQ2_slot10[8])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot10[0])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot10[1])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot10[2])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot10[3])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot10[4])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot10[5])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot10[6])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot10[7])], chainId: 190 },
+                    { address: hrmNft, abi: erc721Abi, functionName: 'tokenURI', args: [String(nftEQCard_slot10[8])], chainId: 190 }
                 ],
-            })
-            console.log(data_slot10)
+            }) : [
+                {result: 0}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, 
+            ]
             let response0_slot10 = null
             try {
                 response0_slot10 = data_slot10[1].status === 'success' ? await fetch(data_slot10[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
@@ -7304,39 +6030,41 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
             const refuelAt10 = Number(nftStatus_slot10[1])
             const rewardPending10 = isStaked9 ? data_slot10[0].result : 0
 
-            const walletFilter = await hrmnftSC.filters.Transfer(null, address, null)
-            const walletEvent = await hrmnftSC.queryFilter(walletFilter, 4664954, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
-            const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts(config, {
+            let walletRemoveDup = []
+            if (chain !== undefined && chain.id === 190 && addr !== null) {
+                const walletFilter = await hrmnftSC.filters.Transfer(null, address, null)
+                const walletEvent = await hrmnftSC.queryFilter(walletFilter, 4664954, "latest")
+                const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
+                walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
+            }
+            const data2 = addr !== null ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: hrmNft,
                         abi: erc721Abi,
                         functionName: 'ownerOf',
                         args: [String(item)],
+                        chainId: 190
                     }
                 ))
-            }) : [Array(walletRemoveDup.length).fill('')]
-
+            }) : null
             let yournftwallet = []
-            for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
+            for (let i = 0; i <= walletRemoveDup.length - 1 && addr !== null; i++) {
+                if (data2[i].result.toUpperCase() === addr.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-
-            const data3 = address !== null && address !== undefined ? await readContracts(config, {
+            const data3 = addr !== null ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: hrmNft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [String(item.Id)],
+                        chainId: 190
                     }
                 ))
-            }) : [Array(yournftwallet.length).fill('')]
-
+            }) : null
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
@@ -7344,7 +6072,6 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                     const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
                     nft = await response.json()
                 } catch {}
-
                 nfts.push({
                     Slot: 0,
                     Col: 1,
@@ -7357,7 +6084,6 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                     isStaked: false
                 })
             }
-
             if (nfts.length === 0) { nfts.push(null) }
             
             return [
@@ -7989,7 +6715,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
             result[541] !== 0 && Date.now() - (Number(result[541]) * 1000) > (86400 * 1000) ? setIsRunoutSlot10(true) : setIsRunoutSlot10(false)
             setGemPendingSlot10(ethers.utils.formatEther(String(result[542])))
         })
-    }, [config, address, txupdate, erc721Abi, erc20Abi, dunGEMABI])
+    }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, erc721Abi, erc20Abi, dunGEMABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -8094,12 +6820,12 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
                 functionName: 'allowance',
                 args: [address, dunGEM],
             })
-            if (gasAllow < (24 * 10**18)) {
+            if (Number(ethers.utils.formatEther(gasAllow)) < 24) {
                 let { request } = await simulateContract(config, {
                     address: gasAddr,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [dunGEM, ethers.utils.parseEther(String(10**8))],
+                    args: [dunGEM, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -8121,2881 +6847,2975 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, setisLoading, txu
     }
 
     return (
-    <>
-        {isTransferModal &&
-            <div className="centermodal">
-                <div className="wrapper">
-                    <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
-                        <div style={{fontSize: "20px"}}>{transferName}</div>
-                        <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
-                        <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
-                        <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
-                    </div>
-                </div>
-            </div>
-        }
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
-            <div style={{flexDirection: "column", margin: "30px 100px"}}>
-                <div className="pixel" style={{fontSize: "75px", width: "fit-content"}}>The Endless Tower</div>
-                <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel"></div>
-            </div>
-            <div style={{margin: "30px 100px"}}>
-                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" width="150" alt="$GEM" />
-            </div>
-        </div>
-    
-        <div style={{margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
-            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{backdropFilter: "blur(14px)", border: "none", justifyContent: "space-around", padding: "30px", width: "1560px", maxWidth: "95%", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{marginTop: "40px", display: "flex", flexFlow: "column wrap"}}>
-                        {/*
-                        ░██████╗██╗░░░░░░█████╗░████████╗░░███╗░░
-                        ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝░████║░░
-                        ╚█████╗░██║░░░░░██║░░██║░░░██║░░░██╔██║░░
-                        ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░╚═╝██║░░
-                        ██████╔╝███████╗╚█████╔╝░░░██║░░░███████╗
-                        ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝
-                        */}
-                        <div style={{display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 1 STAKING</div>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                        {isStakeNowSlot1 ?
-                                            <>
-                                                {isRunoutSlot1 ?
-                                                    <>
-                                                        <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Run Out of Gas</div>
-                                                    </> :
-                                                    <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>On Staking</div>
-                                                    </>
-                                                }
-                                            </> :
-                                            <>
-                                                {!isStakeNowSlot1 &&
-                                                    <>
-                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Available for stake</div>
-                                                    </>
-                                                }
-                                            </>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    {address !== undefined ?
-                                        <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                        <>ADDRESS <div>-</div></>
-                                    }
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    TOTAL POWER PER SEC
-                                    <div>{Number(allPowerSlot1).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE BALANCE
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE PENDING
-                                    <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot1 !== 0 && timeToRunoutSlot1 !== null  ? "#ff007a" : "#5f6476"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot1).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GAS USAGE
-                                    <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                        <option value="ENGY">$ENGY</option>
-                                    </select>
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        {gasselected === "ENGY" &&
-                                            <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
-                                                <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                            </>
-                                        }
-                                        <div style={{marginLeft: "5px"}}>/24</div>
-                                    </div>
-                                </div>
-                                {isStakeNowSlot1 ?
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot1}</div></div>
-                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
-                                }
-                                {address !== undefined && address === youraddr ?
-                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        {isStakeNowSlot1 ?
-                                            <>
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
-                                                <div style={{alignSelf: "center", background: isRunoutSlot1 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0, 10)}>HARVEST & UNSTAKE</div>
-                                            </> :
-                                            <>
-                                                {isStakeNowSlot1 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot1 !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(0)}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot1 !== null ?
-                                    <img src={cardWeaponSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
-                                }
-                                {cardWeaponSlot1Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlot1Level}</div>}
-                                {jewelSlot1 !== null ?
-                                    <img src={jewelSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
-                                }
-                                {jewelSlot1Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlot1Level}</div>}
-                                {cardShieldSlot1 !== null ?
-                                    <img src={cardShieldSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
-                                }
-                                {cardShieldSlot1Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlot1Level}</div>}
-                                {daemonSlot1 !== null ?
-                                    <img src={daemonSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
-                                }
-                                {daemonSlot1Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlot1Level}</div>}
-                                {cardAccessorySlot1 !== null ?
-                                    <img src={cardAccessorySlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
-                                }
-                                {cardAccessorySlot1Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlot1Level}</div>}
-                                {talismanTwoSlot1 !== null ?
-                                    <img src={talismanTwoSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
-                                }
-                                {talismanTwoSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlot1Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot1 !== null ?
-                                    <img src={weaponOneSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
-                                }
-                                {weaponOneSlot1Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlot1Level}</div>}
-                                {weaponTwoSlot1 !== null ?
-                                    <img src={weaponTwoSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
-                                }
-                                {weaponTwoSlot1Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlot1Level}</div>}
-                                {shieldSlot1 !== null ?
-                                    <img src={shieldSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
-                                }
-                                {shieldSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlot1Level}</div>}
-                                {wingSlot1 !== null ?
-                                    <img src={wingSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
-                                }
-                                {wingSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlot1Level}</div>}
-                                {accessorySlot1 !== null ?
-                                    <img src={accessorySlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
-                                }
-                                {accessorySlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlot1Level}</div>}
-                                {talismanOneSlot1 !== null ?
-                                    <img src={talismanOneSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
-                                }
-                                {talismanOneSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot1Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                {nft.length > 0 ?
-                                    <>
-                                        {charSlot1 !== null ?
-                                            <img src={charSlot1} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
-                                        }
-                                    </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
-                                        <ThreeDots fill="#5f6476" />
-                                    </div>
-                                }
-                                {charSlot1Level !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{charSlot1Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot1 !== null ?
-                                    <img src={headUpperSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
-                                }
-                                {headUpperSlot1Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlot1Level}</div>}
-                                {headMiddleSlot1 !== null ?
-                                    <img src={headMiddleSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
-                                }
-                                {headMiddleSlot1Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlot1Level}</div>}
-                                {headLowerSlot1 !== null ?
-                                    <img src={headLowerSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
-                                }
-                                {headLowerSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlot1Level}</div>}
-                                {armorSlot1 !== null ?
-                                    <img src={armorSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
-                                }
-                                {armorSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlot1Level}</div>}
-                                {garmentSlot1 !== null ?
-                                    <img src={garmentSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
-                                }
-                                {garmentSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlot1Level}</div>}
-                                {footgearSlot1 !== null ?
-                                    <img src={footgearSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
-                                }
-                                {footgearSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlot1Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot1 !== null ?
-                                    <img src={cardHeadUpperSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
-                                }
-                                {cardHeadUpperSlot1Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlot1Level}</div>}
-                                {cardHeadMiddleSlot1 !== null ?
-                                    <img src={cardHeadMiddleSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
-                                }
-                                {cardHeadMiddleSlot1Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlot1Level}</div>}
-                                {cardHeadLowerSlot1 !== null ?
-                                    <img src={cardHeadLowerSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
-                                }
-                                {cardHeadLowerSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlot1Level}</div>}
-                                {cardArmorSlot1 !== null ?
-                                    <img src={cardArmorSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
-                                }
-                                {cardArmorSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlot1Level}</div>}
-                                {cardGarmentSlot1 !== null ?
-                                    <img src={cardGarmentSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
-                                }
-                                {cardGarmentSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlot1Level}</div>}
-                                {cardFootgearSlot1 !== null ?
-                                    <img src={cardFootgearSlot1} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
-                                }
-                                {cardFootgearSlot1Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlot1Level}</div>}
-                            </div>
+        <>
+            {isTransferModal &&
+                <div className="centermodal">
+                    <div className="wrapper">
+                        <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
+                            <div style={{fontSize: "20px"}}>{transferName}</div>
+                            <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
+                            <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
+                            <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
                         </div>
-                        {/*
-                        ░██████╗██╗░░░░░░█████╗░████████╗██████╗░
-                        ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝╚════██╗
-                        ╚█████╗░██║░░░░░██║░░██║░░░██║░░░░░███╔═╝
-                        ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░██╔══╝░░
-                        ██████╔╝███████╗╚█████╔╝░░░██║░░░███████╗
-                        ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝
-                        */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 2 STAKING</div>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                        {isStakeNowSlot2 ?
-                                            <>
-                                                {isRunoutSlot2 ?
-                                                    <>
-                                                        <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Run Out of Gas</div>
-                                                    </> :
-                                                    <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>On Staking</div>
-                                                    </>
-                                                }
-                                            </> :
-                                            <>
-                                                {!isStakeNowSlot2 &&
-                                                    <>
-                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Available for stake</div>
-                                                    </>
-                                                }
-                                            </>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    {address !== undefined ?
-                                        <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                        <>ADDRESS <div>-</div></>
-                                    }
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    TOTAL POWER PER SEC
-                                    <div>{Number(allPowerSlot2).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE BALANCE
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE PENDING
-                                    <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot2 !== 0 && timeToRunoutSlot2 !== null  ? "#ff007a" : "#5f6476"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot2).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GAS USAGE
-                                    <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                        <option value="ENGY">$ENGY</option>
-                                    </select>
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        {gasselected === "ENGY" &&
-                                            <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
-                                                <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                            </>
-                                        }
-                                        <div style={{marginLeft: "5px"}}>/24</div>
-                                    </div>
-                                </div>
-                                {isStakeNowSlot2 ?
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot2}</div></div>
-                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
-                                }
-                                {address !== undefined && address === youraddr ?
-                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        {isStakeNowSlot2 ?
-                                            <>
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
-                                                <div style={{alignSelf: "center", background: isRunoutSlot2 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(1, 10)}>HARVEST & UNSTAKE</div>
-                                            </> :
-                                            <>
-                                                {isStakeNowSlot2 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot2 !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(1)}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot2 !== null ?
-                                    <img src={cardWeaponSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
-                                }
-                                {cardWeaponSlot2Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlot2Level}</div>}
-                                {jewelSlot2 !== null ?
-                                    <img src={jewelSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
-                                }
-                                {jewelSlot2Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlot2Level}</div>}
-                                {cardShieldSlot2 !== null ?
-                                    <img src={cardShieldSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
-                                }
-                                {cardShieldSlot2Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlot2Level}</div>}
-                                {daemonSlot2 !== null ?
-                                    <img src={daemonSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
-                                }
-                                {daemonSlot2Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlot2Level}</div>}
-                                {cardAccessorySlot2 !== null ?
-                                    <img src={cardAccessorySlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
-                                }
-                                {cardAccessorySlot2Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlot2Level}</div>}
-                                {talismanTwoSlot2 !== null ?
-                                    <img src={talismanTwoSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
-                                }
-                                {talismanTwoSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlot2Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot2 !== null ?
-                                    <img src={weaponOneSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
-                                }
-                                {weaponOneSlot2Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlot2Level}</div>}
-                                {weaponTwoSlot2 !== null ?
-                                    <img src={weaponTwoSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
-                                }
-                                {weaponTwoSlot2Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlot2Level}</div>}
-                                {shieldSlot2 !== null ?
-                                    <img src={shieldSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
-                                }
-                                {shieldSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlot2Level}</div>}
-                                {wingSlot2 !== null ?
-                                    <img src={wingSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
-                                }
-                                {wingSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlot2Level}</div>}
-                                {accessorySlot2 !== null ?
-                                    <img src={accessorySlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
-                                }
-                                {accessorySlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlot2Level}</div>}
-                                {talismanOneSlot2 !== null ?
-                                    <img src={talismanOneSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
-                                }
-                                {talismanOneSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot2Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                {nft.length > 0 ?
-                                    <>
-                                        {charSlot2 !== null ?
-                                            <img src={charSlot2} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
-                                        }
-                                    </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
-                                        <ThreeDots fill="#5f6476" />
-                                    </div>
-                                }
-                                {charSlot2Level !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{charSlot2Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot2 !== null ?
-                                    <img src={headUpperSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
-                                }
-                                {headUpperSlot2Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlot2Level}</div>}
-                                {headMiddleSlot2 !== null ?
-                                    <img src={headMiddleSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
-                                }
-                                {headMiddleSlot2Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlot2Level}</div>}
-                                {headLowerSlot2 !== null ?
-                                    <img src={headLowerSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
-                                }
-                                {headLowerSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlot2Level}</div>}
-                                {armorSlot2 !== null ?
-                                    <img src={armorSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
-                                }
-                                {armorSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlot2Level}</div>}
-                                {garmentSlot2 !== null ?
-                                    <img src={garmentSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
-                                }
-                                {garmentSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlot2Level}</div>}
-                                {footgearSlot2 !== null ?
-                                    <img src={footgearSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
-                                }
-                                {footgearSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlot2Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot2 !== null ?
-                                    <img src={cardHeadUpperSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
-                                }
-                                {cardHeadUpperSlot2Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlot2Level}</div>}
-                                {cardHeadMiddleSlot2 !== null ?
-                                    <img src={cardHeadMiddleSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
-                                }
-                                {cardHeadMiddleSlot2Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlot2Level}</div>}
-                                {cardHeadLowerSlot2 !== null ?
-                                    <img src={cardHeadLowerSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
-                                }
-                                {cardHeadLowerSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlot2Level}</div>}
-                                {cardArmorSlot2 !== null ?
-                                    <img src={cardArmorSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
-                                }
-                                {cardArmorSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlot2Level}</div>}
-                                {cardGarmentSlot2 !== null ?
-                                    <img src={cardGarmentSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
-                                }
-                                {cardGarmentSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlot2Level}</div>}
-                                {cardFootgearSlot2 !== null ?
-                                    <img src={cardFootgearSlot2} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
-                                }
-                                {cardFootgearSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlot2Level}</div>}
-                            </div>
-                        </div>
-                        {/*
-                        ░██████╗██╗░░░░░░█████╗░████████╗██████╗░
-                        ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝╚════██╗
-                        ╚█████╗░██║░░░░░██║░░██║░░░██║░░░░█████╔╝
-                        ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░░╚═══██╗
-                        ██████╔╝███████╗╚█████╔╝░░░██║░░░██████╔╝
-                        ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚═════╝░
-                        */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 3 STAKING</div>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                        {isStakeNowSlot3 ?
-                                            <>
-                                                {isRunoutSlot3 ?
-                                                    <>
-                                                        <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Run Out of Gas</div>
-                                                    </> :
-                                                    <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>On Staking</div>
-                                                    </>
-                                                }
-                                            </> :
-                                            <>
-                                                {!isStakeNowSlot3 &&
-                                                    <>
-                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Available for stake</div>
-                                                    </>
-                                                }
-                                            </>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    {address !== undefined ?
-                                        <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                        <>ADDRESS <div>-</div></>
-                                    }
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    TOTAL POWER PER SEC
-                                    <div>{Number(allPowerSlot3).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE BALANCE
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE PENDING
-                                    <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot3 !== 0 && timeToRunoutSlot3 !== null  ? "#ff007a" : "#5f6476"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot3).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GAS USAGE
-                                    <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                        <option value="ENGY">$ENGY</option>
-                                    </select>
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        {gasselected === "ENGY" &&
-                                            <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
-                                                <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                            </>
-                                        }
-                                        <div style={{marginLeft: "5px"}}>/24</div>
-                                    </div>
-                                </div>
-                                {isStakeNowSlot3 ?
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot3}</div></div>
-                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
-                                }
-                                {address !== undefined && address === youraddr ?
-                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        {isStakeNowSlot3 ?
-                                            <>
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                <div style={{alignSelf: "center", background: isRunoutSlot3 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(2, 10)}>HARVEST & UNSTAKE</div>
-                                            </> :
-                                            <>
-                                                {isStakeNowSlot3 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot3 !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(2)}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot3 !== null ?
-                                    <img src={cardWeaponSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
-                                }
-                                {cardWeaponSlot3Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlot3Level}</div>}
-                                {jewelSlot3 !== null ?
-                                    <img src={jewelSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
-                                }
-                                {jewelSlot3Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlot3Level}</div>}
-                                {cardShieldSlot3 !== null ?
-                                    <img src={cardShieldSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
-                                }
-                                {cardShieldSlot3Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlot3Level}</div>}
-                                {daemonSlot3 !== null ?
-                                    <img src={daemonSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
-                                }
-                                {daemonSlot3Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlot3Level}</div>}
-                                {cardAccessorySlot3 !== null ?
-                                    <img src={cardAccessorySlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
-                                }
-                                {cardAccessorySlot3Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlot3Level}</div>}
-                                {talismanTwoSlot3 !== null ?
-                                    <img src={talismanTwoSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
-                                }
-                                {talismanTwoSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlot3Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot3 !== null ?
-                                    <img src={weaponOneSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
-                                }
-                                {weaponOneSlot3Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlot3Level}</div>}
-                                {weaponTwoSlot3 !== null ?
-                                    <img src={weaponTwoSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
-                                }
-                                {weaponTwoSlot3Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlot3Level}</div>}
-                                {shieldSlot3 !== null ?
-                                    <img src={shieldSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
-                                }
-                                {shieldSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlot3Level}</div>}
-                                {wingSlot3 !== null ?
-                                    <img src={wingSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
-                                }
-                                {wingSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlot3Level}</div>}
-                                {accessorySlot3 !== null ?
-                                    <img src={accessorySlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
-                                }
-                                {accessorySlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlot3Level}</div>}
-                                {talismanOneSlot3 !== null ?
-                                    <img src={talismanOneSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
-                                }
-                                {talismanOneSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot3Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                {nft.length > 0 ?
-                                    <>
-                                        {charSlot3 !== null ?
-                                            <img src={charSlot3} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
-                                        }
-                                    </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
-                                        <ThreeDots fill="#5f6476" />
-                                    </div>
-                                }
-                                {charSlot3Level !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{charSlot3Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot3 !== null ?
-                                    <img src={headUpperSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
-                                }
-                                {headUpperSlot3Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlot3Level}</div>}
-                                {headMiddleSlot3 !== null ?
-                                    <img src={headMiddleSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
-                                }
-                                {headMiddleSlot3Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlot3Level}</div>}
-                                {headLowerSlot3 !== null ?
-                                    <img src={headLowerSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
-                                }
-                                {headLowerSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlot3Level}</div>}
-                                {armorSlot3 !== null ?
-                                    <img src={armorSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
-                                }
-                                {armorSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlot3Level}</div>}
-                                {garmentSlot3 !== null ?
-                                    <img src={garmentSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
-                                }
-                                {garmentSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlot3Level}</div>}
-                                {footgearSlot3 !== null ?
-                                    <img src={footgearSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
-                                }
-                                {footgearSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlot3Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot3 !== null ?
-                                    <img src={cardHeadUpperSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
-                                }
-                                {cardHeadUpperSlot3Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlot3Level}</div>}
-                                {cardHeadMiddleSlot3 !== null ?
-                                    <img src={cardHeadMiddleSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
-                                }
-                                {cardHeadMiddleSlot3Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlot3Level}</div>}
-                                {cardHeadLowerSlot3 !== null ?
-                                    <img src={cardHeadLowerSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
-                                }
-                                {cardHeadLowerSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlot3Level}</div>}
-                                {cardArmorSlot3 !== null ?
-                                    <img src={cardArmorSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
-                                }
-                                {cardArmorSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlot3Level}</div>}
-                                {cardGarmentSlot3 !== null ?
-                                    <img src={cardGarmentSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
-                                }
-                                {cardGarmentSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlot3Level}</div>}
-                                {cardFootgearSlot3 !== null ?
-                                    <img src={cardFootgearSlot3} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
-                                }
-                                {cardFootgearSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlot3Level}</div>}
-                            </div>
-                        </div>
-                        {/*
-                        ░██████╗██╗░░░░░░█████╗░████████╗░░██╗██╗
-                        ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝░██╔╝██║
-                        ╚█████╗░██║░░░░░██║░░██║░░░██║░░░██╔╝░██║
-                        ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░███████║
-                        ██████╔╝███████╗╚█████╔╝░░░██║░░░╚════██║
-                        ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░░░░░╚═╝
-                        */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 4 STAKING</div>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                        {isStakeNowSlot4 ?
-                                            <>
-                                                {isRunoutSlot4 ?
-                                                    <>
-                                                        <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Run Out of Gas</div>
-                                                    </> :
-                                                    <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>On Staking</div>
-                                                    </>
-                                                }
-                                            </> :
-                                            <>
-                                                {!isStakeNowSlot4 &&
-                                                    <>
-                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Available for stake</div>
-                                                    </>
-                                                }
-                                            </>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    {address !== undefined ?
-                                        <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                        <>ADDRESS <div>-</div></>
-                                    }
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    TOTAL POWER PER SEC
-                                    <div>{Number(allPowerSlot4).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE BALANCE
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE PENDING
-                                    <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot4 !== 0 && timeToRunoutSlot4 !== null  ? "#ff007a" : "#5f6476"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot4).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GAS USAGE
-                                    <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                        <option value="ENGY">$ENGY</option>
-                                    </select>
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        {gasselected === "ENGY" &&
-                                            <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
-                                                <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                            </>
-                                        }
-                                        <div style={{marginLeft: "5px"}}>/24</div>
-                                    </div>
-                                </div>
-                                {isStakeNowSlot4 ?
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot4}</div></div>
-                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
-                                }
-                                {address !== undefined && address === youraddr ?
-                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        {isStakeNowSlot4 ?
-                                            <>
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
-                                                <div style={{alignSelf: "center", background: isRunoutSlot4 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(3, 10)}>HARVEST & UNSTAKE</div>
-                                            </> :
-                                            <>
-                                                {isStakeNowSlot4 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot4 !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(3)}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot4 !== null ?
-                                    <img src={cardWeaponSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
-                                }
-                                {cardWeaponSlot4Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlot4Level}</div>}
-                                {jewelSlot4 !== null ?
-                                    <img src={jewelSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
-                                }
-                                {jewelSlot4Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlot4Level}</div>}
-                                {cardShieldSlot4 !== null ?
-                                    <img src={cardShieldSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
-                                }
-                                {cardShieldSlot4Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlot4Level}</div>}
-                                {daemonSlot4 !== null ?
-                                    <img src={daemonSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
-                                }
-                                {daemonSlot4Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlot4Level}</div>}
-                                {cardAccessorySlot4 !== null ?
-                                    <img src={cardAccessorySlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
-                                }
-                                {cardAccessorySlot4Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlot4Level}</div>}
-                                {talismanTwoSlot4 !== null ?
-                                    <img src={talismanTwoSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
-                                }
-                                {talismanTwoSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlot4Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot4 !== null ?
-                                    <img src={weaponOneSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
-                                }
-                                {weaponOneSlot4Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlot4Level}</div>}
-                                {weaponTwoSlot4 !== null ?
-                                    <img src={weaponTwoSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
-                                }
-                                {weaponTwoSlot4Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlot4Level}</div>}
-                                {shieldSlot4 !== null ?
-                                    <img src={shieldSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
-                                }
-                                {shieldSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlot4Level}</div>}
-                                {wingSlot4 !== null ?
-                                    <img src={wingSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
-                                }
-                                {wingSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlot4Level}</div>}
-                                {accessorySlot4 !== null ?
-                                    <img src={accessorySlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
-                                }
-                                {accessorySlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlot4Level}</div>}
-                                {talismanOneSlot4 !== null ?
-                                    <img src={talismanOneSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
-                                }
-                                {talismanOneSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot4Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                {nft.length > 0 ?
-                                    <>
-                                        {charSlot4 !== null ?
-                                            <img src={charSlot4} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
-                                        }
-                                    </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
-                                        <ThreeDots fill="#5f6476" />
-                                    </div>
-                                }
-                                {charSlot4Level !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{charSlot4Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot4 !== null ?
-                                    <img src={headUpperSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
-                                }
-                                {headUpperSlot4Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlot4Level}</div>}
-                                {headMiddleSlot4 !== null ?
-                                    <img src={headMiddleSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
-                                }
-                                {headMiddleSlot4Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlot4Level}</div>}
-                                {headLowerSlot4 !== null ?
-                                    <img src={headLowerSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
-                                }
-                                {headLowerSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlot4Level}</div>}
-                                {armorSlot4 !== null ?
-                                    <img src={armorSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
-                                }
-                                {armorSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlot4Level}</div>}
-                                {garmentSlot4 !== null ?
-                                    <img src={garmentSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
-                                }
-                                {garmentSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlot4Level}</div>}
-                                {footgearSlot4 !== null ?
-                                    <img src={footgearSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
-                                }
-                                {footgearSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlot4Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot4 !== null ?
-                                    <img src={cardHeadUpperSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
-                                }
-                                {cardHeadUpperSlot4Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlot4Level}</div>}
-                                {cardHeadMiddleSlot4 !== null ?
-                                    <img src={cardHeadMiddleSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
-                                }
-                                {cardHeadMiddleSlot4Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlot4Level}</div>}
-                                {cardHeadLowerSlot4 !== null ?
-                                    <img src={cardHeadLowerSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
-                                }
-                                {cardHeadLowerSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlot4Level}</div>}
-                                {cardArmorSlot4 !== null ?
-                                    <img src={cardArmorSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
-                                }
-                                {cardArmorSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlot4Level}</div>}
-                                {cardGarmentSlot4 !== null ?
-                                    <img src={cardGarmentSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
-                                }
-                                {cardGarmentSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlot4Level}</div>}
-                                {cardFootgearSlot4 !== null ?
-                                    <img src={cardFootgearSlot4} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
-                                }
-                                {cardFootgearSlot4Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlot4Level}</div>}
-                            </div>
-                        </div>
-                        {/*
-                        ░██████╗██╗░░░░░░█████╗░████████╗███████╗
-                        ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝██╔════╝
-                        ╚█████╗░██║░░░░░██║░░██║░░░██║░░░██████╗░
-                        ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░╚════██╗
-                        ██████╔╝███████╗╚█████╔╝░░░██║░░░██████╔╝
-                        ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚═════╝░
-                        */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 5 STAKING</div>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                        {isStakeNowSlot5 ?
-                                            <>
-                                                {isRunoutSlot5 ?
-                                                    <>
-                                                        <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Run Out of Gas</div>
-                                                    </> :
-                                                    <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>On Staking</div>
-                                                    </>
-                                                }
-                                            </> :
-                                            <>
-                                                {!isStakeNowSlot5 &&
-                                                    <>
-                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Available for stake</div>
-                                                    </>
-                                                }
-                                            </>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    {address !== undefined ?
-                                        <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                        <>ADDRESS <div>-</div></>
-                                    }
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    TOTAL POWER PER SEC
-                                    <div>{Number(allPowerSlot5).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE BALANCE
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE PENDING
-                                    <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot5 !== 0 && timeToRunoutSlot5 !== null  ? "#ff007a" : "#5f6476"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot5).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GAS USAGE
-                                    <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                        <option value="ENGY">$ENGY</option>
-                                    </select>
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        {gasselected === "ENGY" &&
-                                            <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
-                                                <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                            </>
-                                        }
-                                        <div style={{marginLeft: "5px"}}>/24</div>
-                                    </div>
-                                </div>
-                                {isStakeNowSlot5 ?
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot5}</div></div>
-                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
-                                }
-                                {address !== undefined && address === youraddr ?
-                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        {isStakeNowSlot5 ?
-                                            <>
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
-                                                <div style={{alignSelf: "center", background: isRunoutSlot5 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(4, 10)}>HARVEST & UNSTAKE</div>
-                                            </> :
-                                            <>
-                                                {isStakeNowSlot5 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot5 !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(4)}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot5 !== null ?
-                                    <img src={cardWeaponSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
-                                }
-                                {cardWeaponSlot5Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlot5Level}</div>}
-                                {jewelSlot5 !== null ?
-                                    <img src={jewelSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
-                                }
-                                {jewelSlot5Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlot5Level}</div>}
-                                {cardShieldSlot5 !== null ?
-                                    <img src={cardShieldSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
-                                }
-                                {cardShieldSlot5Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlot5Level}</div>}
-                                {daemonSlot5 !== null ?
-                                    <img src={daemonSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
-                                }
-                                {daemonSlot5Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlot5Level}</div>}
-                                {cardAccessorySlot5 !== null ?
-                                    <img src={cardAccessorySlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
-                                }
-                                {cardAccessorySlot5Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlot5Level}</div>}
-                                {talismanTwoSlot5 !== null ?
-                                    <img src={talismanTwoSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
-                                }
-                                {talismanTwoSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlot5Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot5 !== null ?
-                                    <img src={weaponOneSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
-                                }
-                                {weaponOneSlot5Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlot5Level}</div>}
-                                {weaponTwoSlot5 !== null ?
-                                    <img src={weaponTwoSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
-                                }
-                                {weaponTwoSlot5Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlot5Level}</div>}
-                                {shieldSlot5 !== null ?
-                                    <img src={shieldSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
-                                }
-                                {shieldSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlot5Level}</div>}
-                                {wingSlot5 !== null ?
-                                    <img src={wingSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
-                                }
-                                {wingSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlot5Level}</div>}
-                                {accessorySlot5 !== null ?
-                                    <img src={accessorySlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
-                                }
-                                {accessorySlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlot5Level}</div>}
-                                {talismanOneSlot5 !== null ?
-                                    <img src={talismanOneSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
-                                }
-                                {talismanOneSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot5Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                {nft.length > 0 ?
-                                    <>
-                                        {charSlot5 !== null ?
-                                            <img src={charSlot5} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
-                                        }
-                                    </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
-                                        <ThreeDots fill="#5f6476" />
-                                    </div>
-                                }
-                                {charSlot5Level !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{charSlot5Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot5 !== null ?
-                                    <img src={headUpperSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
-                                }
-                                {headUpperSlot5Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlot5Level}</div>}
-                                {headMiddleSlot5 !== null ?
-                                    <img src={headMiddleSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
-                                }
-                                {headMiddleSlot5Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlot5Level}</div>}
-                                {headLowerSlot5 !== null ?
-                                    <img src={headLowerSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
-                                }
-                                {headLowerSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlot5Level}</div>}
-                                {armorSlot5 !== null ?
-                                    <img src={armorSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
-                                }
-                                {armorSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlot5Level}</div>}
-                                {garmentSlot5 !== null ?
-                                    <img src={garmentSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
-                                }
-                                {garmentSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlot5Level}</div>}
-                                {footgearSlot5 !== null ?
-                                    <img src={footgearSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
-                                }
-                                {footgearSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlot5Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot5 !== null ?
-                                    <img src={cardHeadUpperSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
-                                }
-                                {cardHeadUpperSlot5Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlot5Level}</div>}
-                                {cardHeadMiddleSlot5 !== null ?
-                                    <img src={cardHeadMiddleSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
-                                }
-                                {cardHeadMiddleSlot5Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlot5Level}</div>}
-                                {cardHeadLowerSlot5 !== null ?
-                                    <img src={cardHeadLowerSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
-                                }
-                                {cardHeadLowerSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlot5Level}</div>}
-                                {cardArmorSlot5 !== null ?
-                                    <img src={cardArmorSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
-                                }
-                                {cardArmorSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlot5Level}</div>}
-                                {cardGarmentSlot5 !== null ?
-                                    <img src={cardGarmentSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
-                                }
-                                {cardGarmentSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlot5Level}</div>}
-                                {cardFootgearSlot5 !== null ?
-                                    <img src={cardFootgearSlot5} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
-                                }
-                                {cardFootgearSlot5Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlot5Level}</div>}
-                            </div>
-                        </div>
-                        {/*
-                        ░██████╗██╗░░░░░░█████╗░████████╗░█████╗░
-                        ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝██╔═══╝░
-                        ╚█████╗░██║░░░░░██║░░██║░░░██║░░░██████╗░
-                        ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░██╔══██╗
-                        ██████╔╝███████╗╚█████╔╝░░░██║░░░╚█████╔╝
-                        ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░╚════╝░
-                        */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 6 STAKING</div>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                        {isStakeNowSlot6 ?
-                                            <>
-                                                {isRunoutSlot6 ?
-                                                    <>
-                                                        <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Run Out of Gas</div>
-                                                    </> :
-                                                    <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>On Staking</div>
-                                                    </>
-                                                }
-                                            </> :
-                                            <>
-                                                {!isStakeNowSlot6 &&
-                                                    <>
-                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Available for stake</div>
-                                                    </>
-                                                }
-                                            </>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    {address !== undefined ?
-                                        <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                        <>ADDRESS <div>-</div></>
-                                    }
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    TOTAL POWER PER SEC
-                                    <div>{Number(allPowerSlot6).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE BALANCE
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE PENDING
-                                    <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot6 !== 0 && timeToRunoutSlot6 !== null  ? "#ff007a" : "#5f6476"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot6).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GAS USAGE
-                                    <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                        <option value="ENGY">$ENGY</option>
-                                    </select>
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        {gasselected === "ENGY" &&
-                                            <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
-                                                <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                            </>
-                                        }
-                                        <div style={{marginLeft: "5px"}}>/24</div>
-                                    </div>
-                                </div>
-                                {isStakeNowSlot6 ?
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot6}</div></div>
-                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
-                                }
-                                {address !== undefined && address === youraddr ?
-                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        {isStakeNowSlot6 ?
-                                            <>
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
-                                                <div style={{alignSelf: "center", background: isRunoutSlot6 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(5, 10)}>HARVEST & UNSTAKE</div>
-                                            </> :
-                                            <>
-                                                {isStakeNowSlot6 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot6 !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(5)}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot6 !== null ?
-                                    <img src={cardWeaponSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
-                                }
-                                {cardWeaponSlot6Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlot6Level}</div>}
-                                {jewelSlot6 !== null ?
-                                    <img src={jewelSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
-                                }
-                                {jewelSlot6Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlot6Level}</div>}
-                                {cardShieldSlot6 !== null ?
-                                    <img src={cardShieldSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
-                                }
-                                {cardShieldSlot6Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlot6Level}</div>}
-                                {daemonSlot6 !== null ?
-                                    <img src={daemonSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
-                                }
-                                {daemonSlot6Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlot6Level}</div>}
-                                {cardAccessorySlot6 !== null ?
-                                    <img src={cardAccessorySlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
-                                }
-                                {cardAccessorySlot6Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlot6Level}</div>}
-                                {talismanTwoSlot6 !== null ?
-                                    <img src={talismanTwoSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
-                                }
-                                {talismanTwoSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlot6Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot6 !== null ?
-                                    <img src={weaponOneSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
-                                }
-                                {weaponOneSlot6Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlot6Level}</div>}
-                                {weaponTwoSlot6 !== null ?
-                                    <img src={weaponTwoSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
-                                }
-                                {weaponTwoSlot6Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlot6Level}</div>}
-                                {shieldSlot6 !== null ?
-                                    <img src={shieldSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
-                                }
-                                {shieldSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlot6Level}</div>}
-                                {wingSlot6 !== null ?
-                                    <img src={wingSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
-                                }
-                                {wingSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlot6Level}</div>}
-                                {accessorySlot6 !== null ?
-                                    <img src={accessorySlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
-                                }
-                                {accessorySlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlot6Level}</div>}
-                                {talismanOneSlot6 !== null ?
-                                    <img src={talismanOneSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
-                                }
-                                {talismanOneSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot6Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                {nft.length > 0 ?
-                                    <>
-                                        {charSlot6 !== null ?
-                                            <img src={charSlot6} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
-                                        }
-                                    </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
-                                        <ThreeDots fill="#5f6476" />
-                                    </div>
-                                }
-                                {charSlot6Level !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{charSlot6Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot6 !== null ?
-                                    <img src={headUpperSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
-                                }
-                                {headUpperSlot6Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlot6Level}</div>}
-                                {headMiddleSlot6 !== null ?
-                                    <img src={headMiddleSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
-                                }
-                                {headMiddleSlot6Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlot6Level}</div>}
-                                {headLowerSlot6 !== null ?
-                                    <img src={headLowerSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
-                                }
-                                {headLowerSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlot6Level}</div>}
-                                {armorSlot6 !== null ?
-                                    <img src={armorSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
-                                }
-                                {armorSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlot6Level}</div>}
-                                {garmentSlot6 !== null ?
-                                    <img src={garmentSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
-                                }
-                                {garmentSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlot6Level}</div>}
-                                {footgearSlot6 !== null ?
-                                    <img src={footgearSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
-                                }
-                                {footgearSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlot6Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot6 !== null ?
-                                    <img src={cardHeadUpperSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
-                                }
-                                {cardHeadUpperSlot6Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlot6Level}</div>}
-                                {cardHeadMiddleSlot6 !== null ?
-                                    <img src={cardHeadMiddleSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
-                                }
-                                {cardHeadMiddleSlot6Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlot6Level}</div>}
-                                {cardHeadLowerSlot6 !== null ?
-                                    <img src={cardHeadLowerSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
-                                }
-                                {cardHeadLowerSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlot6Level}</div>}
-                                {cardArmorSlot6 !== null ?
-                                    <img src={cardArmorSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
-                                }
-                                {cardArmorSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlot6Level}</div>}
-                                {cardGarmentSlot6 !== null ?
-                                    <img src={cardGarmentSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
-                                }
-                                {cardGarmentSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlot6Level}</div>}
-                                {cardFootgearSlot6 !== null ?
-                                    <img src={cardFootgearSlot6} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
-                                }
-                                {cardFootgearSlot6Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlot6Level}</div>}
-                            </div>
-                        </div>
-                        {/*
-                        ░██████╗██╗░░░░░░█████╗░████████╗███████╗
-                        ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝╚════██║
-                        ╚█████╗░██║░░░░░██║░░██║░░░██║░░░░░░░██╔╝
-                        ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░░░░██╔╝░
-                        ██████╔╝███████╗╚█████╔╝░░░██║░░░░░██╔╝░░
-                        ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░░╚═╝░░░
-                        */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 7 STAKING</div>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                        {isStakeNowSlot7 ?
-                                            <>
-                                                {isRunoutSlot7 ?
-                                                    <>
-                                                        <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Run Out of Gas</div>
-                                                    </> :
-                                                    <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>On Staking</div>
-                                                    </>
-                                                }
-                                            </> :
-                                            <>
-                                                {!isStakeNowSlot7 &&
-                                                    <>
-                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Available for stake</div>
-                                                    </>
-                                                }
-                                            </>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    {address !== undefined ?
-                                        <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                        <>ADDRESS <div>-</div></>
-                                    }
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    TOTAL POWER PER SEC
-                                    <div>{Number(allPowerSlot7).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE BALANCE
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE PENDING
-                                    <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot7 !== 0 && timeToRunoutSlot7 !== null  ? "#ff007a" : "#5f6476"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot7).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GAS USAGE
-                                    <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                        <option value="ENGY">$ENGY</option>
-                                    </select>
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        {gasselected === "ENGY" &&
-                                            <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
-                                                <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                            </>
-                                        }
-                                        <div style={{marginLeft: "5px"}}>/24</div>
-                                    </div>
-                                </div>
-                                {isStakeNowSlot7 ?
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot7}</div></div>
-                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
-                                }
-                                {address !== undefined && address === youraddr ?
-                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        {isStakeNowSlot7 ?
-                                            <>
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                <div style={{alignSelf: "center", background: isRunoutSlot7 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(6, 10)}>HARVEST & UNSTAKE</div>
-                                            </> :
-                                            <>
-                                                {isStakeNowSlot7 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot7 !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(6)}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot7 !== null ?
-                                    <img src={cardWeaponSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
-                                }
-                                {cardWeaponSlot7Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlot7Level}</div>}
-                                {jewelSlot7 !== null ?
-                                    <img src={jewelSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
-                                }
-                                {jewelSlot7Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlot7Level}</div>}
-                                {cardShieldSlot7 !== null ?
-                                    <img src={cardShieldSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
-                                }
-                                {cardShieldSlot7Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlot7Level}</div>}
-                                {daemonSlot7 !== null ?
-                                    <img src={daemonSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
-                                }
-                                {daemonSlot7Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlot7Level}</div>}
-                                {cardAccessorySlot7 !== null ?
-                                    <img src={cardAccessorySlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
-                                }
-                                {cardAccessorySlot7Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlot7Level}</div>}
-                                {talismanTwoSlot7 !== null ?
-                                    <img src={talismanTwoSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
-                                }
-                                {talismanTwoSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlot7Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot7 !== null ?
-                                    <img src={weaponOneSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
-                                }
-                                {weaponOneSlot7Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlot7Level}</div>}
-                                {weaponTwoSlot7 !== null ?
-                                    <img src={weaponTwoSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
-                                }
-                                {weaponTwoSlot7Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlot7Level}</div>}
-                                {shieldSlot7 !== null ?
-                                    <img src={shieldSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
-                                }
-                                {shieldSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlot7Level}</div>}
-                                {wingSlot7 !== null ?
-                                    <img src={wingSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
-                                }
-                                {wingSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlot7Level}</div>}
-                                {accessorySlot7 !== null ?
-                                    <img src={accessorySlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
-                                }
-                                {accessorySlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlot7Level}</div>}
-                                {talismanOneSlot7 !== null ?
-                                    <img src={talismanOneSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
-                                }
-                                {talismanOneSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot7Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                {nft.length > 0 ?
-                                    <>
-                                        {charSlot7 !== null ?
-                                            <img src={charSlot7} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
-                                        }
-                                    </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
-                                        <ThreeDots fill="#5f6476" />
-                                    </div>
-                                }
-                                {charSlot7Level !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{charSlot7Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot7 !== null ?
-                                    <img src={headUpperSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
-                                }
-                                {headUpperSlot7Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlot7Level}</div>}
-                                {headMiddleSlot7 !== null ?
-                                    <img src={headMiddleSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
-                                }
-                                {headMiddleSlot7Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlot7Level}</div>}
-                                {headLowerSlot7 !== null ?
-                                    <img src={headLowerSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
-                                }
-                                {headLowerSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlot7Level}</div>}
-                                {armorSlot7 !== null ?
-                                    <img src={armorSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
-                                }
-                                {armorSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlot7Level}</div>}
-                                {garmentSlot7 !== null ?
-                                    <img src={garmentSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
-                                }
-                                {garmentSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlot7Level}</div>}
-                                {footgearSlot7 !== null ?
-                                    <img src={footgearSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
-                                }
-                                {footgearSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlot7Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot7 !== null ?
-                                    <img src={cardHeadUpperSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
-                                }
-                                {cardHeadUpperSlot7Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlot7Level}</div>}
-                                {cardHeadMiddleSlot7 !== null ?
-                                    <img src={cardHeadMiddleSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
-                                }
-                                {cardHeadMiddleSlot7Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlot7Level}</div>}
-                                {cardHeadLowerSlot7 !== null ?
-                                    <img src={cardHeadLowerSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
-                                }
-                                {cardHeadLowerSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlot7Level}</div>}
-                                {cardArmorSlot7 !== null ?
-                                    <img src={cardArmorSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
-                                }
-                                {cardArmorSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlot7Level}</div>}
-                                {cardGarmentSlot7 !== null ?
-                                    <img src={cardGarmentSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
-                                }
-                                {cardGarmentSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlot7Level}</div>}
-                                {cardFootgearSlot7 !== null ?
-                                    <img src={cardFootgearSlot7} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
-                                }
-                                {cardFootgearSlot7Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlot7Level}</div>}
-                            </div>
-                        </div>
-                        {/*
-                        ░██████╗██╗░░░░░░█████╗░████████╗░█████╗░
-                        ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝██╔══██╗
-                        ╚█████╗░██║░░░░░██║░░██║░░░██║░░░╚█████╔╝
-                        ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░██╔══██╗
-                        ██████╔╝███████╗╚█████╔╝░░░██║░░░╚█████╔╝
-                        ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░╚════╝░
-                        */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 8 STAKING</div>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                        {isStakeNowSlot8 ?
-                                            <>
-                                                {isRunoutSlot8 ?
-                                                    <>
-                                                        <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Run Out of Gas</div>
-                                                    </> :
-                                                    <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>On Staking</div>
-                                                    </>
-                                                }
-                                            </> :
-                                            <>
-                                                {!isStakeNowSlot8 &&
-                                                    <>
-                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Available for stake</div>
-                                                    </>
-                                                }
-                                            </>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    {address !== undefined ?
-                                        <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                        <>ADDRESS <div>-</div></>
-                                    }
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    TOTAL POWER PER SEC
-                                    <div>{Number(allPowerSlot8).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE BALANCE
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE PENDING
-                                    <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot8 !== 0 && timeToRunoutSlot8 !== null  ? "#ff007a" : "#5f6476"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot8).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GAS USAGE
-                                    <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                        <option value="ENGY">$ENGY</option>
-                                    </select>
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        {gasselected === "ENGY" &&
-                                            <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
-                                                <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                            </>
-                                        }
-                                        <div style={{marginLeft: "5px"}}>/24</div>
-                                    </div>
-                                </div>
-                                {isStakeNowSlot8 ?
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot8}</div></div>
-                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
-                                }
-                                {address !== undefined && address === youraddr ?
-                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        {isStakeNowSlot8 ?
-                                            <>
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
-                                                <div style={{alignSelf: "center", background: isRunoutSlot8 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(7, 10)}>HARVEST & UNSTAKE</div>
-                                            </> :
-                                            <>
-                                                {isStakeNowSlot8 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot8 !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(7)}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot8 !== null ?
-                                    <img src={cardWeaponSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
-                                }
-                                {cardWeaponSlot8Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlot8Level}</div>}
-                                {jewelSlot8 !== null ?
-                                    <img src={jewelSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
-                                }
-                                {jewelSlot8Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlot8Level}</div>}
-                                {cardShieldSlot8 !== null ?
-                                    <img src={cardShieldSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
-                                }
-                                {cardShieldSlot8Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlot8Level}</div>}
-                                {daemonSlot8 !== null ?
-                                    <img src={daemonSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
-                                }
-                                {daemonSlot8Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlot8Level}</div>}
-                                {cardAccessorySlot8 !== null ?
-                                    <img src={cardAccessorySlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
-                                }
-                                {cardAccessorySlot8Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlot8Level}</div>}
-                                {talismanTwoSlot8 !== null ?
-                                    <img src={talismanTwoSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
-                                }
-                                {talismanTwoSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlot8Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot8 !== null ?
-                                    <img src={weaponOneSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
-                                }
-                                {weaponOneSlot8Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlot8Level}</div>}
-                                {weaponTwoSlot8 !== null ?
-                                    <img src={weaponTwoSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
-                                }
-                                {weaponTwoSlot8Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlot8Level}</div>}
-                                {shieldSlot8 !== null ?
-                                    <img src={shieldSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
-                                }
-                                {shieldSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlot8Level}</div>}
-                                {wingSlot8 !== null ?
-                                    <img src={wingSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
-                                }
-                                {wingSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlot8Level}</div>}
-                                {accessorySlot8 !== null ?
-                                    <img src={accessorySlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
-                                }
-                                {accessorySlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlot8Level}</div>}
-                                {talismanOneSlot8 !== null ?
-                                    <img src={talismanOneSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
-                                }
-                                {talismanOneSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot8Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                {nft.length > 0 ?
-                                    <>
-                                        {charSlot8 !== null ?
-                                            <img src={charSlot8} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
-                                        }
-                                    </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
-                                        <ThreeDots fill="#5f6476" />
-                                    </div>
-                                }
-                                {charSlot8Level !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{charSlot8Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot8 !== null ?
-                                    <img src={headUpperSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
-                                }
-                                {headUpperSlot8Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlot8Level}</div>}
-                                {headMiddleSlot8 !== null ?
-                                    <img src={headMiddleSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
-                                }
-                                {headMiddleSlot8Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlot8Level}</div>}
-                                {headLowerSlot8 !== null ?
-                                    <img src={headLowerSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
-                                }
-                                {headLowerSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlot8Level}</div>}
-                                {armorSlot8 !== null ?
-                                    <img src={armorSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
-                                }
-                                {armorSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlot8Level}</div>}
-                                {garmentSlot8 !== null ?
-                                    <img src={garmentSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
-                                }
-                                {garmentSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlot8Level}</div>}
-                                {footgearSlot8 !== null ?
-                                    <img src={footgearSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
-                                }
-                                {footgearSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlot8Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot8 !== null ?
-                                    <img src={cardHeadUpperSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
-                                }
-                                {cardHeadUpperSlot8Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlot8Level}</div>}
-                                {cardHeadMiddleSlot8 !== null ?
-                                    <img src={cardHeadMiddleSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
-                                }
-                                {cardHeadMiddleSlot8Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlot8Level}</div>}
-                                {cardHeadLowerSlot8 !== null ?
-                                    <img src={cardHeadLowerSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
-                                }
-                                {cardHeadLowerSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlot8Level}</div>}
-                                {cardArmorSlot8 !== null ?
-                                    <img src={cardArmorSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
-                                }
-                                {cardArmorSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlot8Level}</div>}
-                                {cardGarmentSlot8 !== null ?
-                                    <img src={cardGarmentSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
-                                }
-                                {cardGarmentSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlot8Level}</div>}
-                                {cardFootgearSlot8 !== null ?
-                                    <img src={cardFootgearSlot8} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
-                                }
-                                {cardFootgearSlot8Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlot8Level}</div>}
-                            </div>
-                        </div>
-                        {/*
-                        ░██████╗██╗░░░░░░█████╗░████████╗░█████╗░
-                        ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝██╔══██╗
-                        ╚█████╗░██║░░░░░██║░░██║░░░██║░░░╚██████║
-                        ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░░╚═══██║
-                        ██████╔╝███████╗╚█████╔╝░░░██║░░░░█████╔╝
-                        ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░╚════╝░
-                        */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 9 STAKING</div>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                        {isStakeNowSlot9 ?
-                                            <>
-                                                {isRunoutSlot9 ?
-                                                    <>
-                                                        <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Run Out of Gas</div>
-                                                    </> :
-                                                    <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>On Staking</div>
-                                                    </>
-                                                }
-                                            </> :
-                                            <>
-                                                {!isStakeNowSlot9 &&
-                                                    <>
-                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Available for stake</div>
-                                                    </>
-                                                }
-                                            </>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    {address !== undefined ?
-                                        <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                        <>ADDRESS <div>-</div></>
-                                    }
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    TOTAL POWER PER SEC
-                                    <div>{Number(allPowerSlot9).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE BALANCE
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE PENDING
-                                    <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot9 !== 0 && timeToRunoutSlot9 !== null  ? "#ff007a" : "#5f6476"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot9).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GAS USAGE
-                                    <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                        <option value="ENGY">$ENGY</option>
-                                    </select>
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        {gasselected === "ENGY" &&
-                                            <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
-                                                <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                            </>
-                                        }
-                                        <div style={{marginLeft: "5px"}}>/24</div>
-                                    </div>
-                                </div>
-                                {isStakeNowSlot9 ?
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot9}</div></div>
-                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
-                                }
-                                {address !== undefined && address === youraddr ?
-                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        {isStakeNowSlot9 ?
-                                            <>
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
-                                                <div style={{alignSelf: "center", background: isRunoutSlot9 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(8, 10)}>HARVEST & UNSTAKE</div>
-                                            </> :
-                                            <>
-                                                {isStakeNowSlot9 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot9 !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(8)}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot9 !== null ?
-                                    <img src={cardWeaponSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
-                                }
-                                {cardWeaponSlot9Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlot9Level}</div>}
-                                {jewelSlot9 !== null ?
-                                    <img src={jewelSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
-                                }
-                                {jewelSlot9Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlot9Level}</div>}
-                                {cardShieldSlot9 !== null ?
-                                    <img src={cardShieldSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
-                                }
-                                {cardShieldSlot9Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlot9Level}</div>}
-                                {daemonSlot9 !== null ?
-                                    <img src={daemonSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
-                                }
-                                {daemonSlot9Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlot9Level}</div>}
-                                {cardAccessorySlot9 !== null ?
-                                    <img src={cardAccessorySlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
-                                }
-                                {cardAccessorySlot9Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlot9Level}</div>}
-                                {talismanTwoSlot9 !== null ?
-                                    <img src={talismanTwoSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
-                                }
-                                {talismanTwoSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlot9Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot9 !== null ?
-                                    <img src={weaponOneSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
-                                }
-                                {weaponOneSlot9Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlot9Level}</div>}
-                                {weaponTwoSlot9 !== null ?
-                                    <img src={weaponTwoSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
-                                }
-                                {weaponTwoSlot9Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlot9Level}</div>}
-                                {shieldSlot9 !== null ?
-                                    <img src={shieldSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
-                                }
-                                {shieldSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlot9Level}</div>}
-                                {wingSlot9 !== null ?
-                                    <img src={wingSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
-                                }
-                                {wingSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlot9Level}</div>}
-                                {accessorySlot9 !== null ?
-                                    <img src={accessorySlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
-                                }
-                                {accessorySlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlot9Level}</div>}
-                                {talismanOneSlot9 !== null ?
-                                    <img src={talismanOneSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
-                                }
-                                {talismanOneSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot9Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                {nft.length > 0 ?
-                                    <>
-                                        {charSlot9 !== null ?
-                                            <img src={charSlot9} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
-                                        }
-                                    </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
-                                        <ThreeDots fill="#5f6476" />
-                                    </div>
-                                }
-                                {charSlot9Level !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{charSlot9Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot9 !== null ?
-                                    <img src={headUpperSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
-                                }
-                                {headUpperSlot9Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlot9Level}</div>}
-                                {headMiddleSlot9 !== null ?
-                                    <img src={headMiddleSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
-                                }
-                                {headMiddleSlot9Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlot9Level}</div>}
-                                {headLowerSlot9 !== null ?
-                                    <img src={headLowerSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
-                                }
-                                {headLowerSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlot9Level}</div>}
-                                {armorSlot9 !== null ?
-                                    <img src={armorSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
-                                }
-                                {armorSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlot9Level}</div>}
-                                {garmentSlot9 !== null ?
-                                    <img src={garmentSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
-                                }
-                                {garmentSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlot9Level}</div>}
-                                {footgearSlot9 !== null ?
-                                    <img src={footgearSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
-                                }
-                                {footgearSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlot9Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot9 !== null ?
-                                    <img src={cardHeadUpperSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
-                                }
-                                {cardHeadUpperSlot9Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlot9Level}</div>}
-                                {cardHeadMiddleSlot9 !== null ?
-                                    <img src={cardHeadMiddleSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
-                                }
-                                {cardHeadMiddleSlot9Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlot9Level}</div>}
-                                {cardHeadLowerSlot9 !== null ?
-                                    <img src={cardHeadLowerSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
-                                }
-                                {cardHeadLowerSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlot9Level}</div>}
-                                {cardArmorSlot9 !== null ?
-                                    <img src={cardArmorSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
-                                }
-                                {cardArmorSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlot9Level}</div>}
-                                {cardGarmentSlot9 !== null ?
-                                    <img src={cardGarmentSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
-                                }
-                                {cardGarmentSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlot9Level}</div>}
-                                {cardFootgearSlot9 !== null ?
-                                    <img src={cardFootgearSlot9} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
-                                }
-                                {cardFootgearSlot9Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlot9Level}</div>}
-                            </div>
-                        </div>
-                        {/*
-                        ░██████╗██╗░░░░░░█████╗░████████╗██╗░░██╗
-                        ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝╚██╗██╔╝
-                        ╚█████╗░██║░░░░░██║░░██║░░░██║░░░░╚███╔╝░
-                        ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░░██╔██╗░
-                        ██████╔╝███████╗╚█████╔╝░░░██║░░░██╔╝╚██╗
-                        ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝
-                        */}
-                        <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
-                            <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT X STAKING</div>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                        {isStakeNowSlot10 ?
-                                            <>
-                                                {isRunoutSlot10 ?
-                                                    <>
-                                                        <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Run Out of Gas</div>
-                                                    </> :
-                                                    <>
-                                                        <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>On Staking</div>
-                                                    </>
-                                                }
-                                            </> :
-                                            <>
-                                                {!isStakeNowSlot10 &&
-                                                    <>
-                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                        <div>Available for stake</div>
-                                                    </>
-                                                }
-                                            </>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    {address !== undefined ?
-                                        <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                        <>ADDRESS <div>-</div></>
-                                    }
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    TOTAL POWER PER SEC
-                                    <div>{Number(allPowerSlot10).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE BALANCE
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GEMSTONE PENDING
-                                    <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot10 !== 0 && timeToRunoutSlot10 !== null  ? "#ff007a" : "#5f6476"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
-                                        <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot10).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                                    </div>
-                                </div>
-                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                    GAS USAGE
-                                    <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
-                                        <option value="ENGY">$ENGY</option>
-                                    </select>
-                                    <div style={{display: "flex", flexDirection: "row"}}>
-                                        {gasselected === "ENGY" &&
-                                            <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
-                                                <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
-                                            </>
-                                        }
-                                        <div style={{marginLeft: "5px"}}>/24</div>
-                                    </div>
-                                </div>
-                                {isStakeNowSlot10 ?
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot10}</div></div>
-                                    : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
-                                }
-                                {address !== undefined && address === youraddr ?
-                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        {isStakeNowSlot10 ?
-                                            <>
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
-                                                <div style={{alignSelf: "center", background: isRunoutSlot10 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(9, 10)}>HARVEST & UNSTAKE</div>
-                                            </> :
-                                            <>
-                                                {isStakeNowSlot10 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot10 !== 0 ?
-                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(9)}>REFUEL GAS</div> :
-                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                                }
-                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
-                                            </>
-                                        }
-                                    </div> :
-                                    <div style={{height: "41px"}}></div>
-                                }
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardWeaponSlot10 !== null ?
-                                    <img src={cardWeaponSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
-                                }
-                                {cardWeaponSlot10Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardWeaponSlot10Level}</div>}
-                                {jewelSlot10 !== null ?
-                                    <img src={jewelSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
-                                }
-                                {jewelSlot10Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{jewelSlot10Level}</div>}
-                                {cardShieldSlot10 !== null ?
-                                    <img src={cardShieldSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
-                                }
-                                {cardShieldSlot10Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardShieldSlot10Level}</div>}
-                                {daemonSlot10 !== null ?
-                                    <img src={daemonSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
-                                }
-                                {daemonSlot10Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{daemonSlot10Level}</div>}
-                                {cardAccessorySlot10 !== null ?
-                                    <img src={cardAccessorySlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
-                                }
-                                {cardAccessorySlot10Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardAccessorySlot10Level}</div>}
-                                {talismanTwoSlot10 !== null ?
-                                    <img src={talismanTwoSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
-                                }
-                                {talismanTwoSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanTwoSlot10Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {weaponOneSlot10 !== null ?
-                                    <img src={weaponOneSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
-                                }
-                                {weaponOneSlot10Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponOneSlot10Level}</div>}
-                                {weaponTwoSlot10 !== null ?
-                                    <img src={weaponTwoSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
-                                }
-                                {weaponTwoSlot10Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{weaponTwoSlot10Level}</div>}
-                                {shieldSlot10 !== null ?
-                                    <img src={shieldSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
-                                }
-                                {shieldSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{shieldSlot10Level}</div>}
-                                {wingSlot10 !== null ?
-                                    <img src={wingSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
-                                }
-                                {wingSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{wingSlot10Level}</div>}
-                                {accessorySlot10 !== null ?
-                                    <img src={accessorySlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
-                                }
-                                {accessorySlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{accessorySlot10Level}</div>}
-                                {talismanOneSlot10 !== null ?
-                                    <img src={talismanOneSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
-                                }
-                                {talismanOneSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{talismanOneSlot10Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                                {nft.length > 0 ?
-                                    <>
-                                        {charSlot10 !== null ?
-                                            <img src={charSlot10} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
-                                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
-                                        }
-                                    </> :
-                                    <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
-                                        <ThreeDots fill="#5f6476" />
-                                    </div>
-                                }
-                                {charSlot10Level !== null && <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Lv.{charSlot10Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {headUpperSlot10 !== null ?
-                                    <img src={headUpperSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
-                                }
-                                {headUpperSlot10Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headUpperSlot10Level}</div>}
-                                {headMiddleSlot10 !== null ?
-                                    <img src={headMiddleSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
-                                }
-                                {headMiddleSlot10Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headMiddleSlot10Level}</div>}
-                                {headLowerSlot10 !== null ?
-                                    <img src={headLowerSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
-                                }
-                                {headLowerSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{headLowerSlot10Level}</div>}
-                                {armorSlot10 !== null ?
-                                    <img src={armorSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
-                                }
-                                {armorSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{armorSlot10Level}</div>}
-                                {garmentSlot10 !== null ?
-                                    <img src={garmentSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
-                                }
-                                {garmentSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{garmentSlot10Level}</div>}
-                                {footgearSlot10 !== null ?
-                                    <img src={footgearSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
-                                }
-                                {footgearSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{footgearSlot10Level}</div>}
-                            </div>
-                            <div style={{position: "relative", width: "150px", height: "700px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                                {cardHeadUpperSlot10 !== null ?
-                                    <img src={cardHeadUpperSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
-                                }
-                                {cardHeadUpperSlot10Level !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadUpperSlot10Level}</div>}
-                                {cardHeadMiddleSlot10 !== null ?
-                                    <img src={cardHeadMiddleSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
-                                }
-                                {cardHeadMiddleSlot10Level !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadMiddleSlot10Level}</div>}
-                                {cardHeadLowerSlot10 !== null ?
-                                    <img src={cardHeadLowerSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
-                                }
-                                {cardHeadLowerSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardHeadLowerSlot10Level}</div>}
-                                {cardArmorSlot10 !== null ?
-                                    <img src={cardArmorSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
-                                }
-                                {cardArmorSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardArmorSlot10Level}</div>}
-                                {cardGarmentSlot10 !== null ?
-                                    <img src={cardGarmentSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
-                                }
-                                {cardGarmentSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardGarmentSlot10Level}</div>}
-                                {cardFootgearSlot10 !== null ?
-                                    <img src={cardFootgearSlot10} width="100px" alt="Can not load metadata." /> :
-                                    <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
-                                }
-                                {cardFootgearSlot10Level !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px 8px", fontSize: "25px", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>+{cardFootgearSlot10Level}</div>}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style={{width: "1650px"}}>
-                <div style={{textAlign: "left", height: "fit-content", width: "90%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}} className="pixel">
-                    <div style={{width: "97.5%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
-                    <div style={{width: "100%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">HRM is now your multiverse NFTs!</div>
-                    <a style={{width: "380px", margin: "40px 20px 20px 20px", border: "1px solid #4637a9", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f", textDecoration: "none"}} className="pixel hashtag" href="https://form.typeform.com/to/wCDrP3iH" target="_blank" rel="noreferrer">✏️&nbsp;Permissionless mint/fork your NFTs</a> 
-                </div>
-            </div>  
-            
-            {nft.length > 0 ?
-                <div style={{width: "1650px", margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                    {nft[0] !== null ?
-                        <>
-                        {nft.map((item, index) => (
-                            <div style={{backdropFilter: "blur(14px)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px", minHeight: "400px", height: "fit-content"}} className="nftCard" key={index}>
-                                <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                    <img src={item.Image} height="100%" alt="Can not load metadata." />
-                                </div>
-                                <div className="emp bold" style={{margin: "10px 0"}}>{item.Name}</div>
-                                <div className="bold">{item.RewardPerSec} power</div>
-                                <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word", margin: "10px 0"}} className="light">{item.Description}</div>
-                                    {address === youraddr ?
-                                        <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
-                                            {item.isStaked ?
-                                                <>
-                                                    <div style={{marginTop: "5px", width: "250px", background: "gray"}} className="pixel button" onClick={() => unstakeNft(item.Slot - 1, String(item.Id).slice(0, 2))}>
-                                                        UNEQUIP&nbsp;
-                                                        {String(item.Id).slice(0, 2) === '11' && '[Main Character]'}
-                                                        {String(item.Id).slice(0, 2) === '12' && '[Weapon One]'}
-                                                        {String(item.Id).slice(0, 2) === '13' && '[Shield]'}
-                                                        {String(item.Id).slice(0, 2) === '14' && '[Armor]'}
-                                                        {String(item.Id).slice(0, 2) === '15' && '[Upper Head]'}
-                                                        {String(item.Id).slice(0, 2) === '16' && '[Middle Head]'}
-                                                        {String(item.Id).slice(0, 2) === '17' && '[Lower Head]'}
-                                                        {String(item.Id).slice(0, 2) === '18' && '[Garment]'}
-                                                        {String(item.Id).slice(0, 2) === '19' && '[Footgear]'}
-                                                        {String(item.Id).slice(0, 2) === '20' && '[Accessory]'}
-                                                        {String(item.Id).slice(0, 2) === '21' && '[Talisman One]'}
-                                                        {String(item.Id).slice(0, 2) === '22' && '[Talisman Two]'}
-                                                        {String(item.Id).slice(0, 2) === '23' && '[Wing]'}
-                                                        {String(item.Id).slice(0, 2) === '24' && '[Daemon]'}
-                                                        {String(item.Id).slice(0, 2) === '25' && '[Card - Weapon]'}
-                                                        {String(item.Id).slice(0, 2) === '26' && '[Card - Shield]'}
-                                                        {String(item.Id).slice(0, 2) === '27' && '[Card - Armor]'}
-                                                        {String(item.Id).slice(0, 2) === '28' && '[Card - Upper Head]'}
-                                                        {String(item.Id).slice(0, 2) === '29' && '[Card - Middle Head]'}
-                                                        {String(item.Id).slice(0, 2) === '30' && '[Card - Lower Head]'}
-                                                        {String(item.Id).slice(0, 2) === '31' && '[Card - Garment]'}
-                                                        {String(item.Id).slice(0, 2) === '32' && '[Card - Footgear]'}
-                                                        {String(item.Id).slice(0, 2) === '33' && '[Card - Accessory]'}
-                                                        {String(item.Id).slice(0, 2) === '34' && '[Jewel]'}
-                                                        {String(item.Id).slice(0, 2) === '35' && '[Weapon Two]'}
-                                                        <br></br>from SLOT [{item.Slot}]
-                                                    </div>
-                                                </> :
-                                                <>
-                                                    <div style={{marginTop: "5px", width: "250px", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>
-                                                        TRANSFER&nbsp;
-                                                        {String(item.Id).slice(0, 2) === '11' && '[Main Character]'}
-                                                        {String(item.Id).slice(0, 2) === '12' && '[Weapon One]'}
-                                                        {String(item.Id).slice(0, 2) === '13' && '[Shield]'}
-                                                        {String(item.Id).slice(0, 2) === '14' && '[Armor]'}
-                                                        {String(item.Id).slice(0, 2) === '15' && '[Upper Head]'}
-                                                        {String(item.Id).slice(0, 2) === '16' && '[Middle Head]'}
-                                                        {String(item.Id).slice(0, 2) === '17' && '[Lower Head]'}
-                                                        {String(item.Id).slice(0, 2) === '18' && '[Garment]'}
-                                                        {String(item.Id).slice(0, 2) === '19' && '[Footgear]'}
-                                                        {String(item.Id).slice(0, 2) === '20' && '[Accessory]'}
-                                                        {String(item.Id).slice(0, 2) === '21' && '[Talisman One]'}
-                                                        {String(item.Id).slice(0, 2) === '22' && '[Talisman Two]'}
-                                                        {String(item.Id).slice(0, 2) === '23' && '[Wing]'}
-                                                        {String(item.Id).slice(0, 2) === '24' && '[Daemon]'}
-                                                        {String(item.Id).slice(0, 2) === '25' && '[Card - Weapon]'}
-                                                        {String(item.Id).slice(0, 2) === '26' && '[Card - Shield]'}
-                                                        {String(item.Id).slice(0, 2) === '27' && '[Card - Armor]'}
-                                                        {String(item.Id).slice(0, 2) === '28' && '[Card - Upper Head]'}
-                                                        {String(item.Id).slice(0, 2) === '29' && '[Card - Middle Head]'}
-                                                        {String(item.Id).slice(0, 2) === '30' && '[Card - Lower Head]'}
-                                                        {String(item.Id).slice(0, 2) === '31' && '[Card - Garment]'}
-                                                        {String(item.Id).slice(0, 2) === '32' && '[Card - Footgear]'}
-                                                        {String(item.Id).slice(0, 2) === '33' && '[Card - Accessory]'}
-                                                        {String(item.Id).slice(0, 2) === '34' && '[Jewel]'}
-                                                        {String(item.Id).slice(0, 2) === '35' && '[Weapon Two]'}
-                                                    </div>
-                                                    {(!isStakeNowSlot1 &&
-                                                        (
-                                                            (String(item.Id).slice(0, 2) === '11' && charSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot1 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot1 === null)
-                                                        )
-                                                    ) &&
-                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(0, item.Id)}>EQUIP SLOT 1</div>
-                                                    }
-                                                    {(!isStakeNowSlot2 && 
-                                                        (
-                                                            (String(item.Id).slice(0, 2) === '11' && charSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot2 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot2 === null)
-                                                        )
-                                                    ) &&
-                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(1, item.Id)}>EQUIP SLOT 2</div>
-                                                    }
-                                                    {(!isStakeNowSlot3 &&
-                                                        (
-                                                            (String(item.Id).slice(0, 2) === '11' && charSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot3 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot3 === null)
-                                                        )
-                                                    ) &&
-                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(2, item.Id)}>EQUIP SLOT 3</div>
-                                                    }
-                                                    {(!isStakeNowSlot4 &&
-                                                        (
-                                                            (String(item.Id).slice(0, 2) === '11' && charSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot4 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot4 === null)
-                                                        )
-                                                    ) &&
-                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(3, item.Id)}>EQUIP SLOT 4</div>
-                                                    }
-                                                    {(!isStakeNowSlot5 &&
-                                                        (
-                                                            (String(item.Id).slice(0, 2) === '11' && charSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot5 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot5 === null)
-                                                        )
-                                                    ) &&
-                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(4, item.Id)}>EQUIP SLOT 5</div>
-                                                    }
-                                                    {(!isStakeNowSlot6 &&
-                                                        (
-                                                            (String(item.Id).slice(0, 2) === '11' && charSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot6 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot6 === null)
-                                                        )
-                                                    ) &&
-                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(5, item.Id)}>EQUIP SLOT 6</div>
-                                                    }
-                                                    {(!isStakeNowSlot7 &&
-                                                        (
-                                                            (String(item.Id).slice(0, 2) === '11' && charSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot7 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot7 === null)
-                                                        )
-                                                    ) &&
-                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(6, item.Id)}>EQUIP SLOT 7</div>
-                                                    }
-                                                    {(!isStakeNowSlot8 &&
-                                                        (
-                                                            (String(item.Id).slice(0, 2) === '11' && charSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot8 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot8 === null)
-                                                        )
-                                                    ) &&
-                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(7, item.Id)}>EQUIP SLOT 8</div>
-                                                    }
-                                                    {(!isStakeNowSlot9 &&
-                                                        (
-                                                            (String(item.Id).slice(0, 2) === '11' && charSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot9 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot9 === null)
-                                                        )
-                                                    ) &&
-                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(8, item.Id)}>EQUIP SLOT 9</div>
-                                                    }
-                                                    {(!isStakeNowSlot10 &&
-                                                        (
-                                                            (String(item.Id).slice(0, 2) === '11' && charSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot10 === null) ||
-                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot10 === null)
-                                                        )
-                                                    ) &&
-                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(9, item.Id)}>EQUIP SLOT X</div>
-                                                    }
-                                                </>
-                                            }
-                                        </div> :
-                                        <div style={{height: "41px"}}></div>
-                                    }
-                                </div>
-                            ))}
-                        </> :
-                        <div style={{bbackdropFilter: "blur(14px)", border: 0, justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
-                            {address !== undefined ?
-                                <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
-                                    <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
-                                </> :
-                                <>
-                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                    <div className="bold">Please connect wallet to view your NFTs.</div>
-                                </>
-                            }
-                        </div>
-                    }
-                </div> :
-                <div style={{width: "1650px", margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
-                    <div className="nftCard" style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "center"}}>
-                        <ThreeDots fill="#5f6476" />
-                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
                     </div>
                 </div>
             }
-        </div>
-    </>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
+                <div className="SubfieldBanner">
+                    <div className="pixel" style={{fontSize: "75px", width: "fit-content"}}>The Endless Tower</div>
+                </div>
+                <div className="SubfieldBanner">
+                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" width="150" alt="$GEM" />
+                </div>
+            </div>
+            
+            {address !== null && chain !== undefined && chain.id !== 190 ?
+                <div style={{zIndex: "999"}} className="centermodal">
+                    <div className="wrapper">
+                        <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "fit-content", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>
+                        <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">MISMATCH CHAIN!</div>
+                        <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px"}}>Please switch your network to BBQ chain.</div>
+                        <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => open({ view: 'Networks' })}>SWITCH NETWORK</div>
+                        <div className="button" style={{marginTop: "10px", width: "50%", background: "gray"}} onClick={() => {callMode(0); navigate('/');}}>BACK TO HOME</div>
+                        </div>
+                    </div>
+                </div> :
+                <div style={{margin: "0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+                        <div style={{backdropFilter: "blur(14px)", border: "none", justifyContent: "space-around", padding: "30px", width: "1560px", maxWidth: "95%", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "column", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{marginTop: "40px", display: "flex", flexFlow: "column wrap"}}>
+                                {/*
+                                ░██████╗██╗░░░░░░█████╗░████████╗░░███╗░░
+                                ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝░████║░░
+                                ╚█████╗░██║░░░░░██║░░██║░░░██║░░░██╔██║░░
+                                ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░╚═╝██║░░
+                                ██████╔╝███████╗╚█████╔╝░░░██║░░░███████╗
+                                ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝
+                                */}
+                                <div style={{display: "flex", flexFlow: "row wrap", width: "100%"}}>
+                                    <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "5px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                        <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 1 STAKING</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                                {isStakeNowSlot1 ?
+                                                    <>
+                                                        {isRunoutSlot1 ?
+                                                            <>
+                                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Run Out of Gas</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>On Staking</div>
+                                                            </>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        {!isStakeNowSlot1 &&
+                                                            <>
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Available for stake</div>
+                                                            </>
+                                                        }
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                                <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                                <><div>ADDRESS</div><div>-</div></>
+                                            }
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            TOTAL POWER PER SEC
+                                            <div>{Number(allPowerSlot1).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE BALANCE
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE PENDING
+                                            <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot1 !== 0 && timeToRunoutSlot1 !== null  ? "#ff007a" : "#5f6476"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot1).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GAS USAGE
+                                            <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                                <option value="ENGY">$ENGY</option>
+                                            </select>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                {gasselected === "ENGY" &&
+                                                    <>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                                    </>
+                                                }
+                                                <div style={{marginLeft: "5px"}}>/24</div>
+                                            </div>
+                                        </div>
+                                        {isStakeNowSlot1 ?
+                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot1}</div></div>
+                                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
+                                        }
+                                        {address !== null && intrasubModetext !== undefined ?
+                                            <>
+                                                {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                        {isStakeNowSlot1 ?
+                                                            <>
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                                <div style={{alignSelf: "center", background: isRunoutSlot1 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(0, 10)}>HARVEST & UNSTAKE</div>
+                                                            </> :
+                                                            <>
+                                                                {isStakeNowSlot1 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot1 !== 0 ?
+                                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(0)}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                }
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                            </>
+                                                        }
+                                                    </div> :
+                                                    <div style={{height: "41px"}}></div>
+                                                }
+                                            </> :
+                                            <div style={{height: "41px"}}></div>
+                                        }
+                                    </div>
+                                    <div className='slotbox noscroll'>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardWeaponSlot1 !== null ?
+                                                <img src={cardWeaponSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
+                                            }
+                                            {cardWeaponSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardWeaponSlot1Level}</div>}
+                                            {jewelSlot1 !== null ?
+                                                <img src={jewelSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
+                                            }
+                                            {jewelSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{jewelSlot1Level}</div>}
+                                            {cardShieldSlot1 !== null ?
+                                                <img src={cardShieldSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
+                                            }
+                                            {cardShieldSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardShieldSlot1Level}</div>}
+                                            {daemonSlot1 !== null ?
+                                                <img src={daemonSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
+                                            }
+                                            {daemonSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{daemonSlot1Level}</div>}
+                                            {cardAccessorySlot1 !== null ?
+                                                <img src={cardAccessorySlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
+                                            }
+                                            {cardAccessorySlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardAccessorySlot1Level}</div>}
+                                            {talismanTwoSlot1 !== null ?
+                                                <img src={talismanTwoSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
+                                            }
+                                            {talismanTwoSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanTwoSlot1Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {weaponOneSlot1 !== null ?
+                                                <img src={weaponOneSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
+                                            }
+                                            {weaponOneSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{weaponOneSlot1Level}</div>}
+                                            {weaponTwoSlot1 !== null ?
+                                                <img src={weaponTwoSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
+                                            }
+                                            {weaponTwoSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{weaponTwoSlot1Level}</div>}
+                                            {shieldSlot1 !== null ?
+                                                <img src={shieldSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
+                                            }
+                                            {shieldSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{shieldSlot1Level}</div>}
+                                            {wingSlot1 !== null ?
+                                                <img src={wingSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
+                                            }
+                                            {wingSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{wingSlot1Level}</div>}
+                                            {accessorySlot1 !== null ?
+                                                <img src={accessorySlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
+                                            }
+                                            {accessorySlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{accessorySlot1Level}</div>}
+                                            {talismanOneSlot1 !== null ?
+                                                <img src={talismanOneSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
+                                            }
+                                            {talismanOneSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanOneSlot1Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                            <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
+                                            {nft.length > 0 ?
+                                                <>
+                                                    {charSlot1 !== null ?
+                                                        <img src={charSlot1} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
+                                                    }
+                                                </> :
+                                                <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
+                                                    <ThreeDots fill="#5f6476" />
+                                                </div>
+                                            }
+                                            {charSlot1Level !== null && <div style={{position: "absolute", top: "310px", right: "10px", fontSize: "25px"}}>Lv.{charSlot1Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {headUpperSlot1 !== null ?
+                                                <img src={headUpperSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
+                                            }
+                                            {headUpperSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{headUpperSlot1Level}</div>}
+                                            {headMiddleSlot1 !== null ?
+                                                <img src={headMiddleSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
+                                            }
+                                            {headMiddleSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{headMiddleSlot1Level}</div>}
+                                            {headLowerSlot1 !== null ?
+                                                <img src={headLowerSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
+                                            }
+                                            {headLowerSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{headLowerSlot1Level}</div>}
+                                            {armorSlot1 !== null ?
+                                                <img src={armorSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
+                                            }
+                                            {armorSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{armorSlot1Level}</div>}
+                                            {garmentSlot1 !== null ?
+                                                <img src={garmentSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
+                                            }
+                                            {garmentSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{garmentSlot1Level}</div>}
+                                            {footgearSlot1 !== null ?
+                                                <img src={footgearSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
+                                            }
+                                            {footgearSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{footgearSlot1Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px",  margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardHeadUpperSlot1 !== null ?
+                                                <img src={cardHeadUpperSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
+                                            }
+                                            {cardHeadUpperSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardHeadUpperSlot1Level}</div>}
+                                            {cardHeadMiddleSlot1 !== null ?
+                                                <img src={cardHeadMiddleSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
+                                            }
+                                            {cardHeadMiddleSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{cardHeadMiddleSlot1Level}</div>}
+                                            {cardHeadLowerSlot1 !== null ?
+                                                <img src={cardHeadLowerSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
+                                            }
+                                            {cardHeadLowerSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardHeadLowerSlot1Level}</div>}
+                                            {cardArmorSlot1 !== null ?
+                                                <img src={cardArmorSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
+                                            }
+                                            {cardArmorSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{cardArmorSlot1Level}</div>}
+                                            {cardGarmentSlot1 !== null ?
+                                                <img src={cardGarmentSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
+                                            }
+                                            {cardGarmentSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardGarmentSlot1Level}</div>}
+                                            {cardFootgearSlot1 !== null ?
+                                                <img src={cardFootgearSlot1} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
+                                            }
+                                            {cardFootgearSlot1Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{cardFootgearSlot1Level}</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                                {/*
+                                ░██████╗██╗░░░░░░█████╗░████████╗██████╗░
+                                ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝╚════██╗
+                                ╚█████╗░██║░░░░░██║░░██║░░░██║░░░░░███╔═╝
+                                ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░██╔══╝░░
+                                ██████╔╝███████╗╚█████╔╝░░░██║░░░███████╗
+                                ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚══════╝
+                                */}
+                                <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
+                                    <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "5px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                        <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 2 STAKING</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                                {isStakeNowSlot2 ?
+                                                    <>
+                                                        {isRunoutSlot2 ?
+                                                            <>
+                                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Run Out of Gas</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>On Staking</div>
+                                                            </>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        {!isStakeNowSlot2 &&
+                                                            <>
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Available for stake</div>
+                                                            </>
+                                                        }
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                                <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                                <><div>ADDRESS</div><div>-</div></>
+                                            }
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            TOTAL POWER PER SEC
+                                            <div>{Number(allPowerSlot2).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE BALANCE
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE PENDING
+                                            <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot2 !== 0 && timeToRunoutSlot2 !== null  ? "#ff007a" : "#5f6476"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot2).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GAS USAGE
+                                            <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                                <option value="ENGY">$ENGY</option>
+                                            </select>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                {gasselected === "ENGY" &&
+                                                    <>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                                    </>
+                                                }
+                                                <div style={{marginLeft: "5px"}}>/24</div>
+                                            </div>
+                                        </div>
+                                        {isStakeNowSlot2 ?
+                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot2}</div></div>
+                                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
+                                        }
+                                        {address !== null && intrasubModetext !== undefined ?
+                                            <>
+                                                {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                        {isStakeNowSlot2 ?
+                                                            <>
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                                <div style={{alignSelf: "center", background: isRunoutSlot2 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(1, 10)}>HARVEST & UNSTAKE</div>
+                                                            </> :
+                                                            <>
+                                                                {isStakeNowSlot2 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot2 !== 0 ?
+                                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(1)}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                }
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                            </>
+                                                        }
+                                                    </div> :
+                                                    <div style={{height: "41px"}}></div>
+                                                }
+                                            </> :
+                                            <div style={{height: "41px"}}></div>
+                                        }
+                                    </div>
+                                    <div className='slotbox noscroll'>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardWeaponSlot2 !== null ?
+                                                <img src={cardWeaponSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
+                                            }
+                                            {cardWeaponSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardWeaponSlot2Level}</div>}
+                                            {jewelSlot2 !== null ?
+                                                <img src={jewelSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
+                                            }
+                                            {jewelSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{jewelSlot2Level}</div>}
+                                            {cardShieldSlot2 !== null ?
+                                                <img src={cardShieldSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
+                                            }
+                                            {cardShieldSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardShieldSlot2Level}</div>}
+                                            {daemonSlot2 !== null ?
+                                                <img src={daemonSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
+                                            }
+                                            {daemonSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{daemonSlot2Level}</div>}
+                                            {cardAccessorySlot2 !== null ?
+                                                <img src={cardAccessorySlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
+                                            }
+                                            {cardAccessorySlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardAccessorySlot2Level}</div>}
+                                            {talismanTwoSlot2 !== null ?
+                                                <img src={talismanTwoSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
+                                            }
+                                            {talismanTwoSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanTwoSlot2Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {weaponOneSlot2 !== null ?
+                                                <img src={weaponOneSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
+                                            }
+                                            {weaponOneSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{weaponOneSlot2Level}</div>}
+                                            {weaponTwoSlot2 !== null ?
+                                                <img src={weaponTwoSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
+                                            }
+                                            {weaponTwoSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{weaponTwoSlot2Level}</div>}
+                                            {shieldSlot2 !== null ?
+                                                <img src={shieldSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
+                                            }
+                                            {shieldSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{shieldSlot2Level}</div>}
+                                            {wingSlot2 !== null ?
+                                                <img src={wingSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
+                                            }
+                                            {wingSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{wingSlot2Level}</div>}
+                                            {accessorySlot2 !== null ?
+                                                <img src={accessorySlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
+                                            }
+                                            {accessorySlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{accessorySlot2Level}</div>}
+                                            {talismanOneSlot2 !== null ?
+                                                <img src={talismanOneSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
+                                            }
+                                            {talismanOneSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanOneSlot2Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                            <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
+                                            {nft.length > 0 ?
+                                                <>
+                                                    {charSlot2 !== null ?
+                                                        <img src={charSlot2} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
+                                                    }
+                                                </> :
+                                                <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
+                                                    <ThreeDots fill="#5f6476" />
+                                                </div>
+                                            }
+                                            {charSlot2Level !== null && <div style={{position: "absolute", top: "310px", right: "10px", fontSize: "25px"}}>Lv.{charSlot2Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {headUpperSlot2 !== null ?
+                                                <img src={headUpperSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
+                                            }
+                                            {headUpperSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{headUpperSlot2Level}</div>}
+                                            {headMiddleSlot2 !== null ?
+                                                <img src={headMiddleSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
+                                            }
+                                            {headMiddleSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{headMiddleSlot2Level}</div>}
+                                            {headLowerSlot2 !== null ?
+                                                <img src={headLowerSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
+                                            }
+                                            {headLowerSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{headLowerSlot2Level}</div>}
+                                            {armorSlot2 !== null ?
+                                                <img src={armorSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
+                                            }
+                                            {armorSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{armorSlot2Level}</div>}
+                                            {garmentSlot2 !== null ?
+                                                <img src={garmentSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
+                                            }
+                                            {garmentSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{garmentSlot2Level}</div>}
+                                            {footgearSlot2 !== null ?
+                                                <img src={footgearSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
+                                            }
+                                            {footgearSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{footgearSlot2Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardHeadUpperSlot2 !== null ?
+                                                <img src={cardHeadUpperSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
+                                            }
+                                            {cardHeadUpperSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardHeadUpperSlot2Level}</div>}
+                                            {cardHeadMiddleSlot2 !== null ?
+                                                <img src={cardHeadMiddleSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
+                                            }
+                                            {cardHeadMiddleSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{cardHeadMiddleSlot2Level}</div>}
+                                            {cardHeadLowerSlot2 !== null ?
+                                                <img src={cardHeadLowerSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
+                                            }
+                                            {cardHeadLowerSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardHeadLowerSlot2Level}</div>}
+                                            {cardArmorSlot2 !== null ?
+                                                <img src={cardArmorSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
+                                            }
+                                            {cardArmorSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{cardArmorSlot2Level}</div>}
+                                            {cardGarmentSlot2 !== null ?
+                                                <img src={cardGarmentSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
+                                            }
+                                            {cardGarmentSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardGarmentSlot2Level}</div>}
+                                            {cardFootgearSlot2 !== null ?
+                                                <img src={cardFootgearSlot2} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
+                                            }
+                                            {cardFootgearSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{cardFootgearSlot2Level}</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                                {/*
+                                ░██████╗██╗░░░░░░█████╗░████████╗██████╗░
+                                ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝╚════██╗
+                                ╚█████╗░██║░░░░░██║░░██║░░░██║░░░░█████╔╝
+                                ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░░╚═══██╗
+                                ██████╔╝███████╗╚█████╔╝░░░██║░░░██████╔╝
+                                ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚═════╝░
+                                */}
+                                <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
+                                    <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                        <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 3 STAKING</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                                {isStakeNowSlot3 ?
+                                                    <>
+                                                        {isRunoutSlot3 ?
+                                                            <>
+                                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Run Out of Gas</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>On Staking</div>
+                                                            </>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        {!isStakeNowSlot3 &&
+                                                            <>
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Available for stake</div>
+                                                            </>
+                                                        }
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                                <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                                <><div>ADDRESS</div><div>-</div></>
+                                            }
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            TOTAL POWER PER SEC
+                                            <div>{Number(allPowerSlot3).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE BALANCE
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE PENDING
+                                            <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot3 !== 0 && timeToRunoutSlot3 !== null  ? "#ff007a" : "#5f6476"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot3).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GAS USAGE
+                                            <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                                <option value="ENGY">$ENGY</option>
+                                            </select>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                {gasselected === "ENGY" &&
+                                                    <>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                                    </>
+                                                }
+                                                <div style={{marginLeft: "5px"}}>/24</div>
+                                            </div>
+                                        </div>
+                                        {isStakeNowSlot3 ?
+                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot3}</div></div>
+                                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
+                                        }
+                                        {address !== null && intrasubModetext !== undefined ?
+                                            <>
+                                                {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                        {isStakeNowSlot3 ?
+                                                            <>
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                <div style={{alignSelf: "center", background: isRunoutSlot3 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(2, 10)}>HARVEST & UNSTAKE</div>
+                                                            </> :
+                                                            <>
+                                                                {isStakeNowSlot3 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot3 !== 0 ?
+                                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(2)}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                }
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                            </>
+                                                        }
+                                                    </div> :
+                                                    <div style={{height: "41px"}}></div>
+                                                }
+                                            </> :
+                                            <div style={{height: "41px"}}></div>
+                                        }
+                                    </div>
+                                    <div className='slotbox noscroll'>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardWeaponSlot3 !== null ?
+                                                <img src={cardWeaponSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
+                                            }
+                                            {cardWeaponSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardWeaponSlot3Level}</div>}
+                                            {jewelSlot3 !== null ?
+                                                <img src={jewelSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
+                                            }
+                                            {jewelSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{jewelSlot3Level}</div>}
+                                            {cardShieldSlot3 !== null ?
+                                                <img src={cardShieldSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
+                                            }
+                                            {cardShieldSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardShieldSlot3Level}</div>}
+                                            {daemonSlot3 !== null ?
+                                                <img src={daemonSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
+                                            }
+                                            {daemonSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{daemonSlot3Level}</div>}
+                                            {cardAccessorySlot3 !== null ?
+                                                <img src={cardAccessorySlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
+                                            }
+                                            {cardAccessorySlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardAccessorySlot3Level}</div>}
+                                            {talismanTwoSlot3 !== null ?
+                                                <img src={talismanTwoSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
+                                            }
+                                            {talismanTwoSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanTwoSlot3Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {weaponOneSlot3 !== null ?
+                                                <img src={weaponOneSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
+                                            }
+                                            {weaponOneSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{weaponOneSlot3Level}</div>}
+                                            {weaponTwoSlot3 !== null ?
+                                                <img src={weaponTwoSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
+                                            }
+                                            {weaponTwoSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{weaponTwoSlot3Level}</div>}
+                                            {shieldSlot3 !== null ?
+                                                <img src={shieldSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
+                                            }
+                                            {shieldSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{shieldSlot3Level}</div>}
+                                            {wingSlot3 !== null ?
+                                                <img src={wingSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
+                                            }
+                                            {wingSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{wingSlot3Level}</div>}
+                                            {accessorySlot3 !== null ?
+                                                <img src={accessorySlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
+                                            }
+                                            {accessorySlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{accessorySlot3Level}</div>}
+                                            {talismanOneSlot3 !== null ?
+                                                <img src={talismanOneSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
+                                            }
+                                            {talismanOneSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanOneSlot3Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                            <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
+                                            {nft.length > 0 ?
+                                                <>
+                                                    {charSlot3 !== null ?
+                                                        <img src={charSlot3} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
+                                                    }
+                                                </> :
+                                                <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
+                                                    <ThreeDots fill="#5f6476" />
+                                                </div>
+                                            }
+                                            {charSlot3Level !== null && <div style={{position: "absolute", top: "310px", right: "10px", fontSize: "25px"}}>Lv.{charSlot3Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {headUpperSlot3 !== null ?
+                                                <img src={headUpperSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
+                                            }
+                                            {headUpperSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{headUpperSlot3Level}</div>}
+                                            {headMiddleSlot3 !== null ?
+                                                <img src={headMiddleSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
+                                            }
+                                            {headMiddleSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{headMiddleSlot3Level}</div>}
+                                            {headLowerSlot3 !== null ?
+                                                <img src={headLowerSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
+                                            }
+                                            {headLowerSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{headLowerSlot3Level}</div>}
+                                            {armorSlot3 !== null ?
+                                                <img src={armorSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
+                                            }
+                                            {armorSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{armorSlot3Level}</div>}
+                                            {garmentSlot3 !== null ?
+                                                <img src={garmentSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
+                                            }
+                                            {garmentSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{garmentSlot3Level}</div>}
+                                            {footgearSlot3 !== null ?
+                                                <img src={footgearSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
+                                            }
+                                            {footgearSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{footgearSlot3Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardHeadUpperSlot3 !== null ?
+                                                <img src={cardHeadUpperSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
+                                            }
+                                            {cardHeadUpperSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardHeadUpperSlot3Level}</div>}
+                                            {cardHeadMiddleSlot3 !== null ?
+                                                <img src={cardHeadMiddleSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
+                                            }
+                                            {cardHeadMiddleSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{cardHeadMiddleSlot3Level}</div>}
+                                            {cardHeadLowerSlot3 !== null ?
+                                                <img src={cardHeadLowerSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
+                                            }
+                                            {cardHeadLowerSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardHeadLowerSlot3Level}</div>}
+                                            {cardArmorSlot3 !== null ?
+                                                <img src={cardArmorSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
+                                            }
+                                            {cardArmorSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{cardArmorSlot3Level}</div>}
+                                            {cardGarmentSlot3 !== null ?
+                                                <img src={cardGarmentSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
+                                            }
+                                            {cardGarmentSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardGarmentSlot3Level}</div>}
+                                            {cardFootgearSlot3 !== null ?
+                                                <img src={cardFootgearSlot3} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
+                                            }
+                                            {cardFootgearSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{cardFootgearSlot3Level}</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                                {/*
+                                ░██████╗██╗░░░░░░█████╗░████████╗░░██╗██╗
+                                ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝░██╔╝██║
+                                ╚█████╗░██║░░░░░██║░░██║░░░██║░░░██╔╝░██║
+                                ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░███████║
+                                ██████╔╝███████╗╚█████╔╝░░░██║░░░╚════██║
+                                ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░░░░░╚═╝
+                                */}
+                                <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
+                                    <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                        <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 4 STAKING</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                                {isStakeNowSlot4 ?
+                                                    <>
+                                                        {isRunoutSlot4 ?
+                                                            <>
+                                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Run Out of Gas</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>On Staking</div>
+                                                            </>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        {!isStakeNowSlot4 &&
+                                                            <>
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Available for stake</div>
+                                                            </>
+                                                        }
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                                <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                                <><div>ADDRESS</div><div>-</div></>
+                                            }
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            TOTAL POWER PER SEC
+                                            <div>{Number(allPowerSlot4).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE BALANCE
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE PENDING
+                                            <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot4 !== 0 && timeToRunoutSlot4 !== null  ? "#ff007a" : "#5f6476"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot4).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GAS USAGE
+                                            <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                                <option value="ENGY">$ENGY</option>
+                                            </select>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                {gasselected === "ENGY" &&
+                                                    <>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                                    </>
+                                                }
+                                                <div style={{marginLeft: "5px"}}>/24</div>
+                                            </div>
+                                        </div>
+                                        {isStakeNowSlot4 ?
+                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot4}</div></div>
+                                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
+                                        }
+                                        {address !== null && intrasubModetext !== undefined ?
+                                            <>
+                                                {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                        {isStakeNowSlot4 ?
+                                                            <>
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                                <div style={{alignSelf: "center", background: isRunoutSlot4 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(3, 10)}>HARVEST & UNSTAKE</div>
+                                                            </> :
+                                                            <>
+                                                                {isStakeNowSlot4 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot4 !== 0 ?
+                                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(3)}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                }
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                            </>
+                                                        }
+                                                    </div> :
+                                                    <div style={{height: "41px"}}></div>
+                                                }
+                                            </> :
+                                            <div style={{height: "41px"}}></div>
+                                        }
+                                    </div>
+                                    <div className='slotbox noscroll'>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardWeaponSlot4 !== null ?
+                                                <img src={cardWeaponSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
+                                            }
+                                            {cardWeaponSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardWeaponSlot4Level}</div>}
+                                            {jewelSlot4 !== null ?
+                                                <img src={jewelSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
+                                            }
+                                            {jewelSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{jewelSlot4Level}</div>}
+                                            {cardShieldSlot4 !== null ?
+                                                <img src={cardShieldSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
+                                            }
+                                            {cardShieldSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardShieldSlot4Level}</div>}
+                                            {daemonSlot4 !== null ?
+                                                <img src={daemonSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
+                                            }
+                                            {daemonSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{daemonSlot4Level}</div>}
+                                            {cardAccessorySlot4 !== null ?
+                                                <img src={cardAccessorySlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
+                                            }
+                                            {cardAccessorySlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardAccessorySlot4Level}</div>}
+                                            {talismanTwoSlot4 !== null ?
+                                                <img src={talismanTwoSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
+                                            }
+                                            {talismanTwoSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanTwoSlot4Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {weaponOneSlot4 !== null ?
+                                                <img src={weaponOneSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
+                                            }
+                                            {weaponOneSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{weaponOneSlot4Level}</div>}
+                                            {weaponTwoSlot4 !== null ?
+                                                <img src={weaponTwoSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
+                                            }
+                                            {weaponTwoSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{weaponTwoSlot4Level}</div>}
+                                            {shieldSlot4 !== null ?
+                                                <img src={shieldSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
+                                            }
+                                            {shieldSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{shieldSlot4Level}</div>}
+                                            {wingSlot4 !== null ?
+                                                <img src={wingSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
+                                            }
+                                            {wingSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{wingSlot4Level}</div>}
+                                            {accessorySlot4 !== null ?
+                                                <img src={accessorySlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
+                                            }
+                                            {accessorySlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{accessorySlot4Level}</div>}
+                                            {talismanOneSlot4 !== null ?
+                                                <img src={talismanOneSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
+                                            }
+                                            {talismanOneSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanOneSlot4Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                            <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
+                                            {nft.length > 0 ?
+                                                <>
+                                                    {charSlot4 !== null ?
+                                                        <img src={charSlot4} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
+                                                    }
+                                                </> :
+                                                <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
+                                                    <ThreeDots fill="#5f6476" />
+                                                </div>
+                                            }
+                                            {charSlot4Level !== null && <div style={{position: "absolute", top: "310px", right: "10px", fontSize: "25px"}}>Lv.{charSlot4Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {headUpperSlot4 !== null ?
+                                                <img src={headUpperSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
+                                            }
+                                            {headUpperSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{headUpperSlot4Level}</div>}
+                                            {headMiddleSlot4 !== null ?
+                                                <img src={headMiddleSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
+                                            }
+                                            {headMiddleSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{headMiddleSlot4Level}</div>}
+                                            {headLowerSlot4 !== null ?
+                                                <img src={headLowerSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
+                                            }
+                                            {headLowerSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{headLowerSlot4Level}</div>}
+                                            {armorSlot4 !== null ?
+                                                <img src={armorSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
+                                            }
+                                            {armorSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{armorSlot4Level}</div>}
+                                            {garmentSlot4 !== null ?
+                                                <img src={garmentSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
+                                            }
+                                            {garmentSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{garmentSlot4Level}</div>}
+                                            {footgearSlot4 !== null ?
+                                                <img src={footgearSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
+                                            }
+                                            {footgearSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{footgearSlot4Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardHeadUpperSlot4 !== null ?
+                                                <img src={cardHeadUpperSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
+                                            }
+                                            {cardHeadUpperSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardHeadUpperSlot4Level}</div>}
+                                            {cardHeadMiddleSlot4 !== null ?
+                                                <img src={cardHeadMiddleSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
+                                            }
+                                            {cardHeadMiddleSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{cardHeadMiddleSlot4Level}</div>}
+                                            {cardHeadLowerSlot4 !== null ?
+                                                <img src={cardHeadLowerSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
+                                            }
+                                            {cardHeadLowerSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardHeadLowerSlot4Level}</div>}
+                                            {cardArmorSlot4 !== null ?
+                                                <img src={cardArmorSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
+                                            }
+                                            {cardArmorSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{cardArmorSlot4Level}</div>}
+                                            {cardGarmentSlot4 !== null ?
+                                                <img src={cardGarmentSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
+                                            }
+                                            {cardGarmentSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardGarmentSlot4Level}</div>}
+                                            {cardFootgearSlot4 !== null ?
+                                                <img src={cardFootgearSlot4} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
+                                            }
+                                            {cardFootgearSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{cardFootgearSlot4Level}</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                                {/*
+                                ░██████╗██╗░░░░░░█████╗░████████╗███████╗
+                                ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝██╔════╝
+                                ╚█████╗░██║░░░░░██║░░██║░░░██║░░░██████╗░
+                                ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░╚════██╗
+                                ██████╔╝███████╗╚█████╔╝░░░██║░░░██████╔╝
+                                ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚═════╝░
+                                */}
+                                <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
+                                    <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                        <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 5 STAKING</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                                {isStakeNowSlot5 ?
+                                                    <>
+                                                        {isRunoutSlot5 ?
+                                                            <>
+                                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Run Out of Gas</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>On Staking</div>
+                                                            </>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        {!isStakeNowSlot5 &&
+                                                            <>
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Available for stake</div>
+                                                            </>
+                                                        }
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                                <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                                <><div>ADDRESS</div><div>-</div></>
+                                            }
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            TOTAL POWER PER SEC
+                                            <div>{Number(allPowerSlot5).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE BALANCE
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE PENDING
+                                            <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot5 !== 0 && timeToRunoutSlot5 !== null  ? "#ff007a" : "#5f6476"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot5).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GAS USAGE
+                                            <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                                <option value="ENGY">$ENGY</option>
+                                            </select>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                {gasselected === "ENGY" &&
+                                                    <>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                                    </>
+                                                }
+                                                <div style={{marginLeft: "5px"}}>/24</div>
+                                            </div>
+                                        </div>
+                                        {isStakeNowSlot5 ?
+                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot5}</div></div>
+                                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
+                                        }
+                                        {address !== null && intrasubModetext !== undefined ?
+                                            <>
+                                                {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                        {isStakeNowSlot5 ?
+                                                            <>
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                                <div style={{alignSelf: "center", background: isRunoutSlot5 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(4, 10)}>HARVEST & UNSTAKE</div>
+                                                            </> :
+                                                            <>
+                                                                {isStakeNowSlot5 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot5 !== 0 ?
+                                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(4)}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                }
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                            </>
+                                                        }
+                                                    </div> :
+                                                    <div style={{height: "41px"}}></div>
+                                                }
+                                            </> :
+                                            <div style={{height: "41px"}}></div>
+                                        }
+                                    </div>
+                                    <div className='slotbox noscroll'>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardWeaponSlot5 !== null ?
+                                                <img src={cardWeaponSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
+                                            }
+                                            {cardWeaponSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardWeaponSlot5Level}</div>}
+                                            {jewelSlot5 !== null ?
+                                                <img src={jewelSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
+                                            }
+                                            {jewelSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{jewelSlot5Level}</div>}
+                                            {cardShieldSlot5 !== null ?
+                                                <img src={cardShieldSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
+                                            }
+                                            {cardShieldSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardShieldSlot5Level}</div>}
+                                            {daemonSlot5 !== null ?
+                                                <img src={daemonSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
+                                            }
+                                            {daemonSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{daemonSlot5Level}</div>}
+                                            {cardAccessorySlot5 !== null ?
+                                                <img src={cardAccessorySlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
+                                            }
+                                            {cardAccessorySlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardAccessorySlot5Level}</div>}
+                                            {talismanTwoSlot5 !== null ?
+                                                <img src={talismanTwoSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
+                                            }
+                                            {talismanTwoSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanTwoSlot5Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {weaponOneSlot5 !== null ?
+                                                <img src={weaponOneSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
+                                            }
+                                            {weaponOneSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{weaponOneSlot5Level}</div>}
+                                            {weaponTwoSlot5 !== null ?
+                                                <img src={weaponTwoSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
+                                            }
+                                            {weaponTwoSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{weaponTwoSlot5Level}</div>}
+                                            {shieldSlot5 !== null ?
+                                                <img src={shieldSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
+                                            }
+                                            {shieldSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{shieldSlot5Level}</div>}
+                                            {wingSlot5 !== null ?
+                                                <img src={wingSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
+                                            }
+                                            {wingSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{wingSlot5Level}</div>}
+                                            {accessorySlot5 !== null ?
+                                                <img src={accessorySlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
+                                            }
+                                            {accessorySlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{accessorySlot5Level}</div>}
+                                            {talismanOneSlot5 !== null ?
+                                                <img src={talismanOneSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
+                                            }
+                                            {talismanOneSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanOneSlot5Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                            <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
+                                            {nft.length > 0 ?
+                                                <>
+                                                    {charSlot5 !== null ?
+                                                        <img src={charSlot5} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
+                                                    }
+                                                </> :
+                                                <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
+                                                    <ThreeDots fill="#5f6476" />
+                                                </div>
+                                            }
+                                            {charSlot5Level !== null && <div style={{position: "absolute", top: "310px", right: "10px", fontSize: "25px"}}>Lv.{charSlot5Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {headUpperSlot5 !== null ?
+                                                <img src={headUpperSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
+                                            }
+                                            {headUpperSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{headUpperSlot5Level}</div>}
+                                            {headMiddleSlot5 !== null ?
+                                                <img src={headMiddleSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
+                                            }
+                                            {headMiddleSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{headMiddleSlot5Level}</div>}
+                                            {headLowerSlot5 !== null ?
+                                                <img src={headLowerSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
+                                            }
+                                            {headLowerSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{headLowerSlot5Level}</div>}
+                                            {armorSlot5 !== null ?
+                                                <img src={armorSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
+                                            }
+                                            {armorSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{armorSlot5Level}</div>}
+                                            {garmentSlot5 !== null ?
+                                                <img src={garmentSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
+                                            }
+                                            {garmentSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{garmentSlot5Level}</div>}
+                                            {footgearSlot5 !== null ?
+                                                <img src={footgearSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
+                                            }
+                                            {footgearSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{footgearSlot5Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardHeadUpperSlot5 !== null ?
+                                                <img src={cardHeadUpperSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
+                                            }
+                                            {cardHeadUpperSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardHeadUpperSlot5Level}</div>}
+                                            {cardHeadMiddleSlot5 !== null ?
+                                                <img src={cardHeadMiddleSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
+                                            }
+                                            {cardHeadMiddleSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{cardHeadMiddleSlot5Level}</div>}
+                                            {cardHeadLowerSlot5 !== null ?
+                                                <img src={cardHeadLowerSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
+                                            }
+                                            {cardHeadLowerSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardHeadLowerSlot5Level}</div>}
+                                            {cardArmorSlot5 !== null ?
+                                                <img src={cardArmorSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
+                                            }
+                                            {cardArmorSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{cardArmorSlot5Level}</div>}
+                                            {cardGarmentSlot5 !== null ?
+                                                <img src={cardGarmentSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
+                                            }
+                                            {cardGarmentSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardGarmentSlot5Level}</div>}
+                                            {cardFootgearSlot5 !== null ?
+                                                <img src={cardFootgearSlot5} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
+                                            }
+                                            {cardFootgearSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{cardFootgearSlot5Level}</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                                {/*
+                                ░██████╗██╗░░░░░░█████╗░████████╗░█████╗░
+                                ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝██╔═══╝░
+                                ╚█████╗░██║░░░░░██║░░██║░░░██║░░░██████╗░
+                                ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░██╔══██╗
+                                ██████╔╝███████╗╚█████╔╝░░░██║░░░╚█████╔╝
+                                ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░╚════╝░
+                                */}
+                                <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
+                                    <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                        <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 6 STAKING</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                                {isStakeNowSlot6 ?
+                                                    <>
+                                                        {isRunoutSlot6 ?
+                                                            <>
+                                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Run Out of Gas</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>On Staking</div>
+                                                            </>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        {!isStakeNowSlot6 &&
+                                                            <>
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Available for stake</div>
+                                                            </>
+                                                        }
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                                <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                                <><div>ADDRESS</div><div>-</div></>
+                                            }
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            TOTAL POWER PER SEC
+                                            <div>{Number(allPowerSlot6).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE BALANCE
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE PENDING
+                                            <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot6 !== 0 && timeToRunoutSlot6 !== null  ? "#ff007a" : "#5f6476"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot6).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GAS USAGE
+                                            <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                                <option value="ENGY">$ENGY</option>
+                                            </select>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                {gasselected === "ENGY" &&
+                                                    <>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                                    </>
+                                                }
+                                                <div style={{marginLeft: "5px"}}>/24</div>
+                                            </div>
+                                        </div>
+                                        {isStakeNowSlot6 ?
+                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot6}</div></div>
+                                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
+                                        }
+                                        {address !== null && intrasubModetext !== undefined ?
+                                            <>
+                                                {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                        {isStakeNowSlot6 ?
+                                                            <>
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                                <div style={{alignSelf: "center", background: isRunoutSlot6 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(5, 10)}>HARVEST & UNSTAKE</div>
+                                                            </> :
+                                                            <>
+                                                                {isStakeNowSlot6 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot6 !== 0 ?
+                                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(5)}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                }
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                            </>
+                                                        }
+                                                    </div> :
+                                                    <div style={{height: "41px"}}></div>
+                                                }
+                                            </> :
+                                            <div style={{height: "41px"}}></div>
+                                        }
+                                    </div>
+                                    <div className='slotbox noscroll'>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardWeaponSlot6 !== null ?
+                                                <img src={cardWeaponSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
+                                            }
+                                            {cardWeaponSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardWeaponSlot6Level}</div>}
+                                            {jewelSlot6 !== null ?
+                                                <img src={jewelSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
+                                            }
+                                            {jewelSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{jewelSlot6Level}</div>}
+                                            {cardShieldSlot6 !== null ?
+                                                <img src={cardShieldSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
+                                            }
+                                            {cardShieldSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardShieldSlot6Level}</div>}
+                                            {daemonSlot6 !== null ?
+                                                <img src={daemonSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
+                                            }
+                                            {daemonSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{daemonSlot6Level}</div>}
+                                            {cardAccessorySlot6 !== null ?
+                                                <img src={cardAccessorySlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
+                                            }
+                                            {cardAccessorySlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardAccessorySlot6Level}</div>}
+                                            {talismanTwoSlot6 !== null ?
+                                                <img src={talismanTwoSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
+                                            }
+                                            {talismanTwoSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanTwoSlot6Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {weaponOneSlot6 !== null ?
+                                                <img src={weaponOneSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
+                                            }
+                                            {weaponOneSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{weaponOneSlot6Level}</div>}
+                                            {weaponTwoSlot6 !== null ?
+                                                <img src={weaponTwoSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
+                                            }
+                                            {weaponTwoSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{weaponTwoSlot6Level}</div>}
+                                            {shieldSlot6 !== null ?
+                                                <img src={shieldSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
+                                            }
+                                            {shieldSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{shieldSlot6Level}</div>}
+                                            {wingSlot6 !== null ?
+                                                <img src={wingSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
+                                            }
+                                            {wingSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{wingSlot6Level}</div>}
+                                            {accessorySlot6 !== null ?
+                                                <img src={accessorySlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
+                                            }
+                                            {accessorySlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{accessorySlot6Level}</div>}
+                                            {talismanOneSlot6 !== null ?
+                                                <img src={talismanOneSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
+                                            }
+                                            {talismanOneSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanOneSlot6Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                            <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
+                                            {nft.length > 0 ?
+                                                <>
+                                                    {charSlot6 !== null ?
+                                                        <img src={charSlot6} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
+                                                    }
+                                                </> :
+                                                <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
+                                                    <ThreeDots fill="#5f6476" />
+                                                </div>
+                                            }
+                                            {charSlot6Level !== null && <div style={{position: "absolute", top: "310px", right: "10px", fontSize: "25px"}}>Lv.{charSlot6Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {headUpperSlot6 !== null ?
+                                                <img src={headUpperSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
+                                            }
+                                            {headUpperSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{headUpperSlot6Level}</div>}
+                                            {headMiddleSlot6 !== null ?
+                                                <img src={headMiddleSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
+                                            }
+                                            {headMiddleSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{headMiddleSlot6Level}</div>}
+                                            {headLowerSlot6 !== null ?
+                                                <img src={headLowerSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
+                                            }
+                                            {headLowerSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{headLowerSlot6Level}</div>}
+                                            {armorSlot6 !== null ?
+                                                <img src={armorSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
+                                            }
+                                            {armorSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{armorSlot6Level}</div>}
+                                            {garmentSlot6 !== null ?
+                                                <img src={garmentSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
+                                            }
+                                            {garmentSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{garmentSlot6Level}</div>}
+                                            {footgearSlot6 !== null ?
+                                                <img src={footgearSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
+                                            }
+                                            {footgearSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{footgearSlot6Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardHeadUpperSlot6 !== null ?
+                                                <img src={cardHeadUpperSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
+                                            }
+                                            {cardHeadUpperSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardHeadUpperSlot6Level}</div>}
+                                            {cardHeadMiddleSlot6 !== null ?
+                                                <img src={cardHeadMiddleSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
+                                            }
+                                            {cardHeadMiddleSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{cardHeadMiddleSlot6Level}</div>}
+                                            {cardHeadLowerSlot6 !== null ?
+                                                <img src={cardHeadLowerSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
+                                            }
+                                            {cardHeadLowerSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardHeadLowerSlot6Level}</div>}
+                                            {cardArmorSlot6 !== null ?
+                                                <img src={cardArmorSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
+                                            }
+                                            {cardArmorSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{cardArmorSlot6Level}</div>}
+                                            {cardGarmentSlot6 !== null ?
+                                                <img src={cardGarmentSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
+                                            }
+                                            {cardGarmentSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardGarmentSlot6Level}</div>}
+                                            {cardFootgearSlot6 !== null ?
+                                                <img src={cardFootgearSlot6} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
+                                            }
+                                            {cardFootgearSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{cardFootgearSlot6Level}</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                                {/*
+                                ░██████╗██╗░░░░░░█████╗░████████╗███████╗
+                                ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝╚════██║
+                                ╚█████╗░██║░░░░░██║░░██║░░░██║░░░░░░░██╔╝
+                                ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░░░░██╔╝░
+                                ██████╔╝███████╗╚█████╔╝░░░██║░░░░░██╔╝░░
+                                ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░░╚═╝░░░
+                                */}
+                                <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
+                                    <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                        <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 7 STAKING</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                                {isStakeNowSlot7 ?
+                                                    <>
+                                                        {isRunoutSlot7 ?
+                                                            <>
+                                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Run Out of Gas</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>On Staking</div>
+                                                            </>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        {!isStakeNowSlot7 &&
+                                                            <>
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Available for stake</div>
+                                                            </>
+                                                        }
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                                <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                                <><div>ADDRESS</div><div>-</div></>
+                                            }
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            TOTAL POWER PER SEC
+                                            <div>{Number(allPowerSlot7).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE BALANCE
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE PENDING
+                                            <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot7 !== 0 && timeToRunoutSlot7 !== null  ? "#ff007a" : "#5f6476"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot7).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GAS USAGE
+                                            <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                                <option value="ENGY">$ENGY</option>
+                                            </select>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                {gasselected === "ENGY" &&
+                                                    <>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                                    </>
+                                                }
+                                                <div style={{marginLeft: "5px"}}>/24</div>
+                                            </div>
+                                        </div>
+                                        {isStakeNowSlot7 ?
+                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot7}</div></div>
+                                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
+                                        }
+                                        {address !== null && intrasubModetext !== undefined ?
+                                            <>
+                                                {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                        {isStakeNowSlot7 ?
+                                                            <>
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                <div style={{alignSelf: "center", background: isRunoutSlot7 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(6, 10)}>HARVEST & UNSTAKE</div>
+                                                            </> :
+                                                            <>
+                                                                {isStakeNowSlot7 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot7 !== 0 ?
+                                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(6)}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                }
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                            </>
+                                                        }
+                                                    </div> :
+                                                    <div style={{height: "41px"}}></div>
+                                                }
+                                            </> :
+                                            <div style={{height: "41px"}}></div>
+                                        }
+                                    </div>
+                                    <div className='slotbox noscroll'>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardWeaponSlot7 !== null ?
+                                                <img src={cardWeaponSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
+                                            }
+                                            {cardWeaponSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardWeaponSlot7Level}</div>}
+                                            {jewelSlot7 !== null ?
+                                                <img src={jewelSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
+                                            }
+                                            {jewelSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{jewelSlot7Level}</div>}
+                                            {cardShieldSlot7 !== null ?
+                                                <img src={cardShieldSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
+                                            }
+                                            {cardShieldSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardShieldSlot7Level}</div>}
+                                            {daemonSlot7 !== null ?
+                                                <img src={daemonSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
+                                            }
+                                            {daemonSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{daemonSlot7Level}</div>}
+                                            {cardAccessorySlot7 !== null ?
+                                                <img src={cardAccessorySlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
+                                            }
+                                            {cardAccessorySlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardAccessorySlot7Level}</div>}
+                                            {talismanTwoSlot7 !== null ?
+                                                <img src={talismanTwoSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
+                                            }
+                                            {talismanTwoSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanTwoSlot7Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {weaponOneSlot7 !== null ?
+                                                <img src={weaponOneSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
+                                            }
+                                            {weaponOneSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{weaponOneSlot7Level}</div>}
+                                            {weaponTwoSlot7 !== null ?
+                                                <img src={weaponTwoSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
+                                            }
+                                            {weaponTwoSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{weaponTwoSlot7Level}</div>}
+                                            {shieldSlot7 !== null ?
+                                                <img src={shieldSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
+                                            }
+                                            {shieldSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{shieldSlot7Level}</div>}
+                                            {wingSlot7 !== null ?
+                                                <img src={wingSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
+                                            }
+                                            {wingSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{wingSlot7Level}</div>}
+                                            {accessorySlot7 !== null ?
+                                                <img src={accessorySlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
+                                            }
+                                            {accessorySlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{accessorySlot7Level}</div>}
+                                            {talismanOneSlot7 !== null ?
+                                                <img src={talismanOneSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
+                                            }
+                                            {talismanOneSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanOneSlot7Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                            <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
+                                            {nft.length > 0 ?
+                                                <>
+                                                    {charSlot7 !== null ?
+                                                        <img src={charSlot7} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
+                                                    }
+                                                </> :
+                                                <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
+                                                    <ThreeDots fill="#5f6476" />
+                                                </div>
+                                            }
+                                            {charSlot7Level !== null && <div style={{position: "absolute", top: "310px", right: "10px", fontSize: "25px"}}>Lv.{charSlot7Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {headUpperSlot7 !== null ?
+                                                <img src={headUpperSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
+                                            }
+                                            {headUpperSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{headUpperSlot7Level}</div>}
+                                            {headMiddleSlot7 !== null ?
+                                                <img src={headMiddleSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
+                                            }
+                                            {headMiddleSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{headMiddleSlot7Level}</div>}
+                                            {headLowerSlot7 !== null ?
+                                                <img src={headLowerSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
+                                            }
+                                            {headLowerSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{headLowerSlot7Level}</div>}
+                                            {armorSlot7 !== null ?
+                                                <img src={armorSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
+                                            }
+                                            {armorSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{armorSlot7Level}</div>}
+                                            {garmentSlot7 !== null ?
+                                                <img src={garmentSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
+                                            }
+                                            {garmentSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{garmentSlot7Level}</div>}
+                                            {footgearSlot7 !== null ?
+                                                <img src={footgearSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
+                                            }
+                                            {footgearSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{footgearSlot7Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardHeadUpperSlot7 !== null ?
+                                                <img src={cardHeadUpperSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
+                                            }
+                                            {cardHeadUpperSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardHeadUpperSlot7Level}</div>}
+                                            {cardHeadMiddleSlot7 !== null ?
+                                                <img src={cardHeadMiddleSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
+                                            }
+                                            {cardHeadMiddleSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{cardHeadMiddleSlot7Level}</div>}
+                                            {cardHeadLowerSlot7 !== null ?
+                                                <img src={cardHeadLowerSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
+                                            }
+                                            {cardHeadLowerSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardHeadLowerSlot7Level}</div>}
+                                            {cardArmorSlot7 !== null ?
+                                                <img src={cardArmorSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
+                                            }
+                                            {cardArmorSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{cardArmorSlot7Level}</div>}
+                                            {cardGarmentSlot7 !== null ?
+                                                <img src={cardGarmentSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
+                                            }
+                                            {cardGarmentSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardGarmentSlot7Level}</div>}
+                                            {cardFootgearSlot7 !== null ?
+                                                <img src={cardFootgearSlot7} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
+                                            }
+                                            {cardFootgearSlot7Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{cardFootgearSlot7Level}</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                                {/*
+                                ░██████╗██╗░░░░░░█████╗░████████╗░█████╗░
+                                ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝██╔══██╗
+                                ╚█████╗░██║░░░░░██║░░██║░░░██║░░░╚█████╔╝
+                                ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░██╔══██╗
+                                ██████╔╝███████╗╚█████╔╝░░░██║░░░╚█████╔╝
+                                ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░╚════╝░
+                                */}
+                                <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
+                                    <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                        <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 8 STAKING</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                                {isStakeNowSlot8 ?
+                                                    <>
+                                                        {isRunoutSlot8 ?
+                                                            <>
+                                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Run Out of Gas</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>On Staking</div>
+                                                            </>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        {!isStakeNowSlot8 &&
+                                                            <>
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Available for stake</div>
+                                                            </>
+                                                        }
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                                <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                                <><div>ADDRESS</div><div>-</div></>
+                                            }
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            TOTAL POWER PER SEC
+                                            <div>{Number(allPowerSlot8).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE BALANCE
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE PENDING
+                                            <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot8 !== 0 && timeToRunoutSlot8 !== null  ? "#ff007a" : "#5f6476"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot8).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GAS USAGE
+                                            <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                                <option value="ENGY">$ENGY</option>
+                                            </select>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                {gasselected === "ENGY" &&
+                                                    <>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                                    </>
+                                                }
+                                                <div style={{marginLeft: "5px"}}>/24</div>
+                                            </div>
+                                        </div>
+                                        {isStakeNowSlot8 ?
+                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot8}</div></div>
+                                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
+                                        }
+                                        {address !== null && intrasubModetext !== undefined ?
+                                            <>
+                                                {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                        {isStakeNowSlot8 ?
+                                                            <>
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                                <div style={{alignSelf: "center", background: isRunoutSlot8 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(7, 10)}>HARVEST & UNSTAKE</div>
+                                                            </> :
+                                                            <>
+                                                                {isStakeNowSlot8 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot8 !== 0 ?
+                                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(7)}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                }
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                            </>
+                                                        }
+                                                    </div> :
+                                                    <div style={{height: "41px"}}></div>
+                                                }
+                                            </> :
+                                             <div style={{height: "41px"}}></div>
+                                        }
+                                    </div>
+                                    <div className='slotbox noscroll'>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardWeaponSlot8 !== null ?
+                                                <img src={cardWeaponSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
+                                            }
+                                            {cardWeaponSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardWeaponSlot8Level}</div>}
+                                            {jewelSlot8 !== null ?
+                                                <img src={jewelSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
+                                            }
+                                            {jewelSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{jewelSlot8Level}</div>}
+                                            {cardShieldSlot8 !== null ?
+                                                <img src={cardShieldSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
+                                            }
+                                            {cardShieldSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardShieldSlot8Level}</div>}
+                                            {daemonSlot8 !== null ?
+                                                <img src={daemonSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
+                                            }
+                                            {daemonSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{daemonSlot8Level}</div>}
+                                            {cardAccessorySlot8 !== null ?
+                                                <img src={cardAccessorySlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
+                                            }
+                                            {cardAccessorySlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardAccessorySlot8Level}</div>}
+                                            {talismanTwoSlot8 !== null ?
+                                                <img src={talismanTwoSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
+                                            }
+                                            {talismanTwoSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanTwoSlot8Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {weaponOneSlot8 !== null ?
+                                                <img src={weaponOneSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
+                                            }
+                                            {weaponOneSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{weaponOneSlot8Level}</div>}
+                                            {weaponTwoSlot8 !== null ?
+                                                <img src={weaponTwoSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
+                                            }
+                                            {weaponTwoSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{weaponTwoSlot8Level}</div>}
+                                            {shieldSlot8 !== null ?
+                                                <img src={shieldSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
+                                            }
+                                            {shieldSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{shieldSlot8Level}</div>}
+                                            {wingSlot8 !== null ?
+                                                <img src={wingSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
+                                            }
+                                            {wingSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{wingSlot8Level}</div>}
+                                            {accessorySlot8 !== null ?
+                                                <img src={accessorySlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
+                                            }
+                                            {accessorySlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{accessorySlot8Level}</div>}
+                                            {talismanOneSlot8 !== null ?
+                                                <img src={talismanOneSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
+                                            }
+                                            {talismanOneSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanOneSlot8Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                            <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
+                                            {nft.length > 0 ?
+                                                <>
+                                                    {charSlot8 !== null ?
+                                                        <img src={charSlot8} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
+                                                    }
+                                                </> :
+                                                <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
+                                                    <ThreeDots fill="#5f6476" />
+                                                </div>
+                                            }
+                                            {charSlot8Level !== null && <div style={{position: "absolute", top: "310px", right: "10px", fontSize: "25px"}}>Lv.{charSlot8Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {headUpperSlot8 !== null ?
+                                                <img src={headUpperSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
+                                            }
+                                            {headUpperSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{headUpperSlot8Level}</div>}
+                                            {headMiddleSlot8 !== null ?
+                                                <img src={headMiddleSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
+                                            }
+                                            {headMiddleSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{headMiddleSlot8Level}</div>}
+                                            {headLowerSlot8 !== null ?
+                                                <img src={headLowerSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
+                                            }
+                                            {headLowerSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{headLowerSlot8Level}</div>}
+                                            {armorSlot8 !== null ?
+                                                <img src={armorSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
+                                            }
+                                            {armorSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{armorSlot8Level}</div>}
+                                            {garmentSlot8 !== null ?
+                                                <img src={garmentSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
+                                            }
+                                            {garmentSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{garmentSlot8Level}</div>}
+                                            {footgearSlot8 !== null ?
+                                                <img src={footgearSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
+                                            }
+                                            {footgearSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{footgearSlot8Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardHeadUpperSlot8 !== null ?
+                                                <img src={cardHeadUpperSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
+                                            }
+                                            {cardHeadUpperSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardHeadUpperSlot8Level}</div>}
+                                            {cardHeadMiddleSlot8 !== null ?
+                                                <img src={cardHeadMiddleSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
+                                            }
+                                            {cardHeadMiddleSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{cardHeadMiddleSlot8Level}</div>}
+                                            {cardHeadLowerSlot8 !== null ?
+                                                <img src={cardHeadLowerSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
+                                            }
+                                            {cardHeadLowerSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardHeadLowerSlot8Level}</div>}
+                                            {cardArmorSlot8 !== null ?
+                                                <img src={cardArmorSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
+                                            }
+                                            {cardArmorSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{cardArmorSlot8Level}</div>}
+                                            {cardGarmentSlot8 !== null ?
+                                                <img src={cardGarmentSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
+                                            }
+                                            {cardGarmentSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardGarmentSlot8Level}</div>}
+                                            {cardFootgearSlot8 !== null ?
+                                                <img src={cardFootgearSlot8} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
+                                            }
+                                            {cardFootgearSlot8Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{cardFootgearSlot8Level}</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                                {/*
+                                ░██████╗██╗░░░░░░█████╗░████████╗░█████╗░
+                                ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝██╔══██╗
+                                ╚█████╗░██║░░░░░██║░░██║░░░██║░░░╚██████║
+                                ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░░╚═══██║
+                                ██████╔╝███████╗╚█████╔╝░░░██║░░░░█████╔╝
+                                ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░░╚════╝░
+                                */}
+                                <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
+                                    <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                        <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT 9 STAKING</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                                {isStakeNowSlot9 ?
+                                                    <>
+                                                        {isRunoutSlot9 ?
+                                                            <>
+                                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Run Out of Gas</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>On Staking</div>
+                                                            </>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        {!isStakeNowSlot9 &&
+                                                            <>
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Available for stake</div>
+                                                            </>
+                                                        }
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                                <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                                <><div>ADDRESS</div><div>-</div></>
+                                            }
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            TOTAL POWER PER SEC
+                                            <div>{Number(allPowerSlot9).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE BALANCE
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE PENDING
+                                            <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot9 !== 0 && timeToRunoutSlot9 !== null  ? "#ff007a" : "#5f6476"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot9).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GAS USAGE
+                                            <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                                <option value="ENGY">$ENGY</option>
+                                            </select>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                {gasselected === "ENGY" &&
+                                                    <>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                                    </>
+                                                }
+                                                <div style={{marginLeft: "5px"}}>/24</div>
+                                            </div>
+                                        </div>
+                                        {isStakeNowSlot9 ?
+                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot9}</div></div>
+                                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
+                                        }
+                                        {address !== null && intrasubModetext !== undefined ?
+                                            <>
+                                                {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                        {isStakeNowSlot9 ?
+                                                            <>
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                                <div style={{alignSelf: "center", background: isRunoutSlot9 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(8, 10)}>HARVEST & UNSTAKE</div>
+                                                            </> :
+                                                            <>
+                                                                {isStakeNowSlot9 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot9 !== 0 ?
+                                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(8)}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                }
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                            </>
+                                                        }
+                                                    </div> :
+                                                    <div style={{height: "41px"}}></div>
+                                                }
+                                            </> :
+                                            <div style={{height: "41px"}}></div>
+                                        }
+                                    </div>
+                                    <div className='slotbox noscroll'>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardWeaponSlot9 !== null ?
+                                                <img src={cardWeaponSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
+                                            }
+                                            {cardWeaponSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardWeaponSlot9Level}</div>}
+                                            {jewelSlot9 !== null ?
+                                                <img src={jewelSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
+                                            }
+                                            {jewelSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{jewelSlot9Level}</div>}
+                                            {cardShieldSlot9 !== null ?
+                                                <img src={cardShieldSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
+                                            }
+                                            {cardShieldSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardShieldSlot9Level}</div>}
+                                            {daemonSlot9 !== null ?
+                                                <img src={daemonSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
+                                            }
+                                            {daemonSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{daemonSlot9Level}</div>}
+                                            {cardAccessorySlot9 !== null ?
+                                                <img src={cardAccessorySlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
+                                            }
+                                            {cardAccessorySlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardAccessorySlot9Level}</div>}
+                                            {talismanTwoSlot9 !== null ?
+                                                <img src={talismanTwoSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
+                                            }
+                                            {talismanTwoSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanTwoSlot9Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {weaponOneSlot9 !== null ?
+                                                <img src={weaponOneSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
+                                            }
+                                            {weaponOneSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{weaponOneSlot9Level}</div>}
+                                            {weaponTwoSlot9 !== null ?
+                                                <img src={weaponTwoSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
+                                            }
+                                            {weaponTwoSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{weaponTwoSlot9Level}</div>}
+                                            {shieldSlot9 !== null ?
+                                                <img src={shieldSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
+                                            }
+                                            {shieldSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{shieldSlot9Level}</div>}
+                                            {wingSlot9 !== null ?
+                                                <img src={wingSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
+                                            }
+                                            {wingSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{wingSlot9Level}</div>}
+                                            {accessorySlot9 !== null ?
+                                                <img src={accessorySlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
+                                            }
+                                            {accessorySlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{accessorySlot9Level}</div>}
+                                            {talismanOneSlot9 !== null ?
+                                                <img src={talismanOneSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
+                                            }
+                                            {talismanOneSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanOneSlot9Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                            <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
+                                            {nft.length > 0 ?
+                                                <>
+                                                    {charSlot9 !== null ?
+                                                        <img src={charSlot9} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
+                                                    }
+                                                </> :
+                                                <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
+                                                    <ThreeDots fill="#5f6476" />
+                                                </div>
+                                            }
+                                            {charSlot9Level !== null && <div style={{position: "absolute", top: "310px", right: "10px", fontSize: "25px"}}>Lv.{charSlot9Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {headUpperSlot9 !== null ?
+                                                <img src={headUpperSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
+                                            }
+                                            {headUpperSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{headUpperSlot9Level}</div>}
+                                            {headMiddleSlot9 !== null ?
+                                                <img src={headMiddleSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
+                                            }
+                                            {headMiddleSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{headMiddleSlot9Level}</div>}
+                                            {headLowerSlot9 !== null ?
+                                                <img src={headLowerSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
+                                            }
+                                            {headLowerSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{headLowerSlot9Level}</div>}
+                                            {armorSlot9 !== null ?
+                                                <img src={armorSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
+                                            }
+                                            {armorSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{armorSlot9Level}</div>}
+                                            {garmentSlot9 !== null ?
+                                                <img src={garmentSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
+                                            }
+                                            {garmentSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{garmentSlot9Level}</div>}
+                                            {footgearSlot9 !== null ?
+                                                <img src={footgearSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
+                                            }
+                                            {footgearSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{footgearSlot9Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardHeadUpperSlot9 !== null ?
+                                                <img src={cardHeadUpperSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
+                                            }
+                                            {cardHeadUpperSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardHeadUpperSlot9Level}</div>}
+                                            {cardHeadMiddleSlot9 !== null ?
+                                                <img src={cardHeadMiddleSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
+                                            }
+                                            {cardHeadMiddleSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{cardHeadMiddleSlot9Level}</div>}
+                                            {cardHeadLowerSlot9 !== null ?
+                                                <img src={cardHeadLowerSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
+                                            }
+                                            {cardHeadLowerSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardHeadLowerSlot9Level}</div>}
+                                            {cardArmorSlot9 !== null ?
+                                                <img src={cardArmorSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
+                                            }
+                                            {cardArmorSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{cardArmorSlot9Level}</div>}
+                                            {cardGarmentSlot9 !== null ?
+                                                <img src={cardGarmentSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
+                                            }
+                                            {cardGarmentSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardGarmentSlot9Level}</div>}
+                                            {cardFootgearSlot9 !== null ?
+                                                <img src={cardFootgearSlot9} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
+                                            }
+                                            {cardFootgearSlot9Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{cardFootgearSlot9Level}</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                                {/*
+                                ░██████╗██╗░░░░░░█████╗░████████╗██╗░░██╗
+                                ██╔════╝██║░░░░░██╔══██╗╚══██╔══╝╚██╗██╔╝
+                                ╚█████╗░██║░░░░░██║░░██║░░░██║░░░░╚███╔╝░
+                                ░╚═══██╗██║░░░░░██║░░██║░░░██║░░░░██╔██╗░
+                                ██████╔╝███████╗╚█████╔╝░░░██║░░░██╔╝╚██╗
+                                ╚═════╝░╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝
+                                */}
+                                <div style={{paddingTop: "40px", borderTop: "1px solid", display: "flex", flexFlow: "row wrap", width: "100%"}}>
+                                    <div style={{background: "#FFFFFF99", position: "relative", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                        <div style={{fontSize: "22px", lineHeight: "15px"}}>SLOT X STAKING</div>
+                                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                                {isStakeNowSlot10 ?
+                                                    <>
+                                                        {isRunoutSlot10 ?
+                                                            <>
+                                                                <div style={{backgroundColor: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Run Out of Gas</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "rgb(239, 194, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>On Staking</div>
+                                                            </>
+                                                        }
+                                                    </> :
+                                                    <>
+                                                        {!isStakeNowSlot10 &&
+                                                            <>
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>Available for stake</div>
+                                                            </>
+                                                        }
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                                <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                                <><div>ADDRESS</div><div>-</div></>
+                                            }
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            TOTAL POWER PER SEC
+                                            <div>{Number(allPowerSlot10).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE BALANCE
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GEMSTONE PENDING
+                                            <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot10 !== 0 && timeToRunoutSlot10 !== null  ? "#ff007a" : "#5f6476"}}>
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot10).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            </div>
+                                        </div>
+                                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
+                                            GAS USAGE
+                                            <select style={{padding: "2.5px 5px", fontSize: "16px", background: "transparent"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                                <option value="ENGY">$ENGY</option>
+                                            </select>
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                {gasselected === "ENGY" &&
+                                                    <>
+                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                                    </>
+                                                }
+                                                <div style={{marginLeft: "5px"}}>/24</div>
+                                            </div>
+                                        </div>
+                                        {isStakeNowSlot10 ?
+                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT AT <div>{timeToRunoutSlot10}</div></div>
+                                            : <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>GAS RUN OUT IN <div>1 day</div></div>
+                                        }
+                                        {address !== null && intrasubModetext !== undefined ?
+                                            <>
+                                                {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                        {isStakeNowSlot10 ?
+                                                            <>
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div> 
+                                                                <div style={{alignSelf: "center", background: isRunoutSlot10 ? "#67BAA7" : "#ff007a"}} className="button" onClick={() => unstakeNft(9, 10)}>HARVEST & UNSTAKE</div>
+                                                            </> :
+                                                            <>
+                                                                {isStakeNowSlot10 !== null && ((gasselected === "ENGY" && Number(engyBalance) >= 24)) && allPowerSlot10 !== 0 ?
+                                                                    <div style={{alignSelf: "center"}} className="button" onClick={() => refuelStake(9)}>REFUEL GAS</div> :
+                                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                                }
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">HARVEST & UNSTAKE</div>
+                                                            </>
+                                                        }
+                                                    </div> :
+                                                    <div style={{height: "41px"}}></div>
+                                                }
+                                            </> :
+                                             <div style={{height: "41px"}}></div>
+                                        }
+                                    </div>
+                                    <div className='slotbox noscroll'>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardWeaponSlot10 !== null ?
+                                                <img src={cardWeaponSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Weapon</div>
+                                            }
+                                            {cardWeaponSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardWeaponSlot10Level}</div>}
+                                            {jewelSlot10 !== null ?
+                                                <img src={jewelSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Jewel</div>
+                                            }
+                                            {jewelSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{jewelSlot10Level}</div>}
+                                            {cardShieldSlot10 !== null ?
+                                                <img src={cardShieldSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Shield</div>
+                                            }
+                                            {cardShieldSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardShieldSlot10Level}</div>}
+                                            {daemonSlot10 !== null ?
+                                                <img src={daemonSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Daemon</div>
+                                            }
+                                            {daemonSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{daemonSlot10Level}</div>}
+                                            {cardAccessorySlot10 !== null ?
+                                                <img src={cardAccessorySlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Accessory</div>
+                                            }
+                                            {cardAccessorySlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardAccessorySlot10Level}</div>}
+                                            {talismanTwoSlot10 !== null ?
+                                                <img src={talismanTwoSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman Two</div>
+                                            }
+                                            {talismanTwoSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanTwoSlot10Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {weaponOneSlot10 !== null ?
+                                                <img src={weaponOneSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon One</div>
+                                            }
+                                            {weaponOneSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{weaponOneSlot10Level}</div>}
+                                            {weaponTwoSlot10 !== null ?
+                                                <img src={weaponTwoSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Weapon Two</div>
+                                            }
+                                            {weaponTwoSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{weaponTwoSlot10Level}</div>}
+                                            {shieldSlot10 !== null ?
+                                                <img src={shieldSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Shield</div>
+                                            }
+                                            {shieldSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{shieldSlot10Level}</div>}
+                                            {wingSlot10 !== null ?
+                                                <img src={wingSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Wing</div>
+                                            }
+                                            {wingSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{wingSlot10Level}</div>}
+                                            {accessorySlot10 !== null ?
+                                                <img src={accessorySlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Accessory</div>
+                                            }
+                                            {accessorySlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{accessorySlot10Level}</div>}
+                                            {talismanOneSlot10 !== null ?
+                                                <img src={talismanOneSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Talisman One</div>
+                                            }
+                                            {talismanOneSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{talismanOneSlot10Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "300px", height: "350px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                            <div style={{width: "300px", marginBottom: "20px", height: "25px"}}></div>
+                                            {nft.length > 0 ?
+                                                <>
+                                                    {charSlot10 !== null ?
+                                                        <img src={charSlot10} width="300px" alt="Can not load metadata." style={{marginTop: "20px"}} /> :
+                                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", marginTop: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Main Character</div>
+                                                    }
+                                                </> :
+                                                <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
+                                                    <ThreeDots fill="#5f6476" />
+                                                </div>
+                                            }
+                                            {charSlot10Level !== null && <div style={{position: "absolute", top: "310px", right: "10px", fontSize: "25px"}}>Lv.{charSlot10Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {headUpperSlot10 !== null ?
+                                                <img src={headUpperSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Upper Head</div>
+                                            }
+                                            {headUpperSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{headUpperSlot10Level}</div>}
+                                            {headMiddleSlot10 !== null ?
+                                                <img src={headMiddleSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Middle Head</div>
+                                            }
+                                            {headMiddleSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{headMiddleSlot10Level}</div>}
+                                            {headLowerSlot10 !== null ?
+                                                <img src={headLowerSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Lower Head</div>
+                                            }
+                                            {headLowerSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{headLowerSlot10Level}</div>}
+                                            {armorSlot10 !== null ?
+                                                <img src={armorSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Armor</div>
+                                            }
+                                            {armorSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{armorSlot10Level}</div>}
+                                            {garmentSlot10 !== null ?
+                                                <img src={garmentSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Garment</div>
+                                            }
+                                            {garmentSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{garmentSlot10Level}</div>}
+                                            {footgearSlot10 !== null ?
+                                                <img src={footgearSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Footgear</div>
+                                            }
+                                            {footgearSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{footgearSlot10Level}</div>}
+                                        </div>
+                                        <div style={{position: "relative", width: "150px", height: "700px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                            {cardHeadUpperSlot10 !== null ?
+                                                <img src={cardHeadUpperSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Upper Head</div>
+                                            }
+                                            {cardHeadUpperSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "70px", fontSize: "25px"}}>+{cardHeadUpperSlot10Level}</div>}
+                                            {cardHeadMiddleSlot10 !== null ?
+                                                <img src={cardHeadMiddleSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Middle Head</div>
+                                            }
+                                            {cardHeadMiddleSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "190px", fontSize: "25px"}}>+{cardHeadMiddleSlot10Level}</div>}
+                                            {cardHeadLowerSlot10 !== null ?
+                                                <img src={cardHeadLowerSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", textAlign: "center"}}>Card - Lower Head</div>
+                                            }
+                                            {cardHeadLowerSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "310px", fontSize: "25px"}}>+{cardHeadLowerSlot10Level}</div>}
+                                            {cardArmorSlot10 !== null ?
+                                                <img src={cardArmorSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Armor</div>
+                                            }
+                                            {cardArmorSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "430px", fontSize: "25px"}}>+{cardArmorSlot10Level}</div>}
+                                            {cardGarmentSlot10 !== null ?
+                                                <img src={cardGarmentSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Garment</div>
+                                            }
+                                            {cardGarmentSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "550px", fontSize: "25px"}}>+{cardGarmentSlot10Level}</div>}
+                                            {cardFootgearSlot10 !== null ?
+                                                <img src={cardFootgearSlot10} width="100px" alt="Can not load metadata." /> :
+                                                <div style={{borderRadius: "16px", border: "1px solid gray", width: "100px", height: "100px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px"}}>Card - Footgear</div>
+                                            }
+                                            {cardFootgearSlot10Level !== null && <div className="slotlevel" style={{position: "absolute", top: "667px", fontSize: "25px"}}>+{cardFootgearSlot10Level}</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{width: "92.5%", borderBottom: "1px solid #dddade", marginTop: "60px"}}></div>
+                    <div style={{width: "95%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left"}} className="bold">HRM is now your multiverse NFTs!</div>
+                    <div style={{width: "95%", minHeight: 0, justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+                        <a style={{width: "380px", border: "1px solid #4637a9", padding: "20px 50px", borderRadius: "8px", justifyContent: "center", boxShadow: "3px 3px 0 #0d0a1f", textDecoration: "none"}} className="pixel hashtag" href="https://form.typeform.com/to/wCDrP3iH" target="_blank" rel="noreferrer">✏️&nbsp;Permissionless create your labs</a> 
+                    </div>
+                    
+                    {nft.length > 0 ?
+                        <div style={{width: "1650px", margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                            {nft[0] !== null ?
+                                <>
+                                    {nft.map((item, index) => (
+                                        <div style={{backdropFilter: "blur(14px)", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px", minHeight: "400px", height: "fit-content"}} className="nftCard" key={index}>
+                                            <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                                <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                            </div>
+                                            <div className="emp bold" style={{margin: "10px 0"}}>{item.Name}</div>
+                                            <div className="bold">{item.RewardPerSec} power</div>
+                                            <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word", margin: "10px 0"}} className="light">{item.Description}</div>
+                                            {address !== null && intrasubModetext !== undefined ?
+                                                <>
+                                                    {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                        <div style={{width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-around"}}>
+                                                            {item.isStaked ?
+                                                                <>
+                                                                    <div style={{marginTop: "5px", width: "250px", background: "gray"}} className="pixel button" onClick={() => unstakeNft(item.Slot - 1, String(item.Id).slice(0, 2))}>
+                                                                        UNEQUIP&nbsp;
+                                                                        {String(item.Id).slice(0, 2) === '11' && '[Main Character]'}
+                                                                        {String(item.Id).slice(0, 2) === '12' && '[Weapon One]'}
+                                                                        {String(item.Id).slice(0, 2) === '13' && '[Shield]'}
+                                                                        {String(item.Id).slice(0, 2) === '14' && '[Armor]'}
+                                                                        {String(item.Id).slice(0, 2) === '15' && '[Upper Head]'}
+                                                                        {String(item.Id).slice(0, 2) === '16' && '[Middle Head]'}
+                                                                        {String(item.Id).slice(0, 2) === '17' && '[Lower Head]'}
+                                                                        {String(item.Id).slice(0, 2) === '18' && '[Garment]'}
+                                                                        {String(item.Id).slice(0, 2) === '19' && '[Footgear]'}
+                                                                        {String(item.Id).slice(0, 2) === '20' && '[Accessory]'}
+                                                                        {String(item.Id).slice(0, 2) === '21' && '[Talisman One]'}
+                                                                        {String(item.Id).slice(0, 2) === '22' && '[Talisman Two]'}
+                                                                        {String(item.Id).slice(0, 2) === '23' && '[Wing]'}
+                                                                        {String(item.Id).slice(0, 2) === '24' && '[Daemon]'}
+                                                                        {String(item.Id).slice(0, 2) === '25' && '[Card - Weapon]'}
+                                                                        {String(item.Id).slice(0, 2) === '26' && '[Card - Shield]'}
+                                                                        {String(item.Id).slice(0, 2) === '27' && '[Card - Armor]'}
+                                                                        {String(item.Id).slice(0, 2) === '28' && '[Card - Upper Head]'}
+                                                                        {String(item.Id).slice(0, 2) === '29' && '[Card - Middle Head]'}
+                                                                        {String(item.Id).slice(0, 2) === '30' && '[Card - Lower Head]'}
+                                                                        {String(item.Id).slice(0, 2) === '31' && '[Card - Garment]'}
+                                                                        {String(item.Id).slice(0, 2) === '32' && '[Card - Footgear]'}
+                                                                        {String(item.Id).slice(0, 2) === '33' && '[Card - Accessory]'}
+                                                                        {String(item.Id).slice(0, 2) === '34' && '[Jewel]'}
+                                                                        {String(item.Id).slice(0, 2) === '35' && '[Weapon Two]'}
+                                                                        <br></br>from SLOT [{item.Slot}]
+                                                                    </div>
+                                                                </> :
+                                                                <>
+                                                                    <div style={{marginTop: "5px", width: "250px", background: "gray"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>
+                                                                        TRANSFER&nbsp;
+                                                                        {String(item.Id).slice(0, 2) === '11' && '[Main Character]'}
+                                                                        {String(item.Id).slice(0, 2) === '12' && '[Weapon One]'}
+                                                                        {String(item.Id).slice(0, 2) === '13' && '[Shield]'}
+                                                                        {String(item.Id).slice(0, 2) === '14' && '[Armor]'}
+                                                                        {String(item.Id).slice(0, 2) === '15' && '[Upper Head]'}
+                                                                        {String(item.Id).slice(0, 2) === '16' && '[Middle Head]'}
+                                                                        {String(item.Id).slice(0, 2) === '17' && '[Lower Head]'}
+                                                                        {String(item.Id).slice(0, 2) === '18' && '[Garment]'}
+                                                                        {String(item.Id).slice(0, 2) === '19' && '[Footgear]'}
+                                                                        {String(item.Id).slice(0, 2) === '20' && '[Accessory]'}
+                                                                        {String(item.Id).slice(0, 2) === '21' && '[Talisman One]'}
+                                                                        {String(item.Id).slice(0, 2) === '22' && '[Talisman Two]'}
+                                                                        {String(item.Id).slice(0, 2) === '23' && '[Wing]'}
+                                                                        {String(item.Id).slice(0, 2) === '24' && '[Daemon]'}
+                                                                        {String(item.Id).slice(0, 2) === '25' && '[Card - Weapon]'}
+                                                                        {String(item.Id).slice(0, 2) === '26' && '[Card - Shield]'}
+                                                                        {String(item.Id).slice(0, 2) === '27' && '[Card - Armor]'}
+                                                                        {String(item.Id).slice(0, 2) === '28' && '[Card - Upper Head]'}
+                                                                        {String(item.Id).slice(0, 2) === '29' && '[Card - Middle Head]'}
+                                                                        {String(item.Id).slice(0, 2) === '30' && '[Card - Lower Head]'}
+                                                                        {String(item.Id).slice(0, 2) === '31' && '[Card - Garment]'}
+                                                                        {String(item.Id).slice(0, 2) === '32' && '[Card - Footgear]'}
+                                                                        {String(item.Id).slice(0, 2) === '33' && '[Card - Accessory]'}
+                                                                        {String(item.Id).slice(0, 2) === '34' && '[Jewel]'}
+                                                                        {String(item.Id).slice(0, 2) === '35' && '[Weapon Two]'}
+                                                                    </div>
+                                                                    {(!isStakeNowSlot1 &&
+                                                                        (
+                                                                            (String(item.Id).slice(0, 2) === '11' && charSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot1 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot1 === null)
+                                                                        )
+                                                                    ) &&
+                                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(0, item.Id)}>EQUIP SLOT 1</div>
+                                                                    }
+                                                                    {(!isStakeNowSlot2 && 
+                                                                        (
+                                                                            (String(item.Id).slice(0, 2) === '11' && charSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot2 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot2 === null)
+                                                                        )
+                                                                    ) &&
+                                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(1, item.Id)}>EQUIP SLOT 2</div>
+                                                                    }
+                                                                    {(!isStakeNowSlot3 &&
+                                                                        (
+                                                                            (String(item.Id).slice(0, 2) === '11' && charSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot3 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot3 === null)
+                                                                        )
+                                                                    ) &&
+                                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(2, item.Id)}>EQUIP SLOT 3</div>
+                                                                    }
+                                                                    {(!isStakeNowSlot4 &&
+                                                                        (
+                                                                            (String(item.Id).slice(0, 2) === '11' && charSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot4 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot4 === null)
+                                                                        )
+                                                                    ) &&
+                                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(3, item.Id)}>EQUIP SLOT 4</div>
+                                                                    }
+                                                                    {(!isStakeNowSlot5 &&
+                                                                        (
+                                                                            (String(item.Id).slice(0, 2) === '11' && charSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot5 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot5 === null)
+                                                                        )
+                                                                    ) &&
+                                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(4, item.Id)}>EQUIP SLOT 5</div>
+                                                                    }
+                                                                    {(!isStakeNowSlot6 &&
+                                                                        (
+                                                                            (String(item.Id).slice(0, 2) === '11' && charSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot6 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot6 === null)
+                                                                        )
+                                                                    ) &&
+                                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(5, item.Id)}>EQUIP SLOT 6</div>
+                                                                    }
+                                                                    {(!isStakeNowSlot7 &&
+                                                                        (
+                                                                            (String(item.Id).slice(0, 2) === '11' && charSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot7 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot7 === null)
+                                                                        )
+                                                                    ) &&
+                                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(6, item.Id)}>EQUIP SLOT 7</div>
+                                                                    }
+                                                                    {(!isStakeNowSlot8 &&
+                                                                        (
+                                                                            (String(item.Id).slice(0, 2) === '11' && charSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot8 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot8 === null)
+                                                                        )
+                                                                    ) &&
+                                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(7, item.Id)}>EQUIP SLOT 8</div>
+                                                                    }
+                                                                    {(!isStakeNowSlot9 &&
+                                                                        (
+                                                                            (String(item.Id).slice(0, 2) === '11' && charSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot9 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot9 === null)
+                                                                        )
+                                                                    ) &&
+                                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(8, item.Id)}>EQUIP SLOT 9</div>
+                                                                    }
+                                                                    {(!isStakeNowSlot10 &&
+                                                                        (
+                                                                            (String(item.Id).slice(0, 2) === '11' && charSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '12' && weaponOneSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '13' && shieldSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '14' && armorSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '15' && headUpperSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '16' && headMiddleSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '17' && headLowerSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '18' && garmentSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '19' && footgearSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '20' && accessorySlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '21' && talismanOneSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '22' && talismanTwoSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '23' && wingSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '24' && daemonSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '25' && cardWeaponSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '26' && cardShieldSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '27' && cardArmorSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '28' && cardHeadUpperSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '29' && cardHeadMiddleSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '30' && cardHeadLowerSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '31' && cardGarmentSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '32' && cardFootgearSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '33' && cardAccessorySlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '34' && jewelSlot10 === null) ||
+                                                                            (String(item.Id).slice(0, 2) === '35' && weaponTwoSlot10 === null)
+                                                                        )
+                                                                    ) &&
+                                                                        <div style={{marginTop: "5px", width: "250px"}} className="pixel button" onClick={() => equipNft(9, item.Id)}>EQUIP SLOT X</div>
+                                                                    }
+                                                                </>
+                                                            }
+                                                        </div> :
+                                                        <div style={{height: "41px"}}></div>
+                                                    }
+                                                </> :
+                                                <div style={{height: "41px"}}></div>
+                                            }
+                                        </div>
+                                    ))}
+                                </> :
+                                <div style={{bbackdropFilter: "blur(14px)", border: 0, justifyContent: "center", padding: "20px", margin: "10px"}} className="nftCard">
+                                    {address !== null ?
+                                        <>
+                                            <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                            <div style={{marginTop: "30px"}} className="bold">This wallet doesn't have NFTs.</div>
+                                        </> :
+                                        <>
+                                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                            <div className="bold">Please connect wallet to view your NFTs.</div>
+                                        </>
+                                    }
+                                </div>
+                            }
+                        </div> :
+                        <div style={{width: "1650px", margin: "40px 0 80px 0", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start"}}> 
+                            <div className="nftCard" style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "center"}}>
+                                <ThreeDots fill="#5f6476" />
+                                <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </>
     )
 }
 
