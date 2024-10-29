@@ -16,6 +16,7 @@ const jasp = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const pluto = '0x70a74ec50bcceae43dd16f48492552a8b25403ea'
 const fbtc = '0x8656268C82cffda9062387F8F117166F01e8Ef2E'
 const x4 = '0x0DF9D160489440D630a247fBC830DA74779928b1'
+const infpow = '0xCCbb477D6c28892d6311ebb729b4c242C92f70FD'
 const os = '0xAc5299D92373E9352636559cca497d7683A47655'
 const jdao = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 
@@ -108,6 +109,11 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
     const [x4Circulation, setX4Circulation] = React.useState(0)
     const [x4Stat, setX4Stat] = React.useState([0, 0])
 
+    const [infpowSupply, setInfpowSupply] = React.useState(0)
+    const [infpowBurn, setInfpowBurn] = React.useState(0)
+    const [infpowCirculation, setInfpowCirculation] = React.useState(0)
+    const [infpowStat, setInfpowStat] = React.useState([0, 0])
+
     const [osSupply, setOsSupply] = React.useState(0)
     const [osLocked, setOsLocked] = React.useState(0)
     const [osBurn, setOsBurn] = React.useState(0)
@@ -134,6 +140,7 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
         const plutoSC = new ethers.Contract(pluto, erc20Abi, providerJBC)
         const fbtcSC = new ethers.Contract(fbtc, erc20Abi, providerJBC)
         const x4SC = new ethers.Contract(x4, erc20Abi, providerJBC)
+        const infpowSC = new ethers.Contract(infpow, erc20Abi, providerJBC)
         const osSC = new ethers.Contract(os, erc20Abi, providerJBC)
         const jdaoSC = new ethers.Contract(jdao, erc20Abi, providerJBC)
               
@@ -287,6 +294,14 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
             const x4Event2 = await x4SC.queryFilter(x4Filter2, blockNumber - 7200, 'latest')
             const x4Map2 = await Promise.all(x4Event2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
             const x4Burn = x4Map2.reduce((partialSum, a) => partialSum + a, 0)
+            const infpowFilter = await infpowSC.filters.Transfer(genesis, null, null)
+            const infpowEvent = await infpowSC.queryFilter(infpowFilter, blockNumber - 7200, 'latest')
+            const infpowMap = await Promise.all(infpowEvent.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const infpowMint = infpowMap.reduce((partialSum, a) => partialSum + a, 0)
+            const infpowFilter2 = await infpowSC.filters.Transfer(null, burn, null)
+            const infpowEvent2 = await infpowSC.queryFilter(infpowFilter2, blockNumber - 7200, 'latest')
+            const infpowMap2 = await Promise.all(infpowEvent2.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const infpowBurn = infpowMap2.reduce((partialSum, a) => partialSum + a, 0)
 
             const dataCMJ = await readContracts(config, {
                 contracts: [
@@ -717,6 +732,30 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
                     },
                 ],
             })
+            const dataINFPOW = await readContracts(config, {
+                contracts: [
+                    {
+                        address: infpow,
+                        abi: erc20Abi,
+                        functionName: 'totalSupply',
+                        chainId: 8899,
+                    },
+                    {
+                        address: infpow,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [burn],
+                        chainId: 8899,
+                    },
+                    {
+                        address: infpow,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: ['0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'],
+                        chainId: 8899,
+                    },
+                ],
+            })
 
             const dataOS = await readContracts(config, {
                 contracts: [
@@ -810,7 +849,7 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
             return [
                 dataCMJ, dataWOOD, dataJDAO, dataBBQ, dataPZA, dataCTUNA, dataSX31, dataCU, dataSIL, dataGOLD, dataPLAT, dataJASP, dataOS, dataCMD, 
                 (Number(bbqCmdBal1.formatted) + Number(ethers.utils.formatEther(String(dataCMD[3].result)))), ethBal1.formatted, [woodMint, woodBurn], [jdaoMint, jdaoBurn], [osMint, osBurn], [bbqMint, bbqBurn], [pzaMint, pzaBurn], [ctunaMint, ctunaBurn], [sx31Mint, sx31Burn], [cuMint, cuBurn], [silMint, silBurn], [goldMint, goldBurn], [platMint, platBurn], [jaspMint, jaspBurn],
-                [plutoMint, plutoBurn], dataPLUTO, [fbtcMint, fbtcBurn], dataFBTC, [x4Mint, x4Burn], dataX4,
+                [plutoMint, plutoBurn], dataPLUTO, [fbtcMint, fbtcBurn], dataFBTC, [x4Mint, x4Burn], dataX4, [infpowMint, infpowBurn], dataINFPOW,
             ]
         }
 
@@ -913,6 +952,10 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
             setX4Supply(ethers.utils.formatEther(String(result[33][0].result)))
             setX4Burn(Number(ethers.utils.formatEther(String(result[33][1].result))) + Number(ethers.utils.formatEther(String(result[33][2].result))))
             setX4Circulation(Number(ethers.utils.formatEther(String(result[33][0].result))) - (Number(ethers.utils.formatEther(String(result[33][1].result))) + Number(ethers.utils.formatEther(String(result[33][2].result)))))
+            setInfpowStat(result[34])
+            setInfpowSupply(ethers.utils.formatEther(String(result[35][0].result)))
+            setInfpowBurn(Number(ethers.utils.formatEther(String(result[35][1].result))) + Number(ethers.utils.formatEther(String(result[35][2].result))))
+            setInfpowCirculation(Number(ethers.utils.formatEther(String(result[35][0].result))) - (Number(ethers.utils.formatEther(String(result[35][1].result))) + Number(ethers.utils.formatEther(String(result[35][2].result)))))
         })
     }, [config, erc20Abi])
 
@@ -1527,6 +1570,42 @@ const BigBroAnalytica = ({ config, erc20Abi }) => {
                             <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                                 <div>Annual Inflation Rate:</div>
                                 <div style={{color: "#fff"}}>{Number((((x4Stat[0] - x4Stat[1]) * 365)/x4Circulation)*100).toFixed(4)}%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "15px", border: "1px solid rgb(54, 77, 94)", width: "400px", height: "300px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                    <div style={{width: "100%", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "18px"}} className="bold">$INF.POW Tracker</div>
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", fontSize: "14px"}}>
+                        <div style={{width: "100%", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Total Supply:</div>
+                                <div style={{color: "#fff"}}>{Number(infpowSupply).toLocaleString('en-US', {maximumFractionDigits:0})} (100%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Total Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(infpowBurn).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((infpowBurn/infpowSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px", paddingBottom: "10px", borderBottom: "1px dotted"}}>
+                                <div>Circulating Supply:</div>
+                                <div style={{color: "#fff"}}>{Number(infpowCirculation).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number((infpowCirculation/infpowSupply)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Supply Growth:</div>
+                                <div style={{color: "#fff"}}>{Number(infpowStat[0]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Burn:</div>
+                                <div style={{color: "#fff"}}>{Number(infpowStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>1D Issurance:</div>
+                                <div style={{color: "#fff"}}>{Number(infpowStat[0] - infpowStat[1]).toLocaleString('en-US', {maximumFractionDigits:0})} ({Number(((infpowStat[0] - infpowStat[1])/infpowCirculation)*100).toFixed(2)}%)</div>
+                            </div>
+                            <div className="bold" style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                                <div>Annual Inflation Rate:</div>
+                                <div style={{color: "#fff"}}>{Number((((infpowStat[0] - infpowStat[1]) * 365)/infpowCirculation)*100).toFixed(4)}%</div>
                             </div>
                         </div>
                     </div>
