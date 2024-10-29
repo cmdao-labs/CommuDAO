@@ -1242,7 +1242,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             {gasselected === "INF.POW" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: infpowBalance}}; handleSwapUni(11, bal);}}>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" width="22" alt="$INF.POW"/>
-                                    <div style={{marginLeft: "5px"}}>{Number(x4Balance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                    <div style={{marginLeft: "5px"}}>{Number(infpowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                         </div>
