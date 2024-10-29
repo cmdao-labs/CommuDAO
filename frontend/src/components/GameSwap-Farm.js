@@ -22,6 +22,7 @@ const pzaCmjLp = '0x3161EE630bF36d2AB6333a9CfD22ebaa3e2D7C70'
 const plutoCmjLp = '0xd3d493ac2c0dD08C814FbbFB5f8B4983a8a0921C'
 const fbtcCmjLp = '0x4EF48881EFf572bBD636bcE736877881B9Ea17D5'
 const x4CmjLp = '0xA7e55e89d6B0E81cCDB034a04Eb65A7aF16b697C'
+const infpowCmjLp = '0x5E9C3A7E74a5865EC8eD3eaF6B1a4220D6E9A96b'
    
 const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, setisError, setErrMsg, lpBalance, julpBalance, jbcPooled, cmjPooled, jbcjuPooled, jusdtjuPooled, jcExchange, exchangeABI, juExchange, exchangeJulpABI, cmjToken, erc20Abi, cmjBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjBalanceFull, farmJdaoABI, priceTHB, cmdaoAmmNpcABI }) => {
     const [jbcJdaoStaked, setJbcJdaoStaked] = React.useState(0)
@@ -207,6 +208,17 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [lpJdao18Withdraw, setLpJdao18Withdraw] = React.useState("")
     const [lpJdao18Stake, setLpJdao18Stake] = React.useState("")
 
+    const [infpowCmjBalance, setInfpowCmjBalance] = React.useState(null)
+    const [reserveCmjINFPOW, setReserveCmjINFPOW] = React.useState("")
+    const [reserveINFPOW, setReserveINFPOW] = React.useState("")
+    const [cmjInfpowStaked, setCmjInfpowStaked] = React.useState(0)
+    const [cmjInfpowPooled, setCmjInfpowPooled] = React.useState(0)
+    const [yourcmjInfpowStaked, setYourCmjInfpowStaked] = React.useState(0)
+    const [farmJdao19Balance, setFarmJdao19Balance] = React.useState(null)
+    const [jdao19Pending, setJdao19Pending] = React.useState(<>0.000</>)
+    const [lpJdao19Withdraw, setLpJdao19Withdraw] = React.useState("")
+    const [lpJdao19Stake, setLpJdao19Stake] = React.useState("")
+
     const [swapfee24hour1, setSwapfee24hour1] = React.useState("")
     const [swapfee24hour2, setSwapfee24hour2] = React.useState("")
     const [swapfee24hour3, setSwapfee24hour3] = React.useState("")
@@ -239,6 +251,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [swapfee24hour16_2, setSwapfee24hour16_2] = React.useState("")
     const [swapfee24hour17, setSwapfee24hour17] = React.useState("")
     const [swapfee24hour17_2, setSwapfee24hour17_2] = React.useState("")
+    const [swapfee24hour18, setSwapfee24hour18] = React.useState("")
+    const [swapfee24hour18_2, setSwapfee24hour18_2] = React.useState("")
 
     const harvestHandle = async () => {
         setisLoading(true)
@@ -527,6 +541,9 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
         } else if (_index === 19) {
             lp = x4CmjLp
             stake = lpJdao18Stake
+        } else if (_index === 20) {
+            lp = infpowCmjLp
+            stake = lpJdao19Stake
         }
         try {
             const lpAllow = await readContract(config, {
@@ -596,6 +613,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             withdraw = lpJdao17Withdraw 
         } else if (_index === 19) {
             withdraw = lpJdao18Withdraw 
+        } else if (_index === 20) {
+            withdraw = lpJdao19Withdraw 
         }
         try {
             let { request } = await simulateContract(config, {
@@ -651,6 +670,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
         const plutoSC = new ethers.Contract('0x70a74ec50bcceae43dd16f48492552a8b25403ea', erc20Abi, providerJBC)
         const fbtcSC = new ethers.Contract('0x8656268C82cffda9062387F8F117166F01e8Ef2E', erc20Abi, providerJBC)
         const x4SC = new ethers.Contract('0x0DF9D160489440D630a247fBC830DA74779928b1', erc20Abi, providerJBC)
+        const infpowSC = new ethers.Contract('0xCCbb477D6c28892d6311ebb729b4c242C92f70FD', erc20Abi, providerJBC)
 
         const thefetch = async () => {
             const blockNumber = await providerJBC.getBlockNumber()
@@ -801,10 +821,19 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee33Event = await cmjSC.queryFilter(fee33Filter, blockNumber - 7200, 'latest')
             const fee33Map = await Promise.all(fee33Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const fee34Filter = await x4SC.filters.Transfer(x4CmjLp, merchant, null)
-            const fee34Event = await fbtcSC.queryFilter(fee34Filter, blockNumber - 7200, 'latest')
+            const fee34Event = await x4SC.queryFilter(fee34Filter, blockNumber - 7200, 'latest')
             const fee34Map = await Promise.all(fee34Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee17 = fee33Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee17_2 = fee34Map.reduce((partialSum, a) => partialSum + a, 0)
+
+            const fee35Filter = await cmjSC.filters.Transfer(infpowCmjLp, merchant, null)
+            const fee35Event = await cmjSC.queryFilter(fee35Filter, blockNumber - 7200, 'latest')
+            const fee35Map = await Promise.all(fee35Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const fee36Filter = await infpowSC.filters.Transfer(infpowCmjLp, merchant, null)
+            const fee36Event = await infpowSC.queryFilter(fee36Filter, blockNumber - 7200, 'latest')
+            const fee36Map = await Promise.all(fee36Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
+            const sumFee18 = fee35Map.reduce((partialSum, a) => partialSum + a, 0)
+            const sumFee18_2 = fee36Map.reduce((partialSum, a) => partialSum + a, 0)
 
             const data = address !== null && address !== undefined ? await readContracts(config, {
                 contracts: [
@@ -1114,8 +1143,26 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         functionName: 'pendingCake',
                         args: [19, address],
                     },
+                    {
+                        address: farmJdao,
+                        abi: farmJdaoABI,
+                        functionName: 'userInfo',
+                        args: [20, address],
+                    },
+                    {
+                        address: infpowCmjLp,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                    },
+                    {
+                        address: farmJdao,
+                        abi: farmJdaoABI,
+                        functionName: 'pendingCake',
+                        args: [20, address],
+                    },
                 ],
-            }) : [{result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]},]
+            }) : [{result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]},]
 
             const farmJdaoBal = data[0]
             const jdaoPend = data[1]
@@ -1168,6 +1215,9 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const farmJdao18Bal = data[48]
             const x4cmjbal = data[49]
             const jdao18Pend = data[50]
+            const farmJdao19Bal = data[51]
+            const infpowcmjbal = data[52]
+            const jdao19Pend = data[53]
 
             const data2 = await readContracts(config, {
                 contracts: [
@@ -1514,6 +1564,27 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
                     },
+                    {
+                        address: infpowCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveCurrency',
+                    },
+                    {
+                        address: infpowCmjLp,
+                        abi: erc20Abi,
+                        functionName: 'totalSupply',
+                    },
+                    {
+                        address: infpowCmjLp,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [farmJdao],
+                    },
+                    {
+                        address: infpowCmjLp,
+                        abi: cmdaoAmmNpcABI,
+                        functionName: 'getReserveToken',
+                    },
                 ],
             })
 
@@ -1584,6 +1655,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const x4CmjTotalSup = data2[62]
             const farmJdao18TotalStake = data2[63]
             const _reserveX4 = data2[64]
+            const _reserveCmjINFPOW = data2[65]
+            const infpowCmjTotalSup = data2[66]
+            const farmJdao19TotalStake = data2[67]
+            const _reserveINFPOW = data2[68]
             
             return [
                 jclpTotalSup, julpTotalSup, farmJdaoBal, farmJdaoTotalStake, jdaoPend, farmJdao202Bal, farmJdao202TotalStake, jdao202Pend, farmJdao3Bal, farmJdao3TotalStake, jdao3Pend,
@@ -1603,6 +1678,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                 farmJdao16Bal, jdao16Pend, plutocmjbal, _reserveCmjPLUTO, plutoCmjTotalSup, farmJdao16TotalStake, sumFee15, _reservePLUTO, sumFee15_2,
                 farmJdao17Bal, jdao17Pend, fbtccmjbal, _reserveCmjFBTC, fbtcCmjTotalSup, farmJdao17TotalStake, sumFee16, _reserveFBTC, sumFee16_2,
                 farmJdao18Bal, jdao18Pend, x4cmjbal, _reserveCmjX4, x4CmjTotalSup, farmJdao18TotalStake, sumFee17, _reserveX4, sumFee17_2,
+                farmJdao19Bal, jdao19Pend, infpowcmjbal, _reserveCmjINFPOW, infpowCmjTotalSup, farmJdao19TotalStake, sumFee18, _reserveINFPOW, sumFee18_2,
             ]
         }
 
@@ -1871,6 +1947,21 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour17(Number(result[145]).toFixed(0))
             setReserveX4(ethers.utils.formatEther(result[146].result))
             setSwapfee24hour17_2(Number(result[147]).toFixed(0))
+
+            const _farmjdao19balance = ethers.utils.formatEther(result[148].result[0])
+            setFarmJdao19Balance(_farmjdao19balance)
+            setJdao19Pending(Number(ethers.utils.formatEther(result[149].result)).toFixed(4))
+            setInfpowCmjBalance(ethers.utils.formatEther(result[150].result))
+            const _cmjinfpowreserve = ethers.utils.formatEther(result[151].result)
+            setReserveCmjINFPOW(_cmjinfpowreserve)
+            const _infpowcmjtotalsupply = ethers.utils.formatEther(result[152].result)
+            const _farmjdao19totalstake = ethers.utils.formatEther(result[153].result)
+            setCmjInfpowStaked((Number(_cmjinfpowreserve) * Number(_farmjdao19totalstake)) / Number(_infpowcmjtotalsupply))
+            setCmjInfpowPooled((Number(_cmjinfpowreserve) * Number(ethers.utils.formatEther(result[150].result))) / Number(_infpowcmjtotalsupply))
+            setYourCmjInfpowStaked((Number(_cmjinfpowreserve) * Number(_farmjdao19totalstake)) / Number(_infpowcmjtotalsupply))
+            setSwapfee24hour18(Number(result[154]).toFixed(0))
+            setReserveINFPOW(ethers.utils.formatEther(result[155].result))
+            setSwapfee24hour18_2(Number(result[156]).toFixed(0))
         })
     }, [config, address, txupdate, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, cmjToken, jcExchange, juExchange, farmJdaoABI, erc20Abi, cmdaoAmmNpcABI])
 
@@ -1890,7 +1981,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor(((swapfee24hour2 * (jbcReserv/cmjReserv)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / Number(((Number(jbcJdaoStaked) + Number(cmjJdaoStaked * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv)) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor(((swapfee24hour2 * (jbcReserv/cmjReserv)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / Number(((Number(jbcJdaoStaked) + Number(cmjJdaoStaked * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv)) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -1900,8 +1991,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number(swapfee24hour2 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div>
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -1962,7 +2053,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour1) + (((231481480 * 100000000) / 10**18) * (86400/12) * (1200/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv))) * priceTHB * 1) / 1) * 365) / (Number(jbcJdaoStaked) + Number(((Number(jusdtJdao3Staked) + Number(jbcJdao3Staked * (jusdtJuReserv/jbcJuReserv))) * priceTHB))))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour1) + (((231481480 * 100000000) / 10**18) * (86400/12) * (1200/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv))) * priceTHB * 1) / 1) * 365) / (Number(jbcJdaoStaked) + Number(((Number(jusdtJdao3Staked) + Number(jbcJdao3Staked * (jusdtJuReserv/jbcJuReserv))) * priceTHB))))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -1972,8 +2063,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number(swapfee24hour1 * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div>
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2034,7 +2125,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour4) + (swapfee24hour4_2 * (reserveCmjJDAO/reserveJDAO)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjJdaoLpStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour4) + (swapfee24hour4_2 * (reserveCmjJDAO/reserveJDAO)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjJdaoLpStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2044,8 +2135,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour4) + (swapfee24hour4_2 * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div>
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2108,7 +2199,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour5) + (swapfee24hour5_2 * (reserveCmjOS/reserveOS)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjOsStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour5) + (swapfee24hour5_2 * (reserveCmjOS/reserveOS)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjOsStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2118,8 +2209,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour5) + (swapfee24hour5_2 * (reserveCmjOS/reserveOS))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div>
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2180,7 +2271,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour6) + (swapfee24hour6_2 * (reserveCmjCU/reserveCU)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjCuStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour6) + (swapfee24hour6_2 * (reserveCmjCU/reserveCU)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjCuStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2190,8 +2281,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour6) + (swapfee24hour6_2 * (reserveCmjCU/reserveCU))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2252,7 +2343,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour7) + (swapfee24hour7_2 * (reserveCmjSIL/reserveSIL)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjSilStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour7) + (swapfee24hour7_2 * (reserveCmjSIL/reserveSIL)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjSilStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2262,8 +2353,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour7) + (swapfee24hour7_2 * (reserveCmjSIL/reserveSIL))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2326,7 +2417,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour8) + (swapfee24hour8_2 * (reserveCmjGOLD/reserveGOLD)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjGoldStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour8) + (swapfee24hour8_2 * (reserveCmjGOLD/reserveGOLD)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjGoldStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2336,8 +2427,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour8) + (swapfee24hour8_2 * (reserveCmjGOLD/reserveGOLD))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2398,7 +2489,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour9) + (swapfee24hour9_2 * (reserveCmjPLAT/reservePLAT)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPlatStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour9) + (swapfee24hour9_2 * (reserveCmjPLAT/reservePLAT)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPlatStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2408,8 +2499,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour9) + (swapfee24hour9_2 * (reserveCmjPLAT/reservePLAT))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2470,7 +2561,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour3) + (swapfee24hour3_2 * (reserveCmjJASP/reserveJASP)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjJaspStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour3) + (swapfee24hour3_2 * (reserveCmjJASP/reserveJASP)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjJaspStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2480,8 +2571,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour3) + (swapfee24hour3_2 * (reserveCmjJASP/reserveJASP))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2544,7 +2635,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour15) + (swapfee24hour15_2 * (reserveCmjPLUTO/reservePLUTO)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPlutoStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour15) + (swapfee24hour15_2 * (reserveCmjPLUTO/reservePLUTO)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPlutoStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2554,8 +2645,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour15) + (swapfee24hour15_2 * (reserveCmjPLUTO/reservePLUTO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2615,7 +2706,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour16) + (swapfee24hour16_2 * (Number(reserveCmjFBTC)/Number(reserveFBTC))) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjFbtcStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour16) + (swapfee24hour16_2 * (Number(reserveCmjFBTC)/Number(reserveFBTC))) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjFbtcStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2625,8 +2716,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour16) + (swapfee24hour16_2 * (Number(reserveCmjFBTC)/Number(reserveFBTC)))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2686,7 +2777,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour17) + (swapfee24hour17_2 * (reserveCmjX4/reserveX4)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjX4Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour17) + (swapfee24hour17_2 * (reserveCmjX4/reserveX4)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjX4Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2696,8 +2787,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour17) + (swapfee24hour17_2 * (reserveCmjX4/reserveX4))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2747,7 +2838,77 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             </div>
 
             <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
-                <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px"}} className="nftCard"></div>
+            <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
+                    <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
+                        <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x5E9C3A7E74a5865EC8eD3eaF6B1a4220D6E9A96b" target="_blank" rel="noreferrer">
+                            <img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" alt="$INF.POW" />
+                            <img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh" alt="$CMJ" />            
+                        </a>
+                        <a href="https://exp-l1.jibchain.net/token/0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88" target="_blank" rel="noreferrer"><img style={{width: "38px", height: "38px", marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" alt="$JDAO" /></a>
+                    </div>
+                    <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
+                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
+                        <div>APR:</div>
+                        <div style={{textAlign: "right"}}>
+                            <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
+                                {Number(100 * (((Math.floor((Number(swapfee24hour18) + (swapfee24hour18_2 * (reserveCmjINFPOW/reserveINFPOW)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjInfpowStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                            </div>
+                        </div>
+                    </div>
+                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
+                        <div>Total Daily Yield:</div>
+                        <div style={{textAlign: "right"}}>
+                            <div>
+                                ~฿{Number((Number(swapfee24hour18) + (swapfee24hour18_2 * (reserveCmjINFPOW/reserveINFPOW))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                            </div> 
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                        </div>
+                    </div>
+                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
+                        <div>Total Liquidity Locked:</div>
+                        {cmjInfpowStaked !== 0 ? <div>~฿{Number(((Number(cmjInfpowStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                    </div>
+                    <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
+                        <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
+                            <div>JDAO EARNED:</div>
+                            <div className="bold">{jdao19Pending}</div>
+                        </div>
+                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(20)}>Harvest</div>
+                    </div>
+                    <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                            <div style={{textAlign: "left", fontSize: "14px"}}>LP STAKED</div>
+                            {farmJdao19Balance !== null ? <div style={{textAlign: "left", fontSize: "14px"}}><span className="bold" style={{cursor: "pointer"}} onClick={() => setLpJdao19Withdraw(farmJdao19Balance)}>{Number(Math.floor(farmJdao19Balance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</span><span> (~฿{Number(Math.floor((yourcmjInfpowStaked * 2) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
+                        </div>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                            <input
+                                placeholder="0.0"
+                                className="bold"
+                                style={{width: "120px", padding: "5px 20px", border: "1px solid #dddade"}}
+                                value={lpJdao19Withdraw}
+                                onChange={(event) => setLpJdao19Withdraw(event.target.value)}
+                            />
+                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(20)}>Withdraw</div>
+                        </div>
+                    </div>
+                    <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                            <div style={{textAlign: "left", fontSize: "14px"}}>LP BALANCE</div>
+                            {infpowCmjBalance !== null ? <div style={{textAlign: "left", fontSize: "14px"}}><span className="bold" style={{cursor: "pointer"}} onClick={() => setLpJdao19Stake(infpowCmjBalance)}>{(Math.floor(Number(infpowCmjBalance) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3})}</span><span> (~฿{Number(Math.floor((cmjInfpowPooled * 2) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1).toLocaleString('en-US', {minimumFractionDigits:0})})</span></div> : <>0.000</>}
+                        </div>
+                        <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
+                            <input
+                                placeholder="0.0"
+                                className="bold"
+                                style={{width: "120px", padding: "5px 20px", border: "1px solid #dddade"}}
+                                value={lpJdao19Stake}
+                                onChange={(event) => setLpJdao19Stake(event.target.value)}
+                            />
+                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(20)}>Stake</div>
+                        </div>
+                    </div>
+                </div>
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x7801F8cdBABE6999331d1Bf37d74aAf713C3722F" target="_blank" rel="noreferrer">
@@ -2761,7 +2922,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour10) + (swapfee24hour10_2 * (reserveCmjCTUNA/reserveCTUNA)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjCtunaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour10) + (swapfee24hour10_2 * (reserveCmjCTUNA/reserveCTUNA)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjCtunaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2771,8 +2932,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour10) + (swapfee24hour10_2 * (reserveCmjCTUNA/reserveCTUNA)))  * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2833,7 +2994,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour11) + (swapfee24hour11_2 * (reserveCmjSX31/reserveSX31)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjSx31Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour11) + (swapfee24hour11_2 * (reserveCmjSX31/reserveSX31)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjSx31Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2843,8 +3004,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour11) + (swapfee24hour11_2 * (reserveCmjSX31/reserveSX31))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2907,7 +3068,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour14) + (swapfee24hour14_2 * (reserveCmjWOOD/reserveWOOD)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjWoodStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour14) + (swapfee24hour14_2 * (reserveCmjWOOD/reserveWOOD)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjWoodStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2917,8 +3078,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour14) + (swapfee24hour14_2 * (reserveCmjWOOD/reserveWOOD))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -2978,7 +3139,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour12) + (swapfee24hour12_2 * (reserveCmjBBQ/reserveBBQ)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjBbqStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour12) + (swapfee24hour12_2 * (reserveCmjBBQ/reserveBBQ)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjBbqStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -2988,8 +3149,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour12) + (swapfee24hour12_2 * (reserveCmjBBQ/reserveBBQ))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -3050,7 +3211,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour13) + (swapfee24hour13_2 * (reserveCmjPZA/reservePZA)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPzaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(100 * (((Math.floor((Number(swapfee24hour13) + (swapfee24hour13_2 * (reserveCmjPZA/reservePZA)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPzaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
                             </div>
                         </div>
                     </div>
@@ -3060,8 +3221,8 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                             <div>
                                 ~฿{Number((Number(swapfee24hour13) + (swapfee24hour13_2 * (reserveCmjPZA/reservePZA))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
-                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
+                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
@@ -3122,7 +3283,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Daily Yield:</div>
-                        <div>{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (0/4666)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
+                        <div>{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (0/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Value Locked:</div>
