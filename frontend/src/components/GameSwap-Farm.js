@@ -4,7 +4,6 @@ import { ethers } from 'ethers'
 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 const merchant = '0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D'
-
 const jusdtToken = '0x24599b658b57f91E7643f4F154B16bcd2884f9ac'
 const farmJdao = "0x6B25033c2B4F5594809cBEf9F625771a2574C1a6"
 const cuCmjLp = '0x1b70c95fD4EbF8920A624bd2ce22b6905eFBdF60'
@@ -31,18 +30,15 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [yourcmjJdaoStaked, setYourCmjJdaoStaked] = React.useState(0)
     const [farmJdaoBalance, setFarmJdaoBalance] = React.useState(null)
     const [jdaoPending, setJdaoPending] = React.useState(<>0.000</>)
-
     const [cmjJdao202Staked, setCmjJdao202Staked] = React.useState(0)
     const [farmJdao202Balance, setFarmJdao202Balance] = React.useState(null)
     const [jdao202Pending, setJdao202Pending] = React.useState(<>0.000</>)
-
     const [jbcJdao3Staked, setJbcJdao3Staked] = React.useState(0)
     const [jusdtJdao3Staked, setJusdtJdao3Staked] = React.useState(0)
     const [yourjbcJdao3Staked, setYourJbcJdao3Staked] = React.useState(0)
     const [yourjusdtJdao3Staked, setYourJusdtJdao3Staked] = React.useState(0)
     const [farmJdao3Balance, setFarmJdao3Balance] = React.useState(null)
     const [jdao3Pending, setJdao3Pending] = React.useState(<>0.000</>)
-
     const [jaspCmjBalance, setJaspCmjBalance] = React.useState(null)
     const [reserveCmjJASP, setReserveCmjJASP] = React.useState("")
     const [reserveJASP, setReserveJASP] = React.useState("")
@@ -53,7 +49,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao4Pending, setJdao4Pending] = React.useState(<>0.000</>)
     const [lpJdao4Withdraw, setLpJdao4Withdraw] = React.useState("")
     const [lpJdao4Stake, setLpJdao4Stake] = React.useState("")
-
     const [jdaoCmjBalance, setJdaoCmjBalance] = React.useState(null)
     const [reserveCmjJDAO, setReserveCmjJDAO] = React.useState("")
     const [reserveJDAO, setReserveJDAO] = React.useState("")
@@ -64,7 +59,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao5Pending, setJdao5Pending] = React.useState(<>0.000</>)
     const [lpJdao5Withdraw, setLpJdao5Withdraw] = React.useState("")
     const [lpJdao5Stake, setLpJdao5Stake] = React.useState("")
-
     const [osCmjBalance, setOsCmjBalance] = React.useState(null)
     const [reserveCmjOS, setReserveCmjOS] = React.useState("")
     const [reserveOS, setReserveOS] = React.useState("")
@@ -75,7 +69,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao6Pending, setJdao6Pending] = React.useState(<>0.000</>)
     const [lpJdao6Withdraw, setLpJdao6Withdraw] = React.useState("")
     const [lpJdao6Stake, setLpJdao6Stake] = React.useState("")
-
     const [cuCmjBalance, setCuCmjBalance] = React.useState(null)
     const [reserveCmjCU, setReserveCmjCU] = React.useState("")
     const [reserveCU, setReserveCU] = React.useState("")
@@ -86,7 +79,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao7Pending, setJdao7Pending] = React.useState(<>0.000</>)
     const [lpJdao7Withdraw, setLpJdao7Withdraw] = React.useState("")
     const [lpJdao7Stake, setLpJdao7Stake] = React.useState("")
-
     const [silCmjBalance, setSilCmjBalance] = React.useState(null)
     const [reserveCmjSIL, setReserveCmjSIL] = React.useState("")
     const [reserveSIL, setReserveSIL] = React.useState("")
@@ -97,7 +89,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao8Pending, setJdao8Pending] = React.useState(<>0.000</>)
     const [lpJdao8Withdraw, setLpJdao8Withdraw] = React.useState("")
     const [lpJdao8Stake, setLpJdao8Stake] = React.useState("")
-
     const [goldCmjBalance, setGoldCmjBalance] = React.useState(null)
     const [reserveCmjGOLD, setReserveCmjGOLD] = React.useState("")
     const [reserveGOLD, setReserveGOLD] = React.useState("")
@@ -108,7 +99,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao9Pending, setJdao9Pending] = React.useState(<>0.000</>)
     const [lpJdao9Withdraw, setLpJdao9Withdraw] = React.useState("")
     const [lpJdao9Stake, setLpJdao9Stake] = React.useState("")
-
     const [platCmjBalance, setPlatCmjBalance] = React.useState(null)
     const [reserveCmjPLAT, setReserveCmjPLAT] = React.useState("")
     const [reservePLAT, setReservePLAT] = React.useState("")
@@ -119,7 +109,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao10Pending, setJdao10Pending] = React.useState(<>0.000</>)
     const [lpJdao10Withdraw, setLpJdao10Withdraw] = React.useState("")
     const [lpJdao10Stake, setLpJdao10Stake] = React.useState("")
-
     const [ctunaCmjBalance, setCtunaCmjBalance] = React.useState(null)
     const [reserveCmjCTUNA, setReserveCmjCTUNA] = React.useState("")
     const [reserveCTUNA, setReserveCTUNA] = React.useState("")
@@ -130,7 +119,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao11Pending, setJdao11Pending] = React.useState(<>0.000</>)
     const [lpJdao11Withdraw, setLpJdao11Withdraw] = React.useState("")
     const [lpJdao11Stake, setLpJdao11Stake] = React.useState("")
-
     const [sx31CmjBalance, setSx31CmjBalance] = React.useState(null)
     const [reserveCmjSX31, setReserveCmjSX31] = React.useState("")
     const [reserveSX31, setReserveSX31] = React.useState("")
@@ -141,7 +129,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao12Pending, setJdao12Pending] = React.useState(<>0.000</>)
     const [lpJdao12Withdraw, setLpJdao12Withdraw] = React.useState("")
     const [lpJdao12Stake, setLpJdao12Stake] = React.useState("")
-
     const [bbqCmjBalance, setBbqCmjBalance] = React.useState(null)
     const [reserveCmjBBQ, setReserveCmjBBQ] = React.useState("")
     const [reserveBBQ, setReserveBBQ] = React.useState("")
@@ -152,7 +139,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao13Pending, setJdao13Pending] = React.useState(<>0.000</>)
     const [lpJdao13Withdraw, setLpJdao13Withdraw] = React.useState("")
     const [lpJdao13Stake, setLpJdao13Stake] = React.useState("")
-
     const [pzaCmjBalance, setPzaCmjBalance] = React.useState(null)
     const [reserveCmjPZA, setReserveCmjPZA] = React.useState("")
     const [reservePZA, setReservePZA] = React.useState("")
@@ -163,7 +149,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao14Pending, setJdao14Pending] = React.useState(<>0.000</>)
     const [lpJdao14Withdraw, setLpJdao14Withdraw] = React.useState("")
     const [lpJdao14Stake, setLpJdao14Stake] = React.useState("")
-
     const [woodCmjBalance, setWoodCmjBalance] = React.useState(null)
     const [reserveCmjWOOD, setReserveCmjWOOD] = React.useState("")
     const [reserveWOOD, setReserveWOOD] = React.useState("")
@@ -174,7 +159,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao15Pending, setJdao15Pending] = React.useState(<>0.000</>)
     const [lpJdao15Withdraw, setLpJdao15Withdraw] = React.useState("")
     const [lpJdao15Stake, setLpJdao15Stake] = React.useState("")
-
     const [plutoCmjBalance, setPlutoCmjBalance] = React.useState(null)
     const [reserveCmjPLUTO, setReserveCmjPLUTO] = React.useState("")
     const [reservePLUTO, setReservePLUTO] = React.useState("")
@@ -185,7 +169,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao16Pending, setJdao16Pending] = React.useState(<>0.000</>)
     const [lpJdao16Withdraw, setLpJdao16Withdraw] = React.useState("")
     const [lpJdao16Stake, setLpJdao16Stake] = React.useState("")
-
     const [fbtcCmjBalance, setFbtcCmjBalance] = React.useState(null)
     const [reserveCmjFBTC, setReserveCmjFBTC] = React.useState("")
     const [reserveFBTC, setReserveFBTC] = React.useState("")
@@ -196,7 +179,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao17Pending, setJdao17Pending] = React.useState(<>0.000</>)
     const [lpJdao17Withdraw, setLpJdao17Withdraw] = React.useState("")
     const [lpJdao17Stake, setLpJdao17Stake] = React.useState("")
-
     const [x4CmjBalance, setX4CmjBalance] = React.useState(null)
     const [reserveCmjX4, setReserveCmjX4] = React.useState("")
     const [reserveX4, setReserveX4] = React.useState("")
@@ -207,7 +189,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao18Pending, setJdao18Pending] = React.useState(<>0.000</>)
     const [lpJdao18Withdraw, setLpJdao18Withdraw] = React.useState("")
     const [lpJdao18Stake, setLpJdao18Stake] = React.useState("")
-
     const [infpowCmjBalance, setInfpowCmjBalance] = React.useState(null)
     const [reserveCmjINFPOW, setReserveCmjINFPOW] = React.useState("")
     const [reserveINFPOW, setReserveINFPOW] = React.useState("")
@@ -218,7 +199,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [jdao19Pending, setJdao19Pending] = React.useState(<>0.000</>)
     const [lpJdao19Withdraw, setLpJdao19Withdraw] = React.useState("")
     const [lpJdao19Stake, setLpJdao19Stake] = React.useState("")
-
     const [swapfee24hour1, setSwapfee24hour1] = React.useState("")
     const [swapfee24hour2, setSwapfee24hour2] = React.useState("")
     const [swapfee24hour3, setSwapfee24hour3] = React.useState("")
@@ -313,12 +293,12 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [lpJdao3Withdraw, setLpJdao3Withdraw] = React.useState("")
     const handleWithdraw = (event) => { setLpJdaoWithdraw(event.target.value) }
     const maxWithdrawHandle1 = async () => {
-        const farmJdaoBal = address !== undefined ? await readContract(config, {
+        const farmJdaoBal = address !== null ? await readContract(config, {
             address: farmJdao,
             abi: farmJdaoABI,
             functionName: 'userInfo',
             args: [1, address],
-        }) : 0
+        }) : [0]
         setLpJdaoWithdraw(ethers.utils.formatEther(farmJdaoBal[0]))
     }
     const withdrawstakeHandle = async () => {
@@ -341,12 +321,12 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     }
     const handleWithdraw202 = (event) => { setLpJdao202Withdraw(event.target.value) }
     const maxWithdrawHandle202 = async () => {
-        const farmJdao202Bal = address !== undefined ? await readContract(config, {
+        const farmJdao202Bal = address !== null ? await readContract(config, {
             address: farmJdao,
             abi: farmJdaoABI,
             functionName: 'userInfo',
             args: [2, address],
-        }) : 0
+        }) : [0]
         setLpJdao202Withdraw(ethers.utils.formatEther(farmJdao202Bal[0]))
     }
     const withdrawstakeHandle202 = async () => {
@@ -369,12 +349,12 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     }
     const handleWithdraw3 = (event) => { setLpJdao3Withdraw(event.target.value) }
     const maxWithdrawHandle3 = async () => {
-        const farmJdao3Bal = address !== undefined ? await readContract(config, {
+        const farmJdao3Bal = address !== null ? await readContract(config, {
             address: farmJdao,
             abi: farmJdaoABI,
             functionName: 'userInfo',
             args: [3, address],
-        }) : 0
+        }) : [0]
         setLpJdao3Withdraw(ethers.utils.formatEther(farmJdao3Bal[0]))
     }
     const withdrawstakeHandle3 = async () => {
@@ -399,7 +379,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     const [lpJdao3Stake, setLpJdao3Stake] = React.useState("")
     const handleStake = (event) => { setLpJdaoStake(event.target.value) }
     const maxAddHandle1 = async () => {
-        const jclpBal = address !== undefined ? await readContract(config, {
+        const jclpBal = address !== null ? await readContract(config, {
             address: jcExchange,
             abi: exchangeABI,
             functionName: 'balanceOf',
@@ -416,15 +396,12 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                 functionName: 'allowance',
                 args: [address, farmJdao],
             })
-            const bigValue = lpJdaoStake !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(lpJdaoStake)) : ethers.BigNumber.from(0)
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
-            if (Number(lpJdaoStake) > Number(lpAllow) / (10**18)) {
+            if (Number(ethers.utils.parseEther(lpAllow) < Number(lpJdaoStake))) {
                 let { request } = await simulateContract(config, {
                     address: jcExchange,
                     abi: exchangeABI,
                     functionName: 'approve',
-                    args: [farmJdao, bigApprove],
+                    args: [farmJdao, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -446,7 +423,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
     }
     const handleStake3 = (event) => { setLpJdao3Stake(event.target.value) }
     const maxAddHandle3 = async () => {
-        const julpBal = address !== undefined ? await readContract(config, {
+        const julpBal = address !== null ? await readContract(config, {
             address: juExchange,
             abi: exchangeJulpABI,
             functionName: 'balanceOf',
@@ -463,15 +440,12 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                 functionName: 'allowance',
                 args: [address, farmJdao],
             })
-            const bigValue = lpJdao3Stake !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(lpJdao3Stake)) : ethers.BigNumber.from(0)
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
-            if (Number(lpJdao3Stake) > Number(lpAllow) / (10**18)) {
+            if (Number(ethers.utils.parseEther(lpAllow)) < Number(lpJdao3Stake)) {
                 let { request } = await simulateContract(config, {
                     address: juExchange,
                     abi: exchangeJulpABI,
                     functionName: 'approve',
-                    args: [farmJdao, bigApprove],
+                    args: [farmJdao, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -552,15 +526,12 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                 functionName: 'allowance',
                 args: [address, farmJdao],
             })
-            const bigValue = stake !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(stake)) : ethers.BigNumber.from(0)
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
-            if (Number(stake) > Number(lpAllow) / (10**18)) {
+            if (Number(ethers.utils.parseEther(lpAllow)) < Number(stake)) {
                 let { request } = await simulateContract(config, {
                     address: lp,
                     abi: exchangeJulpABI,
                     functionName: 'approve',
-                    args: [farmJdao, bigApprove],
+                    args: [farmJdao, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -674,7 +645,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
 
         const thefetch = async () => {
             const blockNumber = await providerJBC.getBlockNumber()
-
             const fee1Filter = await jusdtSC.filters.Transfer(null, "0x280608DD7712a5675041b95d0000B9089903B569", null)
             const fee1Event = await jusdtSC.queryFilter(fee1Filter, blockNumber - 7200, 'latest')
             const fee1Map = await Promise.all(fee1Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
@@ -682,7 +652,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee2Event = await jusdtSC.queryFilter(fee2Filter, blockNumber - 7200, 'latest')
             const fee2Map = await Promise.all(fee2Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
             const sumFee = fee1Map.concat(fee2Map).reduce((partialSum, a) => partialSum + a, 0)
-
             const fee3Filter = await cmjSC.filters.Transfer(null, "0x472d0e2E9839c140786D38110b3251d5ED08DF41", null)
             const fee3Event = await cmjSC.queryFilter(fee3Filter, blockNumber - 7200, 'latest')
             const fee3Map = await Promise.all(fee3Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * 0.01}))
@@ -690,7 +659,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee4Event = await cmjSC.queryFilter(fee4Filter, blockNumber - 7200, 'latest')
             const fee4Map = await Promise.all(fee4Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/99)}))
             const sumFee2 = fee3Map.concat(fee4Map).reduce((partialSum, a) => partialSum + a, 0)
-
             const fee5Filter = await cmjSC.filters.Transfer(jaspCmjLp, merchant, null)
             const fee5Event = await cmjSC.queryFilter(fee5Filter, blockNumber - 7200, 'latest')
             const fee5Map = await Promise.all(fee5Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -699,7 +667,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee6Map = await Promise.all(fee6Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee3 = fee5Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee3_2 = fee6Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee7Filter = await cmjSC.filters.Transfer(jdaoCmjLp, merchant, null)
             const fee7Event = await cmjSC.queryFilter(fee7Filter, blockNumber - 7200, 'latest')
             const fee7Map = await Promise.all(fee7Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -708,7 +675,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee8Map = await Promise.all(fee8Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee4 = fee7Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee4_2 = fee8Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee9Filter = await cmjSC.filters.Transfer(osCmjLp, merchant, null)
             const fee9Event = await cmjSC.queryFilter(fee9Filter, blockNumber - 7200, 'latest')
             const fee9Map = await Promise.all(fee9Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -717,7 +683,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee10Map = await Promise.all(fee10Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee5 = fee9Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee5_2 = fee10Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee11Filter = await cmjSC.filters.Transfer(cuCmjLp, merchant, null)
             const fee11Event = await cmjSC.queryFilter(fee11Filter, blockNumber - 7200, 'latest')
             const fee11Map = await Promise.all(fee11Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -726,7 +691,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee12Map = await Promise.all(fee12Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))  * (1/4)}))
             const sumFee6 = fee11Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee6_2 = fee12Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee13Filter = await cmjSC.filters.Transfer(silCmjLp, merchant, null)
             const fee13Event = await cmjSC.queryFilter(fee13Filter, blockNumber - 7200, 'latest')
             const fee13Map = await Promise.all(fee13Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -735,7 +699,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee14Map = await Promise.all(fee14Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee7 = fee13Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee7_2 = fee14Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee15Filter = await cmjSC.filters.Transfer(goldCmjLp, merchant, null)
             const fee15Event = await cmjSC.queryFilter(fee15Filter, blockNumber - 7200, 'latest')
             const fee15Map = await Promise.all(fee15Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -744,7 +707,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee16Map = await Promise.all(fee16Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee8 = fee15Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee8_2 = fee16Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee17Filter = await cmjSC.filters.Transfer(platCmjLp, merchant, null)
             const fee17Event = await cmjSC.queryFilter(fee17Filter, blockNumber - 7200, 'latest')
             const fee17Map = await Promise.all(fee17Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -753,7 +715,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee18Map = await Promise.all(fee18Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee9 = fee17Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee9_2 = fee18Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee19Filter = await cmjSC.filters.Transfer(ctunaCmjLp, merchant, null)
             const fee19Event = await cmjSC.queryFilter(fee19Filter, blockNumber - 7200, 'latest')
             const fee19Map = await Promise.all(fee19Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -762,7 +723,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee20Map = await Promise.all(fee20Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee10 = fee19Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee10_2 = fee20Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee21Filter = await cmjSC.filters.Transfer(sx31CmjLp, merchant, null)
             const fee21Event = await cmjSC.queryFilter(fee21Filter, blockNumber - 7200, 'latest')
             const fee21Map = await Promise.all(fee21Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -771,7 +731,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee22Map = await Promise.all(fee22Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee11 = fee21Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee11_2 = fee22Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee23Filter = await cmjSC.filters.Transfer(bbqCmjLp, merchant, null)
             const fee23Event = await cmjSC.queryFilter(fee23Filter, blockNumber - 7200, 'latest')
             const fee23Map = await Promise.all(fee23Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -780,7 +739,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee24Map = await Promise.all(fee24Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee12 = fee23Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee12_2 = fee24Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee25Filter = await cmjSC.filters.Transfer(pzaCmjLp, merchant, null)
             const fee25Event = await cmjSC.queryFilter(fee25Filter, blockNumber - 7200, 'latest')
             const fee25Map = await Promise.all(fee25Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -789,7 +747,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee26Map = await Promise.all(fee26Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee13 = fee25Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee13_2 = fee26Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee27Filter = await cmjSC.filters.Transfer(woodCmjLp, merchant, null)
             const fee27Event = await cmjSC.queryFilter(fee27Filter, blockNumber - 7200, 'latest')
             const fee27Map = await Promise.all(fee27Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -798,7 +755,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee28Map = await Promise.all(fee28Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee14 = fee27Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee14_2 = fee28Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee29Filter = await cmjSC.filters.Transfer(plutoCmjLp, merchant, null)
             const fee29Event = await cmjSC.queryFilter(fee29Filter, blockNumber - 7200, 'latest')
             const fee29Map = await Promise.all(fee29Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -807,7 +763,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee30Map = await Promise.all(fee30Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee15 = fee29Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee15_2 = fee30Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee31Filter = await cmjSC.filters.Transfer(fbtcCmjLp, merchant, null)
             const fee31Event = await cmjSC.queryFilter(fee31Filter, blockNumber - 7200, 'latest')
             const fee31Map = await Promise.all(fee31Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -816,7 +771,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee32Map = await Promise.all(fee32Event.map(async (obj) => {return Number(obj.args.value) * (1/4)}))
             const sumFee16 = fee31Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee16_2 = fee32Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee33Filter = await cmjSC.filters.Transfer(x4CmjLp, merchant, null)
             const fee33Event = await cmjSC.queryFilter(fee33Filter, blockNumber - 7200, 'latest')
             const fee33Map = await Promise.all(fee33Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -825,7 +779,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const fee34Map = await Promise.all(fee34Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
             const sumFee17 = fee33Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee17_2 = fee34Map.reduce((partialSum, a) => partialSum + a, 0)
-
             const fee35Filter = await cmjSC.filters.Transfer(infpowCmjLp, merchant, null)
             const fee35Event = await cmjSC.queryFilter(fee35Filter, blockNumber - 7200, 'latest')
             const fee35Map = await Promise.all(fee35Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value)) * (1/4)}))
@@ -835,335 +788,395 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const sumFee18 = fee35Map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee18_2 = fee36Map.reduce((partialSum, a) => partialSum + a, 0)
 
-            const data = address !== null && address !== undefined ? await readContracts(config, {
+            const data = address !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [1, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [1, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [2, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [2, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [3, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [3, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [4, address],
+                        chainId: 8899
                     },
                     {
                         address: jaspCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [4, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [5, address],
+                        chainId: 8899
                     },
                     {
                         address: jdaoCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [5, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [6, address],
+                        chainId: 8899
                     },
                     {
                         address: osCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [6, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [7, address],
+                        chainId: 8899
                     },
                     {
                         address: cuCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [7, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [8, address],
+                        chainId: 8899
                     },
                     {
                         address: silCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [8, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [9, address],
+                        chainId: 8899
                     },
                     {
                         address: goldCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [9, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [10, address],
+                        chainId: 8899
                     },
                     {
                         address: platCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [10, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [12, address],
+                        chainId: 8899
                     },
                     {
                         address: ctunaCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [12, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [13, address],
+                        chainId: 8899
                     },
                     {
                         address: sx31CmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [13, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [14, address],
+                        chainId: 8899
                     },
                     {
                         address: bbqCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [14, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [15, address],
+                        chainId: 8899
                     },
                     {
                         address: pzaCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [15, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [16, address],
+                        chainId: 8899
                     },
                     {
                         address: woodCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [16, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [17, address],
+                        chainId: 8899
                     },
                     {
                         address: plutoCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [17, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [18, address],
+                        chainId: 8899
                     },
                     {
                         address: fbtcCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [18, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [19, address],
+                        chainId: 8899
                     },
                     {
                         address: x4CmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [19, address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'userInfo',
                         args: [20, address],
+                        chainId: 8899
                     },
                     {
                         address: infpowCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 8899
                     },
                     {
                         address: farmJdao,
                         abi: farmJdaoABI,
                         functionName: 'pendingCake',
                         args: [20, address],
+                        chainId: 8899
                     },
                 ],
-            }) : [{result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]},]
-
+            }) : [
+                {result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: 0}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]},
+                {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]},
+                {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]},
+                {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, 
+                {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]},
+                {result: [0]}, {result: [0]}, {result: [0]}, {result: [0]},
+            ]
             const farmJdaoBal = data[0]
             const jdaoPend = data[1]
             const farmJdao202Bal = data[2]
@@ -1225,369 +1238,437 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         address: jcExchange,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: juExchange,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: jcExchange,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: cmjToken,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: juExchange,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: jaspCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: jaspCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: jaspCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: jdaoCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: jdaoCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: jdaoCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: osCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: osCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: osCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: jdaoCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: cuCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: cuCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: cuCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: silCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: silCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: silCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: goldCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: goldCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: goldCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: platCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: platCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: platCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: ctunaCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: ctunaCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: ctunaCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: sx31CmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: sx31CmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: sx31CmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: bbqCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: bbqCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: bbqCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: pzaCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: pzaCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: pzaCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: woodCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: woodCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: woodCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: bbqCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: pzaCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: woodCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: sx31CmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: ctunaCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: platCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: goldCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: silCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: cuCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: osCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: jaspCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: plutoCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: plutoCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: plutoCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: plutoCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: fbtcCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: fbtcCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: fbtcCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: fbtcCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: x4CmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: x4CmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: x4CmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: x4CmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                     {
                         address: infpowCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveCurrency',
+                        chainId: 8899
                     },
                     {
                         address: infpowCmjLp,
                         abi: erc20Abi,
                         functionName: 'totalSupply',
+                        chainId: 8899
                     },
                     {
                         address: infpowCmjLp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [farmJdao],
+                        chainId: 8899
                     },
                     {
                         address: infpowCmjLp,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getReserveToken',
+                        chainId: 8899
                     },
                 ],
             })
-
             const jclpTotalSup = data2[0]
             const julpTotalSup = data2[1]
             const farmJdaoTotalStake = data2[2]
@@ -1630,7 +1711,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const _reserveCmjWOOD = data2[39]
             const woodCmjTotalSup = data2[40]
             const farmJdao15TotalStake = data2[41]
-
             const _reserveBBQ = data2[42]
             const _reservePZA = data2[43]
             const _reserveWOOD = data2[44]
@@ -1642,7 +1722,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const _reserveCU = data2[50]
             const _reserveOS = data2[51]
             const _reserveJASP = data2[52]
-
             const _reserveCmjPLUTO = data2[53]
             const plutoCmjTotalSup = data2[54]
             const farmJdao16TotalStake = data2[55]
@@ -1697,32 +1776,24 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const _farmjdaobalance = ethers.utils.formatEther(result[2].result[0])
             setFarmJdaoBalance(_farmjdaobalance)
             const _farmjdaototalstake = ethers.utils.formatEther(result[3].result)
-
             setJbcJdaoStaked((Number(jbcReserv) * Number(_farmjdaototalstake)) / Number(_lptotalsupply))
             setCmjJdaoStaked((Number(cmjReserv) * Number(_farmjdaototalstake)) / Number(_lptotalsupply))
             setYourJbcJdaoStaked((Number(jbcReserv) * Number(_farmjdaobalance)) / Number(_lptotalsupply))
             setYourCmjJdaoStaked((Number(cmjReserv) * Number(_farmjdaobalance)) / Number(_lptotalsupply))
-
             setJdaoPending(Number(ethers.utils.formatEther(result[4].result)).toFixed(4))
-
             setFarmJdao202Balance(Number(ethers.utils.formatEther(result[5].result[0])).toFixed(4))
             setCmjJdao202Staked(Number(ethers.utils.formatEther(result[6].result)).toFixed(4))
             setJdao202Pending(Number(ethers.utils.formatEther(result[7].result)).toFixed(4))
-
             const _farmjdao3balance = ethers.utils.formatEther(result[8].result[0])
             setFarmJdao3Balance(_farmjdao3balance)
             const _farmjdao3totalstake = ethers.utils.formatEther(result[9].result)
-
             setJbcJdao3Staked((Number(jbcJuReserv) * Number(_farmjdao3totalstake)) / Number(_julptotalsupply))
             setJusdtJdao3Staked((Number(jusdtJuReserv) * Number(_farmjdao3totalstake)) / Number(_julptotalsupply))
             setYourJbcJdao3Staked((Number(jbcJuReserv) * Number(_farmjdao3balance)) / Number(_julptotalsupply))
             setYourJusdtJdao3Staked((Number(jusdtJuReserv) * Number(_farmjdao3balance)) / Number(_julptotalsupply))
-
             setJdao3Pending(Number(ethers.utils.formatEther(result[10].result)).toFixed(4))
-
             setSwapfee24hour1(Number(result[11]).toFixed(0))
             setSwapfee24hour2(Number(result[12]).toFixed(0))
-
             const _farmjdao4balance = ethers.utils.formatEther(result[13].result[0])
             setFarmJdao4Balance(_farmjdao4balance)
             setJdao4Pending(Number(ethers.utils.formatEther(result[14].result)).toFixed(4))
@@ -1737,7 +1808,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour3(Number(result[19]).toFixed(0))
             setReserveJASP(ethers.utils.formatEther(result[119].result))
             setSwapfee24hour3_2(Number(result[120]).toFixed(0))
-
             const _farmjdao5balance = ethers.utils.formatEther(result[20].result[0])
             setFarmJdao5Balance(_farmjdao5balance)
             setJdao5Pending(Number(ethers.utils.formatEther(result[21].result)).toFixed(4))
@@ -1752,7 +1822,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour4(Number(result[26]).toFixed(0))
             setReserveJDAO(ethers.utils.formatEther(result[34].result))
             setSwapfee24hour4_2(Number(result[118]).toFixed(0))
-
             const _farmjdao6balance = ethers.utils.formatEther(result[27].result[0])
             setFarmJdao6Balance(_farmjdao6balance)
             setJdao6Pending(Number(ethers.utils.formatEther(result[28].result)).toFixed(4))
@@ -1767,7 +1836,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour5(Number(result[33]).toFixed(0))
             setReserveOS(ethers.utils.formatEther(result[116].result))
             setSwapfee24hour5_2(Number(result[117]).toFixed(0))
-
             const _farmjdao7balance = ethers.utils.formatEther(result[35].result[0])
             setFarmJdao7Balance(_farmjdao7balance)
             setJdao7Pending(Number(ethers.utils.formatEther(result[36].result)).toFixed(4))
@@ -1782,7 +1850,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour6(Number(result[41]).toFixed(0))
             setReserveCU(ethers.utils.formatEther(result[114].result))
             setSwapfee24hour6_2(Number(result[115]).toFixed(0))
-
             const _farmjdao8balance = ethers.utils.formatEther(result[42].result[0])
             setFarmJdao8Balance(_farmjdao8balance)
             setJdao8Pending(Number(ethers.utils.formatEther(result[43].result)).toFixed(4))
@@ -1797,7 +1864,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour7(Number(result[48]).toFixed(0))
             setReserveSIL(ethers.utils.formatEther(result[112].result))
             setSwapfee24hour7_2(Number(result[113]).toFixed(0))
-
             const _farmjdao9balance = ethers.utils.formatEther(result[49].result[0])
             setFarmJdao9Balance(_farmjdao9balance)
             setJdao9Pending(Number(ethers.utils.formatEther(result[50].result)).toFixed(4))
@@ -1812,7 +1878,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour8(Number(result[55]).toFixed(0))
             setReserveGOLD(ethers.utils.formatEther(result[110].result))
             setSwapfee24hour8_2(Number(result[111]).toFixed(0))
-
             const _farmjdao10balance = ethers.utils.formatEther(result[56].result[0])
             setFarmJdao10Balance(_farmjdao10balance)
             setJdao10Pending(Number(ethers.utils.formatEther(result[57].result)).toFixed(4))
@@ -1827,7 +1892,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour9(Number(result[62]).toFixed(0))
             setReservePLAT(ethers.utils.formatEther(result[108].result))
             setSwapfee24hour9_2(Number(result[109]).toFixed(0))
-
             const _farmjdao11balance = ethers.utils.formatEther(result[63].result[0])
             setFarmJdao11Balance(_farmjdao11balance)
             setJdao11Pending(Number(ethers.utils.formatEther(result[64].result)).toFixed(4))
@@ -1842,7 +1906,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour10(Number(result[69]).toFixed(0))
             setReserveCTUNA(ethers.utils.formatEther(result[106].result))
             setSwapfee24hour10_2(Number(result[107]).toFixed(0))
-
             const _farmjdao12balance = ethers.utils.formatEther(result[70].result[0])
             setFarmJdao12Balance(_farmjdao12balance)
             setJdao12Pending(Number(ethers.utils.formatEther(result[71].result)).toFixed(4))
@@ -1857,7 +1920,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour11(Number(result[76]).toFixed(0))
             setReserveSX31(ethers.utils.formatEther(result[104].result))
             setSwapfee24hour11_2(Number(result[105]).toFixed(0))
-
             const _farmjdao13balance = ethers.utils.formatEther(result[77].result[0])
             setFarmJdao13Balance(_farmjdao13balance)
             setJdao13Pending(Number(ethers.utils.formatEther(result[78].result)).toFixed(4))
@@ -1872,7 +1934,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour12(Number(result[83]).toFixed(0))
             setReserveBBQ(ethers.utils.formatEther(result[98].result))
             setSwapfee24hour12_2(Number(result[99]).toFixed(0))
-
             const _farmjdao14balance = ethers.utils.formatEther(result[84].result[0])
             setFarmJdao14Balance(_farmjdao14balance)
             setJdao14Pending(Number(ethers.utils.formatEther(result[85].result)).toFixed(4))
@@ -1887,7 +1948,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour13(Number(result[90]).toFixed(0))
             setReservePZA(ethers.utils.formatEther(result[100].result))
             setSwapfee24hour13_2(Number(result[101]).toFixed(0))
-
             const _farmjdao15balance = ethers.utils.formatEther(result[91].result[0])
             setFarmJdao15Balance(_farmjdao15balance)
             setJdao15Pending(Number(ethers.utils.formatEther(result[92].result)).toFixed(4))
@@ -1902,7 +1962,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour14(Number(result[97]).toFixed(0))
             setReserveWOOD(ethers.utils.formatEther(result[102].result))
             setSwapfee24hour14_2(Number(result[103]).toFixed(0))
-
             const _farmjdao16balance = ethers.utils.formatEther(result[121].result[0])
             setFarmJdao16Balance(_farmjdao16balance)
             setJdao16Pending(Number(ethers.utils.formatEther(result[122].result)).toFixed(4))
@@ -1917,7 +1976,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour15(Number(result[127]).toFixed(0))
             setReservePLUTO(ethers.utils.formatEther(result[128].result))
             setSwapfee24hour15_2(Number(result[129]).toFixed(0))
-
             const _farmjdao17balance = ethers.utils.formatEther(result[130].result[0])
             setFarmJdao17Balance(_farmjdao17balance)
             setJdao17Pending(Number(ethers.utils.formatEther(result[131].result)).toFixed(4))
@@ -1932,7 +1990,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour16(Number(result[136]).toFixed(0))
             setReserveFBTC(result[137].result)
             setSwapfee24hour16_2(Number(result[138]).toFixed(0))
-
             const _farmjdao18balance = ethers.utils.formatEther(result[139].result[0])
             setFarmJdao18Balance(_farmjdao18balance)
             setJdao18Pending(Number(ethers.utils.formatEther(result[140].result)).toFixed(4))
@@ -1947,7 +2004,6 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             setSwapfee24hour17(Number(result[145]).toFixed(0))
             setReserveX4(ethers.utils.formatEther(result[146].result))
             setSwapfee24hour17_2(Number(result[147]).toFixed(0))
-
             const _farmjdao19balance = ethers.utils.formatEther(result[148].result[0])
             setFarmJdao19Balance(_farmjdao19balance)
             setJdao19Pending(Number(ethers.utils.formatEther(result[149].result)).toFixed(4))
@@ -1981,7 +2037,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor(((swapfee24hour2 * (jbcReserv/cmjReserv)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / Number(((Number(jbcJdaoStaked) + Number(cmjJdaoStaked * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv)) * priceTHB))).toFixed(2)}%
+                                {Number(cmjJdaoStaked) !== 0 ? Number(100 * (((Math.floor(((swapfee24hour2 * (jbcReserv/cmjReserv)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / Number(((Number(jbcJdaoStaked) + Number(cmjJdaoStaked * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv)) * priceTHB))).toFixed(2) : 'Fetching'}%
                             </div>
                         </div>
                     </div>
@@ -1989,22 +2045,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(swapfee24hour2 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjJdaoStaked) !== 0 ? Number(swapfee24hour2 * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div>
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjJdaoStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {Number(jbcJdaoStaked) !== 0 ? <div>~฿{Number(((Number(jbcJdaoStaked) + Number(cmjJdaoStaked * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv)) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjJdaoStaked) !== 0 ? <div>~฿{Number(((Number(jbcJdaoStaked) + Number(cmjJdaoStaked * (jbcReserv/cmjReserv))) * (jusdtJuReserv/jbcJuReserv)) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdaoPending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={harvestHandle}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={harvestHandle}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2019,7 +2078,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 onChange={handleWithdraw}
                                 value={lpJdaoWithdraw}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={withdrawstakeHandle}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={withdrawstakeHandle}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2035,11 +2097,13 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 onChange={handleStake}
                                 value={lpJdaoStake}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={addstakeHandle}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={addstakeHandle}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
-
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x280608DD7712a5675041b95d0000B9089903B569" target="_blank" rel="noreferrer">
@@ -2053,7 +2117,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour1) + (((231481480 * 100000000) / 10**18) * (86400/12) * (1200/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv))) * priceTHB * 1) / 1) * 365) / (Number(jbcJdaoStaked) + Number(((Number(jusdtJdao3Staked) + Number(jbcJdao3Staked * (jusdtJuReserv/jbcJuReserv))) * priceTHB))))).toFixed(2)}%
+                                {Number(jusdtJdao3Staked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour1) + (((231481480 * 100000000) / 10**18) * (86400/12) * (1200/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv))) * priceTHB * 1) / 1) * 365) / (Number(jbcJdaoStaked) + Number(((Number(jusdtJdao3Staked) + Number(jbcJdao3Staked * (jusdtJuReserv/jbcJuReserv))) * priceTHB))))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2061,22 +2125,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number(swapfee24hour1 * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(jusdtJdao3Staked) !== 0 ? Number(swapfee24hour1 * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div>
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(jusdtJdao3Staked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (1000/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {Number(jusdtJdao3Staked) !== 0 ? <div>~฿{((Number(jusdtJdao3Staked) + Number(jbcJdao3Staked * (jusdtJuReserv/jbcJuReserv))) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(jusdtJdao3Staked) !== 0 ? <div>~฿{((Number(jusdtJdao3Staked) + Number(jbcJdao3Staked * (jusdtJuReserv/jbcJuReserv))) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao3Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={harvestHandle3}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={harvestHandle3}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2091,7 +2158,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 onChange={handleWithdraw3}
                                 value={lpJdao3Withdraw}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={withdrawstakeHandle3}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={withdrawstakeHandle3}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2107,11 +2177,13 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 onChange={handleStake3}
                                 value={lpJdao3Stake}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={addstakeHandle3}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={addstakeHandle3}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
-
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x3C061eEce15C539CaE99FbE75B3044236Fa2eff0" target="_blank" rel="noreferrer">
@@ -2125,7 +2197,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour4) + (swapfee24hour4_2 * (reserveCmjJDAO/reserveJDAO)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjJdaoLpStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjJdaoLpStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour4) + (swapfee24hour4_2 * (reserveCmjJDAO/reserveJDAO)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjJdaoLpStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2133,22 +2205,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour4) + (swapfee24hour4_2 * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjJdaoLpStaked) !== 0 ? Number((Number(swapfee24hour4) + (swapfee24hour4_2 * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div>
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjJdaoLpStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {Number(cmjJdaoLpStaked) !== 0 ? <div>~฿{Number(((Number(cmjJdaoLpStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjJdaoLpStaked) !== 0 ? <div>~฿{Number(((Number(cmjJdaoLpStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao5Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(5)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(5)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2163,7 +2238,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao5Withdraw}
                                 onChange={(event) => setLpJdao5Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(5)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(5)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }  
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2179,12 +2257,14 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao5Stake}
                                 onChange={(event) => setLpJdao5Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(5)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(5)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-
             <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
@@ -2199,7 +2279,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour5) + (swapfee24hour5_2 * (reserveCmjOS/reserveOS)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjOsStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjOsStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour5) + (swapfee24hour5_2 * (reserveCmjOS/reserveOS)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjOsStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2207,22 +2287,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour5) + (swapfee24hour5_2 * (reserveCmjOS/reserveOS))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjOsStaked) !== 0 ? Number((Number(swapfee24hour5) + (swapfee24hour5_2 * (reserveCmjOS/reserveOS))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div>
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjOsStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {Number(cmjOsStaked) !== 0 ? <div>~฿{Number(((Number(cmjOsStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjOsStaked) !== 0 ? <div>~฿{Number(((Number(cmjOsStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao6Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(6)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(6)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2237,7 +2320,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao6Withdraw}
                                 onChange={(event) => setLpJdao6Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(6)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(6)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2253,11 +2339,13 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao6Stake}
                                 onChange={(event) => setLpJdao6Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(6)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(6)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
-
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x1b70c95fD4EbF8920A624bd2ce22b6905eFBdF60" target="_blank" rel="noreferrer">
@@ -2271,7 +2359,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour6) + (swapfee24hour6_2 * (reserveCmjCU/reserveCU)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjCuStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjCuStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour6) + (swapfee24hour6_2 * (reserveCmjCU/reserveCU)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjCuStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2279,22 +2367,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour6) + (swapfee24hour6_2 * (reserveCmjCU/reserveCU))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjCuStaked) !== 0 ? Number((Number(swapfee24hour6) + (swapfee24hour6_2 * (reserveCmjCU/reserveCU))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjCuStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {Number(cmjCuStaked) !== 0 ? <div>~฿{Number(((Number(cmjCuStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjCuStaked) !== 0 ? <div>~฿{Number(((Number(cmjCuStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao7Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(7)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(7)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }  
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2309,7 +2400,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao7Withdraw}
                                 onChange={(event) => setLpJdao7Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(7)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(7)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2325,11 +2419,13 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao7Stake}
                                 onChange={(event) => setLpJdao7Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(7)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(7)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
-
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0xf189c5B03694b70e5DFD8e8CAE84118Ed7616F19" target="_blank" rel="noreferrer">
@@ -2343,7 +2439,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour7) + (swapfee24hour7_2 * (reserveCmjSIL/reserveSIL)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjSilStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjSilStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour7) + (swapfee24hour7_2 * (reserveCmjSIL/reserveSIL)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjSilStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2351,22 +2447,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour7) + (swapfee24hour7_2 * (reserveCmjSIL/reserveSIL))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjSilStaked) !== 0 ? Number((Number(swapfee24hour7) + (swapfee24hour7_2 * (reserveCmjSIL/reserveSIL))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjSilStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {Number(cmjSilStaked) !== 0 ? <div>~฿{Number(((cmjSilStaked * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjSilStaked) !== 0 ? <div>~฿{Number(((cmjSilStaked * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao8Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(8)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(8)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2381,7 +2480,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao8Withdraw}
                                 onChange={(event) => setLpJdao8Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(8)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(8)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2397,12 +2499,14 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao8Stake}
                                 onChange={(event) => setLpJdao8Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(8)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(8)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>                
             </div>
-
             <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
@@ -2417,7 +2521,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour8) + (swapfee24hour8_2 * (reserveCmjGOLD/reserveGOLD)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjGoldStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjGoldStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour8) + (swapfee24hour8_2 * (reserveCmjGOLD/reserveGOLD)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjGoldStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2425,22 +2529,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour8) + (swapfee24hour8_2 * (reserveCmjGOLD/reserveGOLD))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjGoldStaked) !== 0 ? Number((Number(swapfee24hour8) + (swapfee24hour8_2 * (reserveCmjGOLD/reserveGOLD))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjGoldStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {Number(cmjGoldStaked) !== 0 ? <div>~฿{Number(((cmjGoldStaked * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjGoldStaked) !== 0 ? <div>~฿{Number(((cmjGoldStaked * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao9Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(9)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(9)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2455,7 +2562,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao9Withdraw}
                                 onChange={(event) => setLpJdao9Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(9)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(9)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2471,11 +2581,13 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao9Stake}
                                 onChange={(event) => setLpJdao9Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(9)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(9)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
-
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x78Ff63F4f91Ce56f72882ef9dbE3Be79fBF15044" target="_blank" rel="noreferrer">
@@ -2489,7 +2601,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour9) + (swapfee24hour9_2 * (reserveCmjPLAT/reservePLAT)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPlatStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjPlatStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour9) + (swapfee24hour9_2 * (reserveCmjPLAT/reservePLAT)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPlatStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2497,22 +2609,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour9) + (swapfee24hour9_2 * (reserveCmjPLAT/reservePLAT))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjPlatStaked) !== 0 ? Number((Number(swapfee24hour9) + (swapfee24hour9_2 * (reserveCmjPLAT/reservePLAT))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjPlatStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {Number(cmjPlatStaked) !== 0 ? <div>~฿{Number(((cmjPlatStaked * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjPlatStaked) !== 0 ? <div>~฿{Number(((cmjPlatStaked * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao10Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(10)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(10)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2527,7 +2642,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao10Withdraw}
                                 onChange={(event) => setLpJdao10Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(10)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(10)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2543,11 +2661,13 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao10Stake}
                                 onChange={(event) => setLpJdao10Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(10)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(10)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
-
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0xc19DE37d5e14b387BCda8e62aB4934591315901D" target="_blank" rel="noreferrer">
@@ -2561,7 +2681,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour3) + (swapfee24hour3_2 * (reserveCmjJASP/reserveJASP)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjJaspStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjJaspStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour3) + (swapfee24hour3_2 * (reserveCmjJASP/reserveJASP)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjJaspStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2569,22 +2689,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour3) + (swapfee24hour3_2 * (reserveCmjJASP/reserveJASP))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjJaspStaked) !== 0 ? Number((Number(swapfee24hour3) + (swapfee24hour3_2 * (reserveCmjJASP/reserveJASP))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjJaspStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {Number(cmjJaspStaked) !== 0 ? <div>~฿{Number(((Number(cmjJaspStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjJaspStaked) !== 0 ? <div>~฿{Number(((Number(cmjJaspStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao4Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(4)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(4)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2599,7 +2722,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao4Withdraw}
                                 onChange={(event) => setLpJdao4Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(4)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(4)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2615,12 +2741,14 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao4Stake}
                                 onChange={(event) => setLpJdao4Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(4)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(4)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-
             <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
@@ -2635,7 +2763,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour15) + (swapfee24hour15_2 * (reserveCmjPLUTO/reservePLUTO)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPlutoStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjPlutoStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour15) + (swapfee24hour15_2 * (reserveCmjPLUTO/reservePLUTO)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPlutoStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2643,22 +2771,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour15) + (swapfee24hour15_2 * (reserveCmjPLUTO/reservePLUTO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjPlutoStaked) !== 0 ? Number((Number(swapfee24hour15) + (swapfee24hour15_2 * (reserveCmjPLUTO/reservePLUTO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjPlutoStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {cmjPlutoStaked !== 0 ? <div>~฿{Number(((Number(cmjPlutoStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjPlutoStaked) !== 0 ? <div>~฿{Number(((Number(cmjPlutoStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao16Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(17)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(17)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2673,7 +2804,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao16Withdraw}
                                 onChange={(event) => setLpJdao16Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(17)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(17)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2689,7 +2823,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao16Stake}
                                 onChange={(event) => setLpJdao16Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(17)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(17)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -2706,7 +2843,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour16) + (swapfee24hour16_2 * (Number(reserveCmjFBTC)/Number(reserveFBTC))) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjFbtcStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjFbtcStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour16) + (swapfee24hour16_2 * (Number(reserveCmjFBTC)/Number(reserveFBTC))) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjFbtcStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2714,22 +2851,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour16) + (swapfee24hour16_2 * (Number(reserveCmjFBTC)/Number(reserveFBTC)))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjFbtcStaked) !== 0 ? Number((Number(swapfee24hour16) + (swapfee24hour16_2 * (Number(reserveCmjFBTC)/Number(reserveFBTC)))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjFbtcStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {cmjFbtcStaked !== 0 ? <div>~฿{Number(((Number(cmjFbtcStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjFbtcStaked) !== 0 ? <div>~฿{Number(((Number(cmjFbtcStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao17Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(18)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(18)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2744,7 +2884,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao17Withdraw}
                                 onChange={(event) => setLpJdao17Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(18)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(18)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2760,7 +2903,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao17Stake}
                                 onChange={(event) => setLpJdao17Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(18)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(18)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -2777,7 +2923,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour17) + (swapfee24hour17_2 * (reserveCmjX4/reserveX4)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjX4Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjX4Staked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour17) + (swapfee24hour17_2 * (reserveCmjX4/reserveX4)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjX4Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2785,22 +2931,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour17) + (swapfee24hour17_2 * (reserveCmjX4/reserveX4))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjX4Staked) !== 0 ? Number((Number(swapfee24hour17) + (swapfee24hour17_2 * (reserveCmjX4/reserveX4))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjX4Staked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {cmjX4Staked !== 0 ? <div>~฿{Number(((Number(cmjX4Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjX4Staked) !== 0 ? <div>~฿{Number(((Number(cmjX4Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao18Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(19)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(19)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2815,7 +2964,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao18Withdraw}
                                 onChange={(event) => setLpJdao18Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(19)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(19)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2831,12 +2983,14 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao18Stake}
                                 onChange={(event) => setLpJdao18Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(19)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(19)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-
             <div style={{marginBottom: "20px", width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}>
             <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
@@ -2851,7 +3005,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour18) + (swapfee24hour18_2 * (reserveCmjINFPOW/reserveINFPOW)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjInfpowStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjInfpowStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour18) + (swapfee24hour18_2 * (reserveCmjINFPOW/reserveINFPOW)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjInfpowStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2859,22 +3013,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour18) + (swapfee24hour18_2 * (reserveCmjINFPOW/reserveINFPOW))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjInfpowStaked) !== 0 ? Number((Number(swapfee24hour18) + (swapfee24hour18_2 * (reserveCmjINFPOW/reserveINFPOW))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjInfpowStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {cmjInfpowStaked !== 0 ? <div>~฿{Number(((Number(cmjInfpowStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjInfpowStaked) !== 0 ? <div>~฿{Number(((Number(cmjInfpowStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao19Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(20)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(20)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2889,7 +3046,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao19Withdraw}
                                 onChange={(event) => setLpJdao19Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(20)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(20)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2905,7 +3065,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao19Stake}
                                 onChange={(event) => setLpJdao19Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(20)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(20)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -2922,7 +3085,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour10) + (swapfee24hour10_2 * (reserveCmjCTUNA/reserveCTUNA)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjCtunaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjCtunaStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour10) + (swapfee24hour10_2 * (reserveCmjCTUNA/reserveCTUNA)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjCtunaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -2930,22 +3093,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour10) + (swapfee24hour10_2 * (reserveCmjCTUNA/reserveCTUNA)))  * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjCtunaStaked) !== 0 ? Number((Number(swapfee24hour10) + (swapfee24hour10_2 * (reserveCmjCTUNA/reserveCTUNA)))  * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjCtunaStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {cmjCtunaStaked !== 0 ? <div>~฿{Number(((Number(cmjCtunaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjCtunaStaked) !== 0 ? <div>~฿{Number(((Number(cmjCtunaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao11Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(12)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(12)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }                        
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -2960,7 +3126,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao11Withdraw}
                                 onChange={(event) => setLpJdao11Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(12)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(12)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -2976,11 +3145,13 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao11Stake}
                                 onChange={(event) => setLpJdao11Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(12)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(12)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
-
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0xda558EE93B466aEb4F59fBf95D25d410318be43A" target="_blank" rel="noreferrer">
@@ -2994,7 +3165,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour11) + (swapfee24hour11_2 * (reserveCmjSX31/reserveSX31)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjSx31Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjSx31Staked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour11) + (swapfee24hour11_2 * (reserveCmjSX31/reserveSX31)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjSx31Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -3002,22 +3173,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour11) + (swapfee24hour11_2 * (reserveCmjSX31/reserveSX31))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjSx31Staked) !== 0 ? Number((Number(swapfee24hour11) + (swapfee24hour11_2 * (reserveCmjSX31/reserveSX31))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjSx31Staked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {cmjSx31Staked !== 0 ? <div>~฿{Number(((Number(cmjSx31Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjSx31Staked) !== 0 ? <div>~฿{Number(((Number(cmjSx31Staked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao12Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(13)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(13)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }   
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -3032,7 +3206,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao12Withdraw}
                                 onChange={(event) => setLpJdao12Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(13)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(13)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -3048,12 +3225,14 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao12Stake}
                                 onChange={(event) => setLpJdao12Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(13)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(13)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-
             <div style={{width: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap"}}> 
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
@@ -3068,7 +3247,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour14) + (swapfee24hour14_2 * (reserveCmjWOOD/reserveWOOD)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjWoodStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjWoodStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour14) + (swapfee24hour14_2 * (reserveCmjWOOD/reserveWOOD)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjWoodStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -3076,22 +3255,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour14) + (swapfee24hour14_2 * (reserveCmjWOOD/reserveWOOD))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjWoodStaked) !== 0 ? Number((Number(swapfee24hour14) + (swapfee24hour14_2 * (reserveCmjWOOD/reserveWOOD))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjWoodStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {cmjWoodStaked !== 0 ? <div>~฿{Number(((Number(cmjWoodStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjWoodStaked) !== 0 ? <div>~฿{Number(((Number(cmjWoodStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao15Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(16)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(16)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -3106,7 +3288,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao15Withdraw}
                                 onChange={(event) => setLpJdao15Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(16)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(16)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -3122,7 +3307,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao15Stake}
                                 onChange={(event) => setLpJdao15Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(16)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(16)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -3139,7 +3327,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour12) + (swapfee24hour12_2 * (reserveCmjBBQ/reserveBBQ)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjBbqStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjBbqStaked) !== 0 ?  Number(100 * (((Math.floor((Number(swapfee24hour12) + (swapfee24hour12_2 * (reserveCmjBBQ/reserveBBQ)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjBbqStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -3147,22 +3335,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour12) + (swapfee24hour12_2 * (reserveCmjBBQ/reserveBBQ))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjBbqStaked) !== 0 ? Number((Number(swapfee24hour12) + (swapfee24hour12_2 * (reserveCmjBBQ/reserveBBQ))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjBbqStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {cmjBbqStaked !== 0 ? <div>~฿{Number(((Number(cmjBbqStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjBbqStaked) !== 0 ? <div>~฿{Number(((Number(cmjBbqStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao13Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(14)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(14)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -3177,7 +3368,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao13Withdraw}
                                 onChange={(event) => setLpJdao13Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(14)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(14)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -3193,11 +3387,13 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao13Stake}
                                 onChange={(event) => setLpJdao13Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(14)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(14)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
-
                 <div style={{margin: "20px", padding: "20px 0", width: "400px", height: "450px", boxShadow: "6px 6px 0 #00000040"}} className="nftCard">
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between", marginTop: "10px"}}>
                         <a style={{display: "flex"}} href="https://exp-l1.jibchain.net/token/0x3161EE630bF36d2AB6333a9CfD22ebaa3e2D7C70" target="_blank" rel="noreferrer">
@@ -3211,7 +3407,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>APR:</div>
                         <div style={{textAlign: "right"}}>
                             <div className="bold" style={{padding: "2px 6px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)"}}>
-                                {Number(100 * (((Math.floor((Number(swapfee24hour13) + (swapfee24hour13_2 * (reserveCmjPZA/reservePZA)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPzaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2)}%
+                                {Number(cmjPzaStaked) !== 0 ? Number(100 * (((Math.floor((Number(swapfee24hour13) + (swapfee24hour13_2 * (reserveCmjPZA/reservePZA)) + (((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1) * 365) / (((Number(cmjPzaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB))).toFixed(2) : "Fetching"}%
                             </div>
                         </div>
                     </div>
@@ -3219,22 +3415,25 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div>Total Daily Yield:</div>
                         <div style={{textAlign: "right"}}>
                             <div>
-                                ~฿{Number((Number(swapfee24hour13) + (swapfee24hour13_2 * (reserveCmjPZA/reservePZA))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})} (24hr Fee)
+                                ~฿{Number(cmjPzaStaked) !== 0 ? Number((Number(swapfee24hour13) + (swapfee24hour13_2 * (reserveCmjPZA/reservePZA))) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"} (24hr Fee)
                             </div> 
-                            ~฿{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2})}
+                            ~฿{Number(cmjPzaStaked) !== 0 ? Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800) * (reserveCmjJDAO/reserveJDAO) * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:2}) : "Fetching"}
                             &nbsp;({Number(((231481480 * 100000000) / 10**18) * (86400/12) * (100/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO)
                         </div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Liquidity Locked:</div>
-                        {cmjPzaStaked !== 0 ? <div>~฿{Number(((Number(cmjPzaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjPzaStaked) !== 0 ? <div>~฿{Number(((Number(cmjPzaStaked) * 2) * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao14Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(15)}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={() => harvestHandleAll(15)}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -3249,7 +3448,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao14Withdraw}
                                 onChange={(event) => setLpJdao14Withdraw(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(15)}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => withdrawstakeHandleAll(15)}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -3265,7 +3467,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value={lpJdao14Stake}
                                 onChange={(event) => setLpJdao14Stake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(15)}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={() => addstakeHandleAll(15)}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -3281,20 +3486,20 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                         <div className="bold" style={{padding: "2px 6px", background: "orange", color: "red"}}>[Deprecated]</div>
                         <div></div>
                     </div>
-                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
-                        <div>Total Daily Yield:</div>
-                        <div>{Number(((231481480 * 100000000) / 10**18) * (86400/12) * (0/4800)).toLocaleString('en-US', {maximumFractionDigits:0})} JDAO</div>
-                    </div>
+                    <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}></div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Total Value Locked:</div>
-                        {jbcJuReserv !== 0 ? <div>~฿{Number((cmjJdao202Staked * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : <>0.000</>}
+                        {Number(cmjJdao202Staked) !== 0 ? <div>~฿{Number((cmjJdao202Staked * (jbcReserv/cmjReserv)) * (jusdtJuReserv/jbcJuReserv) * priceTHB).toLocaleString('en-US', {maximumFractionDigits:0})}</div> : "Fetching"}
                     </div>
                     <div style={{width: "75%", display: "flex", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
                             <div>JDAO EARNED:</div>
                             <div className="bold">{jdao202Pending}</div>
                         </div>
-                        <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={harvestHandle202}>Harvest</div>
+                        {address !== null ?
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "16px"}} className="bold" onClick={harvestHandle202}>Harvest</div> :
+                            <div style={{letterSpacing: "1px", width: "80px", padding: "18px 20px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "16px"}} className="bold">Harvest</div>
+                        }
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "100%", display: "flex", justifyContent: "space-between", marginBottom: "7.5px"}}>
@@ -3309,7 +3514,10 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 onChange={handleWithdraw202}
                                 value={lpJdao202Withdraw}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={withdrawstakeHandle202}>Withdraw</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={withdrawstakeHandle202}>Withdraw</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Withdraw</div>
+                            }
                         </div>
                     </div>
                     <div style={{width: "75%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "60px", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
@@ -3331,7 +3539,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                                 value="Unable to stake"
                                 disabled
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", cursor: "not-allowed"}} className="bold">Stake</div>
+                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
                         </div>
                     </div>
                 </div>
