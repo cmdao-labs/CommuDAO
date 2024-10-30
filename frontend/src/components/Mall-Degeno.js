@@ -10,26 +10,24 @@ const woodToken = '0xc2744Ff255518a736505cF9aC1996D9adDec69Bd'
 const degenoDoijibWJBC = '0xF2c2A60F3Fcf8017fED0655F694B91a785fc170b'
 const degenoDoijibWood = '0xD50855b6AdA0a796785D1a8FB08CC6F0A4662463'
 
-const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyStdABI, erc20Abi, doijibBalance, wjbcBalance, woodBalance }) => {
-    const { address } = useAccount()
-
+const Ammmerchant3 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg, cmdaoAmmNpcABI, ammyStdABI, erc20Abi, doijibBalance, wjbcBalance, woodBalance }) => {
+    let { address } = useAccount()
+    if (address === undefined) {
+        address = null
+    }
     const [mode, setMode] = React.useState(1)
     const [gasselected, setGasselected] = React.useState("DOIJIB.wjbc")
-
     const [inputSwap, setInputSwap] = React.useState("")
     const [inputSwap2, setInputSwap2] = React.useState("")
-
     const [lpSell, setLpSell] = React.useState("")
     const [meowAdd, setMeowAdd] = React.useState("")
     const [cmjAdd, setCmjAdd] = React.useState("")
-
     const [doijibBoughtWJBC, setDoijibBoughtWJBC] = React.useState("0.000")
     const [tokenBoughtDoijibWJBC, setTokenBoughtDoijibWJBC] = React.useState("0.000")
     const [priceDoijibWJBC, setPriceDoijibWJBC] = React.useState("0.000")
     const [reserveDoijibWJBC, setReserveDoijibWJBC] = React.useState("")
     const [reserveWjbcDoijib, setReserveWjbcDoijib] = React.useState("")
     const [doijibWJBCLpBalance, setDoijibWJBCLpBalance] = React.useState("0")
-
     const [doijibBoughtWOOD, setDoijibBoughtWOOD] = React.useState("0.000")
     const [tokenBoughtDoijibWOOD, setTokenBoughtDoijibWOOD] = React.useState("0.000")
     const [priceDoijibWOOD, setPriceDoijibWOOD] = React.useState("0.000")
@@ -140,15 +138,12 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
                     functionName: 'allowance',
                     args: [address, lp],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(inputSwap) > Number(tokenAllow) / (10**18)) {
+                if (Number(ethers.utils.formatEther(tokenAllow)) < Number(inputSwap)) {
                     let { request } = await simulateContract(config, {
                         address: token,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [lp, bigApprove],
+                        args: [lp, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -169,15 +164,12 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
                     functionName: 'allowance',
                     args: [address, lp],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap2))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(ethers.utils.parseEther(inputSwap2)) > Number(currAllow)) {
+                if (Number(ethers.utils.formatEther(currAllow)) < Number(inputSwap2)) {
                     let { request } = await simulateContract(config, {
                         address: curr,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [lp, bigApprove],
+                        args: [lp, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -192,7 +184,10 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
                 await waitForTransactionReceipt(config, { hash: h })
                 setTxupdate(h)
             }
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -214,7 +209,10 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -285,15 +283,12 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
                 functionName: 'allowance',
                 args: [address, lp],
             })
-            const bigValue = currAllow !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(cmjAdd)) : ethers.BigNumber.from(0)
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
-            if (Number(cmjAdd) > Number(currAllow) / (10**18)) {
+            if (Number(ethers.utils.formatEther(currAllow)) < Number(cmjAdd)) {
                 let { request } = await simulateContract(config, {
                     address: curr,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [lp, bigApprove],
+                    args: [lp, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -304,12 +299,12 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
                 functionName: 'allowance',
                 args: [address, lp],
             })
-            if (Number(meowAdd) > Number(tokenAllow) / (10**18)) {
+            if (Number(ethers.utils.formatEther(tokenAllow)) < Number(meowAdd)) {
                 let { request } = await simulateContract(config, {
                     address: token,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [lp, bigApprove],
+                    args: [lp, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -323,7 +318,10 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -377,12 +375,11 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
                     },
                 ],
             })
-
             const tokensBoughtbbqTOcmj = 0
             const tokensBoughtdoijibTOwjbc = data2[0].result
             const tokensBoughtdoijibTOwood = data2[1].result
 
-            const data3 = address !== null && address !== undefined ? await readContracts(config, {
+            const data3 = address !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: degenoDoijibWJBC,
@@ -398,7 +395,6 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
                     },                    
                 ],
             }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0},]
-
             const meowBal = 0
             const meowlpBal = 0
             const doijibWjbclpBal = data3[0].result
@@ -421,13 +417,10 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
             )
 
         getAsync().then(result => {
-
-
             setPriceDoijibWJBC(Number(ethers.utils.formatEther(result[5])).toFixed(5))
             setDoijibWJBCLpBalance(Math.floor(ethers.utils.formatEther(result[6]) * 100000) / 100000)
             setReserveWjbcDoijib(ethers.utils.formatEther(result[7]))
             setReserveDoijibWJBC(ethers.utils.formatEther(result[8]))
-            
             setPriceDoijibWOOD(Number(ethers.utils.formatEther(result[9])).toFixed(0))
             setDoijibWOODLpBalance(Math.floor(ethers.utils.formatEther(result[10]) * 100000) / 100000)
             setReserveWoodDoijib(ethers.utils.formatEther(result[11]))
@@ -494,7 +487,7 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
                         }
                     </div>
                     <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                        {address !== null && address !== undefined ?
+                        {address !== null ?
                             <div style={{width: "30px"}} className="pixel button" onClick={
                                 () => {
                                     if (gasselected === "DOIJIB.wjbc") {
@@ -563,7 +556,7 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
                         }
                     </div>
                     <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                        {address !== null && address !== undefined ?
+                        {address !== null ?
                             <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
                                 () => {
                                     if (gasselected === "DOIJIB.wjbc") {
@@ -750,7 +743,7 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, ammyS
                         }
                     </div>
                     <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                        {address !== null && address !== undefined ?
+                        {address !== null ?
                             <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
                                 () => {
                                     if (gasselected === "DOIJIB.wjbc") {

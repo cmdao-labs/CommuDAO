@@ -28,87 +28,77 @@ const jazziX4 = '0xA7e55e89d6B0E81cCDB034a04Eb65A7aF16b697C'
 const jazziINFPOW = '0x5E9C3A7E74a5865EC8eD3eaF6B1a4220D6E9A96b'
 
 const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg, cmdaoAmmNpcABI, erc20Abi, jdaoBalance, cuBalance, silBalance, goldBalance, jaspBalance, osBalance, platBalance, plutoBalance, fbtcBalance, x4Balance, infpowBalance, cmjBalance }) => {
-    const { address } = useAccount()
+    let { address } = useAccount()
+    if (address === undefined) {
+        address = null
+    }
     const [mode, setMode] = React.useState(1)
     const [gasselected, setGasselected] = React.useState("JDAO");
-
     const [inputSwap, setInputSwap] = React.useState("")
     const [inputSwap2, setInputSwap2] = React.useState("")
-
     const [lpSell, setLpSell] = React.useState("")
     const [tokenAdd, setTokenAdd] = React.useState("")
     const [currAdd, setCurrAdd] = React.useState("")
-
     const [cmjBoughtJDAO, setCmjBoughtJDAO] = React.useState("0.000")
     const [tokenBoughtJDAO, setTokenBoughtJDAO] = React.useState("0.000")
     const [priceJDAO, setPriceJDAO] = React.useState("0.000")
     const [reserveCmjJdao, setReserveCmjJdao] = React.useState("")
     const [reserveJdao, setReserveJdao] = React.useState("")
     const [jdaoLpBalance, setJdaoLpBalance] = React.useState("0")
-
     const [cmjBoughtCU, setCmjBoughtCU] = React.useState("0.000")
     const [tokenBoughtCU, setTokenBoughtCU] = React.useState("0.000")
     const [priceCU, setPriceCU] = React.useState("0.000")
     const [reserveCmjCU, setReserveCmjCU] = React.useState("")
     const [reserveCU, setReserveCU] = React.useState("")
     const [cuLpBalance, setCuLpBalance] = React.useState("0")
-
     const [cmjBoughtSIL, setCmjBoughtSIL] = React.useState("0.000")
     const [tokenBoughtSIL, setTokenBoughtSIL] = React.useState("0.000")
     const [priceSIL, setPriceSIL] = React.useState("0.000")
     const [reserveCmjSIL, setReserveCmjSIL] = React.useState("")
     const [reserveSIL, setReserveSIL] = React.useState("")
     const [silLpBalance, setSilLpBalance] = React.useState("0")
-
     const [cmjBoughtGOLD, setCmjBoughtGOLD] = React.useState("0.000")
     const [tokenBoughtGOLD, setTokenBoughtGOLD] = React.useState("0.000")
     const [priceGOLD, setPriceGOLD] = React.useState("0.000")
     const [reserveCmjGOLD, setReserveCmjGOLD] = React.useState("")
     const [reserveGOLD, setReserveGOLD] = React.useState("")
     const [goldLpBalance, setGoldLpBalance] = React.useState("0")
-
     const [cmjBoughtPLAT, setCmjBoughtPLAT] = React.useState("0.000")
     const [tokenBoughtPLAT, setTokenBoughtPLAT] = React.useState("0.000")
     const [pricePLAT, setPricePLAT] = React.useState("0.000")
     const [reserveCmjPLAT, setReserveCmjPLAT] = React.useState("")
     const [reservePLAT, setReservePLAT] = React.useState("")
     const [platLpBalance, setPlatLpBalance] = React.useState("0")
-
     const [cmjBoughtJASP, setCmjBoughtJASP] = React.useState("0.000")
     const [tokenBoughtJASP, setTokenBoughtJASP] = React.useState("0.000")
     const [priceJASP, setPriceJASP] = React.useState("0.000")
     const [reserveCmjJASP, setReserveCmjJASP] = React.useState("")
     const [reserveJASP, setReserveJASP] = React.useState("")
     const [jaspLpBalance, setJaspLpBalance] = React.useState("0")
-
     const [cmjBoughtOS, setCmjBoughtOS] = React.useState("0.000")
     const [tokenBoughtOS, setTokenBoughtOS] = React.useState("0.000")
     const [priceOS, setPriceOS] = React.useState("0.000")
     const [reserveCmjOS, setReserveCmjOS] = React.useState("")
     const [reserveOS, setReserveOS] = React.useState("")
     const [osLpBalance, setOsLpBalance] = React.useState("0")
-
     const [cmjBoughtPLUTO, setCmjBoughtPLUTO] = React.useState("0.000")
     const [tokenBoughtPLUTO, setTokenBoughtPLUTO] = React.useState("0.000")
     const [pricePLUTO, setPricePLUTO] = React.useState("0.000")
     const [reserveCmjPLUTO, setReserveCmjPLUTO] = React.useState("")
     const [reservePLUTO, setReservePLUTO] = React.useState("")
     const [plutoLpBalance, setPlutoLpBalance] = React.useState("0")
-
     const [cmjBoughtFBTC, setCmjBoughtFBTC] = React.useState("0.000")
     const [tokenBoughtFBTC, setTokenBoughtFBTC] = React.useState("0.000")
     const [priceFBTC, setPriceFBTC] = React.useState("0.000")
     const [reserveCmjFBTC, setReserveCmjFBTC] = React.useState("")
     const [reserveFBTC, setReserveFBTC] = React.useState("")
     const [fbtcLpBalance, setFbtcLpBalance] = React.useState("0")
-
     const [cmjBoughtX4, setCmjBoughtX4] = React.useState("0.000")
     const [tokenBoughtX4, setTokenBoughtX4] = React.useState("0.000")
     const [priceX4, setPriceX4] = React.useState("0.000")
     const [reserveCmjX4, setReserveCmjX4] = React.useState("")
     const [reserveX4, setReserveX4] = React.useState("")
     const [x4LpBalance, setX4LpBalance] = React.useState("0")
-
     const [cmjBoughtINFPOW, setCmjBoughtINFPOW] = React.useState("0.000")
     const [tokenBoughtINFPOW, setTokenBoughtINFPOW] = React.useState("0.000")
     const [priceINFPOW, setPriceINFPOW] = React.useState("0.000")
@@ -341,15 +331,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                     functionName: 'allowance',
                     args: [address, lp],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(inputSwap) > Number(tokenAllow) / (10**18)) {
+                if (Number(ethers.utils.formatEther(tokenAllow)) < Number(inputSwap)) {
                     let { request } = await simulateContract(config, {
                         address: token,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [lp, bigApprove],
+                        args: [lp, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -392,15 +379,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                     functionName: 'allowance',
                     args: [address, lp],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap2))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(ethers.utils.parseEther(inputSwap2)) > Number(currAllow)) {
+                if (Number(ethers.utils.formatEther(currAllow)) < Number(inputSwap2)) {
                     let { request } = await simulateContract(config, {
                         address: curr,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [lp, bigApprove],
+                        args: [lp, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -630,15 +614,12 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                 functionName: 'allowance',
                 args: [address, lp],
             })
-            const bigValue = currAllow !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(currAdd)) : ethers.BigNumber.from(0)
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
             if (Number(ethers.utils.formatEther(currAllow)) < Number(currAdd)) {
                 let { request } = await simulateContract(config, {
                     address: curr,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [lp, bigApprove],
+                    args: [lp, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -654,7 +635,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                     address: token,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [lp, bigApprove],
+                    args: [lp, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -920,7 +901,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             const tokensBoughtx4TOcmj = data2[9].result
             const tokensBoughtinfpowTOcmj = data2[10].result
 
-            const data3 = address !== null && address !== undefined ? await readContracts(config, {
+            const data3 = address !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: jazziJDAO,
@@ -1033,33 +1014,25 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             setPriceJDAO(Number(ethers.utils.formatEther(result[0])).toFixed(3))
             setPriceCU(Number(ethers.utils.formatEther(result[1])).toFixed(8))
             setPriceJASP(Number(ethers.utils.formatEther(result[2])).toFixed(3))
-
             setReserveCmjJdao(ethers.utils.formatEther(result[3]))
             setReserveJdao(ethers.utils.formatEther(result[4]))
-
             setReserveCmjCU(ethers.utils.formatEther(result[5]))
             setReserveCU(ethers.utils.formatEther(result[6]))
-
             setReserveCmjJASP(ethers.utils.formatEther(result[7]))
             setReserveJASP(ethers.utils.formatEther(result[8]))
-
             const _jdaolpbalance = ethers.utils.formatEther(result[9])
             setJdaoLpBalance(Math.floor(_jdaolpbalance * 100000) / 100000)
             const _culpbalance = ethers.utils.formatEther(result[10])
             setCuLpBalance(Math.floor(_culpbalance * 100000) / 100000)
-
             setReserveCmjOS(ethers.utils.formatEther(result[11]))
             setReserveOS(ethers.utils.formatEther(result[12]))
             setPriceOS(Number(ethers.utils.formatEther(result[13])).toFixed(3))
-
             setReserveCmjGOLD(ethers.utils.formatEther(result[14]))
             setReserveGOLD(ethers.utils.formatEther(result[15]))
             setPriceGOLD(Number(ethers.utils.formatEther(result[16])).toFixed(3))
-
             setReserveCmjSIL(ethers.utils.formatEther(result[17]))
             setReserveSIL(ethers.utils.formatEther(result[18]))
             result[19] !== null && setPriceSIL(Number(ethers.utils.formatEther(result[19])).toFixed(8))
-
             const _sillpbalance = ethers.utils.formatEther(result[20])
             setSilLpBalance(Math.floor(_sillpbalance * 100000) / 100000)
             const _goldlpbalance = ethers.utils.formatEther(result[21])
@@ -1068,7 +1041,6 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             setJaspLpBalance(Math.floor(_jasplpbalance * 100000) / 100000)
             const _oslpbalance = ethers.utils.formatEther(result[23])
             setOsLpBalance(Math.floor(_oslpbalance * 100000) / 100000)
-
             setReserveCmjPLAT(ethers.utils.formatEther(result[24]))
             setReservePLAT(ethers.utils.formatEther(result[25]))
             result[26] !== null && setPricePLAT(Number(ethers.utils.formatEther(result[26])).toFixed(3))
@@ -1098,7 +1070,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
     }, [config, address, erc20Abi, cmdaoAmmNpcABI])
 
     return (
-        <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+        <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
             <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                 <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifwrprsashfhjrlbwnyvw4cb6pquyokfs3xm3wl6rt6bdzynpzhkm" width="260" alt="NPC_Jazzi" />
@@ -1247,7 +1219,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             }
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                            {address !== null && address !== undefined ?
+                            {address !== null ?
                                 <div style={{width: "30px"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "JDAO") {
@@ -1377,7 +1349,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             </div>
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                            {address !== null && address !== undefined ?
+                            {address !== null ?
                                 <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "JDAO") {
@@ -1719,7 +1691,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             </div>
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                            {address !== null && address !== undefined ?
+                            {address !== null ?
                                 <div 
                                     style={{width: "30px", background: "#67BAA7"}}
                                     className="pixel button"
