@@ -3,13 +3,38 @@ import Select from 'react-select'
 import { getBalance, readContract, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { ethers } from 'ethers'
    
-const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle, jcExchange, exchangeABI, juExchange, exchangeJulpABI, jcSwap, swapABI, juSwap, swapJulpABI, cmjToken, jusdtToken, erc20Abi, jbcBalance, cmjBalance, jusdtBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, priceTHB }) => {
+const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMsg, callMode, navigate, options, inputStyle, jcExchange, exchangeABI, juExchange, exchangeJulpABI, jcSwap, swapABI, juSwap, swapJulpABI, cmjToken, jusdtToken, erc20Abi, jbcBalance, cmjBalance, jusdtBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, priceTHB }) => {
     const [inputSwap, setInputSwap] = React.useState("")
     const [jbcBought, setJbcBought] = React.useState("")
     const [cmjBought, setCmjBought] = React.useState("")
     const [jbcJuBought, setJbcJuBought] = React.useState("")
     const [jusdtJuBought, setJusdtJuBought] = React.useState("")
     const [delaySwap, setDelaySwap] = React.useState(false)
+    const [swapMode, setSwapMode] = React.useState(1)
+    const swapModeChange = () => {
+        if (swapMode === 0) { setSwapMode(1) }
+        if (swapMode === 1) { setSwapMode(0) }
+        if (swapMode === 2) { setSwapMode(3) }
+        if (swapMode === 3) { setSwapMode(2) }
+        setInputSwap("")
+        setJbcBought("")
+        setCmjBought("")
+    }
+    const swapModeSelect = (option) => {
+        setSwapMode(option.value)
+        setInputSwap("")
+        setCmjBought("")
+        setJbcBought("")
+    }
+    const swapModeSelect2 = (option) => {
+        if (swapMode === 0 && option.value === 1) { setSwapMode(0) }
+        if (swapMode === 0 && option.value === 2) { setSwapMode(3) }
+        if (swapMode === 3 && option.value === 1) { setSwapMode(0) }
+        if (swapMode === 3 && option.value === 2) { setSwapMode(3) }
+        setInputSwap("")
+        setCmjBought("")
+        setJbcBought("")
+    }
 
     const handleSwap = async (event) => {
         setDelaySwap(true)
@@ -31,7 +56,7 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
         setDelaySwap(false)
     }
     const maxHandle1 = async () => {
-        const _max = address !== undefined ? await getBalance(config, { address: address, }) : {formatted: 0}
+        const _max = address !== null ? await getBalance(config, { address: address, }) : {formatted: 0}
         const maxSubGas = Number(_max.formatted) - 0.009
         setInputSwap(String(maxSubGas))
         const _value = maxSubGas >= 0 ? ethers.utils.parseEther(String(maxSubGas)) : 0
@@ -70,7 +95,7 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
         setDelaySwap(false)
     }
     const maxHandle2 = async () => {
-        const _max = address !== undefined ? await readContract(config, {
+        const _max = address !== null ? await readContract(config, {
             address: cmjToken,
             abi: erc20Abi,
             functionName: 'balanceOf',
@@ -112,7 +137,7 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
         setDelaySwap(false)
     }
     const maxHandle3 = async () => {
-        const _max = address !== undefined ? await getBalance(config, { address: address, }) : {formatted: 0}
+        const _max = address !== null ? await getBalance(config, { address: address, }) : {formatted: 0}
         const maxSubGas = Number(_max.formatted) - 0.009
         setInputSwap(String(maxSubGas))
         const _value = maxSubGas >= 0 ? ethers.utils.parseEther(String(maxSubGas)) : 0
@@ -150,7 +175,7 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
         setDelaySwap(false)
     }
     const maxHandle4 = async () => {
-        const _max = address !== undefined ? await readContract(config, {
+        const _max = address !== null ? await readContract(config, {
             address: jusdtToken,
             abi: erc20Abi,
             functionName: 'balanceOf',
@@ -188,21 +213,18 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
                 await waitForTransactionReceipt(config, { hash: h })
                 setTxupdate(h)
             } else {
-                const cmAllow = await readContract(config, {
+                const cmjAllow = await readContract(config, {
                     address: cmjToken,
                     abi: erc20Abi,
                     functionName: 'allowance',
                     args: [address, jcSwap],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (inputSwap > Number(cmAllow) / (10**18)) {
+                if (Number(ethers.utils.parseEther(cmjAllow)) < Number(inputSwap)) {
                     let { request } = await simulateContract(config, {
                         address: cmjToken,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [jcSwap, bigApprove],
+                        args: [jcSwap, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -217,7 +239,10 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
                 await waitForTransactionReceipt(config, { hash: h })
                 setTxupdate(h)
             }
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
     const swapTokenHandle2 = async () => {
@@ -241,15 +266,12 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
                     functionName: 'allowance',
                     args: [address, juSwap],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (inputSwap > Number(jusdtAllow) / (10**18)) {
+                if (Number(ethers.utils.parseEther(jusdtAllow)) < Number(inputSwap)) {
                     let { request } = await simulateContract(config, {
                         address: jusdtToken,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [juSwap, bigApprove],
+                        args: [juSwap, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -264,34 +286,11 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
                 await waitForTransactionReceipt(config, { hash: h })
                 setTxupdate(h)
             }
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
-    }
-
-    const [swapMode, setSwapMode] = React.useState(1)
-    const swapModeChange = () => {
-        if (swapMode === 0) { setSwapMode(1) }
-        if (swapMode === 1) { setSwapMode(0) }
-        if (swapMode === 2) { setSwapMode(3) }
-        if (swapMode === 3) { setSwapMode(2) }
-        setInputSwap("")
-        setJbcBought("")
-        setCmjBought("")
-    }
-    const swapModeSelect = (option) => {
-        setSwapMode(option.value)
-        setInputSwap("")
-        setCmjBought("")
-        setJbcBought("")
-    }
-    const swapModeSelect2 = (option) => {
-        if (swapMode === 0 && option.value === 1) { setSwapMode(0) }
-        if (swapMode === 0 && option.value === 2) { setSwapMode(3) }
-        if (swapMode === 3 && option.value === 1) { setSwapMode(0) }
-        if (swapMode === 3 && option.value === 2) { setSwapMode(3) }
-        setInputSwap("")
-        setCmjBought("")
-        setJbcBought("")
     }
 
     return (
@@ -301,9 +300,9 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
                     <div style={{width: "85%", textAlign: "left", fontSize: "20px"}} className="bold">Instant Swap</div>
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
-                            {swapMode === 0 || swapMode === 3 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" /> : <></>}
-                            {swapMode === 1 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" /> : <></>}
-                            {swapMode === 2 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT" /> : <></>}
+                            {(swapMode === 0 || swapMode === 3) && <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />}
+                            {swapMode === 1 && <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />}
+                            {swapMode === 2 && <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT" />}
                             {swapMode === 0 || swapMode === 3 ?
                                 <Select
                                     options={[]}
@@ -322,11 +321,11 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
                                 </>
                             }
                         </div>
-                        {swapMode === 0 || swapMode === 3 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {jbcBalance}</div> : <></>}
-                        {swapMode === 1 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {cmjBalance}</div> : <></>}
-                        {swapMode === 2 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {jusdtBalance}</div> : <></>}
+                        {(swapMode === 0 || swapMode === 3) && <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {jbcBalance}</div>}
+                        {swapMode === 1 && <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {cmjBalance}</div>}
+                        {swapMode === 2 && <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {jusdtBalance}</div>}
                     </div>
-                    {swapMode === 0 || swapMode === 1 ?
+                    {(swapMode === 0 || swapMode === 1) &&
                         <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                             <input
                                 style={{alignSelf: "flex-start", marginTop: 0, width: "190px", height: "40px", padding: "5px 20px", border: "1px solid #dddade"}}
@@ -339,10 +338,9 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
                             {swapMode === 0 ?
                                 <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={maxHandle1}>Max</div> :
                                 <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={maxHandle2}>Max</div>}
-                        </div> :
-                        <></>
+                        </div>
                     }
-                    {swapMode === 2 || swapMode === 3 ?
+                    {(swapMode === 2 || swapMode === 3) &&
                         <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                             <input
                                 style={{alignSelf: "flex-start", marginTop: 0, width: "190px", height: "40px", padding: "5px 20px", border: "1px solid #dddade"}}
@@ -356,72 +354,60 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
                                 <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={maxHandle3}>Max</div> :
                                 <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={maxHandle4}>Max</div>
                             }
-                        </div> :
-                        <></>
+                        </div>
                     }
                     <div style={{cursor: "pointer"}} className="fa fa-arrow-down" onClick={swapModeChange}></div>
                     <div style={{width: "85%", display: "flex", justifyContent: "space-between"}}>
                         <div style={{display: "flex"}}>
-                            {swapMode === 0 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" /> : <></>}
-                            {swapMode === 1 || swapMode === 2 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" /> : <></>}
-                            {swapMode === 3 ? <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT" /> : <></>}
-                            {swapMode === 0 ?
-                                <>
-                                    <Select
-                                        onChange={swapModeSelect2}
-                                        options={options.filter(option => option.value !== 0)}
-                                        value={options[1]}
-                                        styles={inputStyle}
-                                        isSearchable={false}
-                                    />
-                                </> :
-                                <></>
+                            {swapMode === 0 && <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" alt="$CMJ" />}
+                            {(swapMode === 1 || swapMode === 2) && <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" alt="$JBC" />}
+                            {swapMode === 3 && <img style={{width: "38px", height: "38px", marginRight: "2.5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" alt="$JUSDT" />}
+                            {swapMode === 0 &&
+                                <Select
+                                    onChange={swapModeSelect2}
+                                    options={options.filter(option => option.value !== 0)}
+                                    value={options[1]}
+                                    styles={inputStyle}
+                                    isSearchable={false}
+                                />
                             }
-                            {swapMode === 1 || swapMode === 2 ?
-                                <>
-                                    <Select
-                                        options={[]}
-                                        value={options[0]}
-                                        styles={inputStyle}
-                                        isSearchable={false}
-                                    />
-                                </> :
-                                <></>
+                            {(swapMode === 1 || swapMode === 2) &&
+                                <Select
+                                    options={[]}
+                                    value={options[0]}
+                                    styles={inputStyle}
+                                    isSearchable={false}
+                                />
                             }
-                            {swapMode === 3 ?
-                                <>
-                                    <Select
-                                        onChange={swapModeSelect2}
-                                        options={options.filter(option => option.value !== 0)}
-                                        value={options[2]}
-                                        styles={inputStyle}
-                                        isSearchable={false}
-                                    />
-                                </> :
-                                <></>
+                            {swapMode === 3 &&
+                                <Select
+                                    onChange={swapModeSelect2}
+                                    options={options.filter(option => option.value !== 0)}
+                                    value={options[2]}
+                                    styles={inputStyle}
+                                    isSearchable={false}
+                                />
                             }
                         </div>
-                        {swapMode === 0 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {cmjBalance}</div> : <></>}
-                        {swapMode === 1 || swapMode === 2 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {jbcBalance}</div> : <></>}
-                        {swapMode === 3 ? <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {jusdtBalance}</div> : <></>}
+                        {swapMode === 0 && <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {cmjBalance}</div>}
+                        {(swapMode === 1 || swapMode === 2) && <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {jbcBalance}</div>}
+                        {swapMode === 3 && <div style={{height: "38px", lineHeight: 3, fontSize: "12px"}}>Balance: {jusdtBalance}</div>}
                     </div>
-                    {swapMode === 0 || swapMode === 1 ?
+                    {(swapMode === 0 || swapMode === 1) &&
                         <input
                             style={{marginTop: 0, width: "260px", height: "40px", padding: "5px 20px", border: "1px solid #dddade"}}
                             placeholder="0.0"
                             readOnly
                             value={swapMode === 0 ? cmjBought : jbcBought}
-                        /> :
-                        <></>
+                        />
                     }
-                    {swapMode === 2 || swapMode === 3 ?
+                    {(swapMode === 2 || swapMode === 3) &&
                         <input
                             style={{marginTop: 0, width: "260px", height: "40px", padding: "5px 20px", border: "1px solid #dddade"}}
                             placeholder="0.0"
                             readOnly
                             value={swapMode === 3 ? jusdtJuBought : jbcJuBought}
-                        /> :
-                        <></>
+                        />
                     }
                     {swapMode === 0 &&
                         <>
@@ -495,13 +481,21 @@ const Swap = ({ config, address, setisLoading, setTxupdate, options, inputStyle,
                             </div>
                         </>
                     }
-                    {swapMode === 0 || swapMode === 1 ?
-                        <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "18px"}} className="bold" onClick={swapTokenHandle}>Swap</div> :
-                        <></>
+                    {(swapMode === 0 || swapMode === 1) &&
+                        <>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "18px"}} className="bold" onClick={swapTokenHandle}>Swap</div> :
+                                <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "18px"}} className="bold">Swap</div>
+                            }
+                        </>
                     }
-                    {swapMode === 2 || swapMode === 3 ?
-                        <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "18px"}} className="bold" onClick={swapTokenHandle2}>Swap</div> :
-                        <></>
+                    {(swapMode === 2 || swapMode === 3) &&
+                        <>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "18px"}} className="bold" onClick={swapTokenHandle2}>Swap</div> :
+                                <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "18px"}} className="bold">Swap</div>
+                            }
+                        </>
                     }
                 </div>
             </div>
