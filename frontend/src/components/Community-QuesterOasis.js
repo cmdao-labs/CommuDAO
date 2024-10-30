@@ -2,10 +2,10 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react';
 import { Oval } from 'react-loading-icons'
 
 const cmdaoName = '0x9f3adB20430778f52C2f99c4FBed9637a49509F2'
-
 const jaspToken = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const quest01 = '0x3eB35884e8811188CCe3653fc67A3876d810E582'
 const questPlat01 = '0xd5EAb9A65b977a576c9a40a56c6C1dFFB750bF6b'
@@ -17,7 +17,6 @@ const questBBQ = '0x26504b691f702a2CB4D5Df89243eB5fccf76B982'
 const bbqLab = '0x9D73C97edC9489935B2dF250a097917d4860C60e'
 const ender = '0x44C846780E6c36bA26a33D121F9069AF967937e4'
 const farmJdao = "0x6B25033c2B4F5594809cBEf9F625771a2574C1a6"
-
 const dunCopper = '0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'
 const dunJasper = '0xe83567Cd0f3Ed2cca21BcE05DBab51707aff2860'
 const dunMo = '0xD30F5d6ABc3dBd9Df01eC0FE891114914Ee1360A'
@@ -25,30 +24,28 @@ const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const houseStaking = '0xc4dB6374EeCa3743F8044ae995892827B62b14fe'
 const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
-
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI }) => {
-    const { address } = useAccount()
-
+const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI }) => {
+    let { address, chain } = useAccount()
+    if (address === undefined) {
+        address = null
+    }
+    const { open } = useAppKit()
     /*const [canClaimSIL, setCanClaimSIL] = React.useState(null)
     const [rewardSIL, setRewardSIL] = React.useState(0)
     const [canClaimPLAT, setCanClaimPLAT] = React.useState(null)*/
-
     const [isKYC, setIsKYC] = React.useState(null)
     const [ambass, setAmbass] = React.useState("")
     const [frens, setFrens] = React.useState(0)
     const [isJoin, setIsJoin] = React.useState(null)
-
     const [canClaimBBQ, setCanClaimBBQ] = React.useState(null)
     const [nextClaimBBQ, setNextClaimBBQ] = React.useState(null)
     const [gmStreak, setGmStreak] = React.useState(0)
-
     const [rank, setRank] = React.useState([])
     const [rank2, setRank2] = React.useState([])
     const [rank3, setRank3] = React.useState([])
     const [rank4, setRank4] = React.useState([])
-
     const [sumArrRank1, setSumArrRank1] = React.useState(0)
     const [sumArrRank2, setSumArrRank2] = React.useState(0)
     const [sumArrRank3, setSumArrRank3] = React.useState(0)
@@ -63,44 +60,41 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
         const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721Abi, providerJBC)
         
         const thefetch = async () => {
-            const spend1Filter = await jusdtSC.filters.Transfer(null, "0x39C623C4B3f11D38f06Adca9B794CFb2d37581e3", null)
-            const spend1Event = await jusdtSC.queryFilter(spend1Filter, 4115554, 'latest')
-            const spend1Map = await Promise.all(spend1Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+            let spend1Map = []
+            let spendAllMerged = []
+            if (address !== null) {
+                const spend1Filter = await jusdtSC.filters.Transfer(null, "0x39C623C4B3f11D38f06Adca9B794CFb2d37581e3", null)
+                const spend1Event = await jusdtSC.queryFilter(spend1Filter, 4115554, 'latest')
+                spend1Map = await Promise.all(spend1Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+                const spend2Filter = await jusdtSC.filters.Transfer(null, "0x87A612709b36b575103C65a90cB3B16Cac2BC898", null)
+                const spend2Event = await jusdtSC.queryFilter(spend2Filter, 4115554, 'latest')
+                const spend2Map = await Promise.all(spend2Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+                const spend3Filter = await jusdtSC.filters.Transfer(null, "0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D", null)
+                const spend3Event = await jusdtSC.queryFilter(spend3Filter, 4115554, 'latest')
+                const spend3Map = await Promise.all(spend3Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+                const spend4Filter = await jusdtSC.filters.Transfer(null, "0xb8Cc909AD8245eD551bC359b721f3748dA814A33", null)
+                const spend4Event = await jusdtSC.queryFilter(spend4Filter, 4115554, 'latest')
+                const spend4Map = await Promise.all(spend4Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value) * 0.1)}}))
+                const spend5Filter = await jusdtSC.filters.Transfer(null, "0x87BAC0BCBaadF9B7d24385b1AaaEbeDEb60a1A0a", null)
+                const spend5Event = await jusdtSC.queryFilter(spend5Filter, 4115554, 'latest')
+                const spend5Map = await Promise.all(spend5Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+                const spend6Filter = await jusdtSC.filters.Transfer(null, "0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5", null)
+                const spend6Event = await jusdtSC.queryFilter(spend6Filter, 4115554, 'latest')
+                const spend6Map = await Promise.all(spend6Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+                const spend7Filter = await jusdtSC.filters.Transfer(null, "0x09e6a0A03afa27438c3f507de82b5f6061Ae1643", null)
+                const spend7Event = await jusdtSC.queryFilter(spend7Filter, 4115554, 'latest')
+                const spend7Map = await Promise.all(spend7Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+                spendAllMerged = spend1Map.concat(spend2Map, spend3Map, spend4Map, spend5Map, spend6Map, spend7Map).reduce((prev, curr) => {
+                    if (prev[curr.from.toUpperCase()]) {
+                    prev[curr.from.toUpperCase()].value += curr.value
+                    } else {
+                    prev[curr.from.toUpperCase()] = curr
+                    }
+                    return prev
+                }, {})
+            }
 
-            const spend2Filter = await jusdtSC.filters.Transfer(null, "0x87A612709b36b575103C65a90cB3B16Cac2BC898", null)
-            const spend2Event = await jusdtSC.queryFilter(spend2Filter, 4115554, 'latest')
-            const spend2Map = await Promise.all(spend2Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-
-            const spend3Filter = await jusdtSC.filters.Transfer(null, "0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D", null)
-            const spend3Event = await jusdtSC.queryFilter(spend3Filter, 4115554, 'latest')
-            const spend3Map = await Promise.all(spend3Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-
-            const spend4Filter = await jusdtSC.filters.Transfer(null, "0xb8Cc909AD8245eD551bC359b721f3748dA814A33", null)
-            const spend4Event = await jusdtSC.queryFilter(spend4Filter, 4115554, 'latest')
-            const spend4Map = await Promise.all(spend4Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value) * 0.1)}}))
-
-            const spend5Filter = await jusdtSC.filters.Transfer(null, "0x87BAC0BCBaadF9B7d24385b1AaaEbeDEb60a1A0a", null)
-            const spend5Event = await jusdtSC.queryFilter(spend5Filter, 4115554, 'latest')
-            const spend5Map = await Promise.all(spend5Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-
-            const spend6Filter = await jusdtSC.filters.Transfer(null, "0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5", null)
-            const spend6Event = await jusdtSC.queryFilter(spend6Filter, 4115554, 'latest')
-            const spend6Map = await Promise.all(spend6Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-
-            const spend7Filter = await jusdtSC.filters.Transfer(null, "0x09e6a0A03afa27438c3f507de82b5f6061Ae1643", null)
-            const spend7Event = await jusdtSC.queryFilter(spend7Filter, 4115554, 'latest')
-            const spend7Map = await Promise.all(spend7Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-
-            const spendAllMerged = spend1Map.concat(spend2Map, spend3Map, spend4Map, spend5Map, spend6Map, spend7Map).reduce((prev, curr) => {
-                if (prev[curr.from.toUpperCase()]) {
-                   prev[curr.from.toUpperCase()].value += curr.value
-                } else {
-                   prev[curr.from.toUpperCase()] = curr
-                }
-                return prev
-            }, {})
-
-            const data = address !== null && address !== undefined ? await readContracts(config, {
+            const data = address !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: jaspToken,
@@ -173,16 +167,13 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                         chainId: 10,
                     },
                 ],
-            }) : [0, {win: 0}, 0, false, 0, 0, 0, 0, {laststamp: 0}, {result: 0} ]
-
-            
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: false}, {result: 0}, {result: 0}, {result: 0}, {result: 0} ]
             //const jaspBal = data[0].result
             const reward = /*data[1].result[1] - data[2].result*/0
             const _isKYC = data[3].result
             const _frens = Number(data[4].result)
             const _isJoin = Number(data[5].result) !== 0 ? true : false
             const _gmStreak = Number(data[6].result)
-
             const _canClaimSIL = /*ethers.utils.formatUnits(jaspBal, "gwei") >= 0.1 ? true : */false
             const _canClaimPlat = /*ethers.utils.formatUnits(jaspBal, "gwei") >= 1 && Number(data[1].result[0]) >= 2 ? true : */false
             const _canClaimBBQ = Date.now() > (Number(data[7].result) * 1000) + (3600 * 24 * 1000) ? true : false
@@ -192,19 +183,20 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                 address: questAmbass,
                 abi: questAmbassABI,
                 functionName: 'registCount',
+                chainId: 8899,
             })
             const rankerDummy = []
             for (let i = 1; i <= Number(data2_0); i++) {
                 rankerDummy.push(null)
             }
-
             const data2_00 = await readContracts(config, {
                 contracts: rankerDummy.map((item, i) => (
                     {
                         address: questAmbass,
                         abi: questAmbassABI,
                         functionName: 'referalData',
-                        args: [i+1]
+                        args: [i+1],
+                        chainId: 8899,
                     }
                 ))
             })
@@ -242,7 +234,8 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                         address: cmdaoName,
                         abi: cmdaoNameABI,
                         functionName: 'yourName',
-                        args: [item]
+                        args: [item],
+                        chainId: 8899,
                     }
                 ))
             })
@@ -256,7 +249,8 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                         address: cmdaoName,
                         abi: cmdaoNameABI,
                         functionName: 'tokenURI',
-                        args: [item]
+                        args: [item],
+                        chainId: 8899,
                     }
                 ))
             })
@@ -264,14 +258,14 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             for (let i = 0; i <= Number(data2_0011.length - 1); i++) {
                 ambass100Arr.push(data2_0011[i].result)
             }
-
             const data2_002 = await readContracts(config, {
                 contracts: ambass2Arr.map(item => (
                     {
                         address: cmdaoName,
                         abi: cmdaoNameABI,
                         functionName: 'yourName',
-                        args: [item]
+                        args: [item],
+                        chainId: 8899,
                     }
                 ))
             })
@@ -285,7 +279,8 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                         address: cmdaoName,
                         abi: cmdaoNameABI,
                         functionName: 'tokenURI',
-                        args: [item]
+                        args: [item],
+                        chainId: 8899,
                     }
                 ))
             })
@@ -293,7 +288,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             for (let i = 0; i <= Number(data2_0022.length - 1); i++) {
                 ambass200Arr.push(data2_0022[i].result)
             }
-
             const ranker = []
             const mover = []
             for (let i = 0; i <= ambassArr.length - 1; i++) {
@@ -303,17 +297,20 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                 mover.push(ambass2Arr[i])
             }
 
-            const jdaoFarmFilter = await jdaoSC.filters.Transfer(farmJdao, null, null)
-            const jdaoFarmEvent = await jdaoSC.queryFilter(jdaoFarmFilter, 4115554, 'latest')
-            const jdaoFarmMap = await Promise.all(jdaoFarmEvent.map(async (obj) => {return {to: String(obj.args.to), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-            const jdaoFarmAllMerged = jdaoFarmMap.reduce((prev, curr) => {
-                if (prev[curr.to.toUpperCase()]) {
-                   prev[curr.to.toUpperCase()].value += curr.value
-                } else {
-                   prev[curr.to.toUpperCase()] = curr
-                }
-                return prev
-            }, {})
+            let jdaoFarmAllMerged = []
+            if (address !== null) {
+                const jdaoFarmFilter = await jdaoSC.filters.Transfer(farmJdao, null, null)
+                const jdaoFarmEvent = await jdaoSC.queryFilter(jdaoFarmFilter, 4115554, 'latest')
+                const jdaoFarmMap = await Promise.all(jdaoFarmEvent.map(async (obj) => {return {to: String(obj.args.to), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+                jdaoFarmAllMerged = jdaoFarmMap.reduce((prev, curr) => {
+                    if (prev[curr.to.toUpperCase()]) {
+                    prev[curr.to.toUpperCase()].value += curr.value
+                    } else {
+                    prev[curr.to.toUpperCase()] = curr
+                    }
+                    return prev
+                }, {})
+            }
             const jdaoFarmRemoveDup = ranker.map((item) => ({to: item, value: 0}))
             for (let i = 0; i <= jdaoFarmRemoveDup.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(jdaoFarmAllMerged).length -1; i2++) {
@@ -330,6 +327,7 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                         abi: quest01ABI,
                         functionName: 'questComplete',
                         args: [item],
+                        chainId: 8899,
                     }
                 )),
             })
@@ -337,7 +335,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             for (let i = 0; i <= Number(data2_1.length - 1); i++) {
                 questArr.push(data2_1[i].result)
             }
-
             const data2_2 = await readContracts(config, {
                 contracts: ranker.map((item) => (
                     {
@@ -345,6 +342,7 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                         abi: questAmbassABI,
                         functionName: 'frenCount',
                         args: [item],
+                        chainId: 8899,
                     }
                 )),
             })
@@ -352,7 +350,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             for (let i = 0; i <= Number(data2_2.length - 1); i++) {
                 quest2Arr.push(data2_2[i].result)
             }
-
             const data2_3 = await readContracts(config, {
                 contracts: ranker.map((item) => (
                     {
@@ -360,6 +357,7 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                         abi: questBBQABI,
                         functionName: 'questComplete',
                         args: [item],
+                        chainId: 8899,
                     }
                 )),
             })
@@ -367,7 +365,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             for (let i = 0; i <= Number(data2_3.length - 1); i++) {
                 quest3Arr.push(data2_3[i].result)
             }
-
             const data2_4 = await readContracts(config, {
                 contracts: ranker.map((item) => (
                     {
@@ -375,6 +372,7 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                         abi: quest01ABI,
                         functionName: 'questComplete',
                         args: [item],
+                        chainId: 8899,
                     }
                 )),
             })
@@ -383,17 +381,20 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                 quest4Arr.push(data2_4[i].result)
             }
 
-            const enderFilter = await enderSC.filters.Participants(null, null, null)
-            const enderEvent = await enderSC.queryFilter(enderFilter, 200737, 'latest')
-            const enderMap = await Promise.all(enderEvent.map(async (obj) => {return {from: String(obj.args.participant), value: 1}}))
-            const enderAllMerged = spend1Map.concat(enderMap).reduce((prev, curr) => {
-                if (prev[curr.from.toUpperCase()]) {
-                   prev[curr.from.toUpperCase()].value += curr.value
-                } else {
-                   prev[curr.from.toUpperCase()] = curr
-                }
-                return prev
-            }, {})
+            let enderAllMerged = []
+            if (address !== null) {
+                const enderFilter = await enderSC.filters.Participants(null, null, null)
+                const enderEvent = await enderSC.queryFilter(enderFilter, 200737, 'latest')
+                const enderMap = await Promise.all(enderEvent.map(async (obj) => {return {from: String(obj.args.participant), value: 1}}))
+                enderAllMerged = spend1Map.concat(enderMap).reduce((prev, curr) => {
+                    if (prev[curr.from.toUpperCase()]) {
+                    prev[curr.from.toUpperCase()].value += curr.value
+                    } else {
+                    prev[curr.from.toUpperCase()] = curr
+                    }
+                    return prev
+                }, {})
+            }
             const enderRemoveDup = ranker.map((item) => ({from: item, value: 0}))
             for (let i = 0; i <= enderRemoveDup.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(enderAllMerged).length -1; i2++) {
@@ -418,7 +419,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             for (let i = 0; i <= Number(dataOP.length - 1); i++) {
                 opLpArr.push(ethers.utils.formatEther(dataOP[i].result))
             }
-
             const data2 = ranker.map((item, i) => {
                 return {
                     addr: item,
@@ -434,6 +434,7 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                         abi: dunCopperABI,
                         functionName: 'nftEquip',
                         args: [item],
+                        chainId: 8899
                     }
                 )),
             })
@@ -448,6 +449,7 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                         abi: dunJasperABI,
                         functionName: 'nftEquip',
                         args: [item],
+                        chainId: 8899
                     }
                 )),
             })
@@ -457,690 +459,116 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             }
             const dataHouse = await readContracts(config, {
                 contracts: [
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10026010'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10026002'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001001'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001002'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001003'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001004'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001005'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001006'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001007'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001008'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001009'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001010'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10001011'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10026006'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002001'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002002'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002003'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002004'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002005'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002006'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002007'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002008'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002009'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002010'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10002011'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10026011'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003001'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003002'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003003'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003004'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003005'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003006'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003007'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003008'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003009'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003010'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003011'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003012'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003013'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003014'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003015'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003016'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003017'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003018'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003019'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003020'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003021'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotOwner',
-                        args: ['10003022'],
-                        chainId: 8899,
-                    },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10026010'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10026002'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001001'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001002'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001003'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001004'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001005'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001006'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001007'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001008'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001009'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001010'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10001011'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10026006'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002001'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002002'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002003'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002004'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002005'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002006'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002007'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002008'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002009'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002010'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10002011'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10026011'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003001'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003002'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003003'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003004'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003005'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003006'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003007'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003008'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003009'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003010'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003011'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003012'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003013'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003014'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003015'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003016'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003017'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003018'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003019'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003020'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003021'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotOwner', args: ['10003022'], chainId: 8899, },
                 ],
-            }) 
-
+            })
             const dataHouseLv = await readContracts(config, {
                 contracts: [
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10026010'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10026002'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001001'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001002'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001003'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001004'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001005'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001006'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001007'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001008'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001009'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001010'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10001011'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10026006'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002001'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002002'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002003'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002004'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002005'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002006'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002007'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002008'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002009'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002010'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10002011'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10026011'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003001'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003002'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003003'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003004'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003005'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003006'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003007'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003008'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003009'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003010'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003011'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003012'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003013'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003014'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003015'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003016'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003017'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003018'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003019'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003020'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003021'],
-                        chainId: 8899,
-                    },
-                    {
-                        address: slot1,
-                        abi: slot1ABI,
-                        functionName: 'slotLevel',
-                        args: ['10003022'],
-                        chainId: 8899,
-                    },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10026010'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10026002'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001001'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001002'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001003'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001004'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001005'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001006'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001007'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001008'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001009'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001010'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10001011'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10026006'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002001'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002002'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002003'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002004'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002005'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002006'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002007'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002008'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002009'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002010'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10002011'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10026011'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003001'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003002'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003003'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003004'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003005'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003006'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003007'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003008'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003009'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003010'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003011'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003012'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003013'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003014'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003015'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003016'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003017'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003018'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003019'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003020'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003021'], chainId: 8899, },
+                    { address: slot1, abi: slot1ABI, functionName: 'slotLevel', args: ['10003022'], chainId: 8899, },
                 ],
             }) 
 
-            const stakeFilter = await cmdaonftSC.filters.Transfer(null, houseStaking, null)
-            const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 3700385, "latest")
-            const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
-            const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
+            let stakeRemoveDup = []
+            if (address !== null) {
+                const stakeFilter = await cmdaonftSC.filters.Transfer(null, houseStaking, null)
+                const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 3700385, "latest")
+                const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
+                stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
+            }
             const data0 = await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
@@ -1153,7 +581,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                 ))
             })
             let dataHouse2 = new Array(4 + 11 + 11 + 22).fill(0)
-
             for (let i = 0; i <= stakeRemoveDup.length - 1; i++) {
                 if (data0[i].result[0].toUpperCase() === dataHouse[1].result.toUpperCase()) {
                     dataHouse2[1] += Number(String(stakeRemoveDup[i]).slice(-5))
@@ -1262,10 +689,13 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                 }
             }
 
-            const stakeFilterWD = await cmdaonftSC.filters.Transfer(null, weaponDepotStaking, null)
-            const stakeEventWD = await cmdaonftSC.queryFilter(stakeFilterWD, 3660870, "latest")
-            const stakeMapWD = await Promise.all(stakeEventWD.map(async (obj) => String(obj.args.tokenId)))
-            const stakeRemoveDupWD = stakeMapWD.filter((obj, index) => stakeMapWD.indexOf(obj) === index)
+            let stakeRemoveDupWD = []
+            if (address !== null) {
+                const stakeFilterWD = await cmdaonftSC.filters.Transfer(null, weaponDepotStaking, null)
+                const stakeEventWD = await cmdaonftSC.queryFilter(stakeFilterWD, 3660870, "latest")
+                const stakeMapWD = await Promise.all(stakeEventWD.map(async (obj) => String(obj.args.tokenId)))
+                stakeRemoveDupWD = stakeMapWD.filter((obj, index) => stakeMapWD.indexOf(obj) === index)
+            }
             const data0WD = await readContracts(config, {
                 contracts: stakeRemoveDupWD.map((item) => (
                     {
@@ -1278,7 +708,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                 ))
             })
             let dataHouse2WD = new Array(4 + 11 + 11 + 22).fill(0)
-
             for (let i = 0; i <= stakeRemoveDupWD.length - 1; i++) {
                 if (data0WD[i].result[0].toUpperCase() === dataHouse[1].result.toUpperCase()) {
                     dataHouse2WD[1] += Number(String(stakeRemoveDupWD[i]).slice(-5)) * 10
@@ -1386,7 +815,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                     }
                 }
             }
-
             let powMO = await readContracts(config, {
                 contracts: ranker.map((item) => (
                     {
@@ -1394,6 +822,7 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                         abi: dunMoABI,
                         functionName: 'nftStatus',
                         args: [item],
+                        chainId: 8899
                     }
                 ))
             })
@@ -1496,7 +925,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                     powMO[i].result[0] = Number(powMO[i].result[0]) * 1 * Number(dataHouseLv[47].result)
                 }
             }
-
             const data3 = ranker.map((item, i) => {
                 return {
                     addr: item,
@@ -1504,7 +932,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                     cmpow: Number(powCuArr[i]) + Number(powJaspArr[i]) + Number(powHouse[i]) + Number(powHouseWD[i] + Number(powMO[i].result[0]))
                 }
             })
-
             const spendRemoveDup = []
             for (let i = 0; i <= ranker.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(spendAllMerged).length -1; i2++) {
@@ -1514,7 +941,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                     }
                 }
             }
-
             const moverVal = []
             for (let i = 0; i <= spendRemoveDup.length - 1; i++) {
                 for (let i2 = 0; i2 <= ranker.length -1; i2++) {
@@ -1527,7 +953,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
                     }
                 }
             }
-
             const moverValMerged = moverVal.reduce((prev, curr) => {
                 if (prev[curr.addr.toUpperCase()]) {
                    prev[curr.addr.toUpperCase()].value += curr.value
@@ -1562,12 +987,10 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             setNextClaimBBQ(result[6])
             setGmStreak(result[7])
             //setCanClaimPLAT(result[8])
-
             setRank(result[9])
             setRank2(result[10])
             setRank3(result[11])
             setRank4(result[12])
-
             const arrRank1 = result[9].slice(0).sort((a, b) => {return b.cmxp-a.cmxp}).slice(0, 20)
             let _sumArrRank1 = 0
             for (let i = 0; i <= arrRank1.length - 1; i++) { _sumArrRank1 += Number(arrRank1[i].cmxp) }
@@ -1587,7 +1010,6 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
         })
 
     }, [config, address, txupdate, erc20Abi, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI])
-
     /*const claimSILHandle = async () => {
         setisLoading(true)
         try {
@@ -1615,10 +1037,12 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
-
     const claimPLATHandle = async () => {
         setisLoading(true)
         try {
@@ -1646,10 +1070,12 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }*/
-
     const joinHandle = async () => {
         setisLoading(true)
         try {
@@ -1662,7 +1088,10 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -1678,288 +1107,312 @@ const QuesterOasis = ({ config, setisLoading, txupdate, setTxupdate, erc20Abi, k
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
     return (
         <>
-            <div className="fieldBanner" style={{background: "#2b2268", borderBottom: "1px solid rgb(54, 77, 94)", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
-                <div style={{flexDirection: "column", margin: "30px 100px"}}>
-                    <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Quester Oasis</div>
-                    <div style={{fontSize: "17px", color: "#fff", width: "fit-content", marginTop: "30px"}} className="pixel">QUEST BOARD IS NOW LIVE ON CMDAO CITY!</div>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
+                <div className="SubfieldBanner">
+                    <div className="pixel" style={{fontSize: "75px", width: "fit-content"}}>Quester Oasis</div>
                 </div>
-                <div style={{margin: "30px 100px"}}>
+                <div className="SubfieldBanner">
                 </div>
             </div>
 
-            <div style={{background: "rgb(0, 19, 33)", width: "100%", padding: "25px 0 75px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll pixel">
-                <div style={{padding: "50px", margin: "50px 0", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "300px", width: "70%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexFlow: "row wrap", fontSize: "16px"}} className="nftCard">
-                    <div style={{fontSize: "40px", color: "#fff"}}>October 2024 Prize Pool 🎁</div>
+            {address !== null && chain !== undefined && chain.id !== 8899 ?
+                <div style={{zIndex: "999"}} className="centermodal">
+                    <div className="wrapper">
+                        <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "fit-content", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>
+                        <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">MISMATCH CHAIN!</div>
+                        <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px"}}>Please switch your network to JIBCHAIN.</div>
+                        <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => open({ view: 'Networks' })}>SWITCH NETWORK</div>
+                        <div className="button" style={{marginTop: "10px", width: "50%", background: "gray"}} onClick={() => {callMode(0); navigate('/');}}>BACK TO HOME</div>
+                        </div>
+                    </div>
+                </div> :
+                <div style={{background: "rgb(0, 19, 33)", width: "100%", padding: "20px 0 80px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll pixel">
+                    <div style={{padding: "50px", margin: "50px 0", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "300px", width: "70%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexFlow: "row wrap", fontSize: "16px", textAlign: "left"}} className="nftCard">
+                        <div style={{width: "98%", fontSize: "30px", color: "#fff"}}>October 2024 Prize Pool 🎁</div>
+                        <div style={{width: "98%", marginTop: "10px", display: "flex", flexFlow: "column wrap", justifyContent: "space-between"}}>
+                            <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                                <div>Top Questers</div>
+                                <div>7525.50 CMJ</div>
+                            </div>
+                            <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                                <div>Top Strongest</div>
+                                <div>7525.50 CMJ</div>
+                            </div>
+                            <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                                <div>Top Spender</div>
+                                <div>7525.50 CMJ</div>
+                            </div>
+                            <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
+                                <div>Top Money Mover</div>
+                                <div>2508.50 CMJ</div>
+                            </div>
+                        </div>
+                        <div style={{width: "98%", marginTop: "10px", color: "#fff"}}>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 20 for each leaderboard.</div>
+                        <div style={{width: "98%", marginTop: "10px", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
+                            The reward will be directly proportional to the achieved score.
+                        </div>
+                    </div>
+
                     <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
-                        <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
-                            <div>Top Questers</div>
-                            <div>7525.50 CMJ</div>
-                        </div>
-                        <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
-                            <div>Top Strongest</div>
-                            <div>7525.50 CMJ</div>
-                        </div>
-                        <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
-                            <div>Top Spender</div>
-                            <div>7525.50 CMJ</div>
-                        </div>
-                        <div style={{width: "220px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
-                            <div>Top Money Mover</div>
-                            <div>2508.50 CMJ</div>
-                        </div>
-                    </div>
-                    <div style={{color: "#fff"}}>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 20 for each leaderboard.</div>
-                    <div style={{width: "98%"}}>
-                        The reward will be directly proportional to the achieved score.
-                    </div>
-                </div>
-
-                <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
-                    <div style={{background: "rgb(0, 26, 44)", padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "350px", width: "20%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
-                        <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Questers 🗺️</div>
-                        {rank.length > 0 ?
-                            <>
-                                {rank[0] !== null &&
-                                    <div style={{width: "100%"}}>
-                                        {rank.slice(0).sort((a, b) => {return b.cmxp-a.cmxp}).map((item, index) => (
-                                            <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
-                                                <div style={{width: "150px", display: "flex", flexDirection: "row"}}>
-                                                    <div>{index+1}</div>
-                                                    <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                        <div style={{background: "rgb(0, 26, 44)", padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "350px", width: "20%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
+                            <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Questers 🗺️</div>
+                            {rank.length > 0 ?
+                                <>
+                                    {rank[0] !== null &&
+                                        <div style={{width: "100%"}}>
+                                            {rank.slice(0).sort((a, b) => {return b.cmxp-a.cmxp}).map((item, index) => (
+                                                <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
+                                                    <div style={{width: "150px", display: "flex", flexDirection: "row"}}>
+                                                        <div>{index+1}</div>
+                                                        <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                    </div>
+                                                    <div style={{display: "flex"}}>{Number(item.cmxp).toLocaleString('en-US', {maximumFractionDigits:0})} CMXP {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.cmxp / sumArrRank1) * 100).toFixed(2)}%)</span>}</div>
                                                 </div>
-                                                <div style={{display: "flex"}}>{Number(item.cmxp).toLocaleString('en-US', {maximumFractionDigits:0})} CMXP {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.cmxp / sumArrRank1) * 100).toFixed(2)}%)</span>}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                }
-                            </> :
-                            <div style={{width: "100%", height: "inherit"}}>
-                                <Oval stroke="#ff007a" strokeWidth="5px" />
-                            </div>
-                        }
-                    </div>
+                                            ))}
+                                        </div>
+                                    }
+                                </> :
+                                <div style={{width: "100%", height: "inherit"}}>
+                                    <Oval stroke="#ff007a" strokeWidth="5px" />
+                                </div>
+                            }
+                        </div>
 
-                    <div style={{background: "rgb(0, 26, 44)", padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "350px", width: "20%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
-                        <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Strongest 💥</div>
-                        {rank2.length > 0 ?
-                            <>
-                                {rank2[0] !== null &&
-                                    <div style={{width: "100%"}}>
-                                        {rank2.slice(0).sort((a, b) => {return b.cmpow-a.cmpow}).map((item, index) => (
-                                            <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
-                                                <div style={{width: "150px", display: "flex", flexDirection: "row"}}>
-                                                    <div>{index+1}</div>
-                                                    <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                        <div style={{background: "rgb(0, 26, 44)", padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "350px", width: "20%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
+                            <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Strongest 💥</div>
+                            {rank2.length > 0 ?
+                                <>
+                                    {rank2[0] !== null &&
+                                        <div style={{width: "100%"}}>
+                                            {rank2.slice(0).sort((a, b) => {return b.cmpow-a.cmpow}).map((item, index) => (
+                                                <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
+                                                    <div style={{width: "150px", display: "flex", flexDirection: "row"}}>
+                                                        <div>{index+1}</div>
+                                                        <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                    </div>
+                                                    <div>{Number(item.cmpow).toLocaleString('en-US', {maximumFractionDigits:0})} CMPOW {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.cmpow / sumArrRank2) * 100).toFixed(2)}%)</span>}</div>
                                                 </div>
-                                                <div>{Number(item.cmpow).toLocaleString('en-US', {maximumFractionDigits:0})} CMPOW {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.cmpow / sumArrRank2) * 100).toFixed(2)}%)</span>}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                }
-                            </> :
-                            <div style={{width: "100%", height: "inherit"}}>
-                                <Oval stroke="#ff007a" strokeWidth="5px" />
-                            </div>
-                        }
-                    </div>
+                                            ))}
+                                        </div>
+                                    }
+                                </> :
+                                <div style={{width: "100%", height: "inherit"}}>
+                                    <Oval stroke="#ff007a" strokeWidth="5px" />
+                                </div>
+                            }
+                        </div>
 
-                    <div style={{background: "rgb(0, 26, 44)", padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "350px", width: "20%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
-                        <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Spender 💰</div>
-                        {rank3.length > 0 ?
-                            <>
-                                {rank3[0] !== null &&
-                                    <div style={{width: "100%", height: "inherit"}}>
-                                        {rank3.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
-                                            <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
-                                                <div style={{width: "150px", display: "flex", flexDirection: "row"}}>
-                                                    <div>{index+1}</div>
-                                                    <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                        <div style={{background: "rgb(0, 26, 44)", padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "350px", width: "20%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
+                            <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Spender 💰</div>
+                            {rank3.length > 0 ?
+                                <>
+                                    {rank3[0] !== null &&
+                                        <div style={{width: "100%", height: "inherit"}}>
+                                            {rank3.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
+                                                <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
+                                                    <div style={{width: "150px", display: "flex", flexDirection: "row"}}>
+                                                        <div>{index+1}</div>
+                                                        <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.from} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                    </div>
+                                                    <div>{Number(item.value).toLocaleString('en-US', {minimumFractionDigits:2})} USDT {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.value / sumArrRank3) * 100).toFixed(2)}%)</span>}</div>
                                                 </div>
-                                                <div>{Number(item.value).toLocaleString('en-US', {minimumFractionDigits:2})} USDT {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.value / sumArrRank3) * 100).toFixed(2)}%)</span>}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                }
-                            </> :
-                            <div style={{width: "100%", height: "inherit"}}>
-                                <Oval stroke="#ff007a" strokeWidth="5px" />
-                            </div>
-                        }
-                    </div>
+                                            ))}
+                                        </div>
+                                    }
+                                </> :
+                                <div style={{width: "100%", height: "inherit"}}>
+                                    <Oval stroke="#ff007a" strokeWidth="5px" />
+                                </div>
+                            }
+                        </div>
 
-                    <div style={{background: "rgb(0, 26, 44)", padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "350px", width: "20%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
-                        <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Money Mover 💸</div>
-                        {rank4.length > 0 ?
-                            <>
-                                {rank4[0] !== null &&
-                                    <div style={{width: "100%", height: "inherit"}}>
-                                        {rank4.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
-                                            <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
-                                                <div style={{width: "150px", display: "flex", flexDirection: "row"}}>
-                                                    <div>{index+1}</div>
-                                                    <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                        <div style={{background: "rgb(0, 26, 44)", padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "350px", width: "20%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
+                            <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Money Mover 💸</div>
+                            {rank4.length > 0 ?
+                                <>
+                                    {rank4[0] !== null &&
+                                        <div style={{width: "100%", height: "inherit"}}>
+                                            {rank4.slice(0).sort((a, b) => {return b.value-a.value}).map((item, index) => (
+                                                <div style={{width: "350px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted", fontSize: "14px"}} key={index}>
+                                                    <div style={{width: "150px", display: "flex", flexDirection: "row"}}>
+                                                        <div>{index+1}</div>
+                                                        <a style={{textDecoration: "none", color: "#fff", marginLeft: "10px"}} href={"https://commudao.xyz/dungeon/jasper-cave/" + item.addr} target="_blank" rel="noreferrer"><div className="bold">{item.name}</div></a>
+                                                    </div>
+                                                    <div>{Number(item.value).toLocaleString('en-US', {minimumFractionDigits:2})} USDT {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.value / sumArrRank4) * 100).toFixed(2)}%)</span>}</div>
                                                 </div>
-                                                <div>{Number(item.value).toLocaleString('en-US', {minimumFractionDigits:2})} USDT {index <= 19 && <span style={{color: "#fff", marginLeft: "5px"}}>({Number((item.value / sumArrRank4) * 100).toFixed(2)}%)</span>}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                }
-                            </> :
-                            <div style={{width: "100%", height: "inherit"}}>
-                                <Oval stroke="#ff007a" strokeWidth="5px" />
-                            </div>
-                        }
-                    </div>
-                </div>
-                
-                <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                        <div style={{width: "140px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>5 CMXP</div>
-                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Daily</div>
-                        </div>
-                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Let's Cook BBQ!</div>
-                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
-                            <div style={{height: "320px"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiafc4qxgwqackmdqif6eboyffg356rtwtpil7frz4m3ren3b7ztim" height="300" alt="GM_Quest"/>
-                            </div>
-                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
-                                {/*<div>
-                                    <div className="bold">REWARDS</div>
-                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "24px"}} className="bold">
-                                        <div style={{marginRight: "10px", color: "#fff"}}>5</div>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="30px" alt="$BBQ"/>
-                                    </div>
-                                </div>*/}
-                                <div>
-                                    <div className="bold">QUEST DETAIL</div>
-                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Just say GM and go to craft BBQ!</div>
-                                    <div style={{marginTop: "10px"}} className="bold">GM STREAKS: {gmStreak}</div>
+                                            ))}
+                                        </div>
+                                    }
+                                </> :
+                                <div style={{width: "100%", height: "inherit"}}>
+                                    <Oval stroke="#ff007a" strokeWidth="5px" />
                                 </div>
-                                {canClaimBBQ ?
-                                    <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={gmHandle}>GM</div> :
-                                    <div style={{color: "rgb(0, 227, 180)"}} className="bold emp">Next to say GM in {nextClaimBBQ !== null ? nextClaimBBQ.toLocaleString('es-CL') : "..."}</div>
-                                }
-                            </div>
+                            }
                         </div>
                     </div>
+                    
+                    <div style={{width: "98%", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                        <div style={{background: "rgb(0, 26, 44)", padding: "20px 30px", margin: "10px", border: "1px solid rgb(54, 77, 94)", minWidth: "320px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{width: "140px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>5 CMXP</div>
+                                <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Daily</div>
+                            </div>
+                            <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Let's Cook BBQ!</div>
+                            <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
+                                <div style={{height: "320px"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiafc4qxgwqackmdqif6eboyffg356rtwtpil7frz4m3ren3b7ztim" height="300" alt="GM_Quest"/>
+                                </div>
+                                <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                                    {/*<div>
+                                        <div className="bold">REWARDS</div>
+                                        <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "24px"}} className="bold">
+                                            <div style={{marginRight: "10px", color: "#fff"}}>5</div>
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="30px" alt="$BBQ"/>
+                                        </div>
+                                    </div>*/}
+                                    <div>
+                                        <div className="bold">QUEST DETAIL</div>
+                                        <div style={{marginTop: "10px", color: "#fff"}} className="bold">Just say GM and go to craft BBQ!</div>
+                                        <div style={{marginTop: "10px"}} className="bold">GM STREAKS: {gmStreak}</div>
+                                    </div>
+                                    {address !== null ?
+                                        <>
+                                            {canClaimBBQ ?
+                                                <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={gmHandle}>GM</div> :
+                                                <div style={{color: "rgb(0, 227, 180)"}} className="bold emp">Next to say GM in {nextClaimBBQ !== null ? nextClaimBBQ.toLocaleString('es-CL') : "..."}</div>
+                                            }
+                                        </> :
+                                        <div style={{color: "rgb(0, 227, 180)"}} className="bold emp">Please connect wallet!</div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
 
-                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                        <div style={{width: "190px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>5 CMXP</div>
-                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Repeatable</div>
-                        </div>
-                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Play Ender Pottery</div>
-                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
-                            <div style={{height: "320px"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeic7noacvyhmlrca7g3sdiu2rgwxvdnp6zflrgukz2d3uizi727o4i" height="300" alt="Ender_Quest"/>
+                        <div style={{background: "rgb(0, 26, 44)", padding: "20px 30px", margin: "10px", border: "1px solid rgb(54, 77, 94)", minWidth: "320px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{width: "190px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>5 CMXP</div>
+                                <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Repeatable</div>
                             </div>
-                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
-                                <div>
-                                    <div className="bold">QUEST DETAIL</div>
-                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Insert 1 JBC to be a participants of each epoch on <a style={{textDecoration: "none", color: "red"}} href="https://enderapp.vercel.app/" target="_blank" rel="noreferrer">Ender Pottery</a></div>
+                            <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Play Ender Pottery</div>
+                            <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
+                                <div style={{height: "320px"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeic7noacvyhmlrca7g3sdiu2rgwxvdnp6zflrgukz2d3uizi727o4i" height="300" alt="Ender_Quest"/>
                                 </div>
-                                <div style={{color: "rgb(0, 227, 180)"}} className="bold emp"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                        <div style={{width: "160px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>500 CMXP</div>
-                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Once</div>
-                        </div>
-                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">How To Win Frens!</div>
-                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
-                            <div style={{height: "320px"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih32r7vflml3gjxeblqucqrkhj4lzwr3ngv6cocaucctfdb4ttupa" height="300" alt="PVP_Quest"/>
-                            </div>
-                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
-                                <div>
-                                    <div className="bold">Your Invited Frens</div>
-                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "24px"}} className="bold">
-                                        <div style={{marginRight: "10px", color: "#fff"}}>{frens} 👽</div>
+                                <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                                    <div>
+                                        <div className="bold">QUEST DETAIL</div>
+                                        <div style={{marginTop: "10px", color: "#fff"}} className="bold">Insert 1 JBC to be a participants of each epoch on <a style={{textDecoration: "none", color: "red"}} href="https://enderapp.vercel.app/" target="_blank" rel="noreferrer">Ender Pottery</a></div>
                                     </div>
+                                    <div style={{color: "rgb(0, 227, 180)"}} className="bold emp"></div>
                                 </div>
-                                <div>
-                                    <div className="bold">QUEST DETAIL</div>
-                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Invite your friends to join and get reward!</div>
-                                </div>
-                                {isJoin ?
-                                    <div style={{width: "fit-content", color: "rgb(0, 227, 180)", borderRadius: "12px", border: "1px solid rgb(0, 227, 180)", padding: "15px 40px"}} className="bold">You have already joined CMDAO club 🎉</div> :
-                                    <>
-                                        {isKYC ?
-                                            <div style={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                                                <input style={{width: "250px", padding: "10px 40px", marginBottom: "20px"}} className="bold" type="string" placeholder="Enter Your Referer" value={ambass} onChange={(event) => {setAmbass(event.target.value)}}></input>
-                                                <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={joinHandle}>Join CMDAO Club</div>
-                                            </div> :
-                                            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="emp bold">You must KYC first!</div>
-                                        }
-                                    </>
-                                }
                             </div>
                         </div>
-                    </div>
 
-                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                        <div style={{width: "200px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Sunset</div>
-                        </div>
-                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">The Strongest That Survive</div>
-                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
-                            <div style={{height: "320px"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidezamomag3kp3guyisqe3qihrvydkdbt5et3zsxtep5cgtb3lqqu" height="300" alt="PVP_Quest"/>
+                        <div style={{background: "rgb(0, 26, 44)", padding: "20px 30px", margin: "10px", border: "1px solid rgb(54, 77, 94)", minWidth: "320px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{width: "160px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>500 CMXP</div>
+                                <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Once</div>
                             </div>
-                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
-                                <div>
-                                    <div className="bold">REWARDS</div>
-                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
-                                        <div style={{marginRight: "10px", color: "#fff"}}>Sunset</div>
+                            <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">How To Win Frens!</div>
+                            <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
+                                <div style={{height: "320px"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih32r7vflml3gjxeblqucqrkhj4lzwr3ngv6cocaucctfdb4ttupa" height="300" alt="PVP_Quest"/>
+                                </div>
+                                <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                                    <div>
+                                        <div className="bold">Your Invited Frens</div>
+                                        <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "24px"}} className="bold">
+                                            <div style={{marginRight: "10px", color: "#fff"}}>{frens} 👽</div>
+                                        </div>
                                     </div>
+                                    <div>
+                                        <div className="bold">QUEST DETAIL</div>
+                                        <div style={{marginTop: "10px", color: "#fff"}} className="bold">Invite your friends to join and get reward!</div>
+                                    </div>
+                                    {address !== null ?
+                                        <>
+                                            {isJoin ?
+                                                <div style={{width: "fit-content", color: "rgb(0, 227, 180)", borderRadius: "12px", border: "1px solid rgb(0, 227, 180)", padding: "15px 40px"}} className="bold">You have already joined CMDAO club 🎉</div> :
+                                                <>
+                                                    {isKYC ?
+                                                        <div style={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                                                            <input style={{width: "250px", padding: "10px 40px", marginBottom: "20px"}} className="bold" type="string" placeholder="Enter Your Referer" value={ambass} onChange={(event) => {setAmbass(event.target.value)}}></input>
+                                                            <div style={{background: "rgb(0, 227, 180)", display: "flex", justifyContent: "center", width: "170px", borderRadius: "12px", padding: "15px 40px", color: "rgb(0, 26, 44)"}} className="bold button" onClick={joinHandle}>Join CMDAO Club</div>
+                                                        </div> :
+                                                        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="emp bold">You must KYC first!</div>
+                                                    }
+                                                </>
+                                            }
+                                        </> :
+                                        <div style={{color: "rgb(0, 227, 180)"}} className="bold emp">Please connect wallet!</div>
+                                    }
                                 </div>
-                                <div>
-                                    <div className="bold">QUEST DETAIL</div>
-                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Win in one-hit fight to any challenger in Dungeon Arena</div>
-                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">(Required 0.1 GWEI $JASP for each claim)</div>
-                                </div>
-                                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold emp">Stay tuned for more quest!</div>
                             </div>
                         </div>
-                    </div>
 
-                    <div style={{background: "rgb(0, 26, 44)", padding: "25px 50px", margin: "50px 10px", border: "1px solid rgb(54, 77, 94)", minWidth: "400px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
-                        <div style={{width: "200px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                            <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Sunset</div>
-                        </div>
-                        <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Guardian Of The Multiverse</div>
-                        <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
-                            <div style={{height: "320px"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicszhyqiwqf7hg5ztvqpt2w7kfkvq2pq5m4jph4alraqu2qyg3t6i" height="300" alt="PVP_Quest2"/>
+                        <div style={{background: "rgb(0, 26, 44)", padding: "20px 30px", margin: "10px", border: "1px solid rgb(54, 77, 94)", minWidth: "320px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{width: "200px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Sunset</div>
                             </div>
-                            <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
-                                <div>
-                                    <div className="bold">REWARDS</div>
-                                    <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
-                                        <div style={{marginRight: "10px", color: "#fff"}}>Sunset</div>
+                            <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">The Strongest That Survive</div>
+                            <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
+                                <div style={{height: "320px"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidezamomag3kp3guyisqe3qihrvydkdbt5et3zsxtep5cgtb3lqqu" height="300" alt="PVP_Quest"/>
+                                </div>
+                                <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                                    <div>
+                                        <div className="bold">REWARDS</div>
+                                        <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
+                                            <div style={{marginRight: "10px", color: "#fff"}}>Sunset</div>
+                                        </div>
                                     </div>
+                                    <div>
+                                        <div className="bold">QUEST DETAIL</div>
+                                        <div style={{marginTop: "10px", color: "#fff"}} className="bold">Win in one-hit fight to any challenger in Dungeon Arena</div>
+                                        <div style={{marginTop: "10px", color: "#fff"}} className="bold">(Required 0.1 GWEI $JASP for each claim)</div>
+                                    </div>
+                                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold emp">Stay tuned for more quest!</div>
                                 </div>
-                                <div>
-                                    <div className="bold">QUEST DETAIL</div>
-                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">Keep your bounty $JDAO higher than 20 as long as you can in Dungeon Arena</div>
-                                    <div style={{marginTop: "10px", color: "#fff"}} className="bold">(Required 1.0 GWEI $JASP for each claim)</div>
+                            </div>
+                        </div>
+
+                        <div style={{background: "rgb(0, 26, 44)", padding: "20px 30px", margin: "10px", border: "1px solid rgb(54, 77, 94)", minWidth: "320px", height: "fit-content", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{width: "200px", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                <div className="pixel" style={{padding: "5px 10px", borderRadius: "16px", border: "1px solid #fff", color: "#fff"}}>Sunset</div>
+                            </div>
+                            <div style={{width: "100%", padding: "10px 0", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", color: "#fff", fontSize: "22px"}} className="bold">Guardian Of The Multiverse</div>
+                            <div style={{width: "100%", margin: "20px 0", display: "flex", flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
+                                <div style={{height: "320px"}}>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicszhyqiwqf7hg5ztvqpt2w7kfkvq2pq5m4jph4alraqu2qyg3t6i" height="300" alt="PVP_Quest2"/>
                                 </div>
-                                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold emp">Stay tuned for more quest!</div>
+                                <div style={{height: "240px", width: "400px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between", flexFlow: "column wrap", fontSize: "14px"}}>
+                                    <div>
+                                        <div className="bold">REWARDS</div>
+                                        <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
+                                            <div style={{marginRight: "10px", color: "#fff"}}>Sunset</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className="bold">QUEST DETAIL</div>
+                                        <div style={{marginTop: "10px", color: "#fff"}} className="bold">Keep your bounty $JDAO higher than 20 as long as you can in Dungeon Arena</div>
+                                        <div style={{marginTop: "10px", color: "#fff"}} className="bold">(Required 1.0 GWEI $JASP for each claim)</div>
+                                    </div>
+                                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} className="bold emp">Stay tuned for more quest!</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </>
     )
 }
