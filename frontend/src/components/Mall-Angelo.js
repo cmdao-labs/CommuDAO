@@ -9,35 +9,30 @@ const angeloSWAR = '0x5a9E35fC4Afc21B9Fc74bE18015D4D3B002A83A3'
 const angbToken = '0x59c1c2f5fa76db933b97b7c54223129e2a398534'
 const angeloANGB = '0xDd35db1a731CD86C01d74A8a4bA4354ca1CDE24d'
 
-const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAmmNpcABI, erc20Abi, angbBalance, swarBalance, wjbcBalance }) => {
-    const { address } = useAccount()
-
+const Ammmerchant4 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg, angeloStdABI, cmdaoAmmNpcABI, erc20Abi, angbBalance, swarBalance, wjbcBalance }) => {
+    let { address } = useAccount()
+    if (address === undefined) {
+        address = null
+    }
     const [mode, setMode] = React.useState(1)
     const [gasselected, setGasselected] = React.useState("SWAR")
-
     const [inputSwap, setInputSwap] = React.useState("")
     const [inputSwap2, setInputSwap2] = React.useState("")
-
     const [wjbcBoughtSWAR, setWjbcBoughtSWAR] = React.useState("0.000")
     const [tokenBoughtSWAR, setTokenBoughtSWAR] = React.useState("0.000")
     const [priceSWAR, setPriceSWAR] = React.useState("0.000")
     const [reserveWjbcSwar, setReserveWjbcSwar] = React.useState("")
     const [reserveSwar, setReserveSwar] = React.useState("")
-
     const [swarLpBalance, setSwarLpBalance] = React.useState("0")
-
     const [wjbcBoughtANGB, setWjbcBoughtANGB] = React.useState("0.000")
     const [tokenBoughtANGB, setTokenBoughtANGB] = React.useState("0.000")
     const [priceANGB, setPriceANGB] = React.useState("0.000")
     const [reserveWjbcAngb, setReserveWjbcAngb] = React.useState("")
     const [reserveAngb, setReserveAngb] = React.useState("")
-
     const [angbLpBalance, setAngbLpBalance] = React.useState("0")
-
     const [lpSell, setLpSell] = React.useState("")
     const [tokenAdd, setTokenAdd] = React.useState("")
     const [currAdd, setCurrAdd] = React.useState("")
-
 
     const handleSwapSWAR = async (event) => {
         setInputSwap(event.target.value)
@@ -104,15 +99,12 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                     functionName: 'allowance',
                     args: [address, angeloSWAR],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(inputSwap) > Number(tokenAllow) / (10**18)) {
+                if (Number(ethers.utils.formatEther(tokenAllow)) < Number(inputSwap)) {
                     let { request } = await simulateContract(config, {
                         address: swarToken,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [angeloSWAR, bigApprove],
+                        args: [angeloSWAR, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -133,15 +125,12 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                     functionName: 'allowance',
                     args: [address, angeloSWAR],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap2))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(ethers.utils.parseEther(inputSwap2)) > Number(wjbcAllow)) {
+                if (Number(ethers.utils.formatEther(wjbcAllow)) < Number(inputSwap2)) {
                     let { request } = await simulateContract(config, {
                         address: wjbcToken,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [angeloSWAR, bigApprove],
+                        args: [angeloSWAR, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -156,7 +145,10 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                 await waitForTransactionReceipt(config, { hash: h })
                 setTxupdate(h)
             }
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -172,7 +164,10 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -221,15 +216,12 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                 functionName: 'allowance',
                 args: [address, angeloSWAR],
             })
-            const bigValue = wjbcAllow !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(currAdd)) : ethers.BigNumber.from(0)
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
-            if (Number(currAdd) > Number(wjbcAllow) / (10**18)) {
+            if (Number(ethers.utils.formatEther(wjbcAllow)) < Number(currAdd)) {
                 let { request } = await simulateContract(config, {
                     address: wjbcAllow,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [angeloSWAR, bigApprove],
+                    args: [angeloSWAR, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -240,12 +232,12 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                 functionName: 'allowance',
                 args: [address, angeloSWAR],
             })
-            if (Number(tokenAdd) > Number(swarAllow) / (10**18)) {
+            if (Number(ethers.utils.formatEther(swarAllow)) < Number(tokenAdd)) {
                 let { request } = await simulateContract(config, {
                     address: swarToken,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [angeloSWAR, bigApprove],
+                    args: [angeloSWAR, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -259,7 +251,10 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -352,15 +347,12 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                     functionName: 'allowance',
                     args: [address, lp],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(inputSwap) > Number(tokenAllow) / (10**18)) {
+                if (Number(ethers.utils.formatEther(tokenAllow)) < Number(inputSwap)) {
                     let { request } = await simulateContract(config, {
                         address: token,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [lp, bigApprove],
+                        args: [lp, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -381,15 +373,12 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                     functionName: 'allowance',
                     args: [address, lp],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap2))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(ethers.utils.parseEther(inputSwap2)) > Number(currAllow)) {
+                if (Number(ethers.utils.formatEther(currAllow)) < Number(inputSwap2)) {
                     let { request } = await simulateContract(config, {
                         address: curr,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [lp, bigApprove],
+                        args: [lp, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -404,7 +393,10 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                 await waitForTransactionReceipt(config, { hash: h })
                 setTxupdate(h)
             }
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -424,7 +416,10 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -489,15 +484,12 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                 functionName: 'allowance',
                 args: [address, lp],
             })
-            const bigValue = currAllow !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(currAdd)) : ethers.BigNumber.from(0)
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
-            if (Number(currAdd) > Number(currAllow) / (10**18)) {
+            if (Number(ethers.utils.formatEther(currAllow)) < Number(currAdd)) {
                 let { request } = await simulateContract(config, {
                     address: curr,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [lp, bigApprove],
+                    args: [lp, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -508,12 +500,12 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                 functionName: 'allowance',
                 args: [address, lp],
             })
-            if (Number(tokenAdd) > Number(tokenAllow) / (10**18)) {
+            if (Number(ethers.utils.formatEther(tokenAllow)) < Number(tokenAdd)) {
                 let { request } = await simulateContract(config, {
                     address: token,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [lp, bigApprove],
+                    args: [lp, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -557,7 +549,6 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                     }
                 ],
             })
-
             const _reserveWjbcSWAR = data[0].result
             const _reserveSWAR = data[1].result
             const _reserveWjbcANGB = data[2].result
@@ -579,11 +570,10 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                     },
                 ],
             })
-
             const tokensBoughtswarTOwjbc = data2[0].result
             const tokensBoughtangbTOwjbc = data2[1].result
 
-            const data3 = address !== null && address !== undefined ? await readContracts(config, {
+            const data3 = address !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: angeloSWAR,
@@ -599,7 +589,6 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                     },                 
                 ],
             }) : [{result: 0}, {result: 0}, ]
-
             const swarlpBal = data3[0].result
             const angblpBal = data3[1].result
 
@@ -624,7 +613,6 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
             setReserveSwar(ethers.utils.formatEther(result[2]))
             const _swarlpbalance = ethers.utils.formatEther(result[3])
             setSwarLpBalance(Math.floor(_swarlpbalance * 100000) / 100000)
-
             result[4] !== null && setPriceANGB(Number(ethers.utils.formatEther(result[4])).toFixed(3))
             setReserveWjbcAngb(ethers.utils.formatEther(result[5]))
             setReserveAngb(ethers.utils.formatEther(result[6]))
@@ -635,7 +623,7 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
     }, [config, address, erc20Abi, angeloStdABI, cmdaoAmmNpcABI])
 
     return (
-        <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+        <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
             <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                 <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiacnhg5fsdlywlxfatj6y6aapbzcmroqvrler3mvlta6fappoe3um" width="230" alt="NPC_Angelo" />
@@ -694,7 +682,7 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                             }
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                            {address !== null && address !== undefined ?
+                            {address !== null ?
                                 <div style={{width: "30px"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "SWAR") {
@@ -752,7 +740,7 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                             </div>
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                            {address !== null && address !== undefined ?
+                            {address !== null ?
                                 <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "SWAR") {
@@ -890,7 +878,7 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, angeloStdABI, cmdaoAm
                             </div>
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                            {address !== null && address !== undefined ?
+                            {address !== null ?
                                 <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "SWAR") {

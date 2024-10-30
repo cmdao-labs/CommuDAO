@@ -9,26 +9,24 @@ const jtaoToken = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
 const taomiII = '0xbd5bff1fbbd83fecd749a328d98f860f7f343c10'
 const taomiEE = '0x3822b065e9980f6cd62fd8fa60b3ffb36866ca60'
 
-const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20Abi, iiBalance, eeBalance, jtaoBalance }) => {
-    const { address } = useAccount()
-
+const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg, cmdaoAmmNpcABI, erc20Abi, iiBalance, eeBalance, jtaoBalance }) => {
+    let { address } = useAccount()
+    if (address === undefined) {
+        address = null
+    }
     const [mode, setMode] = React.useState(1)
     const [gasselected, setGasselected] = React.useState("II")
-
     const [inputSwap, setInputSwap] = React.useState("")
     const [inputSwap2, setInputSwap2] = React.useState("")
-
     const [lpSell, setLpSell] = React.useState("")
     const [tokenAdd, setTokenAdd] = React.useState("")
     const [currAdd, setCurrAdd] = React.useState("")
-
     const [jtaoBoughtII, setJtaoBoughtII] = React.useState("0.000")
     const [tokenBoughtII, setTokenBoughtII] = React.useState("0.000")
     const [priceII, setPriceII] = React.useState("0.000")
     const [reserveJtaoIi, setReserveJtaoIi] = React.useState("")
     const [reserveII, setReserveII] = React.useState("")
     const [iiLpBalance, setIiLpBalance] = React.useState("0")
-
     const [jtaoBoughtEE, setJtaoBoughtEE] = React.useState("0.000")
     const [tokenBoughtEE, setTokenBoughtEE] = React.useState("0.000")
     const [priceEE, setPriceEE] = React.useState("0.000")
@@ -137,15 +135,12 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                     functionName: 'allowance',
                     args: [address, lp],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(inputSwap) > Number(tokenAllow) / (10**18)) {
+                if (Number(ethers.utils.formatEther(tokenAllow)) < Number(inputSwap)) {
                     let { request } = await simulateContract(config, {
                         address: token,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [lp, bigApprove],
+                        args: [lp, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -166,15 +161,12 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                     functionName: 'allowance',
                     args: [address, lp],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap2))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (Number(ethers.utils.parseEther(inputSwap2)) > Number(currAllow)) {
+                if (Number(ethers.utils.formatEther(currAllow)) < Number(inputSwap2)) {
                     let { request } = await simulateContract(config, {
                         address: curr,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [lp, bigApprove],
+                        args: [lp, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -189,7 +181,10 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                 await waitForTransactionReceipt(config, { hash: h })
                 setTxupdate(h)
             }
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -211,7 +206,10 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -282,15 +280,12 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                 functionName: 'allowance',
                 args: [address, lp],
             })
-            const bigValue = currAllow !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(currAdd)) : ethers.BigNumber.from(0)
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
-            if (Number(currAdd) > Number(currAllow) / (10**18)) {
+            if (Number(ethers.utils.formatEther(currAllow)) < Number(currAdd)) {
                 let { request } = await simulateContract(config, {
                     address: curr,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [lp, bigApprove],
+                    args: [lp, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -301,12 +296,12 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                 functionName: 'allowance',
                 args: [address, lp],
             })
-            if (Number(tokenAdd) > Number(tokenAllow) / (10**18)) {
+            if (Number(ethers.utils.formatEther(tokenAllow)) < Number(tokenAdd)) {
                 let { request } = await simulateContract(config, {
                     address: token,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [lp, bigApprove],
+                    args: [lp, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -320,7 +315,10 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -350,7 +348,6 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                     }
                 ],
             })
-
             const _reserveJtaoII = data[0].result
             const _reserveII = data[1].result
             const _reserveJtaoEE = data[2].result
@@ -372,11 +369,10 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                     }
                 ],
             })
-
             const tokensBoughtiiTOjtao = data2[0].result
             const tokensBoughteeTOjtao = data2[1].result
 
-            const data3 = address !== null && address !== undefined ? await readContracts(config, {
+            const data3 = address !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: taomiII,
@@ -392,7 +388,6 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                     }              
                 ],
             }) : [{result: 0}, {result: 0}, ]
-
             const iilpBal = data3[0].result
             const eelpBal = data3[1].result
 
@@ -417,18 +412,16 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
             setReserveII(ethers.utils.formatEther(result[2]))
             const _iilpbalance = ethers.utils.formatEther(result[3])
             setIiLpBalance(Math.floor(_iilpbalance * 100000) / 100000)
-
             result[4] !== null && setPriceEE(Number(ethers.utils.formatEther(result[4])).toFixed(3))
             setReserveJtaoEe(ethers.utils.formatEther(result[5]))
             setReserveEE(ethers.utils.formatEther(result[6]))
             const _eelpbalance = ethers.utils.formatEther(result[7])
             setEeLpBalance(Math.floor(_eelpbalance * 100000) / 100000)
         })
-
     }, [config, address, erc20Abi, cmdaoAmmNpcABI])
 
     return (
-        <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
+        <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
             <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                 <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigujzlvozogmovkcsai7o47bwewyj64goma2smlb3fsbjp24kgaua" width="220" alt="NPC_Auto_Taomi" />
@@ -487,7 +480,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                             }
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                            {address !== null && address !== undefined ?
+                            {address !== null ?
                                 <div style={{width: "30px"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "II") {
@@ -545,7 +538,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                             </div>
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                            {address !== null && address !== undefined ?
+                            {address !== null ?
                                 <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "II") {
@@ -685,7 +678,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, cmdaoAmmNpcABI, erc20
                             </div>
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                            {address !== null && address !== undefined ?
+                            {address !== null ?
                                 <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "II") {
