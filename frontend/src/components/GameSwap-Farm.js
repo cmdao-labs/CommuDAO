@@ -396,7 +396,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                 functionName: 'allowance',
                 args: [address, farmJdao],
             })
-            if (Number(ethers.utils.parseEther(lpAllow) < Number(lpJdaoStake))) {
+            if (Number(ethers.utils.parseEther(String(lpAllow)) < Number(lpJdaoStake))) {
                 let { request } = await simulateContract(config, {
                     address: jcExchange,
                     abi: exchangeABI,
@@ -440,7 +440,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                 functionName: 'allowance',
                 args: [address, farmJdao],
             })
-            if (Number(ethers.utils.parseEther(lpAllow)) < Number(lpJdao3Stake)) {
+            if (Number(ethers.utils.parseEther(String(lpAllow))) < Number(lpJdao3Stake)) {
                 let { request } = await simulateContract(config, {
                     address: juExchange,
                     abi: exchangeJulpABI,
@@ -526,7 +526,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                 functionName: 'allowance',
                 args: [address, farmJdao],
             })
-            if (Number(ethers.utils.parseEther(lpAllow)) < Number(stake)) {
+            if (Number(ethers.utils.parseEther(String(lpAllow))) < Number(stake)) {
                 let { request } = await simulateContract(config, {
                     address: lp,
                     abi: exchangeJulpABI,
@@ -1972,7 +1972,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const _farmjdao16totalstake = ethers.utils.formatEther(result[126].result)
             setCmjPlutoStaked((Number(_cmjplutoreserve) * Number(_farmjdao16totalstake)) / Number(_plutocmjtotalsupply))
             setCmjPlutoPooled((Number(_cmjplutoreserve) * Number(ethers.utils.formatEther(result[123].result))) / Number(_plutocmjtotalsupply))
-            setYourCmjPlutoStaked((Number(_cmjplutoreserve) * Number(_farmjdao16totalstake)) / Number(_plutocmjtotalsupply))
+            setYourCmjPlutoStaked((Number(_cmjplutoreserve) * Number(_farmjdao16balance)) / Number(_plutocmjtotalsupply))
             setSwapfee24hour15(Number(result[127]).toFixed(0))
             setReservePLUTO(ethers.utils.formatEther(result[128].result))
             setSwapfee24hour15_2(Number(result[129]).toFixed(0))
@@ -1986,7 +1986,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const _farmjdao17totalstake = ethers.utils.formatEther(result[135].result)
             setCmjFbtcStaked((Number(_cmjfbtcreserve) * Number(_farmjdao17totalstake)) / Number(_fbtccmjtotalsupply))
             setCmjFbtcPooled((Number(_cmjfbtcreserve) * Number(ethers.utils.formatEther(result[132].result))) / Number(_fbtccmjtotalsupply))
-            setYourCmjFbtcStaked((Number(_cmjfbtcreserve) * Number(_farmjdao17totalstake)) / Number(_fbtccmjtotalsupply))
+            setYourCmjFbtcStaked((Number(_cmjfbtcreserve) * Number(_farmjdao17balance)) / Number(_fbtccmjtotalsupply))
             setSwapfee24hour16(Number(result[136]).toFixed(0))
             setReserveFBTC(result[137].result)
             setSwapfee24hour16_2(Number(result[138]).toFixed(0))
@@ -2000,7 +2000,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const _farmjdao18totalstake = ethers.utils.formatEther(result[144].result)
             setCmjX4Staked((Number(_cmjx4reserve) * Number(_farmjdao18totalstake)) / Number(_x4cmjtotalsupply))
             setCmjX4Pooled((Number(_cmjx4reserve) * Number(ethers.utils.formatEther(result[141].result))) / Number(_x4cmjtotalsupply))
-            setYourCmjX4Staked((Number(_cmjx4reserve) * Number(_farmjdao18totalstake)) / Number(_x4cmjtotalsupply))
+            setYourCmjX4Staked((Number(_cmjx4reserve) * Number(_farmjdao18balance)) / Number(_x4cmjtotalsupply))
             setSwapfee24hour17(Number(result[145]).toFixed(0))
             setReserveX4(ethers.utils.formatEther(result[146].result))
             setSwapfee24hour17_2(Number(result[147]).toFixed(0))
@@ -2014,7 +2014,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const _farmjdao19totalstake = ethers.utils.formatEther(result[153].result)
             setCmjInfpowStaked((Number(_cmjinfpowreserve) * Number(_farmjdao19totalstake)) / Number(_infpowcmjtotalsupply))
             setCmjInfpowPooled((Number(_cmjinfpowreserve) * Number(ethers.utils.formatEther(result[150].result))) / Number(_infpowcmjtotalsupply))
-            setYourCmjInfpowStaked((Number(_cmjinfpowreserve) * Number(_farmjdao19totalstake)) / Number(_infpowcmjtotalsupply))
+            setYourCmjInfpowStaked((Number(_cmjinfpowreserve) * Number(_farmjdao19balance)) / Number(_infpowcmjtotalsupply))
             setSwapfee24hour18(Number(result[154]).toFixed(0))
             setReserveINFPOW(ethers.utils.formatEther(result[155].result))
             setSwapfee24hour18_2(Number(result[156]).toFixed(0))

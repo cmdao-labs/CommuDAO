@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { getBalance, readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react';
 import { ThreeDots } from 'react-loading-icons'
 
 const cmdaonft = '0xA6B98E5F46e5daD1F0F39bD8678870d39A7D96b1'
@@ -13,27 +14,19 @@ const statBaseCmd = '0x7b61b5Eb38535A385BEBc137Cbe2F4F5996d3EC0'
 const providerOP = new ethers.getDefaultProvider('https://opt-mainnet.g.alchemy.com/v2/0shzCCUF1JEPvKjqoEuftQcYrgIufNzE')
 const providerBBQ = new ethers.getDefaultProvider('https://bbqchain-rpc.commudao.xyz')
 
-const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI }) => {
+const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI }) => {
     let { address, chain } = useAccount()
-    //let address = '0x3036a1928608dc5905DDCdc686B8Dc4243591666'
-    const youraddr = address
-    if (intrasubModetext === undefined || intrasubModetext.toUpperCase() === "YOURBAG") {
-        navigate('/guild/profile/' + address)
-    } else if (intrasubModetext.length === 42) {
-        address = intrasubModetext
-    } else if (address === undefined) {
-    } else {
-        navigate('/guild/profile/' + address)
+    if (address === undefined) {
+        address = null
     }
-    
+    const { open } = useAppKit()
+    const [addr, setAddr] = React.useState(address)  
     const [isTransferModal, setIsTransferModal] = React.useState(false)
     const [transferNftCol, setTransferNftCol] = React.useState(null)
     const [transferNftid, setTransferNftid] = React.useState(null)
     const [transferName, setTransferName] = React.useState("")
     const [transferTo, setTransferTo] = React.useState(null)
-
     const [startBlock, setStartBlock] = React.useState(0)
-
     const [nft, setNft] = React.useState([])
     const [characterSlot, setCharacterSlot] = React.useState(null)
     const [characterSlotLevel, setCharacterSlotLevel] = React.useState(null)
@@ -65,13 +58,10 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
     const [soulSlotLevel, setSoulSlotLevel] = React.useState(null)
     const [badgeSlot, setBadgeSlot] = React.useState(null)
     const [badgeSlotLevel, setBadgeSlotLevel] = React.useState(null)
-
     const [allPower, setAllPower] = React.useState(0)
     const [rewardPending, setRewardPending] = React.useState(0)
-
     const [scmJBCBalance, setScmJBCBalance] = React.useState(0)
     const [gasBalance, setGasBalance] = React.useState(0)
-
     const [myParty, setMyParty] = React.useState(null)
     const [myPartyIndex, setMyPartyIndex] = React.useState(null)
     const [myMemberIndex, setMyMemberIndex] = React.useState(null)
@@ -80,13 +70,11 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
     const [myAbiltoDelegate, setMyAbiltoDelegate] = React.useState(null)
     const [isBaseCmdDelegate, setIsBaseCmdDelegate] = React.useState(null)
     const [allCmpowMyParty, setAllCmpowMyParty] = React.useState(0)
-
     const [party1Name, setParty1Name] = React.useState(null)
     const [party1Logo, setParty1Logo] = React.useState(null)
     const [party1DelegateBaseCMD, setParty1DelegateBaseCMD] = React.useState(0)
     const [allCmpowParty1, setAllCmpowParty1] = React.useState(0)
     const [totalRewardParty1, setTotalRewardParty1] = React.useState(0)
-
     const [party2Name, setParty2Name] = React.useState(null)
     const [party2Logo, setParty2Logo] = React.useState(null)
     const [party2DelegateBaseCMD, setParty2DelegateBaseCMD] = React.useState(0)
@@ -95,30 +83,39 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
+        console.log("Connected to " + address)
+        if (intrasubModetext === undefined) {
+            navigate('/guild/profile/' + address)
+        } else if (intrasubModetext.length === 42) {
+            setAddr(intrasubModetext)
+        } else if (address === undefined) {
+            navigate('/guild/profile/null')
+        } else {
+            navigate('/guild/profile/' + address)
+        }
         const cmdaonftSC = new ethers.Contract(cmdaonft, erc721Abi, providerOP)
         const missionBaseCmdSC = new ethers.Contract(missionBaseCmd, missionCMDBaseABI, providerBBQ)
         setNft([])
         
         const thefetch = async () => {
-            const cmdBal = address !== null && address !== undefined ?
-                await getBalance(config, { address: address, chainId: 190 }) :
+            const cmdBal = addr !== null ?
+                await getBalance(config, { address: addr, chainId: 190 }) :
                 {formatted: 0}
-            const nftEQ = await readContract(config, {
+            const nftEQ = addr !== null ? await readContract(config, {
                 address: nftSlot,
                 abi: nftSlotABI,
                 functionName: 'nftEquip',
-                args: [address],
+                args: [addr],
                 chainId: 10,
-            })
-            const nftEQ2 = await readContract(config, {
+            }) : null
+            const nftEQ2 = addr !== null ? await readContract(config, {
                 address: nftSlot,
                 abi: nftSlotABI,
                 functionName: 'nftEquip2',
-                args: [address],
+                args: [addr],
                 chainId: 10,
-            })
-
-            const data = await readContracts(config, {
+            }) : null
+            const data = addr !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmdaonft,
@@ -229,30 +226,45 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
                         address: missionBaseCmd,
                         abi: missionCMDBaseABI,
                         functionName: 'baseReward',
-                        args: [address],
+                        args: [addr],
                         chainId: 190,
                     },
                     {
                         address: nftSlot,
                         abi: nftSlotABI,
                         functionName: 'nftStatus',
-                        args: [address],
+                        args: [addr],
                         chainId: 10,
                     },
                     {
                         address: '0x336C4EaE525948C8EF79b74b549C048f07639315',
                         abi: erc20Abi,
                         functionName: 'balanceOf',
-                        args: [address],
+                        args: [addr],
                         chainId: 8899,
                     },
                     {
                         address: nftSlot,
                         abi: nftSlotABI,
                         functionName: 'nonTransferSCM',
-                        args: [address],
+                        args: [addr],
                         chainId: 10,
                     },
+                    {
+                        address: baseCmdClaimer,
+                        abi: baseCMDClaimerABI,
+                        functionName: 'claimedReward',
+                        args: [addr],
+                        chainId: 190,
+                    },
+                ],
+            }) : [
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},
+            ]
+
+            const data0 = await readContracts(config, {
+                contracts: [
                     {
                         address: party,
                         abi: partyABI,
@@ -363,13 +375,6 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
                         abi: partyABI,
                         functionName: 'isAllRefuel',
                         args: [2, 4],
-                        chainId: 190,
-                    },
-                    {
-                        address: baseCmdClaimer,
-                        abi: baseCMDClaimerABI,
-                        functionName: 'claimedReward',
-                        args: [address],
                         chainId: 190,
                     },
                     {
@@ -704,44 +709,38 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
                     Slot: 8
                 })
             }
-
-            const refuelAt = null/*Number(nftStatus[1])*/
-            const isStaked = false/*nftStatus[2]*/
-            const startblock = Number(data[36].result)
-            const endblock = Number(data[37].result)
-            const rewardpending = Number(ethers.utils.formatEther(String(data[15].result))) - Number(ethers.utils.formatEther(String(data[35].result)))
+            //const refuelAt = Number(nftStatus[1])
+            //const isStaked = nftStatus[2]
             const allPow = Number(data[16].result)
             const scmJBCBal = Number(ethers.utils.formatEther(data[17].result)) + (ethers.utils.formatEther(data[18].result) * 200000)
-            
-            const party1name = data[19].result
-            const party1logo = data[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
-            const party1body = data[21].result
-            
-            const party2name = data[22].result
-            const party2logo = data[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
-            const party2body = data[24].result
-            
-            const isMem1Party1Refuel = data[25].result
-            const isMem2Party1Refuel = data[26].result
-            const isMem3Party1Refuel = data[27].result
-            const isMem4Party1Refuel = data[28].result
-            const isMem5Party1Refuel = data[29].result
-            const isMem1Party2Refuel = data[30].result
-            const isMem2Party2Refuel = data[31].result
-            const isMem3Party2Refuel = data[32].result
-            const isMem4Party2Refuel = data[33].result
-            const isMem5Party2Refuel = data[34].result
+            const rewardpending = Number(ethers.utils.formatEther(String(data[15].result))) - Number(ethers.utils.formatEther(String(data[19].result)))
+            const party1name = data0[0].result
+            const party1logo = data0[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
+            const party1body = data0[2].result
+            const party2name = data0[3].result
+            const party2logo = data0[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
+            const party2body = data0[5].result
+            const isMem1Party1Refuel = data0[6].result
+            const isMem2Party1Refuel = data0[7].result
+            const isMem3Party1Refuel = data0[8].result
+            const isMem4Party1Refuel = data0[9].result
+            const isMem5Party1Refuel = data0[10].result
+            const isMem1Party2Refuel = data0[11].result
+            const isMem2Party2Refuel = data0[12].result
+            const isMem3Party2Refuel = data0[13].result
+            const isMem4Party2Refuel = data0[14].result
+            const isMem5Party2Refuel = data0[15].result
+            const startblock = Number(data0[16].result)
+            const endblock = Number(data0[17].result)
 
             const delegateParty1Mission1Filter = await missionBaseCmdSC.filters.ConfirmDelegate(1, null, null)
             const delegateParty1Mission1Event = await missionBaseCmdSC.queryFilter(delegateParty1Mission1Filter, 19987208, "latest")
             const delegateParty1Mission1Map = await Promise.all(delegateParty1Mission1Event.map(async (obj) => String(obj.args.endBlock)))
             const isDelegateParty1Mission1 = delegateParty1Mission1Map.indexOf(String(endblock)) !== -1 ? true : false
-
             const delegateParty2Mission1Filter = await missionBaseCmdSC.filters.ConfirmDelegate(2, null, null)
             const delegateParty2Mission1Event = await missionBaseCmdSC.queryFilter(delegateParty2Mission1Filter, 19987208, "latest")
             const delegateParty2Mission1Map = await Promise.all(delegateParty2Mission1Event.map(async (obj) => String(obj.args.endBlock)))
             const isDelegateParty2Mission1 = delegateParty2Mission1Map.indexOf(String(endblock)) !== -1 ? true : false
-
             console.log("Party 1: ", isMem1Party1Refuel, isMem2Party1Refuel, isMem3Party1Refuel, isMem4Party1Refuel, isMem5Party1Refuel, isDelegateParty1Mission1)
             console.log("Party 2: ", isMem1Party2Refuel, isMem2Party2Refuel, isMem3Party2Refuel, isMem4Party2Refuel, isMem5Party2Refuel, isDelegateParty2Mission1)
 
@@ -845,97 +844,102 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
             let abilitytodelegate = false
             let isDelegate1 = null
             let mypartyallcmpow = 0
-            if (party1body[0].toUpperCase() === address.toUpperCase()) {
-                myparty = party1name
-                partyindex = 1
-                memberindex = 0
-                memberrefuel = isMem1Party1Refuel
-                mypartyrefuelat = party1body[5]
-                isDelegate1 = isDelegateParty1Mission1
-                mypartyallcmpow = allcmpowparty1
-                // simple validation need to be fixed later
-                abilitytodelegate = isMem1Party1Refuel && isMem2Party1Refuel && isMem3Party1Refuel && isMem4Party1Refuel && isMem5Party1Refuel ? true : false
-            } else if (party1body[1].toUpperCase() === address.toUpperCase()) {
-                myparty = party1name
-                partyindex = 1
-                memberindex = 1
-                memberrefuel = isMem2Party1Refuel
-                mypartyrefuelat = party1body[5]
-                isDelegate1 = isDelegateParty1Mission1
-                mypartyallcmpow = allcmpowparty1
-            } else if (party1body[2].toUpperCase() === address.toUpperCase()) {
-                myparty = party1name
-                partyindex = 1
-                memberindex = 2
-                memberrefuel = isMem3Party1Refuel
-                mypartyrefuelat = party1body[5]
-                isDelegate1 = isDelegateParty1Mission1
-                mypartyallcmpow = allcmpowparty1
-            } else if (party1body[3].toUpperCase() === address.toUpperCase()) {
-                myparty = party1name
-                partyindex = 1
-                memberindex = 3
-                memberrefuel = isMem4Party1Refuel
-                mypartyrefuelat = party1body[5]
-                isDelegate1 = isDelegateParty1Mission1
-                mypartyallcmpow = allcmpowparty1
-            } else if (party1body[4].toUpperCase() === address.toUpperCase()) {
-                myparty = party1name
-                partyindex = 1
-                memberindex = 4
-                memberrefuel = isMem5Party1Refuel
-                mypartyrefuelat = party1body[5]
-                isDelegate1 = isDelegateParty1Mission1
-                mypartyallcmpow = allcmpowparty1
-            } else if (party2body[0].toUpperCase() === address.toUpperCase()) {
-                myparty = party2name
-                partyindex = 2
-                memberindex = 0
-                memberrefuel = isMem1Party2Refuel
-                mypartyrefuelat = party2body[5]
-                isDelegate1 = isDelegateParty2Mission1
-                mypartyallcmpow = allcmpowparty2
-                // simple validation need to be fixed later
-                abilitytodelegate = isMem1Party2Refuel && isMem2Party2Refuel && isMem3Party2Refuel && isMem4Party2Refuel && isMem5Party2Refuel ? true : false
-            } else if (party2body[1].toUpperCase() === address.toUpperCase()) {
-                myparty = party2name
-                partyindex = 2
-                memberindex = 1
-                memberrefuel = isMem2Party2Refuel
-                mypartyrefuelat = party2body[5]
-                isDelegate1 = isDelegateParty2Mission1
-                mypartyallcmpow = allcmpowparty2
-            } else if (party2body[2].toUpperCase() === address.toUpperCase()) {
-                myparty = party2name
-                partyindex = 2
-                memberindex = 2
-                memberrefuel = isMem3Party2Refuel
-                mypartyrefuelat = party2body[5]
-                isDelegate1 = isDelegateParty2Mission1
-                mypartyallcmpow = allcmpowparty2
-            } else if (party2body[3].toUpperCase() === address.toUpperCase()) {
-                myparty = party2name
-                partyindex = 2
-                memberindex = 3
-                memberrefuel = isMem4Party2Refuel
-                mypartyrefuelat = party2body[5]
-                isDelegate1 = isDelegateParty2Mission1
-                mypartyallcmpow = allcmpowparty2
-            } else if (party2body[4].toUpperCase() === address.toUpperCase()) {
-                myparty = party2name
-                partyindex = 2
-                memberindex = 4
-                memberrefuel = isMem5Party2Refuel
-                mypartyrefuelat = party2body[5]
-                isDelegate1 = isDelegateParty2Mission1
-                mypartyallcmpow = allcmpowparty2
+            if (addr !== null) {
+                if (party1body[0].toUpperCase() === addr.toUpperCase()) {
+                    myparty = party1name
+                    partyindex = 1
+                    memberindex = 0
+                    memberrefuel = isMem1Party1Refuel
+                    mypartyrefuelat = party1body[5]
+                    isDelegate1 = isDelegateParty1Mission1
+                    mypartyallcmpow = allcmpowparty1
+                    // simple validation need to be fixed later
+                    abilitytodelegate = isMem1Party1Refuel && isMem2Party1Refuel && isMem3Party1Refuel && isMem4Party1Refuel && isMem5Party1Refuel ? true : false
+                } else if (party1body[1].toUpperCase() === addr.toUpperCase()) {
+                    myparty = party1name
+                    partyindex = 1
+                    memberindex = 1
+                    memberrefuel = isMem2Party1Refuel
+                    mypartyrefuelat = party1body[5]
+                    isDelegate1 = isDelegateParty1Mission1
+                    mypartyallcmpow = allcmpowparty1
+                } else if (party1body[2].toUpperCase() === addr.toUpperCase()) {
+                    myparty = party1name
+                    partyindex = 1
+                    memberindex = 2
+                    memberrefuel = isMem3Party1Refuel
+                    mypartyrefuelat = party1body[5]
+                    isDelegate1 = isDelegateParty1Mission1
+                    mypartyallcmpow = allcmpowparty1
+                } else if (party1body[3].toUpperCase() === addr.toUpperCase()) {
+                    myparty = party1name
+                    partyindex = 1
+                    memberindex = 3
+                    memberrefuel = isMem4Party1Refuel
+                    mypartyrefuelat = party1body[5]
+                    isDelegate1 = isDelegateParty1Mission1
+                    mypartyallcmpow = allcmpowparty1
+                } else if (party1body[4].toUpperCase() === addr.toUpperCase()) {
+                    myparty = party1name
+                    partyindex = 1
+                    memberindex = 4
+                    memberrefuel = isMem5Party1Refuel
+                    mypartyrefuelat = party1body[5]
+                    isDelegate1 = isDelegateParty1Mission1
+                    mypartyallcmpow = allcmpowparty1
+                } else if (party2body[0].toUpperCase() === addr.toUpperCase()) {
+                    myparty = party2name
+                    partyindex = 2
+                    memberindex = 0
+                    memberrefuel = isMem1Party2Refuel
+                    mypartyrefuelat = party2body[5]
+                    isDelegate1 = isDelegateParty2Mission1
+                    mypartyallcmpow = allcmpowparty2
+                    // simple validation need to be fixed later
+                    abilitytodelegate = isMem1Party2Refuel && isMem2Party2Refuel && isMem3Party2Refuel && isMem4Party2Refuel && isMem5Party2Refuel ? true : false
+                } else if (party2body[1].toUpperCase() === addr.toUpperCase()) {
+                    myparty = party2name
+                    partyindex = 2
+                    memberindex = 1
+                    memberrefuel = isMem2Party2Refuel
+                    mypartyrefuelat = party2body[5]
+                    isDelegate1 = isDelegateParty2Mission1
+                    mypartyallcmpow = allcmpowparty2
+                } else if (party2body[2].toUpperCase() === addr.toUpperCase()) {
+                    myparty = party2name
+                    partyindex = 2
+                    memberindex = 2
+                    memberrefuel = isMem3Party2Refuel
+                    mypartyrefuelat = party2body[5]
+                    isDelegate1 = isDelegateParty2Mission1
+                    mypartyallcmpow = allcmpowparty2
+                } else if (party2body[3].toUpperCase() === addr.toUpperCase()) {
+                    myparty = party2name
+                    partyindex = 2
+                    memberindex = 3
+                    memberrefuel = isMem4Party2Refuel
+                    mypartyrefuelat = party2body[5]
+                    isDelegate1 = isDelegateParty2Mission1
+                    mypartyallcmpow = allcmpowparty2
+                } else if (party2body[4].toUpperCase() === addr.toUpperCase()) {
+                    myparty = party2name
+                    partyindex = 2
+                    memberindex = 4
+                    memberrefuel = isMem5Party2Refuel
+                    mypartyrefuelat = party2body[5]
+                    isDelegate1 = isDelegateParty2Mission1
+                    mypartyallcmpow = allcmpowparty2
+                }
             }
-                        
-            const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
-            const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 123743421, "latest")
-            const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
-            const walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
-            const data2 = address !== null && address !== undefined ? await readContracts(config, {
+            
+            let walletRemoveDup = []
+            if (addr !== null) {
+                const walletFilter = await cmdaonftSC.filters.Transfer(null, addr, null)
+                const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 123743421, "latest")
+                const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
+                walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
+            }
+            const data2 = addr !== null ? await readContracts(config, {
                 contracts: walletRemoveDup.map((item) => (
                     {
                         address: cmdaonft,
@@ -945,14 +949,14 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
                         chainId: 10
                     }
                 ))
-            }) : [Array(walletRemoveDup.length).fill('')]
+            }) : null
             let yournftwallet = []
-            for (let i = 0; i <= walletRemoveDup.length - 1 && address !== null && address !== undefined; i++) {
-                if (data2[i].result.toUpperCase() === address.toUpperCase()) {
+            for (let i = 0; i <= walletRemoveDup.length - 1 && addr !== null; i++) {
+                if (data2[i].result.toUpperCase() === addr.toUpperCase()) {
                     yournftwallet.push({Id: String(walletRemoveDup[i])})
                 }
             }
-            const data3 = address !== null && address !== undefined ? await readContracts(config, {
+            const data3 = addr !== null ? await readContracts(config, {
                 contracts: yournftwallet.map((item) => (
                     {
                         address: cmdaonft,
@@ -962,7 +966,7 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
                         chainId: 10
                     }
                 ))
-            }) : [Array(yournftwallet.length).fill('')]
+            }) : null
             for (let i = 0; i <= yournftwallet.length - 1; i++) {
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
@@ -986,7 +990,6 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
                     isStaked: false
                 })
             }
-
             if (nfts.length === 0) { nfts.push(null) }
             
             return [
@@ -1048,13 +1051,10 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
             result[28] !== null && result[28].slice(-2, -1) === "+" ? setSoulSlotLevel(result[28].slice(-1)) : setSoulSlotLevel(null)
             setBadgeSlot(result[29])
             result[30] !== null && result[30].slice(-2, -1) === "+" ? setBadgeSlotLevel(result[30].slice(-1)) : setBadgeSlotLevel(null)
-            
             setAllPower(result[31])
             setRewardPending(result[32])
-
             setScmJBCBalance(result[33])
             setGasBalance(result[34].formatted)
-
             setMyParty(result[35])
             setMyPartyIndex(result[36])
             setMyMemberIndex(result[37])
@@ -1063,7 +1063,6 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
             setMyAbiltoDelegate(result[40])
             setIsBaseCmdDelegate(result[41])
             setAllCmpowMyParty(result[42])
-
             setParty1Name(result[43])
             setParty1Logo(result[44])
             setParty1DelegateBaseCMD(result[45])
@@ -1074,11 +1073,10 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
             setAllCmpowParty2(result[50])
             setTotalRewardParty1(ethers.utils.formatEther(String(result[51])))
             setTotalRewardParty2(ethers.utils.formatEther(String(result[52])))
-
             setStartBlock(result[53])
         })
 
-    }, [config, address, txupdate, erc721Abi, erc20Abi, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI])
+    }, [config, address, addr, intrasubModetext, navigate, txupdate, erc721Abi, erc20Abi, nftSlotABI, partyABI, missionCMDBaseABI, statCMDRewardABI, baseCMDClaimerABI])
 
     const transferToHandle = (event) => { setTransferTo(event.target.value) }
     const transferNFT = (_col, _nftid) => {
@@ -1261,424 +1259,423 @@ const Guild = ({ config, intrasubModetext, navigate, setisLoading, txupdate, set
     }
 
     return (
-    <>
-        {isTransferModal &&
-            <div className="centermodal">
-                <div className="wrapper">
-                    <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
-                        <div style={{fontSize: "20px"}}>{transferName}</div>
-                        <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
-                        <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
-                        <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
-                    </div>
-                </div>
-            </div>
-        }
-        <div className="fieldBanner" style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
-            <div style={{flexDirection: "column", margin: "30px 100px"}}>
-                <div className="pixel" style={{fontSize: "75px", width: "fit-content"}}>Guild</div>
-                <div style={{fontSize: "24px", width: "fit-content", marginTop: "30px"}} className="pixel">CMDAO Guild Service</div>
-            </div>
-            <div style={{margin: "30px 100px"}}></div>
-        </div>
-
-        <div style={{margin: "0", padding: "75px 0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
-            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "#FFFFFF99", width: "370px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-start", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                        <div style={{fontSize: "22px", lineHeight: "15px"}}>STAKING</div>
-                            <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
-                                {myPartyRefuelAt >= startBlock ?
-                                    <>
-                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                        <div>Party Already Delegated</div>
-                                    </> :
-                                    <>
-                                        {myRefuelStatus ?
-                                            <>
-                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                <div>{myMemberIndex !== null && <>Member {myMemberIndex + 1}: </>}Already Refuel</div>
-                                            </> :
-                                            <>
-                                                <div style={{background: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                <div>{myMemberIndex !== null && <>Member {myMemberIndex + 1}: </>}Not Refuel</div>
-                                            </>
-                                        }
-                                    </>
-                                }
-                            </div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            {address !== undefined ?
-                                <>ADDRESS <div>{address.slice(0, 4) + "..." + address.slice(-4)}</div></> :
-                                <>ADDRESS <div>-</div></>
-                            }
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            PARTY 
-                            {myParty !== null ?
-                                <>
-                                    {myParty === party1Name &&
-                                        <div style={{display: "flex", flexDirection: "row", alignItems: "flex-end"}}>
-                                            <img src={party1Logo} height="18" alt="Can not load metadata."/>
-                                            <div style={{marginLeft: "5px"}}>{party1Name}</div>
-                                        </div>
-                                    }
-                                    {myParty === party2Name && 
-                                        <div style={{display: "flex", flexDirection: "row", alignItems: "flex-end"}}>
-                                            <img src={party2Logo} height="20" alt="Can not load metadata."/>
-                                            <div style={{marginLeft: "5px"}}>{party2Name}</div>
-                                        </div>
-                                    }
-                                </> :
-                                <div>...</div>
-                            }
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            GUILD 
-                            <div>TBD</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            USER LEVEL 
-                            <div>TBD</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            PARTY LEVEL 
-                            <div>TBD</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            GUILD LEVEL 
-                            <div>TBD</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            CMPOW 
-                            <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            PARTY BOOSTER
-                            <div>TBD</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            GUILD BOOSTER
-                            <div>TBD</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            SCM POINT BOOSTER
-                            <div style={{display: "flex", flexDirection: "row"}}>
-                                <div style={{marginLeft: "5px"}}>{Number(scmJBCBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
-                            </div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                            DELEGABLE CMPOW 
-                            <div>{Number(allPower) !== 0 ? (Number(allPower) + Number(scmJBCBalance)).toLocaleString('en-US', {maximumFractionDigits:0}) : 0}</div>
-                        </div>
-
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            PARTY CONCENTRATION 
-                            <div>{allCmpowMyParty !== 0 ? Number((allPower / allCmpowMyParty * 100).toFixed(2)) : '0.00'}%</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
-                            GUILD CONCENTRATION 
-                            <div>TBD</div>
-                        </div>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", paddingBottom: "20px", marginBottom: "10px", borderBottom: "1px solid"}}>
-                            MISSION REWARD 
-                            <div>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:3})} $CMD</div>
-                        </div>
-                        {address !== undefined && address === youraddr ?
-                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
-                                {chain.id === 190 ?
-                                    <>
-                                        {Number(allPower) !== 0 && Number(gasBalance) >= 10 && !myRefuelStatus && myPartyRefuelAt < startBlock ?
-                                            <div style={{alignSelf: "center"}} className="button" onClick={refuelGas}>REFUEL GAS</div> :
-                                            <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
-                                        }
-                                        {Number(rewardPending) > 0 ?
-                                            <div style={{marginLeft: "5px", alignSelf: "center", background: "#67BAA7"}} className="button" onClick={claimReward}>CLAIM REWARD</div> :
-                                            <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CLAIM REWARD</div>
-                                        }
-                                    </> :
-                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SWITCH TO BBQ CHAIN</div>
-                                }
-                            </div> :
-                            <div style={{height: "41px"}}></div>
-                        }
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {accSlot !== null ?
-                            <img src={accSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div>}
-                        {accSlot2 !== null ?
-                            <img src={accSlot2} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlot2Level !== null && <div style={{position: "absolute", top: "237.5px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlot2Level}</div> }
-                        {accSlot3 !== null ?
-                            <img src={accSlot3} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlot3Level !== null && <div style={{position: "absolute", top: "385px", right: "30px", padding: "2px", fontSize: "25px"}}>+{accSlot3Level}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {hatSlot !== null ?
-                            <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
-                        }
-                        {hatSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div>}
-                        {clothSlot !== null ?
-                            <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
-                        }
-                        {clothSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "50px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div>}
-                        {shoesSlot !== null ?
-                            <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
-                        }
-                        {shoesSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "300px", height: "450px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
-                        <div style={{position: "relative", width: "300px", height: "150px", padding: "0 20px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
-                            {soulSlot !== null ?
-                                <img src={soulSlot} width="100px" alt="Can not load metadata." /> :
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmdSRjFFCUZJiLBxy5JUgVL4vezt4vXnux1JjFbQQgZCpP" width="100px" alt="Can not load metadata." />
-                            }
-                            {soulSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "200px", padding: "2px", fontSize: "25px"}}>+{soulSlotLevel}</div>}
-                            {badgeSlot !== null ?
-                                <img src={badgeSlot} width="100px" alt="Can not load metadata." /> :
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQG17rt5uiChPpvHwivdZPX5Cm6PhoGyCYNzPyfs3ohT5" width="100px" alt="Can not load metadata." />
-                            }
-                            {badgeSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "50px", padding: "2px", fontSize: "25px"}}>+{badgeSlotLevel}</div>}
-                        </div>
-                        {nft.length > 0 ?
-                            <>
-                                {characterSlot !== null ?
-                                    <img src={characterSlot} width="300px" alt="Can not load metadata." /> :
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
-                                }
-                            </> :
-                            <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                <ThreeDots fill="#5f6476" />
-                            </div>
-                        }
-                        {characterSlotLevel !== null && <div style={{position: "absolute", bottom: "15px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {accSlot4 !== null ?
-                            <img src={accSlot4} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlot4Level !== null && <div style={{position: "absolute", top: "85px", right: "35px", padding: "2px", fontSize: "25px"}}>+{accSlot4Level}</div>}
-                        {backSlot !== null ?
-                            <img src={backSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
-                        }
-                        {backSlotLevel !== null && <div style={{position: "absolute", top: "237.5px", right: "35px", fontSize: "25px"}}>+{backSlotLevel}</div>}
-                        {weaponSlot !== null ?
-                            <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
-                        }
-                        {wpSlotLevel !== null && <div style={{position: "absolute", top: "385px", right: "35px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div>}
-                    </div>
-                    <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-                        {accSlot5 !== null ?
-                            <img src={accSlot5} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlot5Level !== null && <div style={{position: "absolute", top: "85px", right: "35px", padding: "2px", fontSize: "25px"}}>+{accSlot5Level}</div>}
-                        {accSlot6 !== null ?
-                            <img src={accSlot6} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
-                        }
-                        {accSlot6Level !== null && <div style={{position: "absolute", top: "237.5px", right: "35px", padding: "2px", fontSize: "25px"}}>+{accSlot6Level}</div>}
-                        {weaponSlot2 !== null ?
-                            <img src={weaponSlot2} width="100px" alt="Can not load metadata." /> :
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
-                        }
-                        {wpSlot2Level !== null && <div style={{position: "absolute", top: "385px", right: "35px", padding: "2px", fontSize: "25px"}}>+{wpSlot2Level}</div>}
-                    </div>
-                </div>
-            </div>
-
-            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "20px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap", overflow: "scroll"}} className="nftCard">
-                    <div style={{background: "#FFFFFF99", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-start", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                        <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px"}}>
-                            <div style={{fontSize: "22px", lineHeight: "15px"}}>PARTY PANEL</div>
-                        </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                            <div style={{width: "300px"}}>PARTY</div>
-                            <div style={{width: "300px"}}>GUILD</div>
-                            <div style={{width: "150px"}}>NO. OF MEMBER</div>
-                            <div style={{width: "150px"}}>DELEGATED CMPOW</div>
-                            <div style={{width: "150px"}}>CONCENTRATION</div>
-                            <div style={{width: "150px"}}>MISSION DEDICATED</div>
-                            <div style={{width: "200px"}}>REWARD EMISSION</div>
-                        </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", borderBottom: "1px solid #F7F5F8", padding: "10px 0"}}>
-                            <div style={{width: "300px", display: "flex", flexDirection: "row"}}>
-                                <img src={party1Logo} height="20" alt="Can not load metadata."/>
-                                <div style={{marginLeft: "5px"}}>{party1Name}</div>
-                            </div>
-                            <div style={{width: "300px"}}>TBD</div>
-                            <div style={{width: "150px"}}>5</div>
-                            <div style={{width: "150px"}}>{allCmpowParty1}</div>
-                            <div style={{width: "150px"}}>{Number((allCmpowParty1 / (allCmpowParty1 + allCmpowParty2)) * 100).toFixed(2)}%</div>
-                            <div style={{width: "150px"}}>{Number(party1DelegateBaseCMD)}</div>
-                            <div style={{width: "200px"}}>{Number(totalRewardParty1).toLocaleString('en-US', {maximumFractionDigits:3})} $CMD</div>
-                        </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", borderBottom: "1px solid #F7F5F8", padding: "10px 0"}}>
-                            <div style={{width: "300px", display: "flex", flexDirection: "row"}}>
-                                <img src={party2Logo} height="20" alt="Can not load metadata."/>
-                                <div style={{marginLeft: "5px"}}>{party2Name}</div>
-                            </div>
-                            <div style={{width: "300px"}}>TBD</div>
-                            <div style={{width: "150px"}}>5</div>
-                            <div style={{width: "150px"}}>{allCmpowParty2}</div>
-                            <div style={{width: "150px"}}>{Number((allCmpowParty2 / (allCmpowParty1 + allCmpowParty2)) * 100).toFixed(2)}%</div>
-                            <div style={{width: "150px"}}>{Number(party2DelegateBaseCMD)}</div>
-                            <div style={{width: "200px"}}>{Number(totalRewardParty2).toLocaleString('en-US', {maximumFractionDigits:3})} $CMD</div>
+        <>
+            {isTransferModal &&
+                <div className="centermodal">
+                    <div className="wrapper">
+                        <div className="bold" style={{width: "500px", height: "250px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", fontSize: "40px", letterSpacing: "3px"}}>
+                            <div style={{fontSize: "20px"}}>{transferName}</div>
+                            <input style={{width: "80%", padding: "10px", fontSize: "20px"}} value={transferTo} onChange={transferToHandle} placeholder="Enter 0x..."></input>
+                            <div className="button" style={{width: "50%"}} onClick={transferNFTConfirm}>TRANSFER</div>
+                            <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsTransferModal(false)}>CLOSE</div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
-                <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "flex-start", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "20px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
-                    <div style={{background: "#FFFFFF99", width: "370px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                            <div style={{fontSize: "22px", lineHeight: "15px"}}>Wood Chopper on Ancient Forest [BBQ Chain]</div>
-                        </div>
-                        <div className='light' style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid", fontSize: "12px"}}>
-                            <div>Please contact on CommuDAO Discord for more information</div>
-                        </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
-                            <div>CMPOW DEDICATED</div>
-                            <div>{allCmpowParty1 + allCmpowParty2}</div>
-                        </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
-                            <div>PARTY DEDICATED</div>
-                            <div>{Number(party1DelegateBaseCMD) + Number(party2DelegateBaseCMD)}</div>
-                        </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
-                            <div>REWARD EMISSION</div>
-                            <div>{Number(Number(totalRewardParty1) + Number(totalRewardParty2)).toLocaleString('en-US', {maximumFractionDigits:3})} $CMD</div>
-                        </div>
-                        {address !== undefined && address === youraddr ?
-                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
-                                {chain.id === 190 ?
-                                    <>
-                                        {(myMemberIndex === null || !myAbiltoDelegate) && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>}
-                                        {(myAbiltoDelegate && Number(gasBalance) >= 1) && <div style={{alignSelf: "center"}} className="button" onClick={delegateMission}>DELIGATE</div>}
-                                        {(Number(myMemberIndex) === 0 && myPartyRefuelAt >= startBlock && !isBaseCmdDelegate) && <div style={{marginLeft: "5px", alignSelf: "center"}} className="button" onClick={confirmMission}>CONFIRM MISSION</div>}
-                                        {isBaseCmdDelegate && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">MISSION DELEGATED</div>}
-                                    </> :
-                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SWITCH TO BBQ CHAIN</div>
-                                }
-                            </div> :
-                            <div style={{height: "41px"}}></div>
-                        }
-                    </div>
-
-                    <div style={{background: "#FFFFFF99", width: "370px", height: "400px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                            <div style={{fontSize: "22px", lineHeight: "15px"}}>Health Pro [BBQ Chain]</div>
-                        </div>
-                        <div className='light' style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid", fontSize: "12px"}}>
-                            <div>Soon!</div>
-                        </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
-                            <div>CMPOW DEDICATED</div>
-                            <div>TBD</div>
-                        </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
-                            <div>PARTY DEDICATED</div>
-                            <div>TBD</div>
-                        </div>
-                        <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
-                            <div>MISSION REWARD EMISSION</div>
-                            <div>0 $HEALTH</div>
-                        </div>
-                        {address !== undefined && address === youraddr ?
-                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
-                                {true ?
-                                    <>
-                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>
-                                    </> :
-                                    <>
-                                    </>
-                                }
-                            </div> :
-                            <div style={{height: "41px"}}></div>
-                        }
-                    </div>
+            }
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", overflow: "scroll"}}>
+                <div className="SubfieldBanner">
+                    <div className="pixel" style={{fontSize: "75px", width: "fit-content"}}>Guild</div>
                 </div>
+                <div className="SubfieldBanner"></div>
             </div>
             
-            {nft.length > 0 ?
-                <div style={{margin: "40px 0 60px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                    {nft[0] !== null ?
-                        <>
-                        {nft.map((item, index) => (
-                            <>
-                                {(item.Col === 1 && item.Id / 100000000000 <= 8) &&
-                                    <div style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px", height: "450px"}} className="nftCard" key={index}>
-                                        <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
-                                            <img src={item.Image} height="100%" alt="Can not load metadata." />
-                                        </div>
-                                        <div className="emp bold">{item.Name}</div>
-                                        <div className="bold">{item.RewardPerSec} cmpow per sec</div>
-                                        <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
-                                        {address === youraddr ?
-                                            <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}}>
-                                                {item.isStaked ?
-                                                    <div style={{background: "gray"}} className="pixel button" onClick={() => unequipNft(item.Slot)}>UNEQUIP L1</div> :
+            {address !== null && chain !== undefined && (chain.id !== 10 && chain.id !== 190) ?
+                <div style={{zIndex: "999"}} className="centermodal">
+                    <div className="wrapper">
+                        <div className="pixel" style={{border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", width: "500px", height: "fit-content", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", fontSize: "40px", letterSpacing: "3px"}}>
+                        <div style={{width: "90%", textAlign: "left", fontSize: "36px"}} className="emp">MISMATCH CHAIN!</div>
+                        <div style={{marginTop: "20px", width: "90%", textAlign: "left", fontSize: "14px"}}>Please switch your network to OP Mainnet/BBQ Chain.</div>
+                        <div className="button" style={{marginTop: "40px", width: "50%"}} onClick={() => open({ view: 'Networks' })}>SWITCH NETWORK</div>
+                        <div className="button" style={{marginTop: "10px", width: "50%", background: "gray"}} onClick={() => {callMode(0); navigate('/');}}>BACK TO HOME</div>
+                        </div>
+                    </div>
+                </div> :
+                <div style={{margin: "0", minHeight: "inherit", alignItems: "flex-start"}} className="collection">
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+                        <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "10px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{background: "#FFFFFF99", width: "370px", height: "400px", margin: "10px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-start", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                <div style={{fontSize: "22px", lineHeight: "15px"}}>STAKING</div>
+                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center", color: "rgb(0, 209, 255)"}}>
+                                        {addr !== null &&
+                                            <>
+                                                {myPartyRefuelAt >= startBlock ?
                                                     <>
-                                                        {item.Col === 1 && 
+                                                        <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                        <div>Party Already Delegated</div>
+                                                    </> :
+                                                    <>
+                                                        {myRefuelStatus ?
                                                             <>
-                                                                {((item.Id / 100000000000) | 0) === 1 && 
-                                                                    <>
-                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 1)}>EQUIP L1 MAIN CHAR</div>
-                                                                        {characterSlot !== null && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 15)}>EQUIP L1 SOUL</div>}
-                                                                    </>
-                                                                }
+                                                                <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>{myMemberIndex !== null && <>Member {myMemberIndex + 1}: </>}Already Refuel</div>
+                                                            </> :
+                                                            <>
+                                                                <div style={{background: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
+                                                                <div>{myMemberIndex !== null && <>Member {myMemberIndex + 1}: </>}Not Refuel</div>
                                                             </>
                                                         }
-                                                        <div style={{alignSelf: "center", background: "gray", marginTop: "5px"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
                                                     </>
+                                                }
+                                            </>
+                                        }
+                                    </div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                                    {intrasubModetext !== null && intrasubModetext !== undefined && intrasubModetext.length === 42 ?
+                                        <><div>ADDRESS</div><div>{intrasubModetext.slice(0, 4) + "..." + intrasubModetext.slice(-4)}</div></> :
+                                        <><div>ADDRESS</div><div>-</div></>
+                                    }
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                                    PARTY 
+                                    {myParty !== null ?
+                                        <>
+                                            {myParty === party1Name &&
+                                                <div style={{display: "flex", flexDirection: "row", alignItems: "flex-end"}}>
+                                                    <img src={party1Logo} height="18" alt="Can not load metadata."/>
+                                                    <div style={{marginLeft: "5px"}}>{party1Name}</div>
+                                                </div>
+                                            }
+                                            {myParty === party2Name && 
+                                                <div style={{display: "flex", flexDirection: "row", alignItems: "flex-end"}}>
+                                                    <img src={party2Logo} height="20" alt="Can not load metadata."/>
+                                                    <div style={{marginLeft: "5px"}}>{party2Name}</div>
+                                                </div>
+                                            }
+                                        </> :
+                                        <div>...</div>
+                                    }
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                                    GUILD 
+                                    <div>TBD</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                                    USER LEVEL 
+                                    <div>TBD</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                                    PARTY LEVEL 
+                                    <div>TBD</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                                    GUILD LEVEL 
+                                    <div>TBD</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                                    CMPOW 
+                                    <div>{Number(allPower).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                                    PARTY BOOSTER
+                                    <div>TBD</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                                    GUILD BOOSTER
+                                    <div>TBD</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                                    SCM POINT BOOSTER
+                                    <div style={{display: "flex", flexDirection: "row"}}>
+                                        <div style={{marginLeft: "5px"}}>{Number(scmJBCBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                    </div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                    DELEGABLE CMPOW 
+                                    <div>{Number(allPower) !== 0 ? (Number(allPower) + Number(scmJBCBalance)).toLocaleString('en-US', {maximumFractionDigits:0}) : 0}</div>
+                                </div>
+
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                                    PARTY CONCENTRATION 
+                                    <div>{allCmpowMyParty !== 0 ? Number((allPower / allCmpowMyParty * 100).toFixed(2)) : '0.00'}%</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #F7F5F8"}}>
+                                    GUILD CONCENTRATION 
+                                    <div>TBD</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", paddingBottom: "20px", marginBottom: "10px", borderBottom: "1px solid"}}>
+                                    MISSION REWARD 
+                                    <div>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:3})} $CMD</div>
+                                </div>
+                                {address !== null && intrasubModetext !== undefined ?
+                                        <>
+                                            {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
+                                                    {chain.id === 190 ?
+                                                        <>
+                                                            {Number(allPower) !== 0 && Number(gasBalance) >= 10 && !myRefuelStatus && myPartyRefuelAt < startBlock ?
+                                                                <div style={{alignSelf: "center"}} className="button" onClick={refuelGas}>REFUEL GAS</div> :
+                                                                <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">REFUEL GAS</div>
+                                                            }
+                                                            {Number(rewardPending) > 0 ?
+                                                                <div style={{marginLeft: "5px", alignSelf: "center", background: "#67BAA7"}} className="button" onClick={claimReward}>CLAIM REWARD</div> :
+                                                                <div style={{marginLeft: "5px", alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">CLAIM REWARD</div>
+                                                            }
+                                                        </> :
+                                                        <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SWITCH TO BBQ CHAIN</div>
+                                                    }
+                                                </div> :
+                                                <div style={{height: "41px"}}></div>
+                                            }
+                                        </> :
+                                    <div style={{height: "41px"}}></div>
+                                }
+                            </div>
+                            <div className='slotbox noscroll'>
+                                <div style={{position: "relative", width: "150px", height: "400px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {accSlot !== null ?
+                                        <img src={accSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "65px", fontSize: "25px"}}>+{accSlotLevel}</div>}
+                                    {accSlot2 !== null ?
+                                        <img src={accSlot2} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "217.5px", fontSize: "25px"}}>+{accSlot2Level}</div>}
+                                    {accSlot3 !== null ?
+                                        <img src={accSlot3} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "365px", fontSize: "25px"}}>+{accSlot3Level}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "150px", height: "400px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {hatSlot !== null ?
+                                        <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {hatSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "65px", fontSize: "25px"}}>+{hatSlotLevel}</div>}
+                                    {clothSlot !== null ?
+                                        <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {clothSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "217.5px", fontSize: "25px"}}>+{clothSlotLevel}</div>}
+                                    {shoesSlot !== null ?
+                                        <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {shoesSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "365px", fontSize: "25px"}}>+{shoesSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "300px", height: "450px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                    <div style={{position: "relative", width: "300px", height: "140px", padding: "0 20px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
+                                        {soulSlot !== null ?
+                                            <img src={soulSlot} width="100px" alt="Can not load metadata." /> :
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmdSRjFFCUZJiLBxy5JUgVL4vezt4vXnux1JjFbQQgZCpP" width="100px" alt="Can not load metadata." />
+                                        }
+                                        {soulSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "205px", fontSize: "25px"}}>+{soulSlotLevel}</div>}
+                                        {badgeSlot !== null ?
+                                            <img src={badgeSlot} width="100px" alt="Can not load metadata." /> :
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQG17rt5uiChPpvHwivdZPX5Cm6PhoGyCYNzPyfs3ohT5" width="100px" alt="Can not load metadata." />
+                                        }
+                                        {badgeSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "55px", fontSize: "25px"}}>+{badgeSlotLevel}</div>}
+                                    </div>
+                                    {nft.length > 0 ?
+                                        <>
+                                            {characterSlot !== null ?
+                                                <img src={characterSlot} width="300px" alt="Can not load metadata." /> :
+                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
+                                            }
+                                        </> :
+                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                            <ThreeDots fill="#5f6476" />
+                                        </div>
+                                    }
+                                    {characterSlotLevel !== null && <div style={{position: "absolute", bottom: "25px", right: "20px", fontSize: "25px"}}>Lv.{characterSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "150px", height: "400px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {accSlot4 !== null ?
+                                        <img src={accSlot4} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "65px", fontSize: "25px"}}>+{accSlot4Level}</div>}
+                                    {backSlot !== null ?
+                                        <img src={backSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {backSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "217.5px", fontSize: "25px"}}>+{backSlotLevel}</div>}
+                                    {weaponSlot !== null ?
+                                        <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {wpSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "365px", fontSize: "25px"}}>+{wpSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "150px", height: "400px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {accSlot5 !== null ?
+                                        <img src={accSlot5} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "65px", fontSize: "25px"}}>+{accSlot5Level}</div>}
+                                    {accSlot6 !== null ?
+                                        <img src={accSlot6} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {accSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "217.5px", fontSize: "25px"}}>+{accSlot6Level}</div>}
+                                    {weaponSlot2 !== null ?
+                                        <img src={weaponSlot2} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {wpSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "365px", fontSize: "25px"}}>+{wpSlot2Level}</div>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+                        <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "20px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
+                            <div style={{background: "#FFFFFF99", height: "360px", margin: "10px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-start", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px"}}>
+                                    <div style={{fontSize: "22px", lineHeight: "15px"}}>PARTY PANEL</div>
+                                </div>
+                                <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                    <div style={{width: "300px"}}>PARTY</div>
+                                    <div style={{width: "300px"}}>GUILD</div>
+                                    <div style={{width: "150px"}}>NO. OF MEMBER</div>
+                                    <div style={{width: "150px"}}>DELEGATED CMPOW</div>
+                                    <div style={{width: "150px"}}>CONCENTRATION</div>
+                                    <div style={{width: "150px"}}>MISSION DEDICATED</div>
+                                    <div style={{width: "200px"}}>REWARD EMISSION</div>
+                                </div>
+                                <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", borderBottom: "1px solid #F7F5F8", padding: "10px 0"}}>
+                                    <div style={{width: "300px", display: "flex", flexDirection: "row"}}>
+                                        <img src={party1Logo} height="20" alt="Can not load metadata."/>
+                                        <div style={{marginLeft: "5px"}}>{party1Name}</div>
+                                    </div>
+                                    <div style={{width: "300px"}}>TBD</div>
+                                    <div style={{width: "150px"}}>5</div>
+                                    <div style={{width: "150px"}}>{allCmpowParty1}</div>
+                                    <div style={{width: "150px"}}>{allCmpowParty1 !== 0 ? String(Number((allCmpowParty1 / (allCmpowParty1 + allCmpowParty2)) * 100).toFixed(2)) + '%' : 'Not delegate yet'}</div>
+                                    <div style={{width: "150px"}}>{Number(party1DelegateBaseCMD)}</div>
+                                    <div style={{width: "200px"}}>{Number(totalRewardParty1).toLocaleString('en-US', {maximumFractionDigits:3})} $CMD</div>
+                                </div>
+                                <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", borderBottom: "1px solid #F7F5F8", padding: "10px 0"}}>
+                                    <div style={{width: "300px", display: "flex", flexDirection: "row"}}>
+                                        <img src={party2Logo} height="20" alt="Can not load metadata."/>
+                                        <div style={{marginLeft: "5px"}}>{party2Name}</div>
+                                    </div>
+                                    <div style={{width: "300px"}}>TBD</div>
+                                    <div style={{width: "150px"}}>5</div>
+                                    <div style={{width: "150px"}}>{allCmpowParty2}</div>
+                                    <div style={{width: "150px"}}>{allCmpowParty2 !== 0 ? String(Number((allCmpowParty2 / (allCmpowParty1 + allCmpowParty2)) * 100).toFixed(2)) + '%' : 'Not delegate yet'}</div>
+                                    <div style={{width: "150px"}}>{Number(party2DelegateBaseCMD)}</div>
+                                    <div style={{width: "200px"}}>{Number(totalRewardParty2).toLocaleString('en-US', {maximumFractionDigits:3})} $CMD</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+                        <div style={{backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "flex-start", padding: "30px", width: "1540px", height: "fit-content", marginBottom: "20px", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{background: "#FFFFFF99", width: "370px", height: "400px", margin: "10px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                <div style={{width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                    <div style={{fontSize: "22px", lineHeight: "15px"}}>Wood Chopper on Ancient Forest [BBQ Chain]</div>
+                                </div>
+                                <div className='light' style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "flex-start", padding: "20px 0", borderBottom: "1px solid", fontSize: "12px"}}>
+                                    <div>Please contact on CommuDAO Discord for more information</div>
+                                </div>
+                                <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
+                                    <div>CMPOW DEDICATED</div>
+                                    <div>{allCmpowParty1 + allCmpowParty2}</div>
+                                </div>
+                                <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
+                                    <div>PARTY DEDICATED</div>
+                                    <div>{Number(party1DelegateBaseCMD) + Number(party2DelegateBaseCMD)}</div>
+                                </div>
+                                <div style={{width: "95%", display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "20px 0", borderBottom: "1px solid"}}>
+                                    <div>REWARD EMISSION</div>
+                                    <div>{Number(Number(totalRewardParty1) + Number(totalRewardParty2)).toLocaleString('en-US', {maximumFractionDigits:3})} $CMD</div>
+                                </div>
+                                {address !== null && intrasubModetext !== undefined ?
+                                    <>
+                                        {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                            <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
+                                                {chain.id === 190 ?
+                                                    <>
+                                                        {(myMemberIndex === null || !myAbiltoDelegate) && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">DELIGATE</div>}
+                                                        {(myAbiltoDelegate && Number(gasBalance) >= 1) && <div style={{alignSelf: "center"}} className="button" onClick={delegateMission}>DELIGATE</div>}
+                                                        {(Number(myMemberIndex) === 0 && myPartyRefuelAt >= startBlock && !isBaseCmdDelegate) && <div style={{marginLeft: "5px", alignSelf: "center"}} className="button" onClick={confirmMission}>CONFIRM MISSION</div>}
+                                                        {isBaseCmdDelegate && <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">MISSION DELEGATED</div>}
+                                                    </> :
+                                                    <div style={{alignSelf: "center", background: "#e9eaeb", color: "#bdc2c4", cursor: "not-allowed"}} className="button">SWITCH TO BBQ CHAIN</div>
                                                 }
                                             </div> :
                                             <div style={{height: "41px"}}></div>
                                         }
-                                    </div>
+                                    </> :
+                                    <div style={{height: "41px"}}></div>
                                 }
-                            </>
-                        ))}
-                        </> :
-                        <div style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "center", padding: "20px", margin: "10px", height: "450px"}} className="nftCard">
-                            {address !== undefined ?
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {nft.length > 0 ?
+                        <div style={{margin: "40px 0 60px 0", width: "1650px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                            {nft[0] !== null ?
                                 <>
-                                    <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                {nft.map((item, index) => (
+                                    <>
+                                        {(item.Col === 1 && item.Id / 100000000000 <= 8) &&
+                                            <div style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "20px", margin: "10px", height: "450px"}} className="nftCard" key={index}>
+                                                <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
+                                                    <img src={item.Image} height="100%" alt="Can not load metadata." />
+                                                </div>
+                                                <div className="emp bold">{item.Name}</div>
+                                                <div className="bold">{item.RewardPerSec} cmpow per sec</div>
+                                                <div style={{fontSize: "12px", textAlign: "left", wordBreak: "break-word"}} className="light">{item.Description}</div>
+                                                {address !== null && intrasubModetext !== undefined ?
+                                                    <>
+                                                        {address.toUpperCase() === intrasubModetext.toUpperCase() ?
+                                                            <div style={{width: "80%", display: "flex", flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap"}}>
+                                                                {item.isStaked ?
+                                                                    <div style={{background: "gray"}} className="pixel button" onClick={() => unequipNft(item.Slot)}>UNEQUIP L1</div> :
+                                                                    <>
+                                                                        {item.Col === 1 && 
+                                                                            <>
+                                                                                {((item.Id / 100000000000) | 0) === 1 && 
+                                                                                    <>
+                                                                                        <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 1)}>EQUIP L1 MAIN CHAR</div>
+                                                                                        {characterSlot !== null && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Id, 15)}>EQUIP L1 SOUL</div>}
+                                                                                    </>
+                                                                                }
+                                                                            </>
+                                                                        }
+                                                                        <div style={{alignSelf: "center", background: "gray", marginTop: "5px"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
+                                                                    </>
+                                                                }
+                                                            </div> :
+                                                            <div style={{height: "41px"}}></div>
+                                                        }
+                                                    </> :
+                                                    <div style={{height: "41px"}}></div>
+                                                }
+                                            </div>
+                                        }
+                                    </>
+                                ))}
                                 </> :
-                                <>
-                                    <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
-                                    <div className="bold">Please connect wallet to view your NFTs.</div>
-                                </>
+                                <div style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "center", padding: "20px", margin: "10px", height: "450px"}} className="nftCard">
+                                    {address !== null ?
+                                        <>
+                                            <img src="https://l3img.b-cdn.net/ipfs/QmUmf3MEZg99qqLJ6GsewESVum8sm72gfH3wyiVPZGH6HA" width="150" alt="No_NFTs" />
+                                        </> :
+                                        <>
+                                            <i style={{fontSize: "150px", marginBottom: "30px"}} className="fa fa-sign-in"></i>
+                                            <div className="bold">Please connect wallet to view your NFTs.</div>
+                                        </>
+                                    }
+                                </div>
                             }
+                        </div> :
+                        <div style={{marginTop: "40px", width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", height: "450px"}}> 
+                            <div className="nftCard" style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "center"}}>
+                                <ThreeDots fill="#fff" />
+                                <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
+                            </div>
                         </div>
                     }
-                </div> :
-                <div style={{marginTop: "40px", width: "1640px", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "flex-start", height: "450px"}}> 
-                    <div className="nftCard" style={{background: "#E9F2FF", boxShadow: "none", border: 0, justifyContent: "center"}}>
-                        <ThreeDots fill="#fff" />
-                        <div className="bold" style={{marginTop: "80px"}}>Loading NFTs...</div>
-                    </div>
                 </div>
             }
-        </div>
-    </>
+        </>
     )
 }
 

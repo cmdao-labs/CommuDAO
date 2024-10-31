@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 const cmdethlp = '0xA41F70B283b8f097112ca3Bb63cB2718EE662e49'
 const stcmdlp = '0x51f97E67B2fF5eD064Dc2B27b7A745E0d4C47Ee0'
    
-const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, erc20Abi, stcmdABI }) => {
+const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20Abi, stcmdABI }) => {
     const [lpBalance, setLpBalance] = React.useState(null)
     const [stLpBalance, setStLpBalance] = React.useState(null)
     const [lpStake, setLpStake] = React.useState("")
@@ -18,46 +18,52 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
         console.log("Connected to " + address)
 
         const thefetch = async () => {
-            const data = address !== null && address !== undefined ? await readContracts(config, {
+            const data = address !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: cmdethlp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 10
                     },
                     {
                         address: stcmdlp,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
+                        chainId: 10
                     },
                     {
                         address: stcmdlp,
                         abi: stcmdABI,
                         functionName: 'lpStake',
                         args: [address],
+                        chainId: 10
                     },
                     {
                         address: stcmdlp,
                         abi: stcmdABI,
                         functionName: 'stakedRewards',
                         args: [address, 2, 1],
+                        chainId: 10
                     },
                     {
                         address: stcmdlp,
                         abi: stcmdABI,
                         functionName: 'stakedRewards',
                         args: [address, 2, 2],
+                        chainId: 10
                     },
                     {
                         address: stcmdlp,
                         abi: stcmdABI,
                         functionName: 'stakedRewards',
                         args: [address, 2, 3],
+                        chainId: 10
                     },
                 ],
-            }) : [{result: [0]}, {result: [0]}, {result: null}, {result: [0]}, {result: [0]}, {result: [0]}]
+            }) : [{result: [0]}, {result: [0]}, {result: [null, 0]}, {result: [0]}, {result: [0]}, {result: [0]}]
 
             return [
                 data[0].result, data[1].result, data[2].result, data[3].result, data[4].result, data[5].result,
@@ -93,15 +99,12 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
                 functionName: 'allowance',
                 args: [address, stcmdlp],
             })
-            const bigValue = lpStake !== "" ? ethers.BigNumber.from(ethers.utils.parseEther(lpStake)) : ethers.BigNumber.from(0)
-            const Hex = ethers.BigNumber.from(10**8)
-            const bigApprove = bigValue.mul(Hex)
-            if (Number(lpStake) > Number(lpAllow) / (10**18)) {
+            if (Number(ethers.utils.parseEther(String(lpAllow))) < Number(lpStake)) {
                 let { request } = await simulateContract(config, {
                     address: cmdethlp,
                     abi: erc20Abi,
                     functionName: 'approve',
-                    args: [stcmdlp, bigApprove],
+                    args: [stcmdlp, ethers.constants.MaxUint256],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -115,7 +118,10 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -130,7 +136,10 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -162,7 +171,10 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
             let h3 = await writeContract(config, request3)
             await waitForTransactionReceipt(config, { hash: h3 })
             setTxupdate(h3)
-        } catch (e) {console.log(e)}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -235,7 +247,10 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
                                 value={lpStake}
                                 onChange={(event) => setLpStake(event.target.value)}
                             />
-                            <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={addstakeHandle}>Stake</div>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "pointer", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff"}} className="bold" onClick={addstakeHandle}>Stake</div> :
+                                <div style={{letterSpacing: "1px", width: "110px", padding: "10px", cursor: "not-allowed", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)"}} className="bold">Stake</div>
+                            }
                         </div>
                     </div>
                 </div>

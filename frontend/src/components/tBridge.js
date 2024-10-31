@@ -4,7 +4,7 @@ import { getBalance, readContracts, simulateContract, waitForTransactionReceipt,
 import { useAccount } from 'wagmi'
 
 import TBridgeTAODUM from  './tBridge-TAODUM'
-import TBridgeHEROMINER from  './tBridge-HEROMINER'
+import TBridgeHRM from  './tBridge-HRM'
 import TBridgeCMDAONFT from  './tBridge-CMDAONFT'
 import TBridgeCMDAONFT2 from  './tBridge-CMDAONFT-2'
 
@@ -19,26 +19,20 @@ const cmdBbq = '0x05F5B8f0089bDfDf04F64f11D532Ea103b758031'
 const salmBKC = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
 const aguaBKC = '0x024C5bbF60b3d89AB64aC49936e9FE384f781c4b'
 const cosmosBKC = '0x8b062b96Bb689833D7870a0133650FA22302496d'
-const goldBKC = '0x794a7b0249eE38FCa6429DE90924113dc9566748'
-const dmBKC = '0x8AB1fcBe9f65b86a52c34FeE9b29679f70D8f6fA'
 const engyBBQ = '0xBF389F85E4F71a78850Cca36c01430bC5b20e802'
-const gemBBQ = '0x222B20bCBBa261DfaaEEe6395f672F15c4d7e88F'
-const cmmBKC = '0x9B005000A10Ac871947D99001345b01C1cEf2790'
-const cmmOP = '0xd7ee783dfe4ba0ee3979c392f82e0a93d06fc27e'
-const cmmBBQ = '0x45ed41ED4E0F48317f787Dc268779260b1Ca81f1'
+const infpowBBQ = '0x0784a859e6d3b1F703465fB07d2329eEF8dB0780'
 
 const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, tbridgeNFTABI, nativeBridgeABI, uniTokensBridgeABI, uniNftBridgeABI }) => {
-    const { address, chain } = useAccount()
+    let { address, chain } = useAccount()
+    if (address === undefined) {
+        address = null
+    }
     const [mode, setMode] = React.useState(1)
-
     const [reserve, setReserve] = React.useState(0)
     const [supply, setSupply] = React.useState(0)
     const [reserve2, setReserve2] = React.useState(0)
     const [supply2, setSupply2] = React.useState(0)
     const [burnedCmj, setBurnedCmj] = React.useState(0)
-    const [bridgebalGold, setBridgebalGold] = React.useState(0)
-    const [bridgebalDm, setBridgebalDM] = React.useState(0)
-
     const [kusdtBalance, setKusdtBalance] = React.useState(0)
     const [jusdtBalance, setJusdtBalance] = React.useState(0)
     const [usdtBscBalance, setUsdtBscBalance] = React.useState(0)
@@ -50,35 +44,26 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
     const [salmBalance, setSalmBalance] = React.useState(0)
     const [aguaBalance, setAguaBalance] = React.useState(0)
     const [cosmosBalance, setCosmosBalance] = React.useState(0)
-    const [goldBalance, setGoldBalance] = React.useState(0)
-    const [dmBalance, setDmBalance] = React.useState(0)
     const [engyBalance, setEngyBalance] = React.useState(0)
-    const [gemBalance, setGemBalance] = React.useState(0)
-    const [cmmBalance, setCmmBalance] = React.useState(0)
-    const [cmmBkcBalance, setCmmBkcBalance] = React.useState(0)
-    const [cmmBbqBalance, setCmmBbqBalance] = React.useState(0)
-
+    const [infpowBalance, setInfpowBalance] = React.useState(0)
     const [depositValue, setDepositValue] = React.useState(null)
     const [depositValueDis, setDepositValueDis] = React.useState('')
     const [withdrawValue, setWithdrawValue] = React.useState(null)
     const [withdrawValueDis, setWithdrawValueDis] = React.useState('')
-
     const [depositCMJ, setDepositCMJ] = React.useState('')
-
     const [depositTAO, setDepositTAO] = React.useState('')
     const [withdrawTAO, setWithdrawTAO] = React.useState('')
-
     const [depositValue2, setDepositValue2] = React.useState('')
     const [withdrawValue2, setWithdrawValue2] = React.useState('')
-
     const [depositValue22, setDepositValue22] = React.useState('')
     const [withdrawValue22, setWithdrawValue22] = React.useState('')
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
+        console.log("Connected to " + address)
         
         const fetch = async () => {
-            const cmdBbqBal = address !== null && address !== undefined ?
+            const cmdBbqBal = address !== null ?
                 await getBalance(config, { address: address, chainId: 190, }) :
                 {formatted: 0}
             const data1 = await readContracts(config, {
@@ -118,24 +103,9 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         args: ['0x0000000000000000000000000000000000000042'],
                         chainId: 8899,
                     },
-                    {
-                        address: goldBKC,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: ['0x2Ce7d537A30FAd10cB0E460604e45D9D2460D66A'],
-                        chainId: 96,
-                    },
-                    {
-                        address: dmBKC,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: ['0x2Ce7d537A30FAd10cB0E460604e45D9D2460D66A'],
-                        chainId: 96,
-                    },
                 ],
             })
-
-            const data2 = address !== null && address !== undefined ? await readContracts(config, {
+            const data2 = address !== null ? await readContracts(config, {
                 contracts: [
                     {
                         address: kusdt,
@@ -208,20 +178,6 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         chainId: 96,
                     },
                     {
-                        address: goldBKC,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 96,
-                    },
-                    {
-                        address: dmBKC,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 96,
-                    },
-                    {
                         address: engyBBQ,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
@@ -229,44 +185,19 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         chainId: 190,
                     },
                     {
-                        address: gemBBQ,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 190,
-                    },
-                    {
-                        address: cmmOP,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 10,
-                    },
-                    {
-                        address: cmmBKC,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 96,
-                    },
-                    {
-                        address: cmmBBQ,
+                        address: infpowBBQ,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
                         chainId: 190,
                     },
                 ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, ]
-            
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, ]
             const Balance = data1[0]
             const Balance2 = data1[1]
             const Balance_2 = data1[2]
             const Balance2_2 = data1[3]
             const _burnedCmj = data1[4]
-            const BalanceGoldBridge = data1[5]
-            const BalanceDmBridge = data1[6]
-
             const kusdtBal = data2[0]
             const jusdtBal = data2[1]
             const cmjBal = data2[2]
@@ -277,17 +208,12 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             const salmBal = data2[7]
             const aguaBal = data2[8]
             const cosmosBal = data2[9]
-            const goldBal = data2[10]
-            const dmBal = data2[11]
-            const engyBal = data2[12]
-            const gemBal = data2[13]
-            const cmmBal = data2[14]
-            const cmmBkcBal = data2[15]
-            const cmmBbqBal = data2[16]
+            const engyBal = data2[10]
+            const infpowBal = data2[11]
 
             return [
                 Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmdBal, usdtBscBal, Balance_2, Balance2_2, taoBal, jtaoBal, cmdBbqBal, _burnedCmj, 
-                salmBal, aguaBal, cosmosBal, goldBal, dmBal, engyBal, gemBal, BalanceGoldBridge, BalanceDmBridge, cmmBal, cmmBkcBal, cmmBbqBal,
+                salmBal, aguaBal, cosmosBal, engyBal, infpowBal,
             ]
         }
 
@@ -301,51 +227,24 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             )
 
         getAsync().then(result => {
-            const balance = ethers.utils.formatEther(result[0].result)
-            setReserve(balance)
-            const balance2 = ethers.utils.formatEther(result[1].result)
-            setSupply(balance2)
-            
-            const kusdtbalance = ethers.utils.formatEther(result[2].result)
-            setKusdtBalance(Math.floor(kusdtbalance * 10000) / 10000)
-            const jusdtbalance = ethers.utils.formatEther(result[3].result)
-            setJusdtBalance(Math.floor(jusdtbalance * 10000) / 10000)
-
-            const cmjbalance = ethers.utils.formatEther(result[4].result)
-            setCmjBalance(Math.floor(cmjbalance * 10000) / 10000)
-            const cmdbalance = ethers.utils.formatEther(result[5].result)
-            setCmdBalance(Math.floor(cmdbalance * 10000) / 10000)
-
-            const usdtBscbalance = ethers.utils.formatEther(result[6].result)
-            setUsdtBscBalance(Math.floor(usdtBscbalance * 10000) / 10000)
-
-            const balance_2 = ethers.utils.formatEther(result[7].result)
-            setReserve2(balance_2)
-            const balance2_2 = ethers.utils.formatEther(result[8].result)
-            setSupply2(balance2_2)
-
-            const taobalance = ethers.utils.formatEther(result[9].result)
-            setTaoBalance(Math.floor(taobalance * 10000) / 10000)
-            const jtaobbalance = ethers.utils.formatEther(result[10].result)
-            setJtaoBalance(Math.floor(jtaobbalance * 10000) / 10000)
-
-            const cmdbbqbalance = result[11].formatted
-            setCmdBbqBalance(Math.floor(cmdbbqbalance * 10000) / 10000)
+            setReserve(ethers.utils.formatEther(result[0].result))
+            setSupply(ethers.utils.formatEther(result[1].result))
+            setKusdtBalance(Math.floor((ethers.utils.formatEther(result[2].result)) * 10000) / 10000)
+            setJusdtBalance(Math.floor((ethers.utils.formatEther(result[3].result)) * 10000) / 10000)
+            setCmjBalance(Math.floor((ethers.utils.formatEther(result[4].result)) * 10000) / 10000)
+            setCmdBalance(Math.floor((ethers.utils.formatEther(result[5].result)) * 10000) / 10000)
+            setUsdtBscBalance(Math.floor((ethers.utils.formatEther(result[6].result)) * 10000) / 10000)
+            setReserve2(ethers.utils.formatEther(result[7].result))
+            setSupply2(ethers.utils.formatEther(result[8].result))
+            setTaoBalance(Math.floor((ethers.utils.formatEther(result[9].result)) * 10000) / 10000)
+            setJtaoBalance(Math.floor((ethers.utils.formatEther(result[10].result)) * 10000) / 10000)
+            setCmdBbqBalance(Math.floor((result[11].formatted) * 10000) / 10000)
             setBurnedCmj(ethers.utils.formatEther(result[12].result))
-
             setSalmBalance(ethers.utils.formatEther(result[13].result))
             setAguaBalance(String(result[14].result))
             setCosmosBalance(ethers.utils.formatEther(result[15].result))
-            setGoldBalance(ethers.utils.formatEther(result[16].result))
-            setDmBalance(ethers.utils.formatEther(result[17].result))
-            setEngyBalance(ethers.utils.formatEther(result[18].result))
-            setGemBalance(ethers.utils.formatEther(result[19].result))
-
-            setBridgebalGold(ethers.utils.formatEther(result[20].result))
-            setBridgebalDM(ethers.utils.formatEther(result[21].result))
-            setCmmBalance(ethers.utils.formatEther(result[22].result))
-            setCmmBkcBalance(ethers.utils.formatEther(result[23].result))
-            setCmmBbqBalance(ethers.utils.formatEther(result[24].result))
+            setEngyBalance(ethers.utils.formatEther(result[16].result))
+            setInfpowBalance(ethers.utils.formatEther(result[17].result))
         })
     }, [config, address, txupdate, erc20Abi])
 
@@ -368,7 +267,10 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -391,7 +293,10 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
             setTxupdate(h)
-        } catch {}
+        } catch (e) {
+            setisError(true)
+            setErrMsg(String(e))
+        }
         setisLoading(false)
     }
 
@@ -540,7 +445,7 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexWrap: "wrap", color: "#fff", overflow: "scroll"}} className="noscroll pixel">
                 <div style={{marginTop: "120px", width: "70%", display: "flex", flexDirection: "column", textAlign: "left"}}>
                     <div style={{color: "#bdc2c4", fontSize: "18px"}}>{'// CHOOSE TOKEN/NFTs TO BRIDGE'}</div>
-                    <div style={{width: "100%", padding: "20px 0", display: "flex", flexFlow: "row wrap", fontSize: "16px", borderBottom: "2px solid #fff"}}>
+                    <div style={{width: "100%", padding: "20px 0", display: "flex", flexDirection: "row", fontSize: "16px", borderBottom: "2px solid #fff", overflow: "scroll"}} className='noscroll'>
                         <div className='hashtag' style={{margin: "10px 10px 10px 0", color: "#fff"}} onClick={() => setMode(1)}>$USDT</div>
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(2)}>$CMD</div>
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(6)}>CMDAO NFT</div>
@@ -616,9 +521,9 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         </>
                     }
                 </div>
-                {mode === 1 && chain !== undefined &&
+                {mode === 1 &&
                     <>
-                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                                 <div style={{width: "300px", marginBottom: "15px", textAlign: "initial", color: "#bdc2c4"}}>
                                     JBC Bridge Contract
@@ -638,8 +543,8 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                 <div style={{fontSize: "30px"}}>0.10 USDT/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
-                            <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                        <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
+                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
                                     type="number"
@@ -649,13 +554,18 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                     onChange={handleDeposit}
                                     value={depositValueDis}
                                 ></input>
-                                {chain.id === 96 && address !== null && address !== undefined ? 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={depositHandle}>BRIDGE TO JBC</div> : 
+                                {(chain !== undefined && address !== null) ? 
+                                    <>
+                                        {chain.id === 96 ?
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={depositHandle}>BRIDGE TO JBC</div> : 
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
+                                        }
+                                    </> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left", color: "#000", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(kusdtBalance)}}; handleDeposit(bal);}}>Balance: {Number(kusdtBalance).toFixed(4)} KUSDT</div>
                             </div>
-                            <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
                                     type="number"
@@ -665,8 +575,13 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                     onChange={handleWithdraw}
                                     value={withdrawValueDis}
                                 ></input>
-                                {chain.id === 8899 && address !== null && address !== undefined ?
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={withdrawHandle}>BRIDGE TO BKC</div> :
+                                {(chain !== undefined && address !== null) ? 
+                                    <>
+                                        {chain.id === 8899 ?
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={withdrawHandle}>BRIDGE TO BKC</div> :
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
+                                        }
+                                    </> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", textAlign: "left", color: "#000", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(jusdtBalance)}}; handleWithdraw(bal);}}>Balance: {Number(jusdtBalance).toFixed(4)} JUSDT</div>
@@ -674,9 +589,9 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         </div>
                     </>
                 }
-                {mode === 12 && chain !== undefined &&
+                {mode === 12 &&
                     <>
-                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                                 <div style={{width: "300px", marginBottom: "15px", textAlign: "initial", color: "#bdc2c4"}}>
                                     JBC Bridge Contract
@@ -696,8 +611,8 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                 <div style={{fontSize: "30px"}}>0.50 USDT/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
-                            <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                        <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
+                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
                                     type="number"
@@ -707,13 +622,18 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                     value={depositValue2}
                                     onChange={(event) => setDepositValue2(event.target.value)}
                                 ></input>
-                                {chain.id === 56 && address !== null && address !== undefined ? 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={depositHandle2}>BRIDGE TO JBC</div> : 
+                                {(chain !== undefined && address !== null) ? 
+                                    <>
+                                        {chain.id === 56 ? 
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={depositHandle2}>BRIDGE TO JBC</div> : 
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
+                                        }
+                                    </> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositValue2(usdtBscBalance)}>Balance: {Number(usdtBscBalance).toFixed(4)} USDT [BSC]</div>
                             </div>
-                            <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
                                     type="number"
@@ -723,8 +643,13 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                     value={withdrawValue2}
                                     onChange={(event) => setWithdrawValue2(event.target.value)}
                                 ></input>
-                                {chain.id === 8899 && address !== null && address !== undefined ?
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={withdrawHandle2}>BRIDGE TO BSC</div> :
+                                {(chain !== undefined && address !== null) ? 
+                                    <>
+                                        {chain.id === 8899 ?
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={withdrawHandle2}>BRIDGE TO BSC</div> :
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO BSC</div>
+                                        }
+                                    </> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO BSC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setWithdrawValue2(jusdtBalance)}>Balance: {Number(jusdtBalance).toFixed(4)} JUSDT</div>
@@ -732,14 +657,14 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         </div>
                     </>
                 }
-                {mode === 2 && chain !== undefined &&
+                {mode === 2 &&
                     <>
-                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                                 <div style={{width: "300px", marginBottom: "15px", textAlign: "initial", color: "#bdc2c4"}}>
                                     Burned CMJ
                                 </div>
-                                <div style={{fontSize: "30px"}}>{Number(burnedCmj).toLocaleString('en-US', {maximumFractionDigits:2})} CMJ ({Number((burnedCmj*100)/1000000).toFixed(2)}%)</div>
+                                <div style={{fontSize: "30px", textAlign: "left"}}>{Number(burnedCmj).toLocaleString('en-US', {maximumFractionDigits:2})} CMJ ({Number((burnedCmj*100)/1000000).toFixed(2)}%)</div>
                             </div>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                                 <div style={{width: "300px", marginBottom: "15px", textAlign: "initial", color: "#bdc2c4"}}>
@@ -752,8 +677,8 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                 <div style={{fontSize: "30px"}}>80 CMD/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "420px", marginBottom: "20px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
-                            <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                        <div style={{height: "420px", marginBottom: "20px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
+                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
                                     type="number"
@@ -763,8 +688,13 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                     value={depositCMJ}
                                     onChange={(event) => setDepositCMJ(event.target.value)}
                                 ></input>
-                                {chain.id === 8899 && address !== null && address !== undefined ? 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={depositCmjHandle}>BRIDGE TO OP MAINNET</div> : 
+                                {(chain !== undefined && address !== null) ? 
+                                    <>
+                                        {chain.id === 8899 ? 
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={depositCmjHandle}>BRIDGE TO OP MAINNET</div> : 
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
+                                        }
+                                    </> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositCMJ(cmjBalance)}>Balance: {Number(cmjBalance).toFixed(4)} CMJ</div>
@@ -772,8 +702,7 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                 <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>OP Mainnet Balance: {cmdBalance} CMD</div>
                                 <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
                             </div>
-
-                            <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
                                     type="number"
@@ -782,8 +711,13 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                     placeholder="0.0 JDAO"
                                     disabled
                                 ></input>
-                                {false && chain.id === 8899 && address !== null && address !== undefined ? 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={depositCmjHandle}>BRIDGE TO OP MAINNET</div> : 
+                                {(chain !== undefined && address !== null) ? 
+                                    <>
+                                        {(false && chain.id === 8899) ?
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={depositCmjHandle}>BRIDGE TO OP MAINNET</div> : 
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
+                                        }
+                                    </> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
                                 }
                                 <div style={{width: "92%", margin: "17.5px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Not open yet</div>
@@ -794,16 +728,16 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         </div>
                     </>
                 }
-                {mode === 22 && chain !== undefined &&
+                {mode === 22 &&
                     <>
-                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                                 <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
                                 <div style={{fontSize: "30px"}}>80 CMD/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
-                            <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                        <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
+                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
                                     type="number"
@@ -813,13 +747,18 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                     value={depositValue22}
                                     onChange={(event) => setDepositValue22(event.target.value)}
                                 ></input>
-                                {chain.id === 10 && address !== null && address !== undefined ? 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={depositCmdHandle}>BRIDGE TO BBQ CHAIN</div> : 
+                                {(chain !== undefined && address !== null) ? 
+                                    <>
+                                        {chain.id === 10 ? 
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={depositCmdHandle}>BRIDGE TO BBQ CHAIN</div> : 
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO BBQ CHAIN</div>
+                                        }
+                                    </> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO BBQ CHAIN</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositValue22(cmdBalance)}>Balance: {Number(cmdBalance).toFixed(4)} CMD [OP MAINNET]</div>
                             </div>
-                            <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
                                     type="number"
@@ -829,8 +768,13 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                     value={withdrawValue22}
                                     onChange={(event) => setWithdrawValue22(event.target.value)}
                                 ></input>
-                                {chain.id === 190 && address !== null && address !== undefined ? 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={withdrawCmdHandle}>BRIDGE TO OP MAINNET</div> : 
+                                {(chain !== undefined && address !== null) ? 
+                                    <>
+                                        {chain.id === 190 ? 
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={withdrawCmdHandle}>BRIDGE TO OP MAINNET</div> : 
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
+                                        }
+                                    </> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setWithdrawValue22(cmdBbqBalance)}>Balance: {Number(cmdBbqBalance).toFixed(4)} CMD [BBQ CHAIN]</div>
@@ -838,16 +782,16 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         </div>
                     </>
                 }
-                {mode === 3 && chain !== undefined &&
+                {mode === 3 &&
                     <>
-                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
+                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
                             <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                                 <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
                                 <div style={{fontSize: "30px"}}>888 TAO/TX</div>
                             </div>
                         </div>
-                        <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", fontSize: "16px"}}>
-                            <div style={{width: "40%", padding: "40px 10px",  background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                        <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
+                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px",  background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
                                     type="number"
@@ -857,13 +801,18 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                     value={depositTAO}
                                     onChange={(event) => setDepositTAO(event.target.value)}
                                 ></input>
-                                {chain.id === 96 && address !== null && address !== undefined ? 
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={depositTaoHandle}>BRIDGE TO JBC</div> : 
+                                {(chain !== undefined && address !== null) ? 
+                                    <>
+                                        {chain.id === 96 ? 
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={depositTaoHandle}>BRIDGE TO JBC</div> : 
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start",background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
+                                        }
+                                    </> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start",background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositTAO(taoBalance)}>Balance: {Number(taoBalance).toFixed(4)} TAO</div>
                             </div>
-                            <div style={{width: "40%", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
+                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
                                 <input
                                     style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
                                     type="number"
@@ -873,8 +822,13 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                     value={withdrawTAO}
                                     onChange={(event) => setWithdrawTAO(event.target.value)}
                                 ></input>
-                                {chain.id === 8899 && address !== null && address !== undefined ?
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={withdrawTaoHandle}>BRIDGE TO BKC</div> :
+                                {(chain !== undefined && address !== null) ? 
+                                    <>
+                                        {chain.id === 8899 ?
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={withdrawTaoHandle}>BRIDGE TO BKC</div> :
+                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
+                                        }
+                                    </> :
                                     <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
                                 }
                                 <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setWithdrawTAO(jtaoBalance)}>Balance: {Number(jtaoBalance).toFixed(4)} JTAO</div>
@@ -882,23 +836,10 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         </div>
                     </>
                 }
-                {mode === 4 && chain !== undefined &&
-                    <TBridgeTAODUM config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />
-                }
-                {mode === 5 && chain !== undefined &&
-                    <TBridgeHEROMINER config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} salmBalance={salmBalance} aguaBalance={aguaBalance} cosmosBalance={cosmosBalance} goldBalance={goldBalance} dmBalance={dmBalance} engyBalance={engyBalance} gemBalance={gemBalance} erc20Abi={erc20Abi} uniTokensBridgeABI={uniTokensBridgeABI} bridgebalGold={bridgebalGold} bridgebalDm={bridgebalDm} cmmBalance={cmmBalance} cmmBkcBalance={cmmBkcBalance} cmmBbqBalance={cmmBbqBalance} />
-                }
-                {mode === 6 && chain !== undefined &&
-                    <TBridgeCMDAONFT config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />
-                }
-                {mode === 60 && chain !== undefined &&
-                    <TBridgeCMDAONFT2 config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} uniNftBridgeABI={uniNftBridgeABI} />
-                }
-                {chain === undefined && 
-                    <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", fontSize: "24px"}}>
-                        Please connect wallet!
-                    </div>
-                }
+                {mode === 4 && <TBridgeTAODUM config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />}
+                {mode === 5 && <TBridgeHRM config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} salmBalance={salmBalance} aguaBalance={aguaBalance} cosmosBalance={cosmosBalance} engyBalance={engyBalance} infpowBalance={infpowBalance} erc20Abi={erc20Abi} uniTokensBridgeABI={uniTokensBridgeABI} />}
+                {mode === 6 && <TBridgeCMDAONFT config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />}
+                {mode === 60 && <TBridgeCMDAONFT2 config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} uniNftBridgeABI={uniNftBridgeABI} />}
                 <div style={{width: "1200px", maxWidth: "90%", textAlign: "left", fontSize: "18px", letterSpacing: "1px", marginBottom: "200px"}}>🛟 <a style={{textDecoration: "underline", color: "#fff"}} href="https://discord.com/invite/k92ReT5EYy" target="_blank" rel="noreferrer">Get Help in CommuDAO Discord</a></div>
             </div>
         </div>

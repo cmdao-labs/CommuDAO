@@ -6,7 +6,7 @@ import { ethers } from 'ethers'
 const factory = "0xF1046053aa5682b4F9a81b5481394DA16BE5FF5a"
 const swapCaller = '0x3C72Fb1658E7A64fd4C88394De4474186A13460A'
 
-const OpSwap = ({ config, address, setisLoading, setTxupdate, options, inputStyle, cmdethExchange, veloPoolABI, cmdToken, wethToken, erc20Abi, cmdBalance, ethBalance, ethReserv, cmdReserv, priceTHB, velodromeCallerABI }) => {
+const OpSwap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMsg, options, inputStyle, cmdethExchange, veloPoolABI, cmdToken, wethToken, erc20Abi, cmdBalance, ethBalance, ethReserv, cmdReserv, priceTHB, velodromeCallerABI }) => {
     const [inputSwap, setInputSwap] = React.useState("")
     const [ethBought, setEthBought] = React.useState("")
     const [cmdBought, setCmdBought] = React.useState("")
@@ -79,15 +79,12 @@ const OpSwap = ({ config, address, setisLoading, setTxupdate, options, inputStyl
                     functionName: 'allowance',
                     args: [address, swapCaller],
                 })
-                const bigValue = ethers.BigNumber.from(ethers.utils.parseEther(inputSwap))
-                const Hex = ethers.BigNumber.from(10**8)
-                const bigApprove = bigValue.mul(Hex)
-                if (inputSwap > Number(token0Allow) / (10**18)) {
+                if (Number(ethers.utils.parseEther(String(token0Allow))) < Number(inputSwap)) {
                     let { request } = await simulateContract(config, {
                         address: cmdToken,
                         abi: erc20Abi,
                         functionName: 'approve',
-                        args: [swapCaller, bigApprove],
+                        args: [swapCaller, ethers.constants.MaxUint256],
                     })
                     let h = await writeContract(config, request)
                     await waitForTransactionReceipt(config, { hash: h })
@@ -103,7 +100,8 @@ const OpSwap = ({ config, address, setisLoading, setTxupdate, options, inputStyl
                 setTxupdate(h)
             }
         } catch (e) {
-            console.log(e)
+            setisError(true)
+            setErrMsg(String(e))
         }
         setisLoading(false)
     }
@@ -224,11 +222,14 @@ const OpSwap = ({ config, address, setisLoading, setTxupdate, options, inputStyl
                         </>
                     }
                     {(swapMode === 0 || swapMode === 1) &&
-                        <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "18px", cursor: "pointer"}} className="bold" onClick={swapTokenHandle}>Swap</div>
+                        <>
+                            {address !== null ?
+                                <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", boxShadow: "inset -2px -2px 0px 0.25px #00000040", backgroundColor: "rgb(97, 218, 251)", color: "#fff", fontSize: "18px", cursor: "pointer"}} className="bold" onClick={swapTokenHandle}>Swap</div> :
+                                <div style={{letterSpacing: "1px", width: "250px", padding: "15px 30px", height: "fit-content", boxShadow: "inset -2px -2px 0px 0.25px #00000040", background: "rgb(206, 208, 207)", textShadow: "rgb(255, 255, 255) 1px 1px", color: "rgb(136, 140, 143)", fontSize: "18px", cursor: "not-allowed"}} className="bold">Swap</div>
+                            }
+                        </>
                     }
                 </div>
-                
-                <div style={{margin: "30px"}} id="dexscreener-embed"><iframe src="https://dexscreener.com/optimism/0xA41F70B283b8f097112ca3Bb63cB2718EE662e49?embed=1&trades=0&info=0"></iframe></div>
             </div>
         </>
     )
