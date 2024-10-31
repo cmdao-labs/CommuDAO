@@ -8,17 +8,15 @@ const salmBKC = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
 const aguaBKC = '0x024C5bbF60b3d89AB64aC49936e9FE384f781c4b'
 const cosmosBKC = '0x8b062b96Bb689833D7870a0133650FA22302496d'
 const engyBBQ = '0xBF389F85E4F71a78850Cca36c01430bC5b20e802'
-const gemBBQ = '0x222B20bCBBa261DfaaEEe6395f672F15c4d7e88F'
-//const bbqTokensBridge = '0xEe44A885Bd7CC635f6b5Ac13EdA0a0ba25552360'
+const infpowBBQ = '0x0784a859e6d3b1F703465fB07d2329eEF8dB0780'
+const bbqTokensBridge = '0xEe44A885Bd7CC635f6b5Ac13EdA0a0ba25552360'
 const bkcTokensBridge = '0x2Ce7d537A30FAd10cB0E460604e45D9D2460D66A'
-//const opTokensBridge = '0xAFb2a3A553574191cC6214D0AAd7864C9B5EFEf7'
 
-const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, engyBalance, infpowBalance, erc20Abi, uniTokensBridgeABI }) => {
+const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, tbridgeNFTABI, salmBalance, aguaBalance, cosmosBalance, engyBalance, infpowBalance, infpowJBCBalance, erc20Abi, uniTokensBridgeABI }) => {
     const { address, chain } = useAccount()
     const [substanceSelected, setSubstanceSelected] = React.useState("SALM")
     const [depositGas, setDepositGas] = React.useState('')
-    //const [productSelected, setProductSelected] = React.useState("DM")
-    //const [depositProduct, setDepositProduct] = React.useState('')
+    const [depositProduct, setDepositProduct] = React.useState('')
 
     const depositTokensFromBKCHandle = async (_index) => {
         setisLoading(true)
@@ -68,13 +66,13 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
         }
         setisLoading(false)
     }
-    /*const depositTokensFromBBQHandle = async (_index) => {
+    const depositTokensFromBBQHandle = async (_index) => {
         setisLoading(true)
         let tokenAddr = null
         let depositAmount = null
-        if (_index === 2) { // to token 4, GOLD BKC
-            tokenAddr = null
-            depositAmount = ethers.utils.parseEther(String(null))
+        if (_index === 2) {
+            tokenAddr = infpowBBQ
+            depositAmount = ethers.utils.parseEther(String(depositProduct))
         }
         try {
             const tokenAllow = await readContract(config, {
@@ -109,7 +107,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
             setErrMsg(String(e))
         }
         setisLoading(false)
-    }*/
+    }
 
     return (
         <>
@@ -257,7 +255,33 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                 </div>
 
                 <div style={{minWidth: "500px", maxWidth: "500px", height: "460px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
-                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray", display: "flex", alignItems: "center"}}>
+                    <input
+                        style={{width: "175px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
+                        type="number"
+                        step="1"
+                        min="1"
+                        placeholder={"0.0 $INF.POW"}
+                        value={depositProduct}
+                        onChange={(event) => setDepositProduct(event.target.value)}
+                    ></input>
+                    {(chain !== undefined && address !== null) ? 
+                        <>
+                            {chain.id === 8899 ? 
+                                <div 
+                                    style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} 
+                                    className="button" 
+                                    onClick={() => { depositTokensFromBBQHandle(2) }}
+                                >
+                                    BRIDGE TO JIBCHAIN
+                                </div> : 
+                                <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO JIBCHAIN</div>
+                            }
+                        </> :
+                        <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO JIBCHAIN</div>
+                    }
+                    <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}}>Balance: {Number(depositProduct).toFixed(4)} INF.POW (BBQ CHAIN)</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {Math.floor(depositProduct)} INF.POW (JIBCHAIN)</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray",  display: "flex", alignItems: "center"}}>
                         <div>BBQ CHAIN Balance: {Number(infpowBalance).toLocaleString('en-US', {maximumFractionDigits:2})} INF.POW</div>
                         <img 
                             src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
@@ -270,7 +294,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                     params: {
                                         type: 'ERC20',
                                         options: {
-                                            address: gemBBQ,
+                                            address: infpowBBQ,
                                             symbol: 'INF-POW-BBQ',
                                             decimals: 18,
                                             image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
@@ -280,7 +304,30 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                             }}
                         />
                     </div>
-                    <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "gray", fontSize: "50px"}}>$INF.POW bridging is coming soon.</div>
+                    <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray", display: "flex", alignItems: "center"}}>
+                        <div>JIBCCHAIN Balance: {Number(infpowJBCBalance).toLocaleString('en-US', {maximumFractionDigits:2})} INF.POW</div>
+                        <img 
+                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
+                            width="20"
+                            alt="$INF.POW.BBQ"
+                            style={{cursor: "crosshair", marginLeft: "5px"}}
+                            onClick={async () => {
+                                await ethereum.request({
+                                    method: 'wallet_watchAsset',
+                                    params: {
+                                        type: 'ERC20',
+                                        options: {
+                                            address: infpowBBQ,
+                                            symbol: 'INF-POW-BBQ',
+                                            decimals: 18,
+                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
+                                        },
+                                    },
+                                })
+                            }}
+                        />
+                    </div>
+                    <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
                 </div>
             </div>
         </>
