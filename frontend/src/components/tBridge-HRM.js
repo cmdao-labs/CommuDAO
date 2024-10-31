@@ -97,7 +97,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                 abi: uniTokensBridgeABI,
                 functionName: 'receiveTokens',
                 args: [_index, depositAmount],
-                value: ethers.utils.parseEther('800'),
+                value: ethers.utils.parseEther('0.0003'),
                 chainId: 10,
             })
             let h = await writeContract(config, request)
