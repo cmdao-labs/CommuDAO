@@ -116,7 +116,6 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                 <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
                     <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
                     <div style={{fontSize: "22px"}}>1 KUB/TX (BITKUB CHAIN)</div>
-                    <div style={{fontSize: "22px"}}>800 CMD/TX (BBQ CHAIN)</div>
                     <div style={{fontSize: "22px"}}>0.0003 ETH/TX (OP MAINNET)</div>
                 </div>
             </div>
