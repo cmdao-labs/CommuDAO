@@ -211,7 +211,7 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
                 functionName: 'allowance',
                 args: [address, jcExchange],
             })
-            if (Number(ethers.utils.parseEther(cmjAllow)) < Number(cmjAdd)) {
+            if (Number(ethers.utils.parseEther(String(cmjAllow))) < Number(cmjAdd)) {
                 let { request } = await simulateContract(config, {
                     address: cmjToken,
                     abi: erc20Abi,
@@ -246,7 +246,7 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
                 functionName: 'allowance',
                 args: [address, juExchange],
             })
-            if (Number(ethers.utils.parseEther(jusdtAllow)) < Number(jusdtJuAdd)) {
+            if (Number(ethers.utils.parseEther(String(jusdtAllow))) < Number(jusdtJuAdd)) {
                 let { request } = await simulateContract(config, {
                     address: jusdtToken,
                     abi: erc20Abi,
