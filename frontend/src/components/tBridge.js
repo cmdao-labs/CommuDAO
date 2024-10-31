@@ -21,6 +21,7 @@ const aguaBKC = '0x024C5bbF60b3d89AB64aC49936e9FE384f781c4b'
 const cosmosBKC = '0x8b062b96Bb689833D7870a0133650FA22302496d'
 const engyBBQ = '0xBF389F85E4F71a78850Cca36c01430bC5b20e802'
 const infpowBBQ = '0x0784a859e6d3b1F703465fB07d2329eEF8dB0780'
+const infpowJBC = '0xCCbb477D6c28892d6311ebb729b4c242C92f70FD'
 
 const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, tbridgeNFTABI, nativeBridgeABI, uniTokensBridgeABI, uniNftBridgeABI }) => {
     let { address, chain } = useAccount()
@@ -46,6 +47,7 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
     const [cosmosBalance, setCosmosBalance] = React.useState(0)
     const [engyBalance, setEngyBalance] = React.useState(0)
     const [infpowBalance, setInfpowBalance] = React.useState(0)
+    const [infpowJBCBalance, setInfpowJBCBalance] = React.useState(0)
     const [depositValue, setDepositValue] = React.useState(null)
     const [depositValueDis, setDepositValueDis] = React.useState('')
     const [withdrawValue, setWithdrawValue] = React.useState(null)
@@ -191,8 +193,15 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         args: [address],
                         chainId: 190,
                     },
+                    {
+                        address: infpowJBC,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                        chainId: 8899,
+                    },
                 ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, ]
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, ]
             const Balance = data1[0]
             const Balance2 = data1[1]
             const Balance_2 = data1[2]
@@ -209,11 +218,12 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             const aguaBal = data2[8]
             const cosmosBal = data2[9]
             const engyBal = data2[10]
-            const infpowBal = data2[11]
+            const infpowBBQBal = data2[11]
+            const infpowJBCBal = data2[12]
 
             return [
                 Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmdBal, usdtBscBal, Balance_2, Balance2_2, taoBal, jtaoBal, cmdBbqBal, _burnedCmj, 
-                salmBal, aguaBal, cosmosBal, engyBal, infpowBal,
+                salmBal, aguaBal, cosmosBal, engyBal, infpowBBQBal, infpowJBCBal,
             ]
         }
 
@@ -245,6 +255,7 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             setCosmosBalance(ethers.utils.formatEther(result[15].result))
             setEngyBalance(ethers.utils.formatEther(result[16].result))
             setInfpowBalance(ethers.utils.formatEther(result[17].result))
+            setInfpowJBCBalance(ethers.utils.formatEther(result[18].result))
         })
     }, [config, address, txupdate, erc20Abi])
 
@@ -837,7 +848,7 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                     </>
                 }
                 {mode === 4 && <TBridgeTAODUM config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />}
-                {mode === 5 && <TBridgeHRM config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} salmBalance={salmBalance} aguaBalance={aguaBalance} cosmosBalance={cosmosBalance} engyBalance={engyBalance} infpowBalance={infpowBalance} erc20Abi={erc20Abi} uniTokensBridgeABI={uniTokensBridgeABI} />}
+                {mode === 5 && <TBridgeHRM config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} salmBalance={salmBalance} aguaBalance={aguaBalance} cosmosBalance={cosmosBalance} engyBalance={engyBalance} infpowBalance={infpowBalance} infpowJBCBalance={infpowJBCBalance} erc20Abi={erc20Abi} uniTokensBridgeABI={uniTokensBridgeABI} />}
                 {mode === 6 && <TBridgeCMDAONFT config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />}
                 {mode === 60 && <TBridgeCMDAONFT2 config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} uniNftBridgeABI={uniNftBridgeABI} />}
                 <div style={{width: "1200px", maxWidth: "90%", textAlign: "left", fontSize: "18px", letterSpacing: "1px", marginBottom: "200px"}}>🛟 <a style={{textDecoration: "underline", color: "#fff"}} href="https://discord.com/invite/k92ReT5EYy" target="_blank" rel="noreferrer">Get Help in CommuDAO Discord</a></div>
