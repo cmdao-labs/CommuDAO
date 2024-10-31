@@ -1038,7 +1038,7 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                 <div style={{height: "41px"}}></div>
                                             }
                                         </div>
-                                        <div className='slotbox noscroll'>
+                                        <div className='slotbox'>
                                             {nft.length > 0 ?
                                                 <>
                                                     {slot1Lv >= 1 &&
