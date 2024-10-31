@@ -20,7 +20,7 @@ const salmBKC = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
 const aguaBKC = '0x024C5bbF60b3d89AB64aC49936e9FE384f781c4b'
 const cosmosBKC = '0x8b062b96Bb689833D7870a0133650FA22302496d'
 const engyBBQ = '0xBF389F85E4F71a78850Cca36c01430bC5b20e802'
-const infpowBBQ = '0x0784a859e6d3b1F703465fB07d2329eEF8dB0780'
+const infpowOP = '0x1391a538985f2F897375219573c7F5D61EA33Cdf'
 const infpowJBC = '0xCCbb477D6c28892d6311ebb729b4c242C92f70FD'
 
 const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, tbridgeNFTABI, nativeBridgeABI, uniTokensBridgeABI, uniNftBridgeABI }) => {
@@ -187,11 +187,11 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         chainId: 190,
                     },
                     {
-                        address: infpowBBQ,
+                        address: infpowOP,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [address],
-                        chainId: 190,
+                        chainId: 10,
                     },
                     {
                         address: infpowJBC,
@@ -218,12 +218,12 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             const aguaBal = data2[8]
             const cosmosBal = data2[9]
             const engyBal = data2[10]
-            const infpowBBQBal = data2[11]
+            const infpowOPBal = data2[11]
             const infpowJBCBal = data2[12]
 
             return [
                 Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmdBal, usdtBscBal, Balance_2, Balance2_2, taoBal, jtaoBal, cmdBbqBal, _burnedCmj, 
-                salmBal, aguaBal, cosmosBal, engyBal, infpowBBQBal, infpowJBCBal,
+                salmBal, aguaBal, cosmosBal, engyBal, infpowOPBal, infpowJBCBal,
             ]
         }
 
