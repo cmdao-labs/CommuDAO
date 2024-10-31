@@ -219,7 +219,7 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
                     functionName: 'allowance',
                     args: [address, jcSwap],
                 })
-                if (Number(ethers.utils.parseEther(cmjAllow)) < Number(inputSwap)) {
+                if (Number(ethers.utils.parseEther(String(cmjAllow))) < Number(inputSwap)) {
                     let { request } = await simulateContract(config, {
                         address: cmjToken,
                         abi: erc20Abi,
@@ -266,7 +266,7 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
                     functionName: 'allowance',
                     args: [address, juSwap],
                 })
-                if (Number(ethers.utils.parseEther(jusdtAllow)) < Number(inputSwap)) {
+                if (Number(ethers.utils.parseEther(String(jusdtAllow))) < Number(inputSwap)) {
                     let { request } = await simulateContract(config, {
                         address: jusdtToken,
                         abi: erc20Abi,
