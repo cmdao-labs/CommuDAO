@@ -267,7 +267,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                     ></input>
                     {(chain !== undefined && address !== null) ? 
                         <>
-                            {chain.id === 8899 ? 
+                            {chain.id === 10 ? 
                                 <div 
                                     style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} 
                                     className="button" 
