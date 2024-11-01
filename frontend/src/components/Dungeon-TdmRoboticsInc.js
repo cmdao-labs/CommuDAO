@@ -354,11 +354,11 @@ const TdmRoboticsInc = ({ config, setisLoading, navigate, callMode, txupdate, se
                     </div>
                     <div style={{textAlign: "left", margin: "20px 0 40px 0", minHeight: "600px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
                         <div style={{padding: "50px", backdropFilter: "blur(20px)", border: "none", width: "940px", maxWidth: "75%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", fontSize: "14px"}} className="nftCard">
-                            <div style={{width: "98%", fontSize: "30px"}}>October 2024 Prize Pool 🎁</div>
+                            <div style={{width: "98%", fontSize: "30px"}}>November 2024 Prize Pool 🎁</div>
                             <div style={{width: "98%", marginTop: "10px", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                                 <div style={{width: "220px", marginRight: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                     <div>Top TAO Superpower</div>
-                                    <div>94,236.25 JTAO</div>
+                                    <div>X.XX JTAO</div>
                                 </div>
                             </div>
                             <div style={{width: "98%", marginTop: "10px"}}>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 30 for each leaderboard.</div>

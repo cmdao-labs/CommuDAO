@@ -256,7 +256,7 @@ createAppKit({
     }
 })
 
-const v = '0.4.0'
+const v = '0.5.0'
 
 const Main = () => {    
     const navigate = useNavigate()
