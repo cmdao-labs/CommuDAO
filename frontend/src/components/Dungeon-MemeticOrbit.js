@@ -18,7 +18,7 @@ const badgeClaimer = '0x99f4FE6E420B46B7f5DeeEabFDc7604756e093d5'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const ss = 2
-const isEnd = false
+const isEnd = true
 
 const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI }) => {
     let { address, chain } = useAccount()
@@ -101,6 +101,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
     const [lastedSTOPT, setLastedSTOPT] = React.useState(null)
     const [skinSlot1, setSkinSlot1] = React.useState(null)
     const [isClaimBadge, setIsClaimBadge] = React.useState(false)
+    const [isClaimBadge2, setIsClaimBadge2] = React.useState(false)
     const [doijibBalance, setDoijibBalance] = React.useState(0)
     const [goldBalance, setGoldBalance] = React.useState(0)
     const [landBonus, setLandBonus] = React.useState(0)
@@ -655,12 +656,19 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                         args: [Number(nftEQMemeSS2[6])],
                         chainId: 8899
                     },
+                    {
+                        address: badgeClaimer,
+                        abi: badgeClaimerABI,
+                        functionName: 'isClaimed',
+                        args: [addr, 2],
+                        chainId: 8899
+                    },
                 ],
             }) : [
                 {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
                 {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
                 {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
-                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
             ]
             const rawPending = addr !== null ? await readContract(config, {
                 address: dunMo,
@@ -1302,6 +1310,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             const skinslot1 = data[25].result
             const isbadgeclaimed = data[26].result
             const rewardpending = isStaked ? rawPending : 0
+            const isbadgeclaimed2 = data[34].result
             
             let walletRemoveDup = []
             if (chain !== undefined && chain.id === 8899 && addr !== null) {
@@ -1472,7 +1481,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                 nftEQ_main_wp2_Img, nftEQ_main_wp2_Name, nftEQ_main_acc2_Img, nftEQ_main_acc2_Name, nftEQ_main_acc3_Img, nftEQ_main_acc3_Name, nftEQ_main_acc4_Img, nftEQ_main_acc4_Name, nftEQ_main_acc5_Img, nftEQ_main_acc5_Name, nftEQ_main_acc6_Img, nftEQ_main_acc6_Name, nftEQ_main_soul_Img, nftEQ_main_soul_Name, nftEQ_main_badge_Img, nftEQ_main_badge_Name,
                 nftEQ_meme_char_ss1_Img, nftEQ_meme_char_ss1_Name, nftEQ_meme_hat_ss1_Img, nftEQ_meme_hat_ss1_Name, nftEQ_meme_cloth_ss1_Img, nftEQ_meme_cloth_ss1_Name, nftEQ_meme_acc_ss1_Img, nftEQ_meme_back_ss1_Img, nftEQ_meme_back_ss1_Name, nftEQ_meme_shoes_ss1_Img, nftEQ_meme_shoes_ss1_Name, nftEQ_meme_weapon_ss1_Img, nftEQ_meme_weapon_ss1_Name,
                 allPow, isStaked, refuelAt, rewardpending, stOPTClaim, doijibBal, goldBal, skinslot1, myhouseMul, house, memeSS1cmpow, isbadgeclaimed,
-                nftEQ_meme_char_ss2_Img, nftEQ_meme_char_ss2_Name, nftEQ_meme_hat_ss2_Img, nftEQ_meme_hat_ss2_Name, nftEQ_meme_cloth_ss2_Img, nftEQ_meme_cloth_ss2_Name, nftEQ_meme_acc_ss2_Img, nftEQ_meme_acc_ss2_Name, nftEQ_meme_back_ss2_Img, nftEQ_meme_back_ss2_Name, nftEQ_meme_shoes_ss2_Img, nftEQ_meme_shoes_ss2_Name, nftEQ_meme_weapon_ss2_Img, nftEQ_meme_weapon_ss2_Name, memeSS2cmpow,
+                nftEQ_meme_char_ss2_Img, nftEQ_meme_char_ss2_Name, nftEQ_meme_hat_ss2_Img, nftEQ_meme_hat_ss2_Name, nftEQ_meme_cloth_ss2_Img, nftEQ_meme_cloth_ss2_Name, nftEQ_meme_acc_ss2_Img, nftEQ_meme_acc_ss2_Name, nftEQ_meme_back_ss2_Img, nftEQ_meme_back_ss2_Name, nftEQ_meme_shoes_ss2_Img, nftEQ_meme_shoes_ss2_Name, nftEQ_meme_weapon_ss2_Img, nftEQ_meme_weapon_ss2_Name, memeSS2cmpow, isbadgeclaimed2,
             ]
         }
 
@@ -1585,6 +1594,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             setSs2WeaponSlot(result[68])
             result[69] !== null && result[69].slice(-2, -1) === "+" ? setSs2WpSlotLevel(result[69].slice(-1)) : setSs2WpSlotLevel(null)
             setYourSS2CMPOW(result[70])
+            setIsClaimBadge2(result[71])
         })
 
     }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI])
@@ -1752,14 +1762,14 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
         setisLoading(false)
     }
 
-    const claimBadge = async () => {
+    const claimBadge = async (_ss) => {
         setisLoading(true)
         try {
             let { request } = await simulateContract(config, {
                 address: badgeClaimer,
                 abi: badgeClaimerABI,
                 functionName: 'claimBadge',
-                args: [ss]
+                args: [_ss]
             })
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
@@ -1885,7 +1895,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                 </div>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                                     GAS USAGE
-                                    {false && !isEnd ? 
+                                    {!isEnd ? 
                                         <div style={{display: "flex", flexDirection: "row"}}>
                                             {ss === 2 &&
                                                 <>
@@ -1917,7 +1927,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                                         <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a", padding: "10px 15px"}} className="button" onClick={() => unstakeNft(0, false, ss)}>HARVEST & UNSTAKE</div>
                                                     </> :
                                                     <>
-                                                        {isStakeNow !== null && (false && ss === 2 && !isEnd && Number(doijibBalance) >= 500000) ?
+                                                        {isStakeNow !== null && (ss === 2 && !isEnd && Number(doijibBalance) >= 500000) ?
                                                             <>
                                                                 {allPower !== 0 ?
                                                                     <div style={{alignSelf: "center", padding: "10px 15px"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
@@ -2062,7 +2072,9 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 2 concludes at 11:59 PM on October 28th.</div>
                                     <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the seasonal badge nft claiming. The season ends in 28 + 7 days.</div>
                                     <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>                            
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZ9tfCVpoApPyVYuB7b5frTiu6Wc5feFUuderaCKQ6LU7" width="100px" alt="Can not load metadata." />
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                        {(!isClaimBadge2 && ss2AccSlot !== null && ss2BackSlot !== null && ss2CharacterSlot !== null && ss2ClothSlot !== null && ss2HatSlot !== null && ss2ShoesSlot !== null && ss2WeaponSlot !== null) && <div style={{alignSelf: "center", marginTop: "10px", fontSize: "14px"}} className="button" onClick={() => claimBadge(2)}>CLAIM BADGE</div>}
                                     </div>
                                 </div>
                             </div>
@@ -2136,7 +2148,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>
                                     <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmTaAzPsargodLJao3VPqCyGi94FwfSEKQzQjT5WNY5SA3" width="100px" alt="Can not load metadata." />
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                                        {(!isClaimBadge && ss1AccSlot !== null && ss1BackSlot !== null && ss1CharacterSlot !== null && ss1ClothSlot !== null && ss1HatSlot !== null && ss1ShoesSlot !== null && ss1WeaponSlot !== null) && <div style={{alignSelf: "center", marginTop: "10px", fontSize: "14px"}} className="button" onClick={claimBadge}>CLAIM BADGE</div>}
+                                        {(!isClaimBadge && ss1AccSlot !== null && ss1BackSlot !== null && ss1CharacterSlot !== null && ss1ClothSlot !== null && ss1HatSlot !== null && ss1ShoesSlot !== null && ss1WeaponSlot !== null) && <div style={{alignSelf: "center", marginTop: "10px", fontSize: "14px"}} className="button" onClick={() => claimBadge(1)}>CLAIM BADGE</div>}
                                     </div>
                                 </div>
                             </div>
