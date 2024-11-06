@@ -471,7 +471,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
             setCanBuy33(result[82])
             setIsWL6(result[83])
             setDoijibRemain(ethers.utils.formatEther(String(result[86])))
-            setPlutoBalance(ethers.utils.formatUnits(String(result[87], "gwei")))
+            setPlutoBalance(ethers.utils.formatUnits(result[87], "gwei"))
             setFbtcBalance(result[88])
             setX4Balance(ethers.utils.formatEther(String(result[89])))
             setInfpowBalance(ethers.utils.formatEther(String(result[90])))

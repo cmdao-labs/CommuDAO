@@ -6028,7 +6028,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             const allPow10 = Number(nftStatus_slot10[0])
             const isStaked10 = nftStatus_slot10[2]
             const refuelAt10 = Number(nftStatus_slot10[1])
-            const rewardPending10 = isStaked9 ? data_slot10[0].result : 0
+            const rewardPending10 = isStaked10 ? data_slot10[0].result : 0
 
             let walletRemoveDup = []
             if (chain !== undefined && chain.id === 190 && addr !== null) {
