@@ -4,6 +4,7 @@ import { ethers } from 'ethers'
 
 const cmdethlp = '0xA41F70B283b8f097112ca3Bb63cB2718EE662e49'
 const stcmdlp = '0x51f97E67B2fF5eD064Dc2B27b7A745E0d4C47Ee0'
+const epoch = 3
    
 const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20Abi, stcmdABI }) => {
     const [lpBalance, setLpBalance] = React.useState(null)
@@ -45,21 +46,21 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
                         address: stcmdlp,
                         abi: stcmdABI,
                         functionName: 'stakedRewards',
-                        args: [address, 2, 1],
+                        args: [address, epoch, 1],
                         chainId: 10
                     },
                     {
                         address: stcmdlp,
                         abi: stcmdABI,
                         functionName: 'stakedRewards',
-                        args: [address, 2, 2],
+                        args: [address, epoch, 2],
                         chainId: 10
                     },
                     {
                         address: stcmdlp,
                         abi: stcmdABI,
                         functionName: 'stakedRewards',
-                        args: [address, 2, 3],
+                        args: [address, epoch, 3],
                         chainId: 10
                     },
                 ],
@@ -150,7 +151,7 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
                 address: stcmdlp,
                 abi: stcmdABI,
                 functionName: 'claimReward',
-                args: [1, 2],
+                args: [1, epoch],
             })
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
@@ -158,7 +159,7 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
                 address: stcmdlp,
                 abi: stcmdABI,
                 functionName: 'claimReward',
-                args: [2, 2],
+                args: [2, epoch],
             })
             let h2 = await writeContract(config, request2)
             await waitForTransactionReceipt(config, { hash: h2 })
@@ -166,7 +167,7 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
                 address: stcmdlp,
                 abi: stcmdABI,
                 functionName: 'claimReward',
-                args: [3, 2],
+                args: [3, epoch],
             })
             let h3 = await writeContract(config, request3)
             await waitForTransactionReceipt(config, { hash: h3 })
@@ -208,7 +209,7 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
                     </div>
                     <div style={{width: "75%", height: "80px", display: "flex", justifyContent: "space-between", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
-                            <div style={{textAlign: "left"}}>REVENUE SHARED EPOCH 2:</div>
+                            <div style={{textAlign: "left"}}>REVENUE SHARED EPOCH {epoch}:</div>
                             <div className="bold">{Number(reward1).toLocaleString('en-US', {maximumFractionDigits:2})} $CMD</div>
                             <div className="bold">{Number(reward2).toLocaleString('en-US', {maximumFractionDigits:6})} $WETH</div>
                             <div className="bold">{Number(reward3).toLocaleString('en-US', {maximumFractionDigits:2})} $USDT</div>
