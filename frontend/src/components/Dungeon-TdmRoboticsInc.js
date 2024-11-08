@@ -358,7 +358,7 @@ const TdmRoboticsInc = ({ config, setisLoading, navigate, callMode, txupdate, se
                             <div style={{width: "98%", marginTop: "10px", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                                 <div style={{width: "220px", marginRight: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                     <div>Top TAO Superpower</div>
-                                    <div>X.XX JTAO</div>
+                                    <div>74,887.27 JTAO</div>
                                 </div>
                             </div>
                             <div style={{width: "98%", marginTop: "10px"}}>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 30 for each leaderboard.</div>
