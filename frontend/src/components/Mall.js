@@ -324,7 +324,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
             const sell8remain = (102033400000 - (Number(sell8Id[2]) - 8000)) / 100000
             const _canBuy8 = Number(ethers.utils.formatEther(jdaoBal)) >= 1000 ? true : false
             const sell9remain = 100001001 - Number(sell9Id[3])
-            const _canBuy9 = Number(ethers.utils.formatEther(wjbcBal)) >= 500 ? true : false
+            const _canBuy9 = Number(ethers.utils.formatEther(jusdtBal)) >= 10 ? true : false
             const _canBuy10 = false
             const sell11remain = 0
             const _canBuy11 = false
@@ -726,16 +726,16 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
     const buyHandle9 = async (_index) => {
         setisLoading(true)
         try {
-            const wjbcAllow = await readContract(config, {
-                address: wjbcToken,
-                abi: ctunaLabABI,
+            const jusdtAllow = await readContract(config, {
+                address: jusdtToken,
+                abi: erc20Abi,
                 functionName: 'allowance',
                 args: [address, cmdaoMerchantV2],
             })
-            if (Number(ethers.utils.formatEther(wjbcAllow)) < 500) {
+            if (Number(ethers.utils.formatEther(jusdtAllow)) < 10) {
                 let { request } = await simulateContract(config, {
-                    address: wjbcToken,
-                    abi: ctunaLabABI,
+                    address: jusdtToken,
+                    abi: erc20Abi,
                     functionName: 'approve',
                     args: [cmdaoMerchantV2, ethers.constants.MaxUint256],
                 })
@@ -2994,8 +2994,8 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
-                                            <div style={{marginLeft: "7.5px"}}>500</div>
+                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="$JUSDT"/>
+                                            <div style={{marginLeft: "7.5px"}}>10</div>
                                         </div>
                                     </div>
                                 </div>
