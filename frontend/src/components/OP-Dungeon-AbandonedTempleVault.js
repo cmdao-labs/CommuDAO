@@ -946,8 +946,8 @@ const AbandonedTempleVault = ({ config, intrasubModetext, navigate, callMode, se
             setRewardPending(ethers.utils.formatEther(String(result[40])))
             setRewardBalance(ethers.utils.formatEther(String(result[41])))
             const syncAgain = new Date((Number(result[42]) * 1000) + (86400 * 1000))
-            result[42] !== 0 ? setTimeToSyncAgain(syncAgain.toLocaleString('es-CL')) : setTimeToSyncAgain(null)
-            result[42] !== 0 && Date.now() - (Number(result[42]) * 1000) > (86400 * 1000) ? setCanSync(true) : setCanSync(false)
+            Number(result[42]) !== 0 ? setTimeToSyncAgain(syncAgain.toLocaleString('es-CL')) : setTimeToSyncAgain('NOW')
+            Date.now() - (Number(result[42]) * 1000) > (86400 * 1000) ? setCanSync(true) : setCanSync(false)
         })
     }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, erc721Abi, erc20Abi, nftSlotABI, multichainSlotABI, dunATVABI ])
 
@@ -1209,10 +1209,7 @@ const AbandonedTempleVault = ({ config, intrasubModetext, navigate, callMode, se
                                         <div style={{marginLeft: "5px"}}>{Number(rewardBalance).toLocaleString('en-US', {maximumFractionDigits:9})}</div>
                                     </div>
                                 </div>
-                                {!canSync ?
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>SYNC AGAIN AT <div>{timeToSyncAgain}</div></div> :
-                                    <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>SYNC AGAIN AT <div>NOW</div></div>
-                                }
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>SYNC AGAIN AT <div>{timeToSyncAgain}</div></div>
                                 {address !== null && intrasubModetext !== undefined ?
                                     <>
                                         {address.toUpperCase() === intrasubModetext.toUpperCase() ?
