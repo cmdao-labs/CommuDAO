@@ -6032,7 +6032,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
 
             let walletRemoveDup = []
             if (chain !== undefined && chain.id === 190 && addr !== null) {
-                const walletFilter = await hrmnftSC.filters.Transfer(null, address, null)
+                const walletFilter = await hrmnftSC.filters.Transfer(null, addr, null)
                 const walletEvent = await hrmnftSC.queryFilter(walletFilter, 4664954, "latest")
                 const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
                 walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
