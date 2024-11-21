@@ -15,7 +15,7 @@ const Home = ({ callMode, navigate }) => {
                     <div style={{fontSize: "10px", marginTop: "10px", color: "#fff"}} className="light">Transactions on CommuDAO Ecosystem</div>
                 </div>
                 <div className='typed-out' style={{padding: "2px 8px"}}>Explore the CommuDAO Ecosystem!</div>
-                <div style={{margin: "10px 0", maxWidth: "650px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
+                <div style={{margin: "20px 0", maxWidth: "650px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
                     <a className="hashtag" style={{margin: "2px", padding: "5px 10px", textDecoration: "none", color: "#fff"}} href="https://docs.google.com/spreadsheets/d/1S1AeshQmdQLFc4HhhNl1_Ut5F0FOEc9ixp_Is4lukig" target="_blank" rel="noreferrer">
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreihiezpvelzflcvavljsgzlwh27zfy4njqmcoidzz23ldtajdeo3vi" height="25" alt="Can not load metadata."/>
                         &nbsp;CMDAO Alert
@@ -27,6 +27,10 @@ const Home = ({ callMode, navigate }) => {
                     <a className="hashtag" style={{margin: "2px", padding: "5px 10px", textDecoration: "none", color: "#fff"}} href="https://daobuddy.xyz" target="_blank" rel="noreferrer">
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreictqeaxecodh6wogk4eihkvyhzhk3hnyyftfvsjxi6m4yf4sm4nta" height="30" alt="Can not load metadata."/>
                         &nbsp;DaoBuddy
+                    </a>
+                    <a className="hashtag" style={{margin: "2px", padding: "5px 10px", textDecoration: "none", color: "#fff"}} href="https://bunnybuddy.vercel.app" target="_blank" rel="noreferrer">
+                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVg1YDzwmbqyNDw25zbEeCepDgpGud6ELs8vFfJjdaoZQ" height="30" alt="Can not load metadata."/>
+                        &nbsp;BunnyBuddy
                     </a>
                 </div>
             </div>
