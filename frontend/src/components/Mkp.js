@@ -209,7 +209,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     yournftwallet4.push({Id: String(wallet4RemoveDup[i])})
                 }
                 for (let i = 0; i <= yournftwallet4.length - 1; i++) {
-                    const response = await fetch("https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy/" + yournftwallet4[i].Id + ".json")
+                    const response = await fetch("https://gateway.pinata.cloud/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy/" + yournftwallet4[i].Id + ".json")
                     const nft = await response.json()
                     let bonus;
                     if (Number(yournftwallet4[i].Id) >= 61) {
@@ -225,7 +225,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                         Col: 4,
                         Id: yournftwallet4[i].Id,
                         Name: nft.name + " #" + yournftwallet4[i].Id,
-                        Image: "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + yournftwallet4[i].Id + ".png",
+                        Image: "https://gateway.pinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + yournftwallet4[i].Id + ".png",
                         Description: nft.description,
                         Attribute: [],
                         RewardPerSec: bonus,
@@ -611,7 +611,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Col: 4,
                     Id: Number(mkp4wallet[i].Id),
                     Name: "CM Hexa Cat Meaw JIB JIB #" + mkp4wallet[i].Id,
-                    Image: "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + mkp4wallet[i].Id + ".png",
+                    Image: "https://gateway.pinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + mkp4wallet[i].Id + ".png",
                     Description: "",
                     Attribute: [],
                     RewardPerSec: bonus,
