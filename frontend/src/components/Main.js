@@ -454,7 +454,7 @@ const Main = () => {
                 <QueryClientProvider client={queryClient}>
                     <Headbar config={wagmiAdapter.wagmiConfig} callMode={callMode} navigate={navigate} txupdate={txupdate} erc20Abi={erc20Abi} />
                     {mode === 0 && <Home callMode={callMode} navigate={navigate} />}
-                    <Suspense fallback={<></>}>
+                    <Suspense fallback={<div style={{minHeight: "80vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}} className="collection"></div>}>
                         {mode === 1 && <Fields callMode={callMode} navigate={navigate} />}
                         {mode === 11 && <TunaLake config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} callMode={callMode} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
                         {mode === 12 && <OldWarehouse config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} callMode={callMode} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} aurora721ABI={aurora721ABI} tunaFieldABI={tunaFieldABI} />}
