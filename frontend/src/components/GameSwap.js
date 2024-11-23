@@ -333,37 +333,8 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
     React.useEffect(() => {
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
-        const jusdtSC = new ethers.Contract(jusdtToken, erc20Abi, providerJBC)
-        const cmjSC = new ethers.Contract(cmjToken, erc20Abi, providerJBC)
 
         const thefetch = async () => {
-            const blockNumber = await providerJBC.getBlockNumber();
-            const vol1Filter = await jusdtSC.filters.Transfer(null, "0x280608DD7712a5675041b95d0000B9089903B569", null)
-            const vol1Event = await jusdtSC.queryFilter(vol1Filter, blockNumber - 7200, 'latest')
-            const vol1Map = await Promise.all(vol1Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
-            const vol2Filter = await jusdtSC.filters.Transfer("0x280608DD7712a5675041b95d0000B9089903B569", null, null)
-            const vol2Event = await jusdtSC.queryFilter(vol2Filter, blockNumber - 7200, 'latest')
-            const vol2Map = await Promise.all(vol2Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
-            const vol3Filter = await cmjSC.filters.Transfer(null, "0x472d0e2E9839c140786D38110b3251d5ED08DF41", null)
-            const vol3Event = await cmjSC.queryFilter(vol3Filter, blockNumber - 7200, 'latest')
-            const vol3Map = await Promise.all(vol3Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
-            const vol4Filter = await cmjSC.filters.Transfer("0x472d0e2E9839c140786D38110b3251d5ED08DF41", null, null)
-            const vol4Event = await cmjSC.queryFilter(vol4Filter, blockNumber - 7200, 'latest')
-            const vol4Map = await Promise.all(vol4Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
-            const sumVolUsdt = vol1Map.concat(vol2Map).reduce((partialSum, a) => partialSum + a, 0);
-            const sumVolCmj = vol3Map.concat(vol4Map).reduce((partialSum, a) => partialSum + a, 0);
-            /*
-            const tvol1Event = await jusdtSC.queryFilter(vol1Filter, 143068, 'latest')
-            const tvol1Map = await Promise.all(tvol1Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
-            const tvol2Event = await jusdtSC.queryFilter(vol2Filter, 143068, 'latest')
-            const tvol2Map = await Promise.all(tvol2Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
-            const tvol3Event = await cmjSC.queryFilter(vol3Filter, 98302, 'latest')
-            const tvol3Map = await Promise.all(tvol3Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
-            const tvol4Event = await cmjSC.queryFilter(vol4Filter, 98302, 'latest')
-            const tvol4Map = await Promise.all(tvol4Event.map(async (obj, index) => {return Number(ethers.utils.formatEther(obj.args.value))}))
-            const tsumVolUsdt = tvol1Map.concat(tvol2Map).reduce((partialSum, a) => partialSum + a, 0);
-            const tsumVolCmj = tvol3Map.concat(tvol4Map).reduce((partialSum, a) => partialSum + a, 0);
-            */
             const jbcBal = address !== null ?
                 await getBalance(config, { address: address, }) :
                 {formatted: 0}
@@ -449,7 +420,7 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
                 jbcBal, cmjBal, jusdtBal,
                 JbcJcReserv, CmjJcReserv, JbcJuReserv, JusdtJuReserv,
                 jclpBal, jclpTotalSup, julpBal, julpTotalSup,
-                usdtToTHB, sumVolUsdt, sumVolCmj, /*tsumVolUsdt, tsumVolCmj,*/
+                usdtToTHB,
             ]
         }
 
@@ -490,11 +461,62 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
             setJbcjuPooled((Number(_jbcjureserve) * Number(_julpbalance)) / Number(_julptotalsupply))
             setJusdtjuPooled((Number(_jusdtjureserve) * Number(_julpbalance)) / Number(_julptotalsupply))
             setPriceTHB(ethers.utils.formatEther(result[11]) * (10**10))
-            setSwapvol24USDT((Number(result[12]).toFixed(0)))
-            setSwapvol24CMJ(Number(result[13]).toFixed(0))
+        })
+    }, [config, address, txupdate, exchangeABI, exchangeJulpABI, erc20Abi, bkcOracleABI])
+
+    React.useEffect(() => {
+        const jusdtSC = new ethers.Contract(jusdtToken, erc20Abi, providerJBC)
+        const cmjSC = new ethers.Contract(cmjToken, erc20Abi, providerJBC)
+
+        const thefetch = async () => {
+            const blockNumber = await providerJBC.getBlockNumber();
+            const vol1Filter = await jusdtSC.filters.Transfer(null, "0x280608DD7712a5675041b95d0000B9089903B569", null)
+            const vol1Event = await jusdtSC.queryFilter(vol1Filter, blockNumber - 7200, 'latest')
+            const vol1Map = await Promise.all(vol1Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const vol2Filter = await jusdtSC.filters.Transfer("0x280608DD7712a5675041b95d0000B9089903B569", null, null)
+            const vol2Event = await jusdtSC.queryFilter(vol2Filter, blockNumber - 7200, 'latest')
+            const vol2Map = await Promise.all(vol2Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const vol3Filter = await cmjSC.filters.Transfer(null, "0x472d0e2E9839c140786D38110b3251d5ED08DF41", null)
+            const vol3Event = await cmjSC.queryFilter(vol3Filter, blockNumber - 7200, 'latest')
+            const vol3Map = await Promise.all(vol3Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const vol4Filter = await cmjSC.filters.Transfer("0x472d0e2E9839c140786D38110b3251d5ED08DF41", null, null)
+            const vol4Event = await cmjSC.queryFilter(vol4Filter, blockNumber - 7200, 'latest')
+            const vol4Map = await Promise.all(vol4Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const sumVolUsdt = vol1Map.concat(vol2Map).reduce((partialSum, a) => partialSum + a, 0);
+            const sumVolCmj = vol3Map.concat(vol4Map).reduce((partialSum, a) => partialSum + a, 0);
             /*
-            setTSwapvol24USDT((Number(result[14]).toFixed(0)))
-            setTSwapvol24CMJ(Number(result[15]).toFixed(0))
+            const tvol1Event = await jusdtSC.queryFilter(vol1Filter, 143068, 'latest')
+            const tvol1Map = await Promise.all(tvol1Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const tvol2Event = await jusdtSC.queryFilter(vol2Filter, 143068, 'latest')
+            const tvol2Map = await Promise.all(tvol2Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const tvol3Event = await cmjSC.queryFilter(vol3Filter, 98302, 'latest')
+            const tvol3Map = await Promise.all(tvol3Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const tvol4Event = await cmjSC.queryFilter(vol4Filter, 98302, 'latest')
+            const tvol4Map = await Promise.all(tvol4Event.map(async (obj) => {return Number(ethers.utils.formatEther(obj.args.value))}))
+            const tsumVolUsdt = tvol1Map.concat(tvol2Map).reduce((partialSum, a) => partialSum + a, 0);
+            const tsumVolCmj = tvol3Map.concat(tvol4Map).reduce((partialSum, a) => partialSum + a, 0);
+            */
+            
+            return [
+                sumVolUsdt, sumVolCmj, /*tsumVolUsdt, tsumVolCmj,*/
+            ]
+        }
+
+        const promise = thefetch()
+
+        const getAsync = () =>
+            new Promise((resolve) => 
+                setTimeout(
+                    () => resolve(promise), 1000
+                )
+            )
+
+        getAsync().then(result => {
+            setSwapvol24USDT((Number(result[0]).toFixed(0)))
+            setSwapvol24CMJ(Number(result[1]).toFixed(0))
+            /*
+            setTSwapvol24USDT((Number(result[2]).toFixed(0)))
+            setTSwapvol24CMJ(Number(result[3]).toFixed(0))
             */
         })
     }, [config, address, txupdate, exchangeABI, exchangeJulpABI, erc20Abi, bkcOracleABI])
