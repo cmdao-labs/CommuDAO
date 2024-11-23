@@ -1073,7 +1073,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
         <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
             <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                 <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifwrprsashfhjrlbwnyvw4cb6pquyokfs3xm3wl6rt6bdzynpzhkm" width="260" alt="NPC_Jazzi" />
+                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifwrprsashfhjrlbwnyvw4cb6pquyokfs3xm3wl6rt6bdzynpzhkm?img-width=400&img-height=400" width="260" alt="NPC_Jazzi" />
                 </div>
                 {mode === 1 &&
                     <>
