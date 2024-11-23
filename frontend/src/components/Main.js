@@ -245,11 +245,11 @@ createAppKit({
         '--w3m-z-index': 1000, 
     },
     chainImages: {
-        56: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte',
-        96: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a',
-        8899: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu',
-        190: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibohxkmaxa3h2pln37pasuppobhqoilncvtxnk7k7oaid7fqyg5ce',
-        10: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreid53xlgsjlqosyyyxzbozfavoi2f4i6vnqxjwdxq32y7jsly3ckly',
+        56: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte?img-width=100&img-height=100',
+        96: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a?img-width=100&img-height=100',
+        8899: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu?img-width=100&img-height=100',
+        190: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibohxkmaxa3h2pln37pasuppobhqoilncvtxnk7k7oaid7fqyg5ce?img-width=100&img-height=100',
+        10: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreid53xlgsjlqosyyyxzbozfavoi2f4i6vnqxjwdxq32y7jsly3ckly?img-width=100&img-height=100',
     },
     features: {
         analytics: true,
