@@ -1,23 +1,28 @@
-:root { font-family: 'Inter', sans-serif; }
-@supports (font-variation-settings: normal) {
-  :root { font-family: 'Inter var', sans-serif; }
-}
-
 @font-face {
   font-family: ZFTERMIN;
   src: url(./fonts/ZFTERMIN__.ttf);
+}
+@font-face {
+  font-family: INTER_REGULAR;
+  src: url(./fonts/Inter-Regular.ttf);
+}
+@font-face {
+  font-family: INTER_LIGHT;
+  src: url(./fonts/Inter-Light.ttf);
+}
+@font-face {
+  font-family: INTER_EXTRABOLD;
+  src: url(./fonts/Inter-ExtraBold.ttf);
 }
 
 /* Font Style */
 .emp { color: #ff007a; }
 .bold { 
-  font-family: 'Inter';
-  font-style:  normal;
+  font-family: 'INTER_EXTRABOLD';
   font-weight: 800;
 }
 .light { 
-  font-family: 'Inter';
-  font-style:  normal;
+  font-family: 'INTER_LIGHT';
   font-weight: 300;
 }
 .pixel { 
@@ -29,8 +34,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Inter';
-  font-style:  normal;
+  font-family: 'INTER_REGULAR';
   font-weight: 400;
   background: #fff;
   -ms-overflow-style: none;
@@ -39,8 +43,7 @@ body {
 body::-webkit-scrollbar { display: none; }
 
 code {
-  font-family: 'Inter';
-  font-style:  normal;
+  font-family: 'INTER_REGULAR';
   font-weight: 400;;
 }
 
@@ -220,7 +223,7 @@ header::-webkit-scrollbar { display: none; }
   justify-content: center;
   flex-wrap: nowrap;
   font-size: 18px;
-  background-image: url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcA7mJSegBinpW7bmGZPaUHPzGzbDV5XWcpJPnCdfUbkg');
+  background-image: url('../public/background/home.webp');
   background-repeat: round;
 }
 .motto {
