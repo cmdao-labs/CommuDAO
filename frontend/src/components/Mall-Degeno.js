@@ -432,7 +432,7 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
     return (
         <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
             <div style={{marginTop: "10px", height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiewvtce4l7hqx5aivvwdjpl2hbka7i2vpfwpa73idiqzckmum4mxq" width="260" alt="NPC_Degeno" />
+                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiewvtce4l7hqx5aivvwdjpl2hbka7i2vpfwpa73idiqzckmum4mxq?img-width=400&img-height=400" width="260" alt="NPC_Degeno" />
             </div>
             {mode === 1 ?
                 <div style={{width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
@@ -448,8 +448,8 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                 </select>
                                 <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                     &nbsp;1
-                                    {gasselected === "DOIJIB.wjbc" && <>&nbsp; <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/> &nbsp;=&nbsp; <div className="emp">{priceDoijibWJBC}</div>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/></>}
-                                    {gasselected === "DOIJIB.wood" && <>&nbsp; <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/> &nbsp;=&nbsp; <div className="emp">{priceDoijibWOOD}</div>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="22" alt="$WOOD"/></>}
+                                    {gasselected === "DOIJIB.wjbc" && <>&nbsp; <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi?img-width=50&img-height=50" width="22" alt="$DOIJIB"/> &nbsp;=&nbsp; <div className="emp">{priceDoijibWJBC}</div>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/></>}
+                                    {gasselected === "DOIJIB.wood" && <>&nbsp; <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi?img-width=50&img-height=50" width="22" alt="$DOIJIB"/> &nbsp;=&nbsp; <div className="emp">{priceDoijibWOOD}</div>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="22" alt="$WOOD"/></>}
                                 </div>
                             </div>
                             <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>
@@ -475,13 +475,13 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                         ></input>
                         {gasselected === "DOIJIB.wjbc" && 
                             <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(doijibBalance)}}; handleSwapUni(1, bal);}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi?img-width=50&img-height=50" width="22" alt="$DOIJIB"/>
                                 <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         }
                         {gasselected === "DOIJIB.wood" && 
                             <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(doijibBalance)}}; handleSwapUni(2, bal);}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/>
+                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi?img-width=50&img-height=50" width="22" alt="$DOIJIB"/>
                                 <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         }
@@ -679,7 +679,7 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     value={meowAdd}
                                 ></input>
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(doijibBalance)}}; handleAddUni(1, bal);}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi?img-width=50&img-height=50" width="22" alt="$DOIJIB"/>
                                     <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             </>
@@ -697,7 +697,7 @@ const Ammmerchant3 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     value={meowAdd}
                                 ></input>
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(doijibBalance)}}; handleAddUni(2, bal);}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/>
+                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi?img-width=50&img-height=50" width="22" alt="$DOIJIB"/>
                                     <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             </>
