@@ -1,5 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
+import { createPublicClient, http } from 'viem'
+import { jbc } from 'viem/chains' 
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { useAppKit } from '@reown/appkit/react';
@@ -15,7 +17,7 @@ const cmdao_house_staking = '0xc4dB6374EeCa3743F8044ae995892827B62b14fe'
 const mgnft = '0xA6f8cE1425E0fC4b74f3b1c2f9804e9968f90e17'
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"
-const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+const publicClient = createPublicClient({ chain: jbc, transport: http() })
 
 const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, aurora721ABI, cmdaoMkpABI, houseStakingABI }) => {
     let { address, chain } = useAccount()
@@ -47,14 +49,9 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
             setSelleraddr(subModeText)
             navigate('/marketplace/' + subModeText)
         }
-        const cmdaoMkpSC = new ethers.Contract(cmdaomkp, cmdaoMkpABI, providerJBC)
-        const orynftSC = new ethers.Contract(ory, erc721Abi, providerJBC)
-        const cmdaonftSC = new ethers.Contract(hexajibjib, erc721Abi, providerJBC)
-        const cm_ogjibjibnftSC = new ethers.Contract(cm_ogjibjib, erc721Abi, providerJBC)
-        const cmdao_tiSC = new ethers.Contract(cmdao_ti, erc721Abi, providerJBC)
-        const mgnftSC = new ethers.Contract(mgnft, erc721Abi, providerJBC)
 
         const thefetch = async () => {
+            setLoadingText("00.00%")
             const data = address !== null ? await readContracts(config, {
                 contracts: [
                     {
@@ -75,10 +72,37 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
             }) : [{result: 0}, {result: 0}, ]
             const cmjBal = data[0].result
             const jusdtBal = data[1].result
-
-            const addItemFilter = await cmdaoMkpSC.filters.AddItem(null, null, null, null, null, null)
-            const addItemEvent = await cmdaoMkpSC.queryFilter(addItemFilter, 510000, "latest")
-            const addItemMap = await Promise.all(addItemEvent.map(async (obj, index) => {
+            setLoadingText("10.00%")
+            const addItemfilter = await publicClient.createContractEventFilter({ abi: cmdaoMkpABI, address: cmdaomkp, eventName: 'AddItem', fromBlock: 510000n, toBlock: "latest" })
+            const addItemlog = publicClient.getFilterLogs({ filter: addItemfilter })
+            let walletlog = promise
+            let walletlog2 = promise
+            let walletlog3 = promise
+            let walletlog4 = promise
+            if (address !== null) {
+                const walletfilter = await publicClient.createContractEventFilter({ abi: erc721Abi, address: hexajibjib, eventName: 'Transfer', args: { to: address }, fromBlock: 335000n, toBlock: "latest" })
+                walletlog = publicClient.getFilterLogs({ filter: walletfilter })
+                const walletfilter2 = await publicClient.createContractEventFilter({ abi: erc721Abi, address: ory, eventName: 'Transfer', args: { to: address }, fromBlock: 515000n, toBlock: "latest" })
+                walletlog2 = publicClient.getFilterLogs({ filter: walletfilter2 })
+                const walletfilter3 = await publicClient.createContractEventFilter({ abi: erc721Abi, address: cmdao_ti, eventName: 'Transfer', args: { to: address }, fromBlock: 2506258n, toBlock: "latest" })
+                walletlog3 = publicClient.getFilterLogs({ filter: walletfilter3 })
+                const walletfilter4 = await publicClient.createContractEventFilter({ abi: erc721Abi, address: mgnft, eventName: 'Transfer', args: { to: address }, fromBlock: 2260250n, toBlock: "latest" })
+                walletlog4 = publicClient.getFilterLogs({ filter: walletfilter4 })
+            }
+            setLoadingText("20.00%")
+            const mkpfilter = await publicClient.createContractEventFilter({ abi: erc721Abi, address: hexajibjib, eventName: 'Transfer', args: { to: cmdaomkp }, fromBlock: 515000n, toBlock: "latest" })
+            const mkplog = publicClient.getFilterLogs({ filter: mkpfilter })
+            const mkpfilter2 = await publicClient.createContractEventFilter({ abi: erc721Abi, address: ory, eventName: 'Transfer', args: { to: cmdaomkp }, fromBlock: 652000n, toBlock: "latest" })
+            const mkplog2 = publicClient.getFilterLogs({ filter: mkpfilter2 })
+            const mkpfilter3 = await publicClient.createContractEventFilter({ abi: erc721Abi, address: cm_ogjibjib, eventName: 'Transfer', args: { to: cmdaomkp }, fromBlock: 2430000n, toBlock: "latest" })
+            const mkplog3 = publicClient.getFilterLogs({ filter: mkpfilter3 })
+            const mkpfilter4 = await publicClient.createContractEventFilter({ abi: erc721Abi, address: cmdao_ti, eventName: 'Transfer', args: { to: cmdaomkp }, fromBlock: 2506258n, toBlock: "latest" })
+            const mkplog4 = publicClient.getFilterLogs({ filter: mkpfilter4 })
+            const mkpfilter5 = await publicClient.createContractEventFilter({ abi: erc721Abi, address: mgnft, eventName: 'Transfer', args: { to: cmdaomkp }, fromBlock: 2560000n, toBlock: "latest" })
+            const mkplog5 = publicClient.getFilterLogs({ filter: mkpfilter5 })
+            setLoadingText("30.00%")
+            const addItemdata = await addItemlog
+            const addItemMap = await Promise.all(addItemdata.map(async (obj, index) => {
                 return {
                     AddrSeller: obj.args.seller,
                     Seller: obj.args.seller.slice(0, 4) + "..." + obj.args.seller.slice(-4),
@@ -89,15 +113,14 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Itemcount: index + 1,
                 }
             }))
+            setLoadingText("40.00%")
             let nfts = []
             if (selleraddr === null) { 
-                setLoadingText("10.00%")
-                let walletRemoveDup = []
+                let walletRemoveDup: string[] = []
                 if (address !== null) {
-                    const walletFilter = await cmdaonftSC.filters.Transfer(null, address, null)
-                    const walletEvent = await cmdaonftSC.queryFilter(walletFilter, 335000, "latest")
-                    const walletMap = await Promise.all(walletEvent.map(async (obj) => String(obj.args.tokenId)))
-                    walletRemoveDup = walletMap.filter((obj, index) => walletMap.indexOf(obj) === index)
+                    const walletdata = await walletlog
+                    const walletmap = await Promise.all(walletdata.map(async (obj) => String(obj.args.tokenId)))
+                    walletRemoveDup = walletmap.filter((obj, index) => walletmap.indexOf(obj) === index)
                 }
                 const data2 = address !== null ? await readContracts(config, {
                     contracts: walletRemoveDup.map((item) => (
@@ -116,7 +139,6 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                         yournftwallet.push({Id: String(walletRemoveDup[i])})
                     }
                 }
-                setLoadingText("12.50%")
                 const data3 = address !== null ? await readContracts(config, {
                     contracts: yournftwallet.map((item) => (
                         {
@@ -144,13 +166,11 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                         Count: null
                     })
                 }
-                setLoadingText("15.00%")
-                let wallet2RemoveDup = []
+                let wallet2RemoveDup: string[] = []
                 if (address !== null) {
-                    const wallet2Filter = await orynftSC.filters.Transfer(null, address, null)
-                    const wallet2Event = await orynftSC.queryFilter(wallet2Filter, 515000, "latest")
-                    const wallet2Map = await Promise.all(wallet2Event.map(async (obj) => String(obj.args.tokenId)))
-                    wallet2RemoveDup = wallet2Map.filter((obj, index) => wallet2Map.indexOf(obj) === index)
+                    const walletdata2 = await walletlog2
+                    const wallet2map = await Promise.all(walletdata2.map(async (obj) => String(obj.args.tokenId)))
+                    wallet2RemoveDup = wallet2map.filter((obj, index) => wallet2map.indexOf(obj) === index)
                 }
                 const data4 = address !== null ? await readContracts(config, {
                     contracts: wallet2RemoveDup.map((item) => (
@@ -169,7 +189,6 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                         yournftwallet2.push({Id: String(wallet2RemoveDup[i])})
                     }
                 }
-                setLoadingText("17.50%")
                 for (let i = 0; i <= yournftwallet2.length - 1; i++) {
                     let bonus;
                     if (Number(yournftwallet2[i].Id) >= 400) {
@@ -197,7 +216,6 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                         Count: null
                     })
                 }
-                setLoadingText("25.00%")
                 const wallet4RemoveDup = address !== null ? await readContract(config, {
                     address: cm_ogjibjib,
                     abi: aurora721ABI,
@@ -233,13 +251,11 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                         Count: null
                     })
                 }
-                setLoadingText("30.00%")
-                let wallet5RemoveDup = []
+                let wallet5RemoveDup: string[] = []
                 if (address !== null) {
-                    const wallet5Filter = await cmdao_tiSC.filters.Transfer(null, address, null)
-                    const wallet5Event = await cmdao_tiSC.queryFilter(wallet5Filter, 2506258, "latest")
-                    const wallet5Map = await Promise.all(wallet5Event.map(async (obj) => String(obj.args.tokenId)))
-                    wallet5RemoveDup = wallet5Map.filter((obj, index) => wallet5Map.indexOf(obj) === index)
+                    const walletdata3 = await walletlog3
+                    const wallet5map = await Promise.all(walletdata3.map(async (obj) => String(obj.args.tokenId)))
+                    wallet5RemoveDup = wallet5map.filter((obj, index) => wallet5map.indexOf(obj) === index)
                 }
                 const data7 = address !== null ? await readContracts(config, {
                     contracts: wallet5RemoveDup.map((item) => (
@@ -267,7 +283,6 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                         }
                     }
                 }
-                setLoadingText("32.50%")
                 const data8 = address !== null ? await readContracts(config, {
                     contracts: yournftwallet5.map((item) => (
                         {
@@ -305,13 +320,11 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                         Count: null
                     })
                 }
-                setLoadingText("35.00%")
-                let wallet6RemoveDup = []
+                let wallet6RemoveDup: string[] = []
                 if (address !== null) {
-                    const wallet6Filter = await mgnftSC.filters.Transfer(null, address, null)
-                    const wallet6Event = await mgnftSC.queryFilter(wallet6Filter, 2260250, "latest")
-                    const wallet6Map = await Promise.all(wallet6Event.map(async (obj) => String(obj.args.tokenId)))
-                    wallet6RemoveDup = wallet6Map.filter((obj, index) => wallet6Map.indexOf(obj) === index)
+                    const walletdata4 = await walletlog4
+                    const wallet6map = await Promise.all(walletdata4.map(async (obj) => String(obj.args.tokenId)))
+                    wallet6RemoveDup = wallet6map.filter((obj, index) => wallet6map.indexOf(obj) === index)
                 }
                 const data9 = address !== null ? await readContracts(config, {
                     contracts: wallet6RemoveDup.map((item) => (
@@ -330,7 +343,6 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                         yournftwallet6.push({Id: String(wallet6RemoveDup[i])})
                     }
                 }
-                setLoadingText("37.50%")
                 const data10 = address !== null ? await readContracts(config, {
                     contracts: yournftwallet6.map((item) => (
                         {
@@ -359,11 +371,9 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     })
                 }
             }
-            setLoadingText("50.00%")
-            const mkpFilter = await cmdaonftSC.filters.Transfer(null, cmdaomkp, null)
-            const mkpEvent = await cmdaonftSC.queryFilter(mkpFilter, 515000, "latest")
-            const mkpMap = await Promise.all(mkpEvent.map(async (obj) => String(obj.args.tokenId)))
-            const mkpRemoveDup = mkpMap.filter((obj, index) => mkpMap.indexOf(obj) === index)
+            const mkpdata = await mkplog
+            const mkpmap = await Promise.all(mkpdata.map(async (obj) => String(obj.args.tokenId)))
+            const mkpRemoveDup = mkpmap.filter((obj, index) => mkpmap.indexOf(obj) === index)
             const mkp_data2 = await readContracts(config, {
                 contracts: mkpRemoveDup.map((item) => (
                     {
@@ -375,13 +385,13 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     }
                 ))
             })
+            setLoadingText("50.00%")
             let mkpwallet = []
             for (let i = 0; i <= mkpRemoveDup.length - 1; i++) {
                 if (mkp_data2[i].result.toUpperCase() === cmdaomkp.toUpperCase()) {
                     mkpwallet.push({Id: String(mkpRemoveDup[i])})
                 }
             }
-            setLoadingText("52.50%")
             const mkp_data3 = await readContracts(config, {
                 contracts: mkpwallet.map((item) => (
                     {
@@ -453,11 +463,9 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Count: yournftsell1[i].Count
                 })
             }
-            setLoadingText("55.00%")
-            const mkp2Filter = await orynftSC.filters.Transfer(null, cmdaomkp, null)
-            const mkp2Event = await orynftSC.queryFilter(mkp2Filter, 652000, "latest")
-            const mkp2Map = await Promise.all(mkp2Event.map(async (obj) => String(obj.args.tokenId)))
-            const mkp2RemoveDup = mkp2Map.filter((obj, index) => mkp2Map.indexOf(obj) === index)
+            const mkpdata2 = await mkplog2
+            const mkp2map = await Promise.all(mkpdata2.map(async (obj) => String(obj.args.tokenId)))
+            const mkp2RemoveDup = mkp2map.filter((obj, index) => mkp2map.indexOf(obj) === index)
             const mkp_data4 = await readContracts(config, {
                 contracts: mkp2RemoveDup.map((item) => (
                     {
@@ -469,13 +477,13 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     }
                 ))
             })
+            setLoadingText("60.00%")
             let mkp2wallet = []
             for (let i = 0; i <= mkp2RemoveDup.length - 1; i++) {
                 if (mkp_data4[i].result.toUpperCase() === cmdaomkp.toUpperCase()) {
                     mkp2wallet.push({Id: String(mkp2RemoveDup[i])})
                 }
             }
-            setLoadingText("57.50%")
             let yournftsell2 = []
             for (let i = 0; i <= mkp2wallet.length - 1; i++) {
                 let bonus;
@@ -555,11 +563,9 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Count: yournftsell2[i].Count
                 })
             }
-            setLoadingText("70.00%")
-            const mkp4Filter = await cm_ogjibjibnftSC.filters.Transfer(null, cmdaomkp, null)
-            const mkp4Event = await cm_ogjibjibnftSC.queryFilter(mkp4Filter, 2430000, "latest")
-            const mkp4Map = await Promise.all(mkp4Event.map(async (obj) => String(obj.args.tokenId)))
-            const mkp4RemoveDup = mkp4Map.filter((obj, index) => mkp4Map.indexOf(obj) === index)
+            const mkpdata3 = await mkplog3
+            const mkp4map = await Promise.all(mkpdata3.map(async (obj) => String(obj.args.tokenId)))
+            const mkp4RemoveDup = mkp4map.filter((obj, index) => mkp4map.indexOf(obj) === index)
             const mkp_data7 = await readContracts(config, {
                 contracts: mkp4RemoveDup.map((item) => (
                     {
@@ -571,14 +577,13 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     }
                 ))
             })
-
+            setLoadingText("70.00%")
             let mkp4wallet = []
             for (let i = 0; i <= mkp4RemoveDup.length - 1; i++) {
                 if (mkp_data7[i].result.toUpperCase() === cmdaomkp.toUpperCase()) {
                     mkp4wallet.push({Id: String(mkp4RemoveDup[i])})
                 }
             }
-            setLoadingText("72.50%")
             let yournftsell4 = []
             for (let i = 0; i <= mkp4wallet.length - 1; i++) {
                 let bonus;
@@ -650,12 +655,9 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Count: yournftsell4[i].Count
                 })
             }
-
-            setLoadingText("75.00%")
-            const mkp5Filter = await cmdao_tiSC.filters.Transfer(null, cmdaomkp, null)
-            const mkp5Event = await cmdao_tiSC.queryFilter(mkp5Filter, 2506258, "latest")
-            const mkp5Map = await Promise.all(mkp5Event.map(async (obj) => String(obj.args.tokenId)))
-            const mkp5RemoveDup = mkp5Map.filter((obj, index) => mkp5Map.indexOf(obj) === index)
+            const mkpdata4 = await mkplog4
+            const mkp5map = await Promise.all(mkpdata4.map(async (obj) => String(obj.args.tokenId)))
+            const mkp5RemoveDup = mkp5map.filter((obj, index) => mkp5map.indexOf(obj) === index)
             const mkp_data8 = await readContracts(config, {
                 contracts: mkp5RemoveDup.map((item) => (
                     {
@@ -667,13 +669,13 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     }
                 ))
             })
+            setLoadingText("80.00%")
             let mkp5wallet = []
             for (let i = 0; i <= mkp5RemoveDup.length - 1; i++) {
                 if (mkp_data8[i].result.toUpperCase() === cmdaomkp.toUpperCase()) {
                     mkp5wallet.push({Id: String(mkp5RemoveDup[i])})
                 }
             }
-            setLoadingText("77.50%")
             const mkp_data9 = await readContracts(config, {
                 contracts: mkp5wallet.map((item) => (
                     {
@@ -763,11 +765,9 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Count: yournftsell5[i].Count
                 })
             }
-            setLoadingText("80.00%")
-            const mkp6Filter = await mgnftSC.filters.Transfer(null, cmdaomkp, null)
-            const mkp6Event = await mgnftSC.queryFilter(mkp6Filter, 2560000, "latest")
-            const mkp6Map = await Promise.all(mkp6Event.map(async (obj) => String(obj.args.tokenId)))
-            const mkp6RemoveDup = mkp6Map.filter((obj, index) => mkp6Map.indexOf(obj) === index)
+            const mkpdata5 = await mkplog5
+            const mkp6map = await Promise.all(mkpdata5.map(async (obj) => String(obj.args.tokenId)))
+            const mkp6RemoveDup = mkp6map.filter((obj, index) => mkp6map.indexOf(obj) === index)
             const mkp_data10 = await readContracts(config, {
                 contracts: mkp6RemoveDup.map((item) => (
                     {
@@ -779,13 +779,13 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     }
                 ))
             })
+            setLoadingText("90.00%")
             let mkp6wallet = []
             for (let i = 0; i <= mkp6RemoveDup.length - 1; i++) {
                 if (mkp_data10[i].result.toUpperCase() === cmdaomkp.toUpperCase()) {
                     mkp6wallet.push({Id: String(mkp6RemoveDup[i])})
                 }
             }
-            setLoadingText("82.50%")
             const mkp_data11 = await readContracts(config, {
                 contracts: mkp6wallet.map((item) => (
                     {
@@ -855,9 +855,9 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Count: yournftsell6[i].Count
                 })
             }
-            setLoadingText("99.99%")
             if (nfts.length === 0) { nfts.push(null) }
             if (nftsell.length === 0) { nftsell.push(null) }
+            setLoadingText("100.00%")
 
             return [nftsell, nfts, cmjBal, jusdtBal]
         }

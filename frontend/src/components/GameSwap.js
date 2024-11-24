@@ -5,7 +5,7 @@ import { useAccount } from 'wagmi'
 import { useAppKit } from '@reown/appkit/react';
 import { ethers } from 'ethers'
 import Swap from './GameSwap-Swap'
-import GameSwapFarm from './GameSwap-Farm'
+import GameSwapFarm from './GameSwap-Farm.tsx'
 
 const cmjToken = "0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b"
 const jusdtToken = "0x24599b658b57f91E7643f4F154B16bcd2884f9ac"
