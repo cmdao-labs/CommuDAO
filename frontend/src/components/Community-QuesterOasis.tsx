@@ -1,5 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
+import { createPublicClient, http } from 'viem'
+import { jbc } from 'viem/chains' 
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { useAppKit } from '@reown/appkit/react';
@@ -24,7 +26,8 @@ const cmdaoNft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const houseStaking = '0xc4dB6374EeCa3743F8044ae995892827B62b14fe'
 const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
-const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
+const publicClient = createPublicClient({ chain: jbc, transport: http() })
+const startblockmonth = 4300992n
 
 const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI }) => {
     let { address, chain } = useAccount()
@@ -54,130 +57,43 @@ const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setT
     React.useEffect(() => {      
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
-        const jusdtSC = new ethers.Contract(jusdtToken, erc20Abi, providerJBC)
-        const enderSC = new ethers.Contract(ender, enderPotteryABI, providerJBC)
-        const jdaoSC = new ethers.Contract('0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88', erc20Abi, providerJBC)
-        const cmdaonftSC = new ethers.Contract(cmdaoNft, erc721Abi, providerJBC)
         
         const thefetch = async () => {
-            let spend1Map = []
-            let spendAllMerged = []
-            if (address !== null) {
-                const spend1Filter = await jusdtSC.filters.Transfer(null, "0x39C623C4B3f11D38f06Adca9B794CFb2d37581e3", null)
-                const spend1Event = await jusdtSC.queryFilter(spend1Filter, 4300992, 'latest')
-                spend1Map = await Promise.all(spend1Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-                const spend2Filter = await jusdtSC.filters.Transfer(null, "0x87A612709b36b575103C65a90cB3B16Cac2BC898", null)
-                const spend2Event = await jusdtSC.queryFilter(spend2Filter, 4300992, 'latest')
-                const spend2Map = await Promise.all(spend2Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-                const spend3Filter = await jusdtSC.filters.Transfer(null, "0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D", null)
-                const spend3Event = await jusdtSC.queryFilter(spend3Filter, 4300992, 'latest')
-                const spend3Map = await Promise.all(spend3Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-                const spend4Filter = await jusdtSC.filters.Transfer(null, "0xb8Cc909AD8245eD551bC359b721f3748dA814A33", null)
-                const spend4Event = await jusdtSC.queryFilter(spend4Filter, 4300992, 'latest')
-                const spend4Map = await Promise.all(spend4Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value) * 0.1)}}))
-                const spend5Filter = await jusdtSC.filters.Transfer(null, "0x87BAC0BCBaadF9B7d24385b1AaaEbeDEb60a1A0a", null)
-                const spend5Event = await jusdtSC.queryFilter(spend5Filter, 4300992, 'latest')
-                const spend5Map = await Promise.all(spend5Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-                const spend6Filter = await jusdtSC.filters.Transfer(null, "0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5", null)
-                const spend6Event = await jusdtSC.queryFilter(spend6Filter, 4300992, 'latest')
-                const spend6Map = await Promise.all(spend6Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-                const spend7Filter = await jusdtSC.filters.Transfer(null, "0x09e6a0A03afa27438c3f507de82b5f6061Ae1643", null)
-                const spend7Event = await jusdtSC.queryFilter(spend7Filter, 4300992, 'latest')
-                const spend7Map = await Promise.all(spend7Event.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-                spendAllMerged = spend1Map.concat(spend2Map, spend3Map, spend4Map, spend5Map, spend6Map, spend7Map).reduce((prev, curr) => {
-                    if (prev[curr.from.toUpperCase()]) {
-                    prev[curr.from.toUpperCase()].value += curr.value
-                    } else {
-                    prev[curr.from.toUpperCase()] = curr
-                    }
-                    return prev
-                }, {})
-            }
+            const jdaofarmfilter = await publicClient.createContractEventFilter({ abi: erc20Abi, address: '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88', eventName: 'Transfer', args: { from: farmJdao }, fromBlock: startblockmonth, toBlock: "latest" })
+            const jdaofarmlog = publicClient.getFilterLogs({ filter: jdaofarmfilter })
+            const enderfilter = await publicClient.createContractEventFilter({ abi: enderPotteryABI, address: ender, eventName: 'Participants', fromBlock: startblockmonth, toBlock: "latest" })
+            const enderlog = publicClient.getFilterLogs({ filter: enderfilter })
+            const stakefilter = await publicClient.createContractEventFilter({ abi: erc721Abi, address: cmdaoNft, eventName: 'Transfer', args: { to: houseStaking }, fromBlock: 3700385n, toBlock: "latest" })
+            const stakelog = publicClient.getFilterLogs({ filter: stakefilter })
+            const stakewdfilter = await publicClient.createContractEventFilter({ abi: erc721Abi, address: cmdaoNft, eventName: 'Transfer', args: { to: weaponDepotStaking }, fromBlock: 3660870n, toBlock: "latest" })
+            const stakewdlog = publicClient.getFilterLogs({ filter: stakewdfilter })
 
-            const data = address !== null ? await readContracts(config, {
-                contracts: [
-                    {
-                        address: jaspToken,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 8899,
-                    },
-                    {
-                        address: pvp01,
-                        abi: pvp01ABI,
-                        functionName: 'userInfo',
-                        args: [address],
-                        chainId: 8899,
-                    },
-                    {
-                        address: quest01,
-                        abi: quest01ABI,
-                        functionName: 'questComplete',
-                        args: [address],
-                        chainId: 8899,
-                    },
-                    {
-                        address: kyc,
-                        abi: kycABI,
-                        functionName: 'kyc',
-                        args: [0, address],
-                        chainId: 8899,
-                    },
-                    {
-                        address: questAmbass,
-                        abi: questAmbassABI,
-                        functionName: 'frenCount',
-                        args: [address],
-                        chainId: 8899,
-                    },
-                    {
-                        address: questAmbass,
-                        abi: questAmbassABI,
-                        functionName: 'registIndex',
-                        args: [address],
-                        chainId: 8899,
-                    },
-                    {
-                        address: questBBQ,
-                        abi: questBBQABI,
-                        functionName: 'questComplete',
-                        args: [address],
-                        chainId: 8899,
-                    },
-                    {
-                        address: questBBQ,
-                        abi: questBBQABI,
-                        functionName: 'questLastStamp',
-                        args: [address],
-                        chainId: 8899,
-                    },
-                    {
-                        address: bbqLab,
-                        abi: bbqLab01ABI,
-                        functionName: 'supplier',
-                        args: [address],
-                        chainId: 8899,
-                    },
-                    {
-                        address: '0x399fe73bb0ee60670430fd92fe25a0fdd308e142',
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 10,
-                    },
-                ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: false}, {result: 0}, {result: 0}, {result: 0}, {result: 0} ]
-            //const jaspBal = data[0].result
-            const reward = /*data[1].result[1] - data[2].result*/0
-            const _isKYC = data[3].result
-            const _frens = Number(data[4].result)
-            const _isJoin = Number(data[5].result) !== 0 ? true : false
-            const _gmStreak = Number(data[6].result)
-            const _canClaimSIL = /*ethers.utils.formatUnits(jaspBal, "gwei") >= 0.1 ? true : */false
-            const _canClaimPlat = /*ethers.utils.formatUnits(jaspBal, "gwei") >= 1 && Number(data[1].result[0]) >= 2 ? true : */false
-            const _canClaimBBQ = Date.now() > (Number(data[7].result) * 1000) + (3600 * 24 * 1000) ? true : false
-            const _nextClaimBBQ = new Date((Number(data[7].result) * 1000) + (3600 * 24 * 1000))
+            const jdaofarmdata = await jdaofarmlog
+            const jdaofarmMap = await Promise.all(jdaofarmdata.map(async (obj) => {return {to: String(obj.args.to), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+            const jdaoFarmAllMerged = jdaofarmMap.reduce((prev, curr) => {
+                if (prev[curr.to.toUpperCase()]) {
+                    prev[curr.to.toUpperCase()].value += curr.value
+                } else {
+                    prev[curr.to.toUpperCase()] = curr
+                }
+                return prev
+            }, {})
+            const enderdata = await enderlog
+            const enderMap = await Promise.all(enderdata.map(async (obj) => {return {from: String(obj.args.participant), value: 1}}))
+            const enderAllMerged = enderMap.reduce((prev, curr) => {
+                if (prev[curr.from.toUpperCase()]) {
+                    prev[curr.from.toUpperCase()].value += curr.value
+                } else {
+                    prev[curr.from.toUpperCase()] = curr
+                }
+                return prev
+            }, {})
+            const stakedata = await stakelog 
+            const stakeMap = await Promise.all(stakedata.map(async (obj) => String(obj.args.tokenId)))
+            const stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
+            const stakewddata = await stakewdlog 
+            const stakeMapWD = await Promise.all(stakewddata.map(async (obj) => String(obj.args.tokenId)))
+            const stakeRemoveDupWD = stakeMapWD.filter((obj, index) => stakeMapWD.indexOf(obj) === index)
 
             const data2_0 = await readContract(config, {
                 address: questAmbass,
@@ -297,20 +213,6 @@ const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setT
                 mover.push(ambass2Arr[i])
             }
 
-            let jdaoFarmAllMerged = []
-            if (address !== null) {
-                const jdaoFarmFilter = await jdaoSC.filters.Transfer(farmJdao, null, null)
-                const jdaoFarmEvent = await jdaoSC.queryFilter(jdaoFarmFilter, 4300992, 'latest')
-                const jdaoFarmMap = await Promise.all(jdaoFarmEvent.map(async (obj) => {return {to: String(obj.args.to), value: Number(ethers.utils.formatEther(obj.args.value))}}))
-                jdaoFarmAllMerged = jdaoFarmMap.reduce((prev, curr) => {
-                    if (prev[curr.to.toUpperCase()]) {
-                    prev[curr.to.toUpperCase()].value += curr.value
-                    } else {
-                    prev[curr.to.toUpperCase()] = curr
-                    }
-                    return prev
-                }, {})
-            }
             const jdaoFarmRemoveDup = ranker.map((item) => ({to: item, value: 0}))
             for (let i = 0; i <= jdaoFarmRemoveDup.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(jdaoFarmAllMerged).length -1; i2++) {
@@ -381,20 +283,6 @@ const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setT
                 quest4Arr.push(data2_4[i].result)
             }
 
-            let enderAllMerged = []
-            if (address !== null) {
-                const enderFilter = await enderSC.filters.Participants(null, null, null)
-                const enderEvent = await enderSC.queryFilter(enderFilter, 200737, 'latest')
-                const enderMap = await Promise.all(enderEvent.map(async (obj) => {return {from: String(obj.args.participant), value: 1}}))
-                enderAllMerged = spend1Map.concat(enderMap).reduce((prev, curr) => {
-                    if (prev[curr.from.toUpperCase()]) {
-                    prev[curr.from.toUpperCase()].value += curr.value
-                    } else {
-                    prev[curr.from.toUpperCase()] = curr
-                    }
-                    return prev
-                }, {})
-            }
             const enderRemoveDup = ranker.map((item) => ({from: item, value: 0}))
             for (let i = 0; i <= enderRemoveDup.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(enderAllMerged).length -1; i2++) {
@@ -562,13 +450,6 @@ const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setT
                 ],
             }) 
 
-            let stakeRemoveDup = []
-            if (address !== null) {
-                const stakeFilter = await cmdaonftSC.filters.Transfer(null, houseStaking, null)
-                const stakeEvent = await cmdaonftSC.queryFilter(stakeFilter, 3700385, "latest")
-                const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
-                stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
-            }
             const data0 = await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
@@ -689,13 +570,6 @@ const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setT
                 }
             }
 
-            let stakeRemoveDupWD = []
-            if (address !== null) {
-                const stakeFilterWD = await cmdaonftSC.filters.Transfer(null, weaponDepotStaking, null)
-                const stakeEventWD = await cmdaonftSC.queryFilter(stakeFilterWD, 3660870, "latest")
-                const stakeMapWD = await Promise.all(stakeEventWD.map(async (obj) => String(obj.args.tokenId)))
-                stakeRemoveDupWD = stakeMapWD.filter((obj, index) => stakeMapWD.indexOf(obj) === index)
-            }
             const data0WD = await readContracts(config, {
                 contracts: stakeRemoveDupWD.map((item) => (
                     {
@@ -932,6 +806,273 @@ const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setT
                     cmpow: Number(powCuArr[i]) + Number(powJaspArr[i]) + Number(powHouse[i]) + Number(powHouseWD[i] + Number(powMO[i].result[0]))
                 }
             })
+
+            return [ data2, data3, ]
+        }
+
+        const promise = thefetch()
+
+        const getAsync = () =>
+            new Promise((resolve) => 
+                setTimeout(
+                    () => resolve(promise), 1000
+                )
+            )
+
+        getAsync().then(result => {
+            setRank(result[0])
+            setRank2(result[1])
+            const arrRank1 = result[0].slice(0).sort((a, b) => {return b.cmxp-a.cmxp}).slice(0, 20)
+            let _sumArrRank1 = 0
+            for (let i = 0; i <= arrRank1.length - 1; i++) { _sumArrRank1 += Number(arrRank1[i].cmxp) }
+            setSumArrRank1(_sumArrRank1)
+            const arrRank2 = result[1].slice(0).sort((a, b) => {return b.cmpow-a.cmpow}).slice(0, 20)
+            let _sumArrRank2 = 0
+            for (let i = 0; i <= arrRank2.length - 1; i++) { _sumArrRank2 += Number(arrRank2[i].cmpow) }
+            setSumArrRank2(_sumArrRank2)
+        })
+    }, [config, address, txupdate, erc20Abi, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI])
+
+    React.useEffect(() => {      
+        const thefetch = async () => {
+            const data = address !== null ? await readContracts(config, {
+                contracts: [
+                    {
+                        address: jaspToken,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                        chainId: 8899,
+                    },
+                    {
+                        address: pvp01,
+                        abi: pvp01ABI,
+                        functionName: 'userInfo',
+                        args: [address],
+                        chainId: 8899,
+                    },
+                    {
+                        address: quest01,
+                        abi: quest01ABI,
+                        functionName: 'questComplete',
+                        args: [address],
+                        chainId: 8899,
+                    },
+                    {
+                        address: kyc,
+                        abi: kycABI,
+                        functionName: 'kyc',
+                        args: [0, address],
+                        chainId: 8899,
+                    },
+                    {
+                        address: questAmbass,
+                        abi: questAmbassABI,
+                        functionName: 'frenCount',
+                        args: [address],
+                        chainId: 8899,
+                    },
+                    {
+                        address: questAmbass,
+                        abi: questAmbassABI,
+                        functionName: 'registIndex',
+                        args: [address],
+                        chainId: 8899,
+                    },
+                    {
+                        address: questBBQ,
+                        abi: questBBQABI,
+                        functionName: 'questComplete',
+                        args: [address],
+                        chainId: 8899,
+                    },
+                    {
+                        address: questBBQ,
+                        abi: questBBQABI,
+                        functionName: 'questLastStamp',
+                        args: [address],
+                        chainId: 8899,
+                    },
+                    {
+                        address: bbqLab,
+                        abi: bbqLab01ABI,
+                        functionName: 'supplier',
+                        args: [address],
+                        chainId: 8899,
+                    },
+                    {
+                        address: '0x399fe73bb0ee60670430fd92fe25a0fdd308e142',
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                        chainId: 10,
+                    },
+                ],
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: false}, {result: 0}, {result: 0}, {result: 0}, {result: 0} ]
+            //const jaspBal = data[0].result
+            const reward = /*data[1].result[1] - data[2].result*/0
+            const _isKYC = data[3].result
+            const _frens = Number(data[4].result)
+            const _isJoin = Number(data[5].result) !== 0 ? true : false
+            const _gmStreak = Number(data[6].result)
+            const _canClaimSIL = /*ethers.utils.formatUnits(jaspBal, "gwei") >= 0.1 ? true : */false
+            const _canClaimPlat = /*ethers.utils.formatUnits(jaspBal, "gwei") >= 1 && Number(data[1].result[0]) >= 2 ? true : */false
+            const _canClaimBBQ = Date.now() > (Number(data[7].result) * 1000) + (3600 * 24 * 1000) ? true : false
+            const _nextClaimBBQ = new Date((Number(data[7].result) * 1000) + (3600 * 24 * 1000))
+
+            const spendfilter1 = await publicClient.createContractEventFilter({ abi: erc20Abi, address: jusdtToken, eventName: 'Transfer', args: { to: '0x39C623C4B3f11D38f06Adca9B794CFb2d37581e3' }, fromBlock: startblockmonth, toBlock: "latest" })
+            const spendlog1 = publicClient.getFilterLogs({ filter: spendfilter1 })
+            const spendfilter2 = await publicClient.createContractEventFilter({ abi: erc20Abi, address: jusdtToken, eventName: 'Transfer', args: { to: '0x87A612709b36b575103C65a90cB3B16Cac2BC898' }, fromBlock: startblockmonth, toBlock: "latest" })
+            const spendlog2 = publicClient.getFilterLogs({ filter: spendfilter2 })
+            const spendfilter3 = await publicClient.createContractEventFilter({ abi: erc20Abi, address: jusdtToken, eventName: 'Transfer', args: { to: '0xa4b53A4DD8277Dd2E506cb8692A492B1Dc6b255D' }, fromBlock: startblockmonth, toBlock: "latest" })
+            const spendlog3 = publicClient.getFilterLogs({ filter: spendfilter3 })
+            const spendfilter4 = await publicClient.createContractEventFilter({ abi: erc20Abi, address: jusdtToken, eventName: 'Transfer', args: { to: '0xb8Cc909AD8245eD551bC359b721f3748dA814A33' }, fromBlock: startblockmonth, toBlock: "latest" })
+            const spendlog4 = publicClient.getFilterLogs({ filter: spendfilter4 })
+            const spendfilter5 = await publicClient.createContractEventFilter({ abi: erc20Abi, address: jusdtToken, eventName: 'Transfer', args: { to: '0x87BAC0BCBaadF9B7d24385b1AaaEbeDEb60a1A0a' }, fromBlock: startblockmonth, toBlock: "latest" })
+            const spendlog5 = publicClient.getFilterLogs({ filter: spendfilter5 })
+            const spendfilter6 = await publicClient.createContractEventFilter({ abi: erc20Abi, address: jusdtToken, eventName: 'Transfer', args: { to: '0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5' }, fromBlock: startblockmonth, toBlock: "latest" })
+            const spendlog6 = publicClient.getFilterLogs({ filter: spendfilter6 })
+            const spendfilter7 = await publicClient.createContractEventFilter({ abi: erc20Abi, address: jusdtToken, eventName: 'Transfer', args: { to: '0x09e6a0A03afa27438c3f507de82b5f6061Ae1643' }, fromBlock: startblockmonth, toBlock: "latest" })
+            const spendlog7 = publicClient.getFilterLogs({ filter: spendfilter7 })
+            const spenddata1 = await spendlog1
+            const spend1Map = await Promise.all(spenddata1.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+            const spenddata2 = await spendlog2
+            const spend2Map = await Promise.all(spenddata2.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+            const spenddata3 = await spendlog3
+            const spend3Map = await Promise.all(spenddata3.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+            const spenddata4 = await spendlog4
+            const spend4Map = await Promise.all(spenddata4.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+            const spenddata5 = await spendlog5
+            const spend5Map = await Promise.all(spenddata5.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+            const spenddata6 = await spendlog6
+            const spend6Map = await Promise.all(spenddata6.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+            const spenddata7 = await spendlog7
+            const spend7Map = await Promise.all(spenddata7.map(async (obj) => {return {from: String(obj.args.from), value: Number(ethers.utils.formatEther(obj.args.value))}}))
+            const spendAllMerged = spend1Map.concat(spend2Map, spend3Map, spend4Map, spend5Map, spend6Map, spend7Map).reduce((prev, curr) => {
+                if (prev[curr.from.toUpperCase()]) {
+                    prev[curr.from.toUpperCase()].value += curr.value
+                } else {
+                    prev[curr.from.toUpperCase()] = curr
+                }
+                return prev
+            }, {})
+            const data2_0 = await readContract(config, {
+                address: questAmbass,
+                abi: questAmbassABI,
+                functionName: 'registCount',
+                chainId: 8899,
+            })
+            const rankerDummy = []
+            for (let i = 1; i <= Number(data2_0); i++) {
+                rankerDummy.push(null)
+            }
+            const data2_00 = await readContracts(config, {
+                contracts: rankerDummy.map((item, i) => (
+                    {
+                        address: questAmbass,
+                        abi: questAmbassABI,
+                        functionName: 'referalData',
+                        args: [i+1],
+                        chainId: 8899,
+                    }
+                ))
+            })
+            const _ambassArr = []
+            for (let i = 0; i <= Number(data2_00.length - 1); i++) {
+                _ambassArr.push(data2_00[i].result[0])
+            }
+            const _ambass2Arr = []
+            for (let i = 0; i <= Number(data2_00.length - 1); i++) {
+                _ambass2Arr.push(data2_00[i].result[1])
+            }
+            const ambass2Arr = []
+            const dekyc = ['0xee95ab10EEa1ec932a8541E478d5a63F12e82457', '0x500Fca064b8Eed97d0b2581904f3264408438423', '0xfCe0959Ddcc52210c2ade9bae64b8DD0a09770C3', '0x6562e421dAA15d48AD1072B7a15611E2B3E34238', '0x56E1aF963606983C74E41267e71cD19e7c86ae3E', '0x79B949415bADf6c050cf4e3c56114619C28a9Df2', '0x7ec9932e7De1Ca2dC93A4EdF382ddF2e5D50a1E3', '0x5f3760471fed0E232a86B2026b3236B1EeC2B697', '0x2089dc77c29fDa025622d7281e8F36c0b0b43ee6', '0xB462F623cC1F4b28cdFCA706FdF7402d185b8181', '0x553D1D355A6Aa0Eb64cd5F2F06D0cD733CD95e1d', '0xB073ce42FF2BF382774171f6d9Ca4718564c62A9', '0xED64Cc3083236AE043ed5be4B6673a5226EF78Bf', '0x0DE460035Fa8db0eFb01ad3eC442c2d901B8984C', '0x124AE673A82450489C122d8cBD408acfd23eddB2', '0x1C3Bd4A2E0cAEf1FB502cb3425c33D4A8A6Fd16F', '0x5d7111D9d7B4f82EFA8b0f01bb78d1c43855d3Db', '0x7EB3Bb6e039ebD8DF4801c93e44DA8A7a0BA180d', '0x6dDAd73CF2132981EdEcf9eDB2f4d6b74c081e31', '0xC07a9d01d2ffF30118343b4C7851212d7057a2bE', '0x9B4FBC71543d2320E1C111fcc62823A4Abeb7435', '0xb7872272Af0472A204FE7Fc263912580afdf7f44', '0x923D403a323cCF1b818017478d8ECa7163ab70E4', '0xBEE42C26397496e95eFcfeb5Bbc61f390F392f09', '0x6420295933eF61CA185a836C7C83eAd68c9345E2', '0x6b20125175Fbadb1d09CBc55Fb5604bcA1d159C3', '0xB601bBfaE6A33fb9af6Cd1A4d6642F1CAbb51aCe', '0xced763248D42c453bDdEb3C0480F1D487b600665', '0x803a1d956A526067afaAd0EDCb9f82D864FE7b0e', '0x267234Ce76034D7F707E9b4A67112F03FbE33fBB', '0x759BB243e5e8EA9beD084bC713cF93237182e4D1', '0x801033605EE87DF6ceb88f73c18687520d3c1528', '0xf7db393fBCb87857e81B5CA34cF5F81F27ffaF1d', '0x76F7285973756fAcFe111e06d3C0646988AAd0a4', '0x4E3f662fE793eEB956ebB515E690fF3ca8b859f7', '0xED4ba5a3C6fD95678ae91524Ba310a50840E81b5', '0xcDF72B378B17c3D40D3C3750b21AC613AD9899fd', '0x1005244a4794b2c9911d6fA65678b670d6bc141b', '0xb30904B1eBe5FCE3816fEA8d94E919C0854A7286', '0xd60Cae6AeA8a74CC3eF7505B24a40cE94233d977', '0xA71CF5B79a5aa95e923c2fD8aE62D08d2BCbA39A', '0x1253A3D7fFbedb4D408CF26Ac567f6090f5cdb41', '0x21bBFf900D09d8e3110fFB1A8504662a97cC3763', '0x729370Cb6B64d5d27Ba73Dc52a884c5CBf896f8f', '0xf65f98794798fDB65BD65aB67485Fc9bca4F1fa1', '0x32c47F2989Aa97977540Be786601466C18794820', '0xdA29b8b038F55BE6Fa6Fe670Fa897147b9a48Fa6', '0xf347471df7B7C14608f7b27Caf2E5cf83162d3eD', '0x4C4BC3a884171b208Fe80A105D3Be90D5B4a9688', '0xB367AD17c133e9D80F9B1bD72efB8C2aeA53DF12', '0x3a0d50FdF839275Ec66d336edb1fD666DF538eA0', '0x89B37eB684D8e475aA9246a46387bc2e67790D26', '0x5A4170baD389E8cC44c454F4495EFA1e5C2F14eC', '0xc0f8c2b6D8af5FA2204469A00EAa4F4b8b93aE8b', '0x440A35c9c33038c645c80E2D1Dc69a4Bb428aBaD', '0xc8B812318E2E390539727da2B308218da6330689', '0xc6a0ef7843Cac4ae37C1770A575ce7D4f5990017', '0xBf39FAB586A0A4cdD175cFe96b32fAdD8d8478Bf', '0x0e3b6bBf54F6ED5a3922f765443AE22767FFa570', '0x0AF7ECab093507568da3e372bCe683B7b1f41f64', '0xF6f6A67fF04a763e1C431e830ab37428c5648572', '0x5c77bc7e658af87F920D12975d9EEC9cf9F00100', '0x93F18e78df8c2c96CBF114EDf082Bb41Ca1D6233', '0x1854E30786ceb0964E46A82383cb170f4474E1e9', '0xFc11279dfDa70F180614588789aa553573FB59A5', '0xfC14D4866b642153c7a28Afdaf313419682f902F', '0x4d15f333F2E2029B0f4611e9e205aF0411489eAe', '0xAbCBa9ba55a0701f9E5211604DC6723e585d0e03', '0x325c6dfacb3f146EF82FAF89AC5A4e7B1Ea5baFB', '0xd80Eb72cC2e3C6Ce5037a06dFd0637c2D4feE013', '0x057a35f02F77a8DEDfe8313771164381242DEa3A', '0x36E31B975363ACe0e9E07Fe1d4bd9974B6d6ede2', '0xd68d77f16c61cD1712aD884DFCd3cd13bAAFcFC3', '0xbcB4be032f6Ba5d9Aa051817D29e172972462EC8', '0x14E00591A18f317FCB3310579c33231F6Af5b09D', '0x4482E983863159c4d8d7eecBdecB62dCEd4e2A4D', '0xF49CA788432C07DBc223505Cc23550a74feb8c37', '0x5359aBbBA2f73078Bb15eF6f73362f00accB7a4F', '0x30f564A4960FE3F191f4c9821314c6bD515b6656', '0xD32B045E805D224578E4f6D2f2a4A65739598b05', '0x8C279902D7cFD3c822ee7413C75A27b7159C3598', '0xDDf6FA0dE3D5f5b1C413fc82A762d559D8e713D3', '0x43f591061e0c77f6cc4B2f6539c4e8A1f9aFFaa9', '0x8Db409ca4D11aE7855e73f4f0E48EdF37E957183', '0x7B1dc39AfB909964Cea5D6652d0468625CCA781F', '0xdC221e1acAB5cFdFFeE5B34b9024f9F03147e20d', '0xdcEA2FD2fc80559DC5D2DcB1C66e437591e5b9A6', '0x98dB84A93cf9E69eA09806777386f07d70CD069a', '0xDDe8436124F63992B384dDdf4f98888a12022786', '0x1CA3089936E69dcA47d5814f8073D4935369444F', '0x17A61477977FD1dAd570BF164924Cab27f4f70DC', '0x09438B9cd1E4CfD3E207b5Bc0adF649711b3bbaE', '0x7568D7E7598adA3BE09241e5DCBcaf5835047436', '0x9af7C542A5cdd53CB9A632D5579551Ce70A093e4', '0x647CF1233d1a3974715946Ec39bb1DD74B0Dc260', '0xecC07c826437eCdc940963f636Ca8319D3a59296', '0xEA4C844d2769dFd1F5D5906BDac6Aaa343127F1D', '0x4ED36b0EACB6E48FB78b89b035d6f83C60Cce366', '0x96eD5193A3563FeA53b690B0f157FB3e761203Dd', '0x8aA0ABF59c013297A03cFc2d94364Eae9747C977', '0xF7898BA2a40c6e07d0e931bB385f2071ffD7084A', '0x7aa6402e57916a1Eaff3D424538D189789254B23', '0x668bd67c282C88eCba09c16b5201c83E6F6C6384', '0xC6dA021547A9f81fb1189657f5F3c1557FEc3550', '0xd781CE26451E85C4C4F39BB65136334C7Ed176E4', '0x106184b6f2E6BBfA8d20a9cCFFa13444c638a1d4', '0xfC35Bf976ccfdccFbaa4F8E4e3d64E74cB66D083', '0xCF2b1538D3Bee72aA27900DB00e614e08944d2ab', '0xe1D7f39558A2b96E50ECd69436DB8A7dA8b48830', '0x57Cc121074c19E6fbF0259d625a4E7a18443E21B', '0x496b30Bc28DaF49d156562790db98340e0da8eB8', '0x34aE4283541aB7491f0992cEA0F7F42839257850', '0x8cEC4Da5857b6FD1eEdd805A7399f5c4210021C9', '0xB45329c18566A5f6443278FeA04B0FF8a01f12a1', '0x03b7532dc393d1aF619B498B64B2C8Cb790B874E', '0xDCC9025AFC70c72026d50F0D6F27CcCE31C8dbcf', '0xA11bb45f8A406698A209E6c48AfA7720E970366F', '0xdB943eC07B2F49469cC8121BB5b268eA5D62887B', '0x22a45031870028df27253655D1dA9e9688fF6890', '0xb2eC09e7B04E63C8544d100b365CD924B6E36f2c', '0x0B5F72057f3D5e9d89c11C8bF9791fCdD4eAb14E', '0x2742b7062e9a3b63F16b6736A9B64b668B2bed39', '0xdC7C483c42a9ba50350C9f7b116808ac474Bb146', '0xfF22F618f2aFc6C353E949fCDE473a694e188bc8', '0xE438208D4B40414374BC1F7430c54e41680D56A5', '0x206c4C84c3c625Ed1d055fFe66f4bCeb012B0AdB', '0xEE16583d9d73f6584Aa677D037797C0078486Ae2', '0x50A69432b87aE3Ad1e3d413EDd1775F9F6Df3384', '0x0127C0c2AB5Af1100Ac6D4ac3C51972039cc010F', '0xf47090681CD5FAD47f6257D2a7565c4Db2BDF75E', '0x67cB6d54187E6496632dd501E3FdDb388329F4Ef', '0xf0C7C69d6F1c388cc507eE045c09f8F80b7B5CCb', '0x0dEf5e4A392e9eE0C81506c29A290607c146CA20', '0x64115AcA8c0223C0F8dB9E66e6470016A5481Db6', '0xdD47d3e65F6d7a5098474Ad3Aaab06CB441C3A3E', '0xD0157eF87E81fD44ceFa1F4874a244E42097D3a2', '0x087720BA0729dECF5AcB2B73cC77F403657A29ed', '0x0404533532636F6B142715b601edFbC9122ed91C', '0xbaa641685B87d3F79e3E267ac50743581aF15B42', '0x34b6940bfEf39B834A0715354b2032B9958e90aD', '0x62e76F5aEDA165776f17e466f7b20250b4db344D', '0xba91D40585B3714C74D0C48FcabEe59Cd1b26C8B', '0x075356b8DF870dBc05e1A848b934C6B27D47f7f8', '0x7CA2d9c2926204ac685665DD4d6FAB58DfF1ce89', '0x3379Ec9C2636376F07fF7CF8BF741EcA2A4B8913', '0x2E0AF8bb3133dE12Beb67980305bEd35D69A9d9b', '0x6CaE3746E425441F1Edb8d6fc563EA5B74517e2F', '0x0422bcA7A631Cbc260Bca2975A1AB40ceB0318E7', '0x042e630eB2A2F17F23006900ffF72515A66C34E8', '0xBFC9a9f1965a484451f05cecE780567df7D30cb6', '0x422753f23638fCEB97B220b2c78f702B91C26119', '0xa5e862a3745FBD8F31782bBCAC7a8B8930d838cF', '0x0dE9072c4a0Bf6bF66C0C194Bf8a88a6DcD71C8A', '0x594eAE3B79411Eb807b6B82661B8cAbbC455313B', '0x4C20178fd965983981a4Dc9640131415FB1511B0', '0xF3C5eCaca13C25BdD911E0a09ec9F48387eF1E46', '0xC014AE12556A4E22Dd74E81D7321EA299c7f8B67', '0xe5C40d9566966220965C58A07b327B39315C2a20', '0x489716ea77e27C9B8640E5e46cBcACe0f9c6c8dF', '0xa7e88d7662ddFD494b572938F75997134c670C35', '0x666f19299A0b7E1EF6cd1B42a25B0a22449872e7', '0x16E724bDc099C331F85a52E7132D5E539201691B', '0x682EC22c7De223db7BC498f0B13a311857137447', '0x2564443EcE12e7cd1d9338f932F0277E4C5f45af', '0x09aE7328dCb157B068acf8703e0c76090FDF5048', '0x334939e42a67Ad44367F3fAa6a288e15fe7A8D05', '0x710Ca14740eE62D03b554a0cB9fBdA48bE0DCF78', '0x246708D27a14ADf36f8513C08d2AD81EB109947F', '0x842734b5E9B819f1b7b4047D408f2e6E74fecE60', '0x7b136808D0f6d325466Df1008109120a56D236e6', '0x3e0742c729Ba551E101dA4FC5DFfF36D5F9c1b68', '0x9C59d4B591aE4216876B89b4687f199Ea5dfD0E0', '0x419EDE85e70166fF9CDc53c5507689f591536b4e', '0x7e5980a62D227D62C212C1409184d258F14e00b3', '0x2E8C63c9b13a4b014B19454f87d11f17F4E568B3', '0x87F997783AA4fE57A0f2Bf4829AfEDF85f003BEa', '0x0E84d9cB07cD9AA33635c3153Bc95FBE68703E81', '0x9cC2507D7Dc790977E30CAa3982C7884550044D1', '0x58a1d72ec8E6f0F03f93c0f475377a198A235A9C', '0x5053d4260D763DC07f7B8049cf0014E64E5F1EF6', '0x89764F12bA0028a1614e64c87d5892c2E94087D6', '0x4Cf1ab474F02A69D07EBd3EB58237b204caFFAd2', '0x22763079241E75C52192c52d694beaFD3e09C6a3', '0xb0436C372bF140cdd89AC8d2ad9522a9308CB4a0', '0x74F1430c9E42e2DCE649da6432107572a78D56D8', '0xf2be4F198F3E2D4aAC6C251c796F2Fad406e1A77', '0xc7656628e4aFeb00979f9F4832bA9d1C31F3A3BD', '0x5f1804ed99C638BDeE7ccd361f054646EDAfdD05', '0x17eD2B61e2F30Cbe7CD1bD8e1Aa0A1D6643c8Ae7', '0x896467f7F66655DB3762c653618a76B68f4b8fAC', '0x3c46f4b4363bd1ea1ccB4E929661F9c9F0eD1185', '0x44e5C9f323060ae1577c64732a7A64292f642630', '0xd444BD1fd5c0529328d5a1f830A1E68d9798F9f7', '0xF1FCf1CCE851818b5cD9dB3659fDAa9c0b59Ba59', '0x034B9D8f27Ee1595ee8B371Cf759F3233EAEee63', '0x6591D7eaF58cBEc5De3e7236c36Fe788A46c7E94', '0x85aA4A56352AD5Dd204F896201d2c58eF134929e', '0x4456dbF88059E45c6F8420EE1622166CE86d054b', '0x45df0966127CC340937cbF326D86cd4c9D7EbAE2', '0x46548e91ef64F3a5a6d026330f768af700017589', '0xA3E08Ac16ea8cC815E9da9dD9B10A4885F91e091', '0x163f53Cc363C354A1162A1e3054053eA6b370D60', '0x7aaCCDfF97a6f70e5272CD071549959D6eCb673A', '0xFf896233087760aa3069D15423BE90a50fa1b38A', '0x5c6BbaEd7B94Dc2aFF7734802A305088e2135765', '0x2cd323EC24B567FfFC52c88d8Ab53Ad603224f9D', '0x849410D3D1089ece96dCe513EE1944Df7b56E06c', '0x97A7592AA1047c3f52894593378237b3303ac086', '0xfEd824C62b357d7d9c62591EB938B0e446b6C3e8', '0x746559E229FC5BF21F99667Cc3393f0824E1d9A9', '0x87279c3b2198F4a2a8Bdb3f52B3E72EcBD490d87', '0x0ee32f3cbf9CFE2289172A216D2E4ffa8Eeabdd0', '0xF7EAa37D9004271A3f0037ff671693D07FBea928', '0x69c5dB1f35a952Ec58eAA975AC9a4f2Abb1CBa24', '0x5E953b2BB1aCff907CBf96A8840F77Bc51094c5e', '0x9269bb85E87e402F35D92b266E9C9A6Cbc2B2aB8', '0x775B259397a27AcFC518D9c28BEF47E025EdaF4e', '0xeb19BFB054173101087390C35DE06eb1eFf4C1e4', '0xB1f638f35C514912d1C53F9c277f2EE918a3AC2C', '0xB6CA015dd09B5Cf04a20e103bE5AAE341a4e8Eed']
+            const ambassArr = []
+            for (let i = 0; i <= _ambassArr.length - 1; i++) {
+                let isDekyc = false
+                let demover = _ambass2Arr[i]
+                for (let ii = 0; ii <= dekyc.length - 1; ii++) {
+                    if (_ambassArr[i].toUpperCase() === dekyc[ii].toUpperCase()) {
+                        isDekyc = true
+                        break
+                    }
+                    if (_ambass2Arr[i].toUpperCase() === dekyc[ii].toUpperCase()) {
+                        demover = '0x1BeedD97fCD4E21754465d21c757A9DF43733187'
+                    }
+                }
+                if (!isDekyc) {
+                    ambassArr.push(_ambassArr[i])
+                    ambass2Arr.push(demover)
+                }
+            }
+            const data2_001 = await readContracts(config, {
+                contracts: ambassArr.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'yourName',
+                        args: [item],
+                        chainId: 8899,
+                    }
+                ))
+            })
+            const ambass10Arr = []
+            for (let i = 0; i <= Number(data2_001.length - 1); i++) {
+                ambass10Arr.push(data2_001[i].result)
+            }
+            const data2_0011 = await readContracts(config, {
+                contracts: ambass10Arr.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'tokenURI',
+                        args: [item],
+                        chainId: 8899,
+                    }
+                ))
+            })
+            const ambass100Arr = []
+            for (let i = 0; i <= Number(data2_0011.length - 1); i++) {
+                ambass100Arr.push(data2_0011[i].result)
+            }
+            const data2_002 = await readContracts(config, {
+                contracts: ambass2Arr.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'yourName',
+                        args: [item],
+                        chainId: 8899,
+                    }
+                ))
+            })
+            const ambass20Arr = []
+            for (let i = 0; i <= Number(data2_002.length - 1); i++) {
+                ambass20Arr.push(data2_002[i].result)
+            }
+            const data2_0022 = await readContracts(config, {
+                contracts: ambass20Arr.map(item => (
+                    {
+                        address: cmdaoName,
+                        abi: cmdaoNameABI,
+                        functionName: 'tokenURI',
+                        args: [item],
+                        chainId: 8899,
+                    }
+                ))
+            })
+            const ambass200Arr = []
+            for (let i = 0; i <= Number(data2_0022.length - 1); i++) {
+                ambass200Arr.push(data2_0022[i].result)
+            }
+            const ranker = []
+            const mover = []
+            for (let i = 0; i <= ambassArr.length - 1; i++) {
+                ranker.push(ambassArr[i])
+            }
+            for (let i = 0; i <= ambass2Arr.length - 1; i++) {
+                mover.push(ambass2Arr[i])
+            }
             const spendRemoveDup = []
             for (let i = 0; i <= ranker.length -1; i++) {
                 for (let i2 = 0; i2 <= Object.values(spendAllMerged).length -1; i2++) {
@@ -964,7 +1105,7 @@ const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setT
 
             return [
                 _canClaimSIL, reward, _isKYC, _frens, _isJoin, _canClaimBBQ, _nextClaimBBQ, _gmStreak, _canClaimPlat, 
-                data2, data3, spendRemoveDup, Object.values(moverValMerged),
+               spendRemoveDup, Object.values(moverValMerged),
             ]
         }
 
@@ -987,28 +1128,17 @@ const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setT
             setNextClaimBBQ(result[6])
             setGmStreak(result[7])
             //setCanClaimPLAT(result[8])
-            setRank(result[9])
-            setRank2(result[10])
-            setRank3(result[11])
-            setRank4(result[12])
-            const arrRank1 = result[9].slice(0).sort((a, b) => {return b.cmxp-a.cmxp}).slice(0, 20)
-            let _sumArrRank1 = 0
-            for (let i = 0; i <= arrRank1.length - 1; i++) { _sumArrRank1 += Number(arrRank1[i].cmxp) }
-            setSumArrRank1(_sumArrRank1)
-            const arrRank2 = result[10].slice(0).sort((a, b) => {return b.cmpow-a.cmpow}).slice(0, 20)
-            let _sumArrRank2 = 0
-            for (let i = 0; i <= arrRank2.length - 1; i++) { _sumArrRank2 += Number(arrRank2[i].cmpow) }
-            setSumArrRank2(_sumArrRank2)
-            const arrRank3 = result[11].slice(0).sort((a, b) => {return b.value-a.value}).slice(0, 20)
+            setRank3(result[9])
+            setRank4(result[10])
+            const arrRank3 = result[9].slice(0).sort((a, b) => {return b.value-a.value}).slice(0, 20)
             let _sumArrRank3 = 0
             for (let i = 0; i <= arrRank3.length - 1; i++) { _sumArrRank3 += Number(arrRank3[i].value) }
             setSumArrRank3(_sumArrRank3)
-            const arrRank4 = result[12].slice(0).sort((a, b) => {return b.value-a.value}).slice(0, 20)
+            const arrRank4 = result[10].slice(0).sort((a, b) => {return b.value-a.value}).slice(0, 20)
             let _sumArrRank4 = 0
             for (let i = 0; i <= arrRank4.length - 1; i++) { _sumArrRank4 += Number(arrRank4[i].value) }
             setSumArrRank4(_sumArrRank4)
         })
-
     }, [config, address, txupdate, erc20Abi, kycABI, quest01ABI, questAmbassABI, questBBQABI, pvp01ABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI])
     /*const claimSILHandle = async () => {
         setisLoading(true)
