@@ -79,7 +79,7 @@ const OpSwap = ({ config, address, setisLoading, setTxupdate, setisError, setErr
                     functionName: 'allowance',
                     args: [address, swapCaller],
                 })
-                if (Number(ethers.utils.parseEther(String(token0Allow))) < Number(inputSwap)) {
+                if (Number(ethers.utils.formatEther(String(token0Allow))) < Number(inputSwap)) {
                     let { request } = await simulateContract(config, {
                         address: cmdToken,
                         abi: erc20Abi,

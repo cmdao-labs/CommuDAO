@@ -202,7 +202,7 @@ const OpGameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxu
                 functionName: 'allowance',
                 args: [address, router],
             })
-            if (Number(ethers.utils.parseEther(String(cmdAllow))) < Number(cmdAdd)) {
+            if (Number(ethers.utils.formatEther(String(cmdAllow))) < Number(cmdAdd)) {
                 let { request } = await simulateContract(config, {
                     address: cmdToken,
                     abi: erc20Abi,
@@ -246,7 +246,7 @@ const OpGameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxu
                 functionName: 'allowance',
                 args: [address, router],
             })
-            if (Number(ethers.utils.parseEther(String(cmdwethAllow))) < Number(lpSell)) {
+            if (Number(ethers.utils.formatEther(String(cmdwethAllow))) < Number(lpSell)) {
                 let { request } = await simulateContract(config, {
                     address: cmdethExchange,
                     abi: erc20Abi,
