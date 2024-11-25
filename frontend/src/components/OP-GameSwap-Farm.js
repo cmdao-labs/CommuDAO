@@ -100,7 +100,7 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
                 functionName: 'allowance',
                 args: [address, stcmdlp],
             })
-            if (Number(ethers.utils.parseEther(String(lpAllow))) < Number(lpStake)) {
+            if (Number(ethers.utils.formatEther(String(lpAllow))) < Number(lpStake)) {
                 let { request } = await simulateContract(config, {
                     address: cmdethlp,
                     abi: erc20Abi,
