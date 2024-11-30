@@ -2,14 +2,14 @@ import React from 'react'
 import Select from 'react-select'
 import { getBalance, readContract, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { ethers } from 'ethers'
+import { useDebouncedCallback } from 'use-debounce';
    
-const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMsg, callMode, navigate, options, inputStyle, jcExchange, exchangeABI, juExchange, exchangeJulpABI, jcSwap, swapABI, juSwap, swapJulpABI, cmjToken, jusdtToken, erc20Abi, jbcBalance, cmjBalance, jusdtBalance, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, priceTHB }) => {
+const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMsg, callMode, navigate, options, inputStyle, jcExchange, exchangeABI, juExchange, exchangeJulpABI, jcSwap, swapABI, juSwap, swapJulpABI, cmjToken, jusdtToken, erc20Abi, jbcBalance, cmjBalance, cmjBalanceFull, jusdtBalance, jusdtBalanceFull, jbcReserv, cmjReserv, jbcJuReserv, jusdtJuReserv, priceTHB }) => {
     const [inputSwap, setInputSwap] = React.useState("")
     const [jbcBought, setJbcBought] = React.useState("")
     const [cmjBought, setCmjBought] = React.useState("")
     const [jbcJuBought, setJbcJuBought] = React.useState("")
     const [jusdtJuBought, setJusdtJuBought] = React.useState("")
-    const [delaySwap, setDelaySwap] = React.useState(false)
     const [swapMode, setSwapMode] = React.useState(1)
     const swapModeChange = () => {
         if (swapMode === 0) { setSwapMode(1) }
@@ -36,10 +36,8 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
         setJbcBought("")
     }
 
-    const handleSwap = async (event) => {
-        setDelaySwap(true)
-        setInputSwap(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+    const handleSwap = useDebouncedCallback(async (amount) => {
+        const _value = amount !== "" ? ethers.utils.parseEther(String(amount)) : 0
         const _reserveJbc = await getBalance(config, { address: jcExchange, })
         const _reserveCmj = await readContract(config, {
             address: jcExchange,
@@ -52,33 +50,10 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
             functionName: 'getAmountOfTokens',
             args: [String(_value), String(_reserveJbc.value), String(_reserveCmj)],
         })
-        event.target.value !== "" ? setCmjBought(ethers.utils.formatEther(tokensBought)) : setCmjBought("")
-        setDelaySwap(false)
-    }
-    const maxHandle1 = async () => {
-        const _max = address !== null ? await getBalance(config, { address: address, }) : {formatted: 0}
-        const maxSubGas = Number(_max.formatted) - 0.009
-        setInputSwap(String(maxSubGas))
-        const _value = maxSubGas >= 0 ? ethers.utils.parseEther(String(maxSubGas)) : 0
-        const _reserveJbc = await getBalance(config, { address: jcExchange, })
-        const _reserveCmj = await readContract(config, {
-            address: jcExchange,
-            abi: exchangeABI,
-            functionName: 'getReserve',
-        })
-        const tokensBought = await readContract(config, {
-            address: jcExchange,
-            abi: exchangeABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveJbc.value), String(_reserveCmj)],
-        })
-        maxSubGas >= 0 ? setCmjBought(ethers.utils.formatEther(tokensBought)) : setCmjBought("")
-    }
-    const handleSwap2 = async (event) => {
-        setDelaySwap(true)
-        setInputSwap(event.target.value)
-        
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        amount !== "" ? setCmjBought(ethers.utils.formatEther(tokensBought)) : setCmjBought("")
+    }, 300)
+    const handleSwap2 = useDebouncedCallback(async (amount) => {        
+        const _value = amount !== "" ? ethers.utils.parseEther(String(amount)) : 0
         const _reserveJbc = await getBalance(config, { address: jcExchange, })
         const _reserveCmj = await readContract(config, {
             address: jcExchange,
@@ -91,36 +66,10 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
             functionName: 'getAmountOfTokens',
             args: [String(_value), String(_reserveCmj), String(_reserveJbc.value)],
         })
-        event.target.value !== "" ? setJbcBought(ethers.utils.formatEther(jbcBought)) : setJbcBought("")
-        setDelaySwap(false)
-    }
-    const maxHandle2 = async () => {
-        const _max = address !== null ? await readContract(config, {
-            address: cmjToken,
-            abi: erc20Abi,
-            functionName: 'balanceOf',
-            args: [address],
-        }) : 0
-        setInputSwap(ethers.utils.formatEther(_max))
-        const _value = _max >= 0 ? _max : 0
-        const _reserveJbc = await getBalance(config, { address: jcExchange, })
-        const _reserveCmj = await readContract(config, {
-            address: jcExchange,
-            abi: exchangeABI,
-            functionName: 'getReserve',
-        })
-        const jbcBought = await readContract(config, {
-            address: jcExchange,
-            abi: exchangeABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveCmj), String(_reserveJbc.value)],
-        })
-        _max !== "" ? setJbcBought(ethers.utils.formatEther(jbcBought)) : setJbcBought("")
-    }
-    const handleSwap3 = async (event) => {
-        setDelaySwap(true)
-        setInputSwap(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        amount !== "" ? setJbcBought(ethers.utils.formatEther(jbcBought)) : setJbcBought("")
+    }, 300)
+    const handleSwap3 = useDebouncedCallback(async (amount) => {
+        const _value = amount !== "" ? ethers.utils.parseEther(String(amount)) : 0
         const _reserveJbc = await getBalance(config, { address: juExchange, })
         const _reserveJusdt = await readContract(config, {
             address: juExchange,
@@ -133,32 +82,10 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
             functionName: 'getAmountOfTokens',
             args: [String(_value), String(_reserveJbc.value), String(_reserveJusdt)],
         })
-        event.target.value !== "" ? setJusdtJuBought(ethers.utils.formatEther(tokensBought)) : setJusdtJuBought("")
-        setDelaySwap(false)
-    }
-    const maxHandle3 = async () => {
-        const _max = address !== null ? await getBalance(config, { address: address, }) : {formatted: 0}
-        const maxSubGas = Number(_max.formatted) - 0.009
-        setInputSwap(String(maxSubGas))
-        const _value = maxSubGas >= 0 ? ethers.utils.parseEther(String(maxSubGas)) : 0
-        const _reserveJbc = await getBalance(config, { address: juExchange, })
-        const _reserveJusdt = await readContract(config, {
-            address: juExchange,
-            abi: exchangeJulpABI,
-            functionName: 'getReserve',
-        })
-        const tokensBought = await readContract(config, {
-            address: juExchange,
-            abi: exchangeJulpABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveJbc.value), String(_reserveJusdt)],
-        })
-        maxSubGas !== "" ? setJusdtJuBought(ethers.utils.formatEther(tokensBought)) : setJusdtJuBought("")
-    }
-    const handleSwap4 = async (event) => {
-        setDelaySwap(true)
-        setInputSwap(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+        amount !== "" ? setJusdtJuBought(ethers.utils.formatEther(tokensBought)) : setJusdtJuBought("")
+    }, 300)
+    const handleSwap4 = useDebouncedCallback(async (amount) => {
+        const _value = amount !== "" ? ethers.utils.parseEther(String(amount)) : 0
         const _reserveJbc = await getBalance(config, { address: juExchange, })
         const _reserveJusdt = await readContract(config, {
             address: juExchange,
@@ -171,32 +98,8 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
             functionName: 'getAmountOfTokens',
             args: [String(_value), String(_reserveJusdt), String(_reserveJbc.value)],
         })
-        event.target.value !== "" ? setJbcJuBought(ethers.utils.formatEther(jbcBought)) : setJbcJuBought("")
-        setDelaySwap(false)
-    }
-    const maxHandle4 = async () => {
-        const _max = address !== null ? await readContract(config, {
-            address: jusdtToken,
-            abi: erc20Abi,
-            functionName: 'balanceOf',
-            args: [address],
-        }) : 0
-        setInputSwap(ethers.utils.formatEther(_max))
-        const _value = _max >= 0 ? _max : 0
-        const _reserveJbc = await getBalance(config, { address: juExchange, })
-        const _reserveJusdt = await readContract(config, {
-            address: juExchange,
-            abi: exchangeJulpABI,
-            functionName: 'getReserve',
-        })
-        const jbcBought = await readContract(config, {
-            address: juExchange,
-            abi: exchangeJulpABI,
-            functionName: 'getAmountOfTokens',
-            args: [String(_value), String(_reserveJusdt), String(_reserveJbc.value)],
-        })
-        _max !== "" ? setJbcJuBought(ethers.utils.formatEther(jbcBought)) : setJbcJuBought("")
-    }
+        amount !== "" ? setJbcJuBought(ethers.utils.formatEther(jbcBought)) : setJbcJuBought("")
+    }, 300)
 
     const swapTokenHandle = async () => {
         setisLoading(true)
@@ -330,14 +233,13 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
                             <input
                                 style={{alignSelf: "flex-start", marginTop: 0, width: "190px", height: "40px", padding: "5px 20px", border: "1px solid #dddade"}}
                                 placeholder="0.0"
-                                onChange={swapMode === 0 ? handleSwap : handleSwap2}
+                                onChange={swapMode === 0 ? (e) => {setInputSwap(e.target.value); handleSwap(e.target.value);} : (e) => {setInputSwap(e.target.value); handleSwap2(e.target.value);}}
                                 value={inputSwap}
-                                readOnly={delaySwap}
                                 type='number'
                             />
                             {swapMode === 0 ?
-                                <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={maxHandle1}>Max</div> :
-                                <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={maxHandle2}>Max</div>}
+                                <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={() => {setInputSwap(jbcBalance - 0.0009); handleSwap(jbcBalance - 0.0009)}}>Max</div> :
+                                <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={() => {setInputSwap(cmjBalanceFull); handleSwap2(cmjBalanceFull)}}>Max</div>}
                         </div>
                     }
                     {(swapMode === 2 || swapMode === 3) &&
@@ -345,14 +247,13 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
                             <input
                                 style={{alignSelf: "flex-start", marginTop: 0, width: "190px", height: "40px", padding: "5px 20px", border: "1px solid #dddade"}}
                                 placeholder="0.0"
-                                onChange={swapMode === 3 ? handleSwap3 : handleSwap4}
+                                onChange={swapMode === 3 ? (e) => {setInputSwap(e.target.value); handleSwap3(e.target.value);} : (e) => {setInputSwap(e.target.value); handleSwap4(e.target.value);}}
                                 value={inputSwap}
-                                readOnly={delaySwap}
                                 type='number'
                             />
                             {swapMode === 3 ? 
-                                <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={maxHandle3}>Max</div> :
-                                <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={maxHandle4}>Max</div>
+                                <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={() => {setInputSwap(jbcBalance - 0.0009); handleSwap3(jbcBalance - 0.0009)}}>Max</div> :
+                                <div style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} className="bold" onClick={() => {setInputSwap(jusdtBalanceFull); handleSwap4(jusdtBalanceFull)}}>Max</div>
                             }
                         </div>
                     }

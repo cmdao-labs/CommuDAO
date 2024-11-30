@@ -13,6 +13,7 @@
     "react-scripts": "5.0.1",
     "react-select": "^5.7.2",
     "typescript": "5.0.4",
+    "use-debounce": "^10.0.4",
     "viem": "2.x",
     "wagmi": "^2.12.18"
   },
