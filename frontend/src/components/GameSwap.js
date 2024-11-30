@@ -46,6 +46,7 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
     const [cmjBalance, setCmjBalance] = React.useState(<>0.000</>)
     const [cmjBalanceFull, setCmjBalanceFull] = React.useState(null)
     const [jusdtBalance, setJusdtBalance] = React.useState(<>0.000</>)
+    const [jusdtBalanceFull, setJusdtBalanceFull] = React.useState(null)
     const [jbcReserv, setJbcReserv] = React.useState(0)
     const [cmjReserv, setCmjReserv] = React.useState(0)
     const [jbcJuReserv, setJbcJuReserv] = React.useState(0)
@@ -439,6 +440,7 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
             setCmjBalanceFull(Number(_cmjbalance))
             setCmjBalance(Number(Math.floor(_cmjbalance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
             const _jusdtbalance = ethers.utils.formatEther(result[2].result)
+            setJusdtBalanceFull(Number(_jusdtbalance))
             setJusdtBalance(Number(Math.floor(_jusdtbalance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
             const _jbcreserve = ethers.utils.formatEther(result[3].value)
             setJbcReserv(_jbcreserve)
@@ -551,7 +553,7 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
                     </div>
                     {mode === 0 && 
                         <>
-                            <Swap config={config} address={address} setisLoading={setisLoading} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} callMode={callMode} navigate={navigate} options={options} inputStyle={inputStyle} jcExchange={jcExchange} exchangeABI={exchangeABI} juExchange={juExchange} exchangeJulpABI={exchangeJulpABI} jcSwap={jcSwap} swapABI={swapABI} juSwap={juSwap} swapJulpABI={swapJulpABI} cmjToken={cmjToken} jusdtToken={jusdtToken} erc20Abi={erc20Abi} jbcBalance={jbcBalance} cmjBalance={cmjBalance} jusdtBalance={jusdtBalance} jbcReserv={jbcReserv} cmjReserv={cmjReserv} jbcJuReserv={jbcJuReserv} jusdtJuReserv={jusdtJuReserv} priceTHB={priceTHB} />
+                            <Swap config={config} address={address} setisLoading={setisLoading} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} callMode={callMode} navigate={navigate} options={options} inputStyle={inputStyle} jcExchange={jcExchange} exchangeABI={exchangeABI} juExchange={juExchange} exchangeJulpABI={exchangeJulpABI} jcSwap={jcSwap} swapABI={swapABI} juSwap={juSwap} swapJulpABI={swapJulpABI} cmjToken={cmjToken} jusdtToken={jusdtToken} erc20Abi={erc20Abi} jbcBalance={jbcBalance} cmjBalance={cmjBalance} cmjBalanceFull={cmjBalanceFull} jusdtBalance={jusdtBalance} jusdtBalanceFull={jusdtBalanceFull} jbcReserv={jbcReserv} cmjReserv={cmjReserv} jbcJuReserv={jbcJuReserv} jusdtJuReserv={jusdtJuReserv} priceTHB={priceTHB} />
                             <div style={{marginBottom: "80px", width: "750px", maxWidth: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
                                 <div style={{width: "300px", color: "black", background: "silver", border: "6px double #fff", padding: "15px 10px", boxShadow: "0 0 0 3px silver, 1em 1em 3px 0 rgba(0,0,0,.1)", textAlign: "left", fontSize: "12px", letterSpacing: "0.5px"}}>
                                     <div>Daily volume: {jbcReserv !== 0 ? <>฿{(Number(Math.floor(swapvol24USDT * priceTHB)) + Number(Math.floor(swapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})}</> : <>฿0</>}</div>

@@ -2,6 +2,7 @@ import React from 'react'
 import Select from 'react-select'
 import { readContract, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { ethers } from 'ethers'
+import { useDebouncedCallback } from 'use-debounce';
 
 const factory = "0xF1046053aa5682b4F9a81b5481394DA16BE5FF5a"
 const swapCaller = '0x3C72Fb1658E7A64fd4C88394De4474186A13460A'
@@ -10,7 +11,6 @@ const OpSwap = ({ config, address, setisLoading, setTxupdate, setisError, setErr
     const [inputSwap, setInputSwap] = React.useState("")
     const [ethBought, setEthBought] = React.useState("")
     const [cmdBought, setCmdBought] = React.useState("")
-    const [delaySwap, setDelaySwap] = React.useState(false)
 
     const [swapMode, setSwapMode] = React.useState(0)
     const swapModeChange = () => {
@@ -34,10 +34,8 @@ const OpSwap = ({ config, address, setisLoading, setTxupdate, setisError, setErr
         setEthBought("")
     }
 
-    const handleSwap = async (event) => {
-        setDelaySwap(true)
-        setInputSwap(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(String(Number(event.target.value * 0.997).toFixed(18))) : 0
+    const handleSwap = useDebouncedCallback(async (amount) => {
+        const _value = amount !== "" ? ethers.utils.parseEther(String(Number(amount * 0.997).toFixed(18))) : 0
         if (swapMode === 0) {
             const _tokenOut = await readContract(config, {
                 address: cmdethExchange,
@@ -45,7 +43,7 @@ const OpSwap = ({ config, address, setisLoading, setTxupdate, setisError, setErr
                 functionName: 'getAmountOut',
                 args: [_value , wethToken],
             })
-            event.target.value !== "" ? setCmdBought(Number(ethers.utils.formatEther(_tokenOut))) : setCmdBought("")
+            amount !== "" ? setCmdBought(Number(ethers.utils.formatEther(_tokenOut))) : setCmdBought("")
         } else if (swapMode === 1) {
             const _tokenOut = await readContract(config, {
                 address: cmdethExchange,
@@ -53,10 +51,9 @@ const OpSwap = ({ config, address, setisLoading, setTxupdate, setisError, setErr
                 functionName: 'getAmountOut',
                 args: [_value, cmdToken],
             })
-            event.target.value !== "" ? setEthBought(Number(ethers.utils.formatEther(_tokenOut))) : setEthBought("")
+            amount !== "" ? setEthBought(Number(ethers.utils.formatEther(_tokenOut))) : setEthBought("")
         }
-        setDelaySwap(false)
-    }
+    }, 300)
     const swapTokenHandle = async () => {
         setisLoading(true)
         const deadline = Math.floor(Date.now() / 1000) + 60 * 10; // 10 minutes from now
@@ -131,17 +128,18 @@ const OpSwap = ({ config, address, setisLoading, setTxupdate, setisError, setErr
                             style={{alignSelf: "flex-start", marginTop: 0, width: "190px", height: "40px", padding: "5px 20px", border: "1px solid #dddade"}}
                             placeholder="0.0"
                             type='number'
-                            onChange={handleSwap}
+                            onChange={(e) => {setInputSwap(e.target.value); handleSwap(e.target.value);}}
                             value={inputSwap}
-                            readOnly={delaySwap}
                         />
                         <div 
                             style={{padding: "15px 10px", border: "1px solid #dddade", cursor: "pointer"}} 
                             onClick={() => {
                                 if (swapMode === 0) {
-                                    handleSwap({target: {value: ethBalance}})
+                                    setInputSwap(ethBalance - 0.0009)
+                                    handleSwap(ethBalance - 0.0009)
                                 } else if (swapMode === 1) {
-                                    handleSwap({target: {value: cmdBalance}})
+                                    setInputSwap(cmdBalance)
+                                    handleSwap(cmdBalance)
                                 }
                             }} 
                             className="bold"
