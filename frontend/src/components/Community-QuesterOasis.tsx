@@ -27,7 +27,7 @@ const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const houseStaking = '0xc4dB6374EeCa3743F8044ae995892827B62b14fe'
 const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
 const publicClient = createPublicClient({ chain: jbc, transport: http() })
-const startblockmonth = 4300992n
+const startblockmonth = 4475889n
 
 const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI }) => {
     let { address, chain } = useAccount()
@@ -1267,23 +1267,23 @@ const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setT
                 </div> :
                 <div style={{background: "rgb(0, 19, 33)", width: "100%", padding: "20px 0 80px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll pixel">
                     <div style={{padding: "50px", margin: "50px 0", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "300px", width: "70%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexFlow: "row wrap", fontSize: "16px", textAlign: "left"}} className="nftCard">
-                        <div style={{width: "98%", fontSize: "30px", color: "#fff"}}>November 2024 Prize Pool 🎁</div>
+                        <div style={{width: "98%", fontSize: "30px", color: "#fff"}}>December 2024 Prize Pool 🎁</div>
                         <div style={{width: "98%", marginTop: "10px", display: "flex", flexFlow: "column wrap", justifyContent: "space-between"}}>
                             <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                 <div>Top Questers</div>
-                                <div>6,870.375 CMJ</div>
+                                <div>X.XX CMJ</div>
                             </div>
                             <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                 <div>Top Strongest</div>
-                                <div>6,870.375 CMJ</div>
+                                <div>X.XX CMJ</div>
                             </div>
                             <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                 <div>Top Spender</div>
-                                <div>6,870.375 CMJ</div>
+                                <div>X.XX CMJ</div>
                             </div>
                             <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                 <div>Top Money Mover</div>
-                                <div>2,290.125 CMJ</div>
+                                <div>X.XX CMJ</div>
                             </div>
                         </div>
                         <div style={{width: "98%", marginTop: "10px", color: "#fff"}}>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 20 for each leaderboard.</div>
