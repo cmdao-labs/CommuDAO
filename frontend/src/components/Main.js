@@ -113,6 +113,8 @@ import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { defineChain } from '@reown/appkit/networks';
 
+const v = '0.5.1'
+
 const Fields = React.lazy(() => import('./Fields'))
 const AncientForrest = React.lazy(() => import('./Fields-AncientForrest'))
 const TunaLake = React.lazy(() => import('./Fields-TunaLake'))
@@ -235,8 +237,6 @@ createAppKit({
         analytics: true,
     }
 })
-
-const v = '0.5.0'
 
 const Main = () => {    
     const navigate = useNavigate()

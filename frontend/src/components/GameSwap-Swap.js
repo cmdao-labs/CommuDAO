@@ -109,8 +109,8 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
                     address: jcSwap,
                     abi: swapABI,
                     functionName: 'callJbcToCmj',
-                    args: [ethers.utils.parseEther(String(cmjBought * 0.99))],
-                    value: ethers.utils.parseEther(inputSwap),
+                    args: [ethers.utils.parseEther(String(Number(cmjBought * 0.99).toFixed(8)))],
+                    value: ethers.utils.parseEther(String(inputSwap)),
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -136,7 +136,7 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
                     address: jcSwap,
                     abi: swapABI,
                     functionName: 'callCmjToJbc',
-                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(jbcBought * 0.99))],
+                    args: [ethers.utils.parseEther(String(inputSwap)), ethers.utils.parseEther(String(Number(jbcBought * 0.99).toFixed(8)))],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -156,8 +156,8 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
                     address: juSwap,
                     abi: swapJulpABI,
                     functionName: 'callJbcToJusdt',
-                    args: [ethers.utils.parseEther(String(jusdtJuBought * 0.99))],
-                    value: ethers.utils.parseEther(inputSwap),
+                    args: [ethers.utils.parseEther(String(Number(jusdtJuBought * 0.99).toFixed(8)))],
+                    value: ethers.utils.parseEther(String(inputSwap)),
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
@@ -183,7 +183,7 @@ const Swap = ({ config, address, setisLoading, setTxupdate, setisError, setErrMs
                     address: juSwap,
                     abi: swapJulpABI,
                     functionName: 'callJusdtToJbc',
-                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(jbcJuBought * 0.99))],
+                    args: [ethers.utils.parseEther(String(inputSwap)), ethers.utils.parseEther(String(Number(jbcJuBought * 0.99).toFixed(8)))],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })

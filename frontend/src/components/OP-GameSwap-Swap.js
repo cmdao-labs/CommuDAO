@@ -63,8 +63,8 @@ const OpSwap = ({ config, address, setisLoading, setTxupdate, setisError, setErr
                     address: swapCaller,
                     abi: velodromeCallerABI,
                     functionName: 'callForToken',
-                    args: [ethers.utils.parseEther(String(cmdBought * 0.99)), [[wethToken, cmdToken, false, factory]], deadline],
-                    value: ethers.utils.parseEther(inputSwap),
+                    args: [ethers.utils.parseEther(String(Number(cmdBought * 0.99).toFixed(8))), [[wethToken, cmdToken, false, factory]], deadline],
+                    value: ethers.utils.parseEther(String(inputSwap)),
                 })
                 let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
@@ -90,7 +90,7 @@ const OpSwap = ({ config, address, setisLoading, setTxupdate, setisError, setErr
                     address: swapCaller,
                     abi: velodromeCallerABI,
                     functionName: 'callForETH',
-                    args: [ethers.utils.parseEther(inputSwap), ethers.utils.parseEther(String(cmdBought * 0.99)), [[cmdToken, wethToken, false, factory]], deadline],
+                    args: [ethers.utils.parseEther(String(inputSwap)), ethers.utils.parseEther(String(Number(cmdBought * 0.99).toFixed(8))), [[cmdToken, wethToken, false, factory]], deadline],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
