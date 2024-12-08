@@ -75,18 +75,22 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
     const [priceTHB, setPriceTHB] = React.useState(0)
 
     const handleAdd = async (event) => {
-        setJbcAdd(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJbc = await getBalance(config, { address: jcExchange, })
-        const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
-        const _reserveCmj = await readContract(config, {
-            address: jcExchange,
-            abi: exchangeABI,
-            functionName: 'getReserve',
-        })
-        const bigCmjReserv = ethers.BigNumber.from(_reserveCmj)
-        event.target.value !== "" ? setCmjAdd(ethers.utils.formatEther(((bigValue.mul(bigCmjReserv)).div(bigJbcReserv)))) : setCmjAdd("")
+        try {
+            setJbcAdd(event.target.value)
+            const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+            const bigValue = ethers.BigNumber.from(_value)
+            const _reserveJbc = await getBalance(config, { address: jcExchange, })
+            const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
+            const _reserveCmj = await readContract(config, {
+                address: jcExchange,
+                abi: exchangeABI,
+                functionName: 'getReserve',
+            })
+            const bigCmjReserv = ethers.BigNumber.from(_reserveCmj)
+            event.target.value !== "" ? setCmjAdd(ethers.utils.formatEther(((bigValue.mul(bigCmjReserv)).div(bigJbcReserv)))) : setCmjAdd("")
+        } catch {
+            setJbcAdd(jbcAdd)
+        }
     }
     const maxLiqHandle1 = async () => {
         const _max = address !== null ? await getBalance(config, { address: address, }) : {formatted: 0}
@@ -105,18 +109,22 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
         maxSubGas >= 0 ? setCmjAdd(ethers.utils.formatEther(((bigValue.mul(bigCmjReserv)).div(bigJbcReserv)))) : setCmjAdd("")
     }
     const handleAdd2 = async (event) => {
-        setCmjAdd(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJbc = await getBalance(config, { address: jcExchange, })
-        const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
-        const _reserveCmj = await readContract(config, {
-            address: jcExchange,
-            abi: exchangeABI,
-            functionName: 'getReserve',
-        })
-        const bigCmjReserv = ethers.BigNumber.from(_reserveCmj)
-        event.target.value !== "" ? setJbcAdd(ethers.utils.formatEther(((bigValue.mul(bigJbcReserv)).div(bigCmjReserv)))) : setJbcAdd("")
+        try {
+            setCmjAdd(event.target.value)
+            const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+            const bigValue = ethers.BigNumber.from(_value)
+            const _reserveJbc = await getBalance(config, { address: jcExchange, })
+            const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
+            const _reserveCmj = await readContract(config, {
+                address: jcExchange,
+                abi: exchangeABI,
+                functionName: 'getReserve',
+            })
+            const bigCmjReserv = ethers.BigNumber.from(_reserveCmj)
+            event.target.value !== "" ? setJbcAdd(ethers.utils.formatEther(((bigValue.mul(bigJbcReserv)).div(bigCmjReserv)))) : setJbcAdd("")
+        } catch {
+            setCmjAdd(cmjAdd)
+        }
     }
     const maxLiqHandle2 = async () => {
         const _max = address !== null ? await readContract(config, {
@@ -139,18 +147,22 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
         _max >= 0 ? setJbcAdd(ethers.utils.formatEther(((bigValue.mul(bigJbcReserv)).div(bigCmjReserv)))) : setJbcAdd("")
     }
     const handleAdd3 = async (event) => {
-        setJbcJuAdd(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJbc = await getBalance(config, { address: juExchange, })
-        const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
-        const _reserveJusdt = await readContract(config, {
-            address: juExchange,
-            abi: exchangeJulpABI,
-            functionName: 'getReserve',
-        })
-        const bigJusdtReserv = ethers.BigNumber.from(_reserveJusdt)
-        event.target.value !== "" ? setJusdtJuAdd(ethers.utils.formatEther(((bigValue.mul(bigJusdtReserv)).div(bigJbcReserv)))) : setJusdtJuAdd("")
+        try {
+            setJbcJuAdd(event.target.value)
+            const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+            const bigValue = ethers.BigNumber.from(_value)
+            const _reserveJbc = await getBalance(config, { address: juExchange, })
+            const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
+            const _reserveJusdt = await readContract(config, {
+                address: juExchange,
+                abi: exchangeJulpABI,
+                functionName: 'getReserve',
+            })
+            const bigJusdtReserv = ethers.BigNumber.from(_reserveJusdt)
+            event.target.value !== "" ? setJusdtJuAdd(ethers.utils.formatEther(((bigValue.mul(bigJusdtReserv)).div(bigJbcReserv)))) : setJusdtJuAdd("")
+        } catch {
+            setJbcJuAdd(jbcJuAdd)
+        }
     }
     const maxLiqHandle3 = async () => {
         const _max = address !== null ? await getBalance(config, { address: address, }) : {formatted: 0}
@@ -169,18 +181,22 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
         _value >= 0 ? setJusdtJuAdd(ethers.utils.formatEther(((bigValue.mul(bigJusdtReserv)).div(bigJbcReserv)))) : setJusdtJuAdd("")
     }
     const handleAdd4 = async (event) => {
-        setJusdtJuAdd(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const bigValue = ethers.BigNumber.from(_value)
-        const _reserveJbc = await getBalance(config, { address: juExchange, })
-        const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
-        const _reserveJusdt = await readContract(config, {
-            address: juExchange,
-            abi: exchangeJulpABI,
-            functionName: 'getReserve',
-        })
-        const bigJusdtReserv = ethers.BigNumber.from(_reserveJusdt)
-        event.target.value !== "" ? setJbcJuAdd(ethers.utils.formatEther(((bigValue.mul(bigJbcReserv)).div(bigJusdtReserv)))) : setJbcJuAdd("")
+        try {
+            setJusdtJuAdd(event.target.value)
+            const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+            const bigValue = ethers.BigNumber.from(_value)
+            const _reserveJbc = await getBalance(config, { address: juExchange, })
+            const bigJbcReserv = ethers.BigNumber.from(_reserveJbc.value)
+            const _reserveJusdt = await readContract(config, {
+                address: juExchange,
+                abi: exchangeJulpABI,
+                functionName: 'getReserve',
+            })
+            const bigJusdtReserv = ethers.BigNumber.from(_reserveJusdt)
+            event.target.value !== "" ? setJbcJuAdd(ethers.utils.formatEther(((bigValue.mul(bigJbcReserv)).div(bigJusdtReserv)))) : setJbcJuAdd("")
+        } catch {
+            setJusdtJuAdd(jusdtJuAdd)
+        }
     }
     const maxLiqHandle4 = async () => {
         const _max = address !== null ? await readContract(config, {
