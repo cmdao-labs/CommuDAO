@@ -133,21 +133,25 @@ const OpGameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxu
     const [cmdAdd, setCmdAdd] = React.useState("")
 
     const handleAdd = async (event) => {
-        setEthAdd(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const bigValue = ethers.BigNumber.from(_value)
-        const _reserveCmd = await readContract(config, {
-            address: cmdethExchange,
-            abi: veloPoolABI,
-            functionName: 'getReserves',
-        })
-        const bigCmdReserv = ethers.BigNumber.from(_reserveCmd[0])
-        const bigEthReserv = ethers.BigNumber.from(_reserveCmd[1])
-        event.target.value !== "" ? setCmdAdd(ethers.utils.formatEther(((bigValue.mul(bigCmdReserv)).div(bigEthReserv)))) : setCmdAdd("")
+        try {
+            setEthAdd(event.target.value)
+            const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+            const bigValue = ethers.BigNumber.from(_value)
+            const _reserveCmd = await readContract(config, {
+                address: cmdethExchange,
+                abi: veloPoolABI,
+                functionName: 'getReserves',
+            })
+            const bigCmdReserv = ethers.BigNumber.from(_reserveCmd[0])
+            const bigEthReserv = ethers.BigNumber.from(_reserveCmd[1])
+            event.target.value !== "" ? setCmdAdd(ethers.utils.formatEther(((bigValue.mul(bigCmdReserv)).div(bigEthReserv)))) : setCmdAdd("")
+        } catch {
+            setEthAdd(ethAdd)
+        }
     }
     const maxLiqHandle1 = async () => {
         const _max = address !== null ? await getBalance(config, { address: address, }) : {formatted: 0}
-        const maxSubGas = Number(_max.formatted) - 0.00009
+        const maxSubGas = Number(Number(_max.formatted) - 0.00009).toFixed(18)
         setEthAdd(String(maxSubGas))
         const _value = maxSubGas >= 0 ? ethers.utils.parseEther(String(maxSubGas)) : 0
         const bigValue = ethers.BigNumber.from(_value)        
@@ -161,17 +165,21 @@ const OpGameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxu
         maxSubGas >= 0 ? setCmdAdd(ethers.utils.formatEther(((bigValue.mul(bigCmdReserv)).div(bigEthReserv)))) : setCmdAdd("")
     }
     const handleAdd2 = async (event) => {
-        setCmdAdd(event.target.value)
-        const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
-        const bigValue = ethers.BigNumber.from(_value)
-        const _reserveCmd = await readContract(config, {
-            address: cmdethExchange,
-            abi: veloPoolABI,
-            functionName: 'getReserves',
-        })
-        const bigCmdReserv = ethers.BigNumber.from(_reserveCmd[0])
-        const bigEthReserv = ethers.BigNumber.from(_reserveCmd[1])
-        event.target.value !== "" ? setEthAdd(ethers.utils.formatEther(((bigValue.mul(bigEthReserv)).div(bigCmdReserv)))) : setEthAdd("")
+        try {
+            setCmdAdd(event.target.value)
+            const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
+            const bigValue = ethers.BigNumber.from(_value)
+            const _reserveCmd = await readContract(config, {
+                address: cmdethExchange,
+                abi: veloPoolABI,
+                functionName: 'getReserves',
+            })
+            const bigCmdReserv = ethers.BigNumber.from(_reserveCmd[0])
+            const bigEthReserv = ethers.BigNumber.from(_reserveCmd[1])
+            event.target.value !== "" ? setEthAdd(ethers.utils.formatEther(((bigValue.mul(bigEthReserv)).div(bigCmdReserv)))) : setEthAdd("")
+        } catch {
+            setCmdAdd(cmdAdd)
+        }
     }
     const maxLiqHandle2 = async () => {
         const _max = address !== null ? await readContract(config, {
@@ -216,7 +224,7 @@ const OpGameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxu
                 address: router,
                 abi: velodromeRouterABI,
                 functionName: 'addLiquidityETH',
-                args: [cmdToken, false, ethers.utils.parseEther(cmdAdd), ethers.utils.parseEther(cmdAdd) , ethers.utils.parseEther(String(Number(ethAdd) - 0.00009)), address, deadline],
+                args: [cmdToken, false, ethers.utils.parseEther(cmdAdd), ethers.utils.parseEther(cmdAdd) , ethers.utils.parseEther(ethAdd), address, deadline],
                 value: ethers.utils.parseEther(ethAdd),
             })
             let h = await writeContract(config, request)
