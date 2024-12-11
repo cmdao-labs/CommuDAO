@@ -2010,7 +2010,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
             const sumFee18 = fee35map.reduce((partialSum, a) => partialSum + a, 0)
             const sumFee18_2 = fee36map.reduce((partialSum, a) => partialSum + a, 0)
             
-            return [sumFee, sumFee2, sumFee3, sumFee4, sumFee5, sumFee6, sumFee7, sumFee8, sumFee9, sumFee10, sumFee11, sumFee12, sumFee13, sumFee14, sumFee12_2, sumFee13_2, sumFee14_2, sumFee11_2, sumFee10_2, sumFee9_2, sumFee8_2, sumFee7_2, sumFee6_2, sumFee5_2,  sumFee4_2, sumFee3_2, sumFee15, sumFee15_2, sumFee16, sumFee16_2, sumFee17, sumFee17_2, sumFee18, sumFee18_2]
+            return [sumFee, sumFee2, sumFee3, sumFee3_2, sumFee4, sumFee4_2, sumFee5, sumFee5_2, sumFee6, sumFee6_2, sumFee7, sumFee7_2, sumFee8, sumFee8_2, sumFee9, sumFee9_2, sumFee10, sumFee10_2, sumFee11, sumFee11_2, sumFee12, sumFee12_2, sumFee13, sumFee13_2, sumFee14, sumFee14_2, sumFee15, sumFee15_2, sumFee16, sumFee16_2, sumFee17, sumFee17_2, sumFee18, sumFee18_2]
         }
 
         const promise = thefetch()
