@@ -113,7 +113,7 @@ import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { defineChain } from '@reown/appkit/networks';
 
-const v = '0.5.2'
+const v = '0.5.3'
 
 const Fields = React.lazy(() => import('./Fields'))
 const AncientForrest = React.lazy(() => import('./Fields-AncientForrest'))
@@ -124,6 +124,7 @@ const EasternFront = React.lazy(() => import('./Fields-EasternFront'))
 const MechHarvestZone = React.lazy(() => import('./Fields-MechHarvestZone'))
 const DjMining = React.lazy(() => import('./Fields-DjMining'))
 const CommuDOIField = React.lazy(() => import('./Fields-CommuDOI'))
+const TheInnovatesPlantField = React.lazy(() => import('./Fields-TheInnovatesPlant'))
 const BKCFields = React.lazy(() => import('./BKC-Fields'))
 const BadMuseum = React.lazy(() => import('./BKC-Fields-BadMuseum'))
 const FraserRiver = React.lazy(() => import('./BKC-Fields-FraserRiver'))
@@ -269,6 +270,9 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "COMMUDOI") {
                     preset = 102
                     document.title = "CommuDOI | CommuDAO"
+                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "THE-INNOVATES-PLANT") {
+                    preset = 103
+                    document.title = "The Innovate's Plant | CommuDAO"
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "BKC") {
                     preset = 14
                     document.title = "Fields [BKC] | CommuDAO"
@@ -464,6 +468,7 @@ const Main = () => {
                         {mode === 100 && <MechHarvestZone config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} callMode={callMode} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} gearFieldABI={gearFieldABI} taoPfpABI={taoPfpABI} />}
                         {mode === 101 && <DjMining config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} callMode={callMode} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} fieldDjABI={fieldDjABI} />}
                         {mode === 102 && <CommuDOIField config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} callMode={callMode} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} cmdoiFieldABI={cmdoiFieldABI} />}
+                        {mode === 103 && <TheInnovatesPlantField config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} callMode={callMode} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} cmdoiFieldABI={cmdoiFieldABI} />}
                         {mode === 14 && <BKCFields callMode={callMode} navigate={navigate} />}
                         {mode === 15 && <BadMuseum config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} callMode={callMode} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tunaFieldABI={tunaFieldABI} erc20Abi={erc20Abi} />}
                         {mode === 16 && <FraserRiver config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} callMode={callMode} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} salmFieldABI={salmFieldABI} />}

@@ -141,7 +141,7 @@ const Fields = ({ callMode, navigate }) => {
                 </div>
             </div>
 
-            <div style={{width: "95%", minHeight: 0, marginBottom: "80px", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+            <div style={{width: "95%", minHeight: 0, justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                 <div className="nftCard" style={{justifyContent: "center", margin: "10px", position: "relative", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
                     <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "rgb(255, 255, 255, 0.5)", letterSpacing: 1, border: "1px outset", display: "flex", flexDirection: "row", alignItems: "center"}}>
                         <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50" width="30px" alt="TAODUM-TAOMEME" />
@@ -215,6 +215,33 @@ const Fields = ({ callMode, navigate }) => {
                         </div>                    
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0 40px", border: "1px dashed #4637a9", justifyContent: "center"}} className="pixel hashtag" onClick={() => {callMode(102); navigate('/fields/commudoi');}}>Go to CommuDOI</div>
+                </div>
+            </div>
+
+            <div style={{width: "95%", minHeight: 0, marginBottom: "80px", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
+                <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
+                    <div style={{position: "absolute", top: -25, right: -15, padding: "7.5px 20px", width: "150px", background: "rgb(255, 255, 255, 0.5)", letterSpacing: 1, border: "1px outset", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50" width="30px" alt="TAODUM-TAOMEME" />
+                        <div className='light' style={{marginLeft: "10px"}}>Taodum & Taomeme</div>
+                    </div>
+                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmS45T1n74hpmfkTHcWe8pUd9v5YhE93a9XJfyqqa3BRT3?img-height=300" height="230" alt="THE-INNOVATE'S-PLANT" />
+                    <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                        <div>
+                            <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
+                            Eligible NFTs
+                        </div>
+                        <div style={{color: "#000", borderBottom: "1px dashed"}} className="pixel">TAOMEME PFP</div>
+                    </div>
+                    <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                        <div>
+                            <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>
+                            Earn
+                        </div>
+                        <div style={{borderBottom: "1px dashed"}}>
+                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-height=50" height="14" alt="$II"/>
+                        </div>   
+                    </div>
+                    <div style={{width: "220px", margin: "40px 130px 0px 40px", border: "1px dashed #4637a9", justifyContent: "center"}} className="pixel hashtag" onClick={() => {callMode(103); navigate('/fields/the-innovates-plant');}}>Go to The Innovator's Plant</div>
                 </div>
             </div>
         </>
