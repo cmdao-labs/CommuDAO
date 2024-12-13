@@ -10,7 +10,7 @@ const innovatesplantField = '0xa1Cf30E47B7cfdB2F53332e3E151d9604c3fC8B5'
 const ii = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, innovatesplantFieldABI }) => {
+const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, cmdoiFieldABI }) => {
     let { address, chain } = useAccount()
     if (address === undefined) {
         address = null
@@ -50,7 +50,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                 contracts: stakeRemoveDup.map((item) => (
                     {
                         address: innovatesplantField,
-                        abi: innovatesplantFieldABI,
+                        abi: cmdoiFieldABI,
                         functionName: 'nftOwner',
                         args: [String(item)],
                     }
@@ -74,7 +74,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
             }) : null
             const _allReward = chain !== undefined && chain.id === 8899 && addr !== null ? await readContract(config, {
                 address: innovatesplantField,
-                abi: innovatesplantFieldABI,
+                abi: cmdoiFieldABI,
                 functionName: 'calculateRewards',
                 args: [addr],
             }) : 0
@@ -263,7 +263,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
             setIiBalance(ethers.utils.formatEther(String(result[3])))
         })
 
-    }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, erc20Abi, erc721Abi, innovatesplantFieldABI])
+    }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, erc20Abi, erc721Abi, cmdoiFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -286,7 +286,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
             }        
             let { request } = await simulateContract(config, {
                 address: innovatesplantField,
-                abi: innovatesplantFieldABI,
+                abi: cmdoiFieldABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
@@ -305,7 +305,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
         try {
             let { request } = await simulateContract(config, {
                 address: innovatesplantField,
-                abi: innovatesplantFieldABI,
+                abi: cmdoiFieldABI,
                 functionName: 'unstake',
                 args: [_nftid],
             })
@@ -324,7 +324,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
         try {
             let { request } = await simulateContract(config, {
                 address: innovatesplantField,
-                abi: innovatesplantFieldABI,
+                abi: cmdoiFieldABI,
                 functionName: 'harvest',
             })
             let h = await writeContract(config, request)
