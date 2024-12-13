@@ -6,11 +6,11 @@ import { useAppKit } from '@reown/appkit/react';
 import { ThreeDots } from 'react-loading-icons'
 
 const taomemenft = '0xB39336b9491547405341eEB8863B020A1302Dd69'
-const cmdoiField = '0xAe8cdc88D74b090894Dca46fc87C4FFBa6630E8e'
+const innovatesplantField = '0xa1Cf30E47B7cfdB2F53332e3E151d9604c3fC8B5'
 const ii = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, cmdoiFieldABI }) => {
+const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, innovatesplantFieldABI }) => {
     let { address, chain } = useAccount()
     if (address === undefined) {
         address = null
@@ -41,7 +41,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
             let nfts = []
             let stakeRemoveDup = []
             if (chain !== undefined && chain.id === 8899 && addr !== null) {
-                const stakeFilter = await taomemenftSC.filters.Transfer(addr, cmdoiField, null)
+                const stakeFilter = await taomemenftSC.filters.Transfer(addr, innovatesplantField, null)
                 const stakeEvent = await taomemenftSC.queryFilter(stakeFilter, 4174711, "latest")
                 const stakeMap = await Promise.all(stakeEvent.map(async (obj) => String(obj.args.tokenId)))
                 stakeRemoveDup = stakeMap.filter((obj, index) => stakeMap.indexOf(obj) === index)
@@ -49,8 +49,8 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
             const data0 = addr !== null ? await readContracts(config, {
                 contracts: stakeRemoveDup.map((item) => (
                     {
-                        address: cmdoiField,
-                        abi: cmdoiFieldABI,
+                        address: innovatesplantField,
+                        abi: innovatesplantFieldABI,
                         functionName: 'nftOwner',
                         args: [String(item)],
                     }
@@ -73,8 +73,8 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                 ))
             }) : null
             const _allReward = chain !== undefined && chain.id === 8899 && addr !== null ? await readContract(config, {
-                address: cmdoiField,
-                abi: cmdoiFieldABI,
+                address: innovatesplantField,
+                abi: innovatesplantFieldABI,
                 functionName: 'calculateRewards',
                 args: [addr],
             }) : 0
@@ -263,7 +263,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
             setIiBalance(ethers.utils.formatEther(String(result[3])))
         })
 
-    }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, erc20Abi, erc721Abi, cmdoiFieldABI])
+    }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, erc20Abi, erc721Abi, innovatesplantFieldABI])
 
     const stakeNft = async (_nftid) => {
         setisLoading(true)
@@ -274,19 +274,19 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                 functionName: 'getApproved',
                 args: [_nftid],
             })
-            if (nftAllow.toUpperCase() !== cmdoiField.toUpperCase()) {
+            if (nftAllow.toUpperCase() !== innovatesplantField.toUpperCase()) {
                 let { request } = await simulateContract(config, {
                     address: taomemenft,
                     abi: erc721Abi,
                     functionName: 'approve',
-                    args: [cmdoiField, _nftid],
+                    args: [innovatesplantField, _nftid],
                 })
                 let h = await writeContract(config, request)
                 await waitForTransactionReceipt(config, { hash: h })
             }        
             let { request } = await simulateContract(config, {
-                address: cmdoiField,
-                abi: cmdoiFieldABI,
+                address: innovatesplantField,
+                abi: innovatesplantFieldABI,
                 functionName: 'stake',
                 args: [_nftid],
             })
@@ -304,8 +304,8 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
         setisLoading(true)
         try {
             let { request } = await simulateContract(config, {
-                address: cmdoiField,
-                abi: cmdoiFieldABI,
+                address: innovatesplantField,
+                abi: innovatesplantFieldABI,
                 functionName: 'unstake',
                 args: [_nftid],
             })
@@ -323,8 +323,8 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
         setisLoading(true)
         try {
             let { request } = await simulateContract(config, {
-                address: cmdoiField,
-                abi: cmdoiFieldABI,
+                address: innovatesplantField,
+                abi: innovatesplantFieldABI,
                 functionName: 'harvest',
             })
             let h = await writeContract(config, request)
@@ -423,8 +423,8 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                                                     <>II/DAY</>
                                                 </div>
                                                 {item.isStaked ?
-                                                    <div style={{background: "gray"}} className="button" /*onClick={() => {unstakeNft(item.Id)}}*/>UNSTAKE</div> :
-                                                    <div className="button" onClick={() => {/*stakeNft(item.Id)*/alert('coming soon!')}}>STAKE</div>
+                                                    <div style={{background: "gray"}} className="button" onClick={() => {unstakeNft(item.Id)}}>UNSTAKE</div> :
+                                                    <div className="button" onClick={() => {stakeNft(item.Id)}}>STAKE</div>
                                                 }
                                             </div>
                                         ))}
