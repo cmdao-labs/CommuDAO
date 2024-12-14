@@ -87,9 +87,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                     nft = await response.json()
                 } catch {}
                 let _reward = 0
-                if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '00') {
-                    _reward = 15
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '01') {
+                if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '01') {
                     _reward = 85
                 } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '02') {
                     _reward = 95
@@ -128,7 +126,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                 } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '19') {
                     _reward = 250
                 }
-                _allDaily += Number(_reward * 0.0000002 * 86400).toFixed(4)
+                _allDaily += Number(_reward * 0.0000002 * 86400).toFixed(2)
 
                 nfts.push({
                     Id: yournftstake[i].Id,
@@ -183,9 +181,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                     nft.image = nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
                 } catch {}
                 let _reward = 0
-                if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '00') {
-                    _reward = 15
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '01') {
+                if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '01') {
                     _reward = 85
                 } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '02') {
                     _reward = 95
@@ -226,7 +222,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                 }
                 nfts.push({
                     Id: yournftwallet[i].Id,
-                    Name: nft.name,
+                    Name: nft.name + " [" + yournftwallet[i].Id + "]",
                     Image: nft.image,
                     Description: nft.description,
                     Attribute: nft.attributes,
@@ -367,7 +363,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                         <div className="headfield bold">
                             <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                             <div style={{fontSize: "24px", marginBottom: "20px", display: "flex", justifyContent: "center"}}>
-                                {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
+                                {nft.length > 0 && nft[0] !== null ? allDaily : 0}
                                 <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-height=50" width="30" alt="$II"/>
                             </div>
                         </div>
