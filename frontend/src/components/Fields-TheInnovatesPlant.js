@@ -128,7 +128,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                 } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '19') {
                     _reward = 250
                 }
-                _allDaily += Number(_reward * 0.0000002 * 86400).toFixed(2)
+                _allDaily += Number(Number(_reward * 0.0000002 * 86400).toFixed(2))
 
                 nfts.push({
                     Id: yournftstake[i].Id,
