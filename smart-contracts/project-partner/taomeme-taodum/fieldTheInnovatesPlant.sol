@@ -46,7 +46,7 @@ contract FieldTheInnovatesPlant is ERC721Holder, Ownable {
         } else {
             userState[msg.sender].stakedAt = block.timestamp;
         }
-        userState[msg.sender].power += powerState[_tokenId % 1e18];
+        userState[msg.sender].power += powerState[_tokenId / 1e18];
         emit ItemStaked(_tokenId, msg.sender, block.timestamp);
     }
 
@@ -56,7 +56,7 @@ contract FieldTheInnovatesPlant is ERC721Holder, Ownable {
         if (calculateRewards(msg.sender) != 0) {
             harvest();
         }
-        userState[msg.sender].power -= powerState[_tokenId % 1e18];
+        userState[msg.sender].power -= powerState[_tokenId / 1e18];
         delete nftOwner[_tokenId];
         emit ItemUnstaked(_tokenId, msg.sender, block.timestamp);
     }

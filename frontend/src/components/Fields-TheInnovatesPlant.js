@@ -6,7 +6,7 @@ import { useAppKit } from '@reown/appkit/react';
 import { ThreeDots } from 'react-loading-icons'
 
 const taomemenft = '0xB39336b9491547405341eEB8863B020A1302Dd69'
-const innovatesplantField = '0xa1Cf30E47B7cfdB2F53332e3E151d9604c3fC8B5'
+const innovatesplantField = '0x9DB4bA3E8c74b64D7A980Fd2e571B6f9A081e11c'
 const ii = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
@@ -87,7 +87,9 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                     nft = await response.json()
                 } catch {}
                 let _reward = 0
-                if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '01') {
+                if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '00') {
+                    _reward = 15
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '01') {
                     _reward = 85
                 } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '02') {
                     _reward = 95
@@ -181,7 +183,9 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                     nft.image = nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
                 } catch {}
                 let _reward = 0
-                if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '01') {
+                if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '00') {
+                    _reward = 15
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '01') {
                     _reward = 85
                 } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '02') {
                     _reward = 95
