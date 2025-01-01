@@ -398,7 +398,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                 functionName: 'allowance',
                 args: [address, farmJdao],
             })
-            if (Number(ethers.utils.parseEther(String(lpAllow)) < Number(lpJdaoStake))) {
+            if (Number(ethers.utils.formatEther(String(lpAllow))) < Number(lpJdaoStake)) {
                 let { request } = await simulateContract(config, {
                     address: jcExchange,
                     abi: exchangeABI,
@@ -442,7 +442,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                 functionName: 'allowance',
                 args: [address, farmJdao],
             })
-            if (Number(ethers.utils.parseEther(String(lpAllow))) < Number(lpJdao3Stake)) {
+            if (Number(ethers.utils.formatEther(String(lpAllow))) < Number(lpJdao3Stake)) {
                 let { request } = await simulateContract(config, {
                     address: juExchange,
                     abi: exchangeJulpABI,
@@ -528,7 +528,7 @@ const GameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, se
                 functionName: 'allowance',
                 args: [address, farmJdao],
             })
-            if (Number(ethers.utils.parseEther(String(lpAllow))) < Number(stake)) {
+            if (Number(ethers.utils.formatEther(String(lpAllow))) < Number(stake)) {
                 let { request } = await simulateContract(config, {
                     address: lp,
                     abi: exchangeJulpABI,
