@@ -113,7 +113,7 @@ import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { defineChain } from '@reown/appkit/networks';
 
-const v = '0.5.6'
+const v = '0.5.7'
 
 const Fields = React.lazy(() => import('./Fields'))
 const AncientForrest = React.lazy(() => import('./Fields-AncientForrest'))
