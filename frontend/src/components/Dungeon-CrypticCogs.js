@@ -207,26 +207,6 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, callMode, setisLoadin
                         args: [Number(nftEQ[1])],
                         chainId: 8899
                     },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 1], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 2], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 3], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 4], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 5], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 6], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 7], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 8], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 9], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 10], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 11], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 12], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 13], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 14], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 15], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 16], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 17], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 18], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 19], chainId: 8899 },
-                    { address: taoPFP, abi: taoPfpABI, functionName: 'user', args: [addr, 20], chainId: 8899 },
                     {
                         address: uiiLab,
                         abi: erc20Abi,
@@ -237,9 +217,7 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, callMode, setisLoadin
                 ],
             }) : [
                 {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: 0}, {result: 0}, {result: 0},
-                {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''},
-                {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false}, {result: false},
-                {result: 0},
+                {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: ''}, {result: 0},
             ]
 
             let nfts = []
@@ -424,30 +402,9 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, callMode, setisLoadin
             const isStaked = nftSTAT[9]
             const refuelAt = Number(nftSTAT[8])
             const iiBal = data[7].result
-            const uiiBal = data[37].result
+            const uiiBal = data[17].result
             const eeBal = data[8].result
             const rewardPending = isStaked ? data[9].result : 0
-            let PFPlv = 0
-            if (data[36].result) { PFPlv = 20
-            } else if (data[35].result) { PFPlv = 19
-            } else if (data[34].result) { PFPlv = 18
-            } else if (data[33].result) { PFPlv = 17
-            } else if (data[32].result) { PFPlv = 16
-            } else if (data[31].result) { PFPlv = 15
-            } else if (data[30].result) { PFPlv = 14
-            } else if (data[29].result) { PFPlv = 13
-            } else if (data[28].result) { PFPlv = 12
-            } else if (data[27].result) { PFPlv = 11
-            } else if (data[26].result) { PFPlv = 10
-            } else if (data[25].result) { PFPlv = 9
-            } else if (data[24].result) { PFPlv = 8
-            } else if (data[23].result) { PFPlv = 7
-            } else if (data[22].result) { PFPlv = 6
-            } else if (data[21].result) { PFPlv = 5
-            } else if (data[20].result) { PFPlv = 4
-            } else if (data[19].result) { PFPlv = 3
-            } else if (data[18].result) { PFPlv = 2
-            } else if (data[17].result) { PFPlv = 1 }
 
             let wallet0RemoveDup = []
             if (chain !== undefined && chain.id === 8899 && addr !== null) {
@@ -467,13 +424,53 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, callMode, setisLoadin
                     }
                 ))
             }) : null
-            let yournftwallet0 = []
+            let PFPlv = 0
+            let yournftwallet0 = '0'
             for (let i = 0; i <= wallet0RemoveDup.length - 1 && addr !== null; i++) {
                 if (data0[i].result.toUpperCase() === addr.toUpperCase()) {
-                    yournftwallet0.push(String(wallet0RemoveDup[i]))
+                    if (PFPlv <= 19 && String(wallet0RemoveDup[i]).slice(0, 2) === '19' && String(wallet0RemoveDup[i]).length === 20) {
+                        PFPlv = 20; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 18 && String(wallet0RemoveDup[i]).slice(0, 2) === '18' && String(wallet0RemoveDup[i]).length === 20) {
+                        PFPlv = 19; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 17 && String(wallet0RemoveDup[i]).slice(0, 2) === '17' && String(wallet0RemoveDup[i]).length === 20) {
+                        PFPlv = 18; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 16 && String(wallet0RemoveDup[i]).slice(0, 2) === '16' && String(wallet0RemoveDup[i]).length === 20) {
+                        PFPlv = 17; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 15 && String(wallet0RemoveDup[i]).slice(0, 2) === '15' && String(wallet0RemoveDup[i]).length === 20) {
+                        PFPlv = 16; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 14 && String(wallet0RemoveDup[i]).slice(0, 2) === '14' && String(wallet0RemoveDup[i]).length === 20) {
+                        PFPlv = 15; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 13 && String(wallet0RemoveDup[i]).slice(0, 2) === '13' && String(wallet0RemoveDup[i]).length === 20) {
+                        PFPlv = 14; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 12 && String(wallet0RemoveDup[i]).slice(0, 2) === '12' && String(wallet0RemoveDup[i]).length === 20) {
+                        PFPlv = 13; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 11 && String(wallet0RemoveDup[i]).slice(0, 2) === '11' && String(wallet0RemoveDup[i]).length === 20) {
+                        PFPlv = 12; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 10 && String(wallet0RemoveDup[i]).slice(0, 2) === '10' && String(wallet0RemoveDup[i]).length === 20) {
+                        PFPlv = 11; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 9 && String(wallet0RemoveDup[i]).slice(0, 2) === '9' && String(wallet0RemoveDup[i]).length === 19) {
+                        PFPlv = 10; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 8 && String(wallet0RemoveDup[i]).slice(0, 2) === '8' && String(wallet0RemoveDup[i]).length === 19) {
+                        PFPlv = 9; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 7 && String(wallet0RemoveDup[i]).slice(0, 2) === '7' && String(wallet0RemoveDup[i]).length === 19) {
+                        PFPlv = 8; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 6 && String(wallet0RemoveDup[i]).slice(0, 2) === '6' && String(wallet0RemoveDup[i]).length === 19) {
+                        PFPlv = 7; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 5 && String(wallet0RemoveDup[i]).slice(0, 2) === '5' && String(wallet0RemoveDup[i]).length === 19) {
+                        PFPlv = 6; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 4 && String(wallet0RemoveDup[i]).slice(0, 2) === '4' && String(wallet0RemoveDup[i]).length === 19) {
+                        PFPlv = 5; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 3 && String(wallet0RemoveDup[i]).slice(0, 2) === '3' && String(wallet0RemoveDup[i]).length === 19) {
+                        PFPlv = 4; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 2 && String(wallet0RemoveDup[i]).slice(0, 2) === '2' && String(wallet0RemoveDup[i]).length === 19) {
+                        PFPlv = 3; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv <= 1 && String(wallet0RemoveDup[i]).slice(0, 2) === '1' && String(wallet0RemoveDup[i]).length === 19) {
+                        PFPlv = 2; yournftwallet0 = String(wallet0RemoveDup[i])
+                    } else if (PFPlv === 0 && String(wallet0RemoveDup[i]).length >= 1) {
+                        PFPlv = 1; yournftwallet0 = String(wallet0RemoveDup[i])
+                    }
                 }
             }
-            if (yournftwallet0.length === 0) { yournftwallet0.push('0') }
 
             let walletRemoveDup = []
             if (chain !== undefined && chain.id === 8899 && addr !== null) {
@@ -586,7 +583,7 @@ const CrypticCogs = ({ config, intrasubModetext, navigate, callMode, setisLoadin
             
             return [
                 nfts, nftEQ_1, nftEQ_1_Name, nftEQ_2_Img, nftEQ_2_Name, nftEQ_3, nftEQ_3_Name, nftEQ_4, nftEQ_4_Name, nftEQ_5, nftEQ_5_Name, nftEQ_6, nftEQ_6_Name, nftEQ_7, nftEQ_7_Name,
-                allPow, isStaked, refuelAt, rewardPending, iiBal, eeBal, PFPlv, yournftwallet0[yournftwallet0.length - 1], uiiBal, 
+                allPow, isStaked, refuelAt, rewardPending, iiBal, eeBal, PFPlv, yournftwallet0, uiiBal, 
             ]
         }
 
