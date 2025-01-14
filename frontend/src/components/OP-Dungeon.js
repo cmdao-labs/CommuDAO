@@ -31,7 +31,7 @@ const OPDungeon = ({ callMode, navigate }) => {
                     </div>
                     <div style={{marginTop: "10px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div><i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-trophy"></i>Earn</div>
-                        <div className="emp"><img style={{marginRight: "5px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" width="12" alt="$INF.POW"/>INFINITY POWER</div>
+                        <div className="emp"><img style={{marginRight: "5px"}} src="https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" width="12" alt="$INF.POW"/>INFINITY POWER</div>
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0px 40px", border: "1px dashed #4637a9", justifyContent: "center"}} className="pixel hashtag" onClick={() => {callMode(31001); navigate('/dungeon/abandoned-temple-vault');}}>Go to Abondoned Temple Vault</div>
                 </div>

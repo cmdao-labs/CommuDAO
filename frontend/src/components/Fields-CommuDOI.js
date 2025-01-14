@@ -83,7 +83,7 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, callMode, setisLoad
                 const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
                 } catch {}
                 let _reward = Number(yournftstake[i].Id.slice(-5))
@@ -92,7 +92,7 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, callMode, setisLoad
                 nfts.push({
                     Id: yournftstake[i].Id,
                     Name: nft.name + " [" + yournftstake[i].Id + "]",
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: _reward * 0.00001 * 86400,
@@ -137,9 +137,9 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, callMode, setisLoad
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
-                    nft.image = nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
+                    nft.image = nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")
                 } catch {}
                 nfts.push({
                     Id: yournftwallet[i].Id,
@@ -261,7 +261,7 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, callMode, setisLoad
                     <div className="pixel" style={{padding: "5px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>CommuDOI</div>
                 </div>
                 <div className="SubfieldBanner">
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="150" alt="$DOIJIB"/>
+                    <img src="https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="150" alt="$DOIJIB"/>
                 </div>
             </div>
 
@@ -286,14 +286,14 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, callMode, setisLoad
                             <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                             <div style={{fontSize: "24px", marginBottom: "20px", display: "flex", justifyContent: "center"}}>
                                 {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
-                                <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="30" alt="$DOIJIB"/>
+                                <img style={{marginLeft: "10px"}} src="https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="30" alt="$DOIJIB"/>
                             </div>
                         </div>
                         <div className="headfield bold">
                             <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                             <div style={{fontSize: "24px", marginBottom: "20px", display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "center"}}>
                                 {nft.length > 0 && nft[0] !== null ? Number(allReward).toLocaleString('en-US', {maximumFractionDigits:2}) : 0}
-                                <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="30" alt="$DOIJIB"/>
+                                <img style={{margin: "0 10px"}} src="https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="30" alt="$DOIJIB"/>
                                 {address !== null && intrasubModetext !== undefined ?
                                     <>
                                         {address.toUpperCase() === intrasubModetext.toUpperCase() && allReward > 0 ?
@@ -309,7 +309,7 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, callMode, setisLoad
                             <div style={{marginBottom: "20px"}}>BALANCE</div>
                             <div style={{fontSize: "24px", marginBottom: "20px", display: "flex", justifyContent: "center"}}>
                                 {nft.length > 0 ? Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:2}) : 0}
-                                <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="30" alt="$DOIJIB"/>
+                                <img style={{marginLeft: "10px"}} src="https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="30" alt="$DOIJIB"/>
                             </div>
                         </div>
                     </div>
@@ -336,7 +336,7 @@ const CommuDOIField = ({ config, intrasubModetext, navigate, callMode, setisLoad
                                                 </div>
                                                 <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
                                                     <>Earn: {String(item.RewardPerSec)}</>&nbsp;
-                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="12" alt="$DOIJIB"/>&nbsp;
+                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="12" alt="$DOIJIB"/>&nbsp;
                                                     <>DOIJIB/DAY</>
                                                 </div>
                                                 {item.isStaked ?

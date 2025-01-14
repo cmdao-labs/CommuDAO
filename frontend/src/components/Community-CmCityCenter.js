@@ -317,7 +317,7 @@ const CmCityCenter = ({ config, callMode, navigate, setisLoading, txupdate, setT
                     <div style={{fontSize: "75px", width: "fit-content"}}>City Center</div>
                 </div>
                 <div className="SubfieldBanner">
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmURSfHpQCMYbBBHGbzqkjGh8edPa7z2rVQhNVZHecXxfX" width="200" alt="Can't load metadata" />
+                    <img src="https://gateway.commudao.xyz/ipfs/QmURSfHpQCMYbBBHGbzqkjGh8edPa7z2rVQhNVZHecXxfX" width="200" alt="Can't load metadata" />
                 </div>
             </div>
 
@@ -337,7 +337,7 @@ const CmCityCenter = ({ config, callMode, navigate, setisLoading, txupdate, setT
                         <div style={{width: "100%", marginBottom: "20px", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", fontSize: "18px"}} className="bold">CMDAO Name Service</div>
                         <div style={{width: "100%", display: "flex", flexFlow: "row wrap", justifyContent: "space-between"}}>
                             <div style={{width: "30%"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmaY794R5VHwsBcNnUrT2zVPG69rx4foNQyoMNWZdHco1J" height="200" alt="Can not load metadata."/>
+                                <img src="https://gateway.commudao.xyz/ipfs/QmaY794R5VHwsBcNnUrT2zVPG69rx4foNQyoMNWZdHco1J" height="200" alt="Can not load metadata."/>
                             </div>
                             <div style={{width: "650px", maxWidth: "100%", height: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                 <div>
@@ -383,7 +383,7 @@ const CmCityCenter = ({ config, callMode, navigate, setisLoading, txupdate, setT
                                     <div className="bold">JBC DELEGATED</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "28px"}} className="bold">
                                         <div style={{marginRight: "10px", color: "#fff"}}>{Number(jbconFaucet).toFixed(2)}</div>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="30px" alt="$JBC"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="30px" alt="$JBC"/>
                                     </div>
                                 </div>
                                 <div>
@@ -411,14 +411,14 @@ const CmCityCenter = ({ config, callMode, navigate, setisLoading, txupdate, setT
                         <div style={{width: "100%", marginBottom: "20px", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", fontSize: "18px"}} className="bold">{cmVoting2[0]}</div>
                         <div style={{width: "100%", display: "flex", flexFlow: "row wrap", justifyContent: "space-between"}}>
                             <div style={{width: "30%"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmURSfHpQCMYbBBHGbzqkjGh8edPa7z2rVQhNVZHecXxfX" height="200" alt="Can not load metadata."/>
+                                <img src="https://gateway.commudao.xyz/ipfs/QmURSfHpQCMYbBBHGbzqkjGh8edPa7z2rVQhNVZHecXxfX" height="200" alt="Can not load metadata."/>
                             </div>
                             <div style={{width: "650px", maxWidth: "100%", height: "600px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                 <div>
                                     <div className="bold">WOOD DELEGATED</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px"}} className="emp bold">
                                         <div style={{marginRight: "10px"}}>{Number(Number(cmVoting2All) + Number(cmVoting3All)).toFixed(0)} / 20B ({((Number(Number(cmVoting2All) + Number(cmVoting3All)) * 100) / 10000000000).toFixed(3)}%)</div>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
                                     </div>
                                 </div>
                                 <div style={{marginBottom: "10px"}}>
@@ -458,14 +458,14 @@ const CmCityCenter = ({ config, callMode, navigate, setisLoading, txupdate, setT
                         <div style={{width: "100%", marginBottom: "20px", paddingBottom: "20px", borderBottom: "1px solid rgb(54, 77, 94)", textAlign: "left", fontSize: "18px"}} className="bold">{cmVoting1[0]}</div>
                         <div style={{width: "100%", display: "flex", flexFlow: "row wrap", justifyContent: "space-between"}}>
                             <div style={{width: "30%"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiddh23ppumqcikjfskf7egy4ffbqbfpyi2wz3lglu47box35rfalm" height="200" alt="Can not load metadata."/>
+                                <img src="https://gateway.commudao.xyz/ipfs/bafybeiddh23ppumqcikjfskf7egy4ffbqbfpyi2wz3lglu47box35rfalm" height="200" alt="Can not load metadata."/>
                             </div>
                             <div style={{width: "650px", maxWidth: "100%", height: "320px", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                                 <div>
                                     <div className="bold">WOOD DELEGATED</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px"}} className="emp bold">
                                         <div style={{marginRight: "10px"}}>{Number(cmVoting1All).toFixed(0)} / 10B ({((Number(cmVoting1All) * 100) / 10000000000).toFixed(3)}%)</div>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="30px" alt="$WOOD"/>
                                     </div>
                                 </div>
                                 <div>
@@ -499,7 +499,7 @@ const CmCityCenter = ({ config, callMode, navigate, setisLoading, txupdate, setT
                                     <div className="bold">SX31 DELEGATED</div>
                                     <div style={{marginTop: "10px", width: "fit-content", display: "flex", flexDirection: "row", fontSize: "20px"}} className="emp bold">
                                         <div style={{marginRight: "10px"}}>{Number(sx31Voting1All).toFixed(2)} / 12,500 ({((Number(sx31Voting1All) * 100) / 12500).toFixed(3)}%)</div>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="30px" alt="$SX31"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="30px" alt="$SX31"/>
                                     </div>
                                 </div>
                                 <div>

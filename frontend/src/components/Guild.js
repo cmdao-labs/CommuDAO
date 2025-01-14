@@ -397,16 +397,16 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             try {
                 if (data[0].status === 'success') {
                     if (data[0].result === 'ipfs://QmRq29Y7hCHLEWBvG1rBjSE8noePUbZrY14diTe1xdQLJ4') {
-                        res_main_char = await fetch('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXVg9vc7meyMH4S4idWFUS7B1tNMgptW5kDBg9Eq4GDco')
+                        res_main_char = await fetch('https://gateway.commudao.xyz/ipfs/QmXVg9vc7meyMH4S4idWFUS7B1tNMgptW5kDBg9Eq4GDco')
                     } else {
-                        res_main_char = await fetch(data[0].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                        res_main_char = await fetch(data[0].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     }
                 } else {
                     res_main_char = null
                 }
             } catch {}
             const nft_main_char = res_main_char !== null ? await res_main_char.json() : {image: null, name: null}
-            const nftEQ_main_char_Img = nft_main_char.image !== null ? nft_main_char.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_char_Img = nft_main_char.image !== null ? nft_main_char.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_char_Name = nft_main_char.name
             if (res_main_char !== null) {
                 nfts.push({
@@ -423,10 +423,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_acc1 = null
             try {
-                res_main_acc1 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_acc1 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_acc = res_main_acc1 !== null ? await res_main_acc1.json() : {image: null, name: null}
-            const nftEQ_main_acc_Img = nft_main_acc.image !== null ? nft_main_acc.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc_Img = nft_main_acc.image !== null ? nft_main_acc.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_acc_Name = nft_main_acc.name
             if (res_main_acc1 !== null) {
                 nfts.push({
@@ -443,10 +443,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_back = null
             try {
-                res_main_back = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_back = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_back = res_main_back !== null ? await res_main_back.json() : {image: null, name: null}
-            const nftEQ_main_back_Img = nft_main_back.image !== null ? nft_main_back.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_back_Img = nft_main_back.image !== null ? nft_main_back.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_back_Name = nft_main_back.name
             if (res_main_back !== null) {
                 nfts.push({
@@ -463,10 +463,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_shoes = null
             try {
-                res_main_shoes = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_shoes = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_shoes = res_main_shoes !== null ? await res_main_shoes.json() : {image: null, name: null}
-            const nftEQ_main_shoes_Img = nft_main_shoes.image !== null ? nft_main_shoes.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_shoes_Img = nft_main_shoes.image !== null ? nft_main_shoes.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_shoes_Name = nft_main_shoes.name
             if (res_main_shoes !== null) {
                 nfts.push({
@@ -483,10 +483,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_wp1 = null
             try {
-                res_main_wp1 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_wp1 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_wp1 = res_main_wp1 !== null ? await res_main_wp1.json() : {image: null, name: null}
-            const nftEQ_main_wp1_Img = nft_main_wp1.image !== null ? nft_main_wp1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_wp1_Img = nft_main_wp1.image !== null ? nft_main_wp1.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_wp1_Name = nft_main_wp1.name
             if (res_main_wp1 !== null) {
                 nfts.push({
@@ -503,10 +503,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_cloth = null
             try {
-                res_main_cloth = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_cloth = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_cloth = res_main_cloth !== null ? await res_main_cloth.json() : {image: null, name: null}
-            const nftEQ_main_cloth_Img = nft_main_cloth.image !== null ? nft_main_cloth.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_cloth_Img = nft_main_cloth.image !== null ? nft_main_cloth.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_cloth_Name = nft_main_cloth.name
             if (res_main_cloth !== null) {
                 nfts.push({
@@ -523,10 +523,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_hat = null
             try {
-                res_main_hat = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_hat = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_hat = res_main_hat !== null ? await res_main_hat.json() : {image: null, name: null}
-            const nftEQ_main_hat_Img = nft_main_hat.image !== null ? nft_main_hat.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_hat_Img = nft_main_hat.image !== null ? nft_main_hat.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_hat_Name = nft_main_hat.name
             if (res_main_hat !== null) {
                 nfts.push({
@@ -543,10 +543,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_wp2 = null
             try {
-                res_main_wp2 = data[7].status === 'success' ? await fetch(data[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_wp2 = data[7].status === 'success' ? await fetch(data[7].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_wp2 = res_main_wp2 !== null ? await res_main_wp2.json() : {image: null, name: null}
-            const nftEQ_main_wp2_Img = nft_main_wp2.image !== null ? nft_main_wp2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_wp2_Img = nft_main_wp2.image !== null ? nft_main_wp2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_wp2_Name = nft_main_wp2.name
             if (res_main_wp2 !== null) {
                 nfts.push({
@@ -563,10 +563,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_acc2 = null
             try {
-                res_main_acc2 = data[8].status === 'success' ? await fetch(data[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_acc2 = data[8].status === 'success' ? await fetch(data[8].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_acc2 = res_main_acc2 !== null ? await res_main_acc2.json() : {image: null, name: null}
-            const nftEQ_main_acc2_Img = nft_main_acc2.image !== null ? nft_main_acc2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc2_Img = nft_main_acc2.image !== null ? nft_main_acc2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_acc2_Name = nft_main_acc2.name
             if (res_main_acc2 !== null) {
                 nfts.push({
@@ -583,10 +583,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_acc3 = null
             try {
-                res_main_acc3 = data[9].status === 'success' ? await fetch(data[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_acc3 = data[9].status === 'success' ? await fetch(data[9].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_acc3 = res_main_acc3 !== null ? await res_main_acc3.json() : {image: null, name: null}
-            const nftEQ_main_acc3_Img = nft_main_acc3.image !== null ? nft_main_acc3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc3_Img = nft_main_acc3.image !== null ? nft_main_acc3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_acc3_Name = nft_main_acc3.name
             if (res_main_acc3 !== null) {
                 nfts.push({
@@ -603,10 +603,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_acc4 = null
             try {
-                res_main_acc4 = data[10].status === 'success' ? await fetch(data[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_acc4 = data[10].status === 'success' ? await fetch(data[10].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_acc4 = res_main_acc4 !== null ? await res_main_acc4.json() : {image: null, name: null}
-            const nftEQ_main_acc4_Img = nft_main_acc4.image !== null ? nft_main_acc4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc4_Img = nft_main_acc4.image !== null ? nft_main_acc4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_acc4_Name = nft_main_acc4.name
             if (res_main_acc4 !== null) {
                 nfts.push({
@@ -623,10 +623,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_acc5 = null
             try {
-                res_main_acc5 = data[11].status === 'success' ? await fetch(data[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_acc5 = data[11].status === 'success' ? await fetch(data[11].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_acc5 = res_main_acc5 !== null ? await res_main_acc5.json() : {image: null, name: null}
-            const nftEQ_main_acc5_Img = nft_main_acc5.image !== null ? nft_main_acc5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc5_Img = nft_main_acc5.image !== null ? nft_main_acc5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_acc5_Name = nft_main_acc5.name
             if (res_main_acc5 !== null) {
                 nfts.push({
@@ -643,10 +643,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_acc6 = null
             try {
-                res_main_acc6 = data[12].status === 'success' ? await fetch(data[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_acc6 = data[12].status === 'success' ? await fetch(data[12].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_acc6 = res_main_acc6 !== null ? await res_main_acc6.json() : {image: null, name: null}
-            const nftEQ_main_acc6_Img = nft_main_acc6.image !== null ? nft_main_acc6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc6_Img = nft_main_acc6.image !== null ? nft_main_acc6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_acc6_Name = nft_main_acc6.name
             if (res_main_acc6 !== null) {
                 nfts.push({
@@ -665,16 +665,16 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             try {
                 if (data[13].status === 'success') {
                     if (data[13].result === 'ipfs://QmRq29Y7hCHLEWBvG1rBjSE8noePUbZrY14diTe1xdQLJ4') {
-                        res_main_soul = await fetch('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXVg9vc7meyMH4S4idWFUS7B1tNMgptW5kDBg9Eq4GDco')
+                        res_main_soul = await fetch('https://gateway.commudao.xyz/ipfs/QmXVg9vc7meyMH4S4idWFUS7B1tNMgptW5kDBg9Eq4GDco')
                     } else {
-                        res_main_soul = await fetch(data[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                        res_main_soul = await fetch(data[13].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     }
                 } else {
                     res_main_soul = null
                 }
             } catch {}
             const nft_main_soul = res_main_soul !== null ? await res_main_soul.json() : {image: null, name: null}
-            const nftEQ_main_soul_Img = nft_main_soul.image !== null ? nft_main_soul.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_soul_Img = nft_main_soul.image !== null ? nft_main_soul.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_soul_Name = nft_main_soul.name
             if (res_main_soul !== null) {
                 nfts.push({
@@ -691,10 +691,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             }
             let res_main_badge = null
             try {
-                res_main_badge = data[14].status === 'success' ? await fetch(data[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_badge = data[14].status === 'success' ? await fetch(data[14].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_badge = res_main_badge !== null ? await res_main_badge.json() : {image: null, name: null}
-            const nftEQ_main_badge_Img = nft_main_badge.image !== null ? nft_main_badge.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_badge_Img = nft_main_badge.image !== null ? nft_main_badge.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_badge_Name = nft_main_badge.name
             if (res_main_badge !== null) {
                 nfts.push({
@@ -715,10 +715,10 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
             const scmJBCBal = Number(ethers.utils.formatEther(data[17].result)) + (ethers.utils.formatEther(data[18].result) * 200000)
             const rewardpending = Number(ethers.utils.formatEther(String(data[15].result))) - Number(ethers.utils.formatEther(String(data[19].result)))
             const party1name = data0[0].result
-            const party1logo = data0[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
+            const party1logo = data0[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")
             const party1body = data0[2].result
             const party2name = data0[3].result
-            const party2logo = data0[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
+            const party2logo = data0[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")
             const party2body = data0[5].result
             const isMem1Party1Refuel = data0[6].result
             const isMem2Party1Refuel = data0[7].result
@@ -973,9 +973,9 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
                 try {
                     let response
                     if (nftipfs === 'ipfs://QmRq29Y7hCHLEWBvG1rBjSE8noePUbZrY14diTe1xdQLJ4') {
-                        response = await fetch('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXVg9vc7meyMH4S4idWFUS7B1tNMgptW5kDBg9Eq4GDco')
+                        response = await fetch('https://gateway.commudao.xyz/ipfs/QmXVg9vc7meyMH4S4idWFUS7B1tNMgptW5kDBg9Eq4GDco')
                     } else {
-                        response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                        response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     }
                     nft = await response.json()
                 } catch {}
@@ -983,7 +983,7 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
                     Col: 1,
                     Id: yournftwallet[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
@@ -1426,34 +1426,34 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
                                 <div style={{position: "relative", width: "150px", height: "400px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {accSlot !== null ?
                                         <img src={accSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "65px", fontSize: "25px"}}>+{accSlotLevel}</div>}
                                     {accSlot2 !== null ?
                                         <img src={accSlot2} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "217.5px", fontSize: "25px"}}>+{accSlot2Level}</div>}
                                     {accSlot3 !== null ?
                                         <img src={accSlot3} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "365px", fontSize: "25px"}}>+{accSlot3Level}</div>}
                                 </div>
                                 <div style={{position: "relative", width: "150px", height: "400px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {hatSlot !== null ?
                                         <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
                                     }
                                     {hatSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "65px", fontSize: "25px"}}>+{hatSlotLevel}</div>}
                                     {clothSlot !== null ?
                                         <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
                                     }
                                     {clothSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "217.5px", fontSize: "25px"}}>+{clothSlotLevel}</div>}
                                     {shoesSlot !== null ?
                                         <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
                                     }
                                     {shoesSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "365px", fontSize: "25px"}}>+{shoesSlotLevel}</div>}
                                 </div>
@@ -1461,12 +1461,12 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
                                     <div style={{position: "relative", width: "300px", height: "140px", padding: "0 20px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
                                         {soulSlot !== null ?
                                             <img src={soulSlot} width="100px" alt="Can not load metadata." /> :
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmdSRjFFCUZJiLBxy5JUgVL4vezt4vXnux1JjFbQQgZCpP" width="100px" alt="Can not load metadata." />
+                                            <img src="https://gateway.commudao.xyz/ipfs/QmdSRjFFCUZJiLBxy5JUgVL4vezt4vXnux1JjFbQQgZCpP" width="100px" alt="Can not load metadata." />
                                         }
                                         {soulSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "205px", fontSize: "25px"}}>+{soulSlotLevel}</div>}
                                         {badgeSlot !== null ?
                                             <img src={badgeSlot} width="100px" alt="Can not load metadata." /> :
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQG17rt5uiChPpvHwivdZPX5Cm6PhoGyCYNzPyfs3ohT5" width="100px" alt="Can not load metadata." />
+                                            <img src="https://gateway.commudao.xyz/ipfs/QmQG17rt5uiChPpvHwivdZPX5Cm6PhoGyCYNzPyfs3ohT5" width="100px" alt="Can not load metadata." />
                                         }
                                         {badgeSlotLevel !== null && <div style={{position: "absolute", top: "85px", right: "55px", fontSize: "25px"}}>+{badgeSlotLevel}</div>}
                                     </div>
@@ -1474,7 +1474,7 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
                                         <>
                                             {characterSlot !== null ?
                                                 <img src={characterSlot} width="300px" alt="Can not load metadata." /> :
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
+                                                <img src="https://gateway.commudao.xyz/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
                                             }
                                         </> :
                                         <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -1486,34 +1486,34 @@ const Guild = ({ config, intrasubModetext, callMode, navigate, setisLoading, txu
                                 <div style={{position: "relative", width: "150px", height: "400px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {accSlot4 !== null ?
                                         <img src={accSlot4} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "65px", fontSize: "25px"}}>+{accSlot4Level}</div>}
                                     {backSlot !== null ?
                                         <img src={backSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
                                     }
                                     {backSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "217.5px", fontSize: "25px"}}>+{backSlotLevel}</div>}
                                     {weaponSlot !== null ?
                                         <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
                                     }
                                     {wpSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "365px", fontSize: "25px"}}>+{wpSlotLevel}</div>}
                                 </div>
                                 <div style={{position: "relative", width: "150px", height: "400px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {accSlot5 !== null ?
                                         <img src={accSlot5} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "65px", fontSize: "25px"}}>+{accSlot5Level}</div>}
                                     {accSlot6 !== null ?
                                         <img src={accSlot6} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "217.5px", fontSize: "25px"}}>+{accSlot6Level}</div>}
                                     {weaponSlot2 !== null ?
                                         <img src={weaponSlot2} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
                                     }
                                     {wpSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "365px", fontSize: "25px"}}>+{wpSlot2Level}</div>}
                                 </div>

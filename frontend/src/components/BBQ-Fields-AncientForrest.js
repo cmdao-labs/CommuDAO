@@ -113,7 +113,7 @@ const BBQAncientForrest = ({ config, navigate, callMode, setisLoading, txupdate,
                 const nftipfs = data2[0].result
                 const nftData = data2[1].result
                 const reward = data2[2].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                 const nft = await response.json()
                 let level = 0
                 let expMax = 0
@@ -143,7 +143,7 @@ const BBQAncientForrest = ({ config, navigate, callMode, setisLoading, txupdate,
                 nfts.push({
                     Id: String(yournftstake[i].Id),
                     Name: nftData[0],
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Class: theClass,
                     Level: level,
                     Exp: ethers.utils.formatEther(String(nftData[1])),
@@ -179,7 +179,7 @@ const BBQAncientForrest = ({ config, navigate, callMode, setisLoading, txupdate,
                 })
                 const nftipfs = data3[0].result
                 const nftData = data3[1].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                 const nft = await response.json()
                 let level = 0
                 let expMax = 0
@@ -209,7 +209,7 @@ const BBQAncientForrest = ({ config, navigate, callMode, setisLoading, txupdate,
                 nfts.push({
                     Id: String(yournftwallet[i].Id),
                     Name: nftData[0],
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Class: theClass,
                     Level: level,
                     Exp: ethers.utils.formatEther(String(nftData[1])),
@@ -470,12 +470,12 @@ const BBQAncientForrest = ({ config, navigate, callMode, setisLoading, txupdate,
 
     return (
         <>
-            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeib5stifg5jcqqxsy4kbwwb6xovei5biyspuzhlwrsng4i62ppwpwy')", overflow: "scroll"}}>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://gateway.commudao.xyz/ipfs/bafybeib5stifg5jcqqxsy4kbwwb6xovei5biyspuzhlwrsng4i62ppwpwy')", overflow: "scroll"}}>
                 <div className="SubfieldBanner">
                     <div className="pixel" style={{padding: "5px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Ancient Forest</div>
                 </div>
                 <div className="SubfieldBanner">
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="150" alt="$WOOD" />
+                    <img src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="150" alt="$WOOD" />
                 </div>
             </div>
 
@@ -496,7 +496,7 @@ const BBQAncientForrest = ({ config, navigate, callMode, setisLoading, txupdate,
                             <div style={{marginBottom: "20px"}}>WOOD [BBQ-CHAIN] BALANCE</div>
                             <div style={{fontSize: "24px"}}>
                                 {nft.length > 0 ? Number(woodBalance).toLocaleString('en-US', {maximumFractionDigits:1}) : 0}
-                                <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="24" alt="$WOOD"/>
+                                <img style={{marginLeft: "10px"}} src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="24" alt="$WOOD"/>
                             </div>
                         </div>
                     </div>
@@ -548,7 +548,7 @@ const BBQAncientForrest = ({ config, navigate, callMode, setisLoading, txupdate,
                                                         <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left",}} className="bold">
                                                             Pending Rewards
                                                             <div style={{fontSize: "10px"}} className="emp">EXP: +{Number(item.RewardWood).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
-                                                            <div style={{fontSize: "10px"}} className="emp"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> {Number(item.RewardWood).toLocaleString('en-US')}</div>
+                                                            <div style={{fontSize: "10px"}} className="emp"><img src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> {Number(item.RewardWood).toLocaleString('en-US')}</div>
                                                         </div>
                                                         {item.RewardWood > 0 ?
                                                             <div style={{lineHeight: 2, height: "fit-content", marginTop: "5px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, false, 0)}}>HARVEST</div> :
@@ -573,7 +573,7 @@ const BBQAncientForrest = ({ config, navigate, callMode, setisLoading, txupdate,
                                                             }}
                                                         >
                                                             <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df" }}>
-                                                                <div>{(woodCap1 > 0 && isBaseCmdDelegate1) ? <>🟢</> : <>⚪️</>} <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmbhy3KWwCqhR83636HHhbkuG9Csr8CEZZoeteySmGjmTq" width="12" alt="Can not load metadata."/> CMD Hunter</div>
+                                                                <div>{(woodCap1 > 0 && isBaseCmdDelegate1) ? <>🟢</> : <>⚪️</>} <img src="https://gateway.commudao.xyz/ipfs/Qmbhy3KWwCqhR83636HHhbkuG9Csr8CEZZoeteySmGjmTq" width="12" alt="Can not load metadata."/> CMD Hunter</div>
                                                                 <div>FEE: {party1Fee}%</div>
                                                             </div>
                                                             <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
@@ -597,7 +597,7 @@ const BBQAncientForrest = ({ config, navigate, callMode, setisLoading, txupdate,
                                                             }}
                                                         >
                                                             <div style={{width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                                                <div>{(woodCap2 > 0 && isBaseCmdDelegate2) ? <>🟢</> : <>⚪️</>} <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmd2VSk22fKTBvx7oWQVBzGbPdANuacfrLSBFTHMMiTgWJ" width="12" alt="Can not load metadata."/> CAPY-Party</div>
+                                                                <div>{(woodCap2 > 0 && isBaseCmdDelegate2) ? <>🟢</> : <>⚪️</>} <img src="https://gateway.commudao.xyz/ipfs/Qmd2VSk22fKTBvx7oWQVBzGbPdANuacfrLSBFTHMMiTgWJ" width="12" alt="Can not load metadata."/> CAPY-Party</div>
                                                                 <div>FEE: {party2Fee}%</div>
                                                             </div>
                                                             <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
@@ -612,7 +612,7 @@ const BBQAncientForrest = ({ config, navigate, callMode, setisLoading, txupdate,
                                                     </div>
                                                     <div className="pixel" style={{width: "100%", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                         <div className='emp'>
-                                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> + EXP
+                                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> + EXP
                                                             &nbsp;{partySelected === 1 && Number((missionAmount *  party1Fee) / 100).toLocaleString('en-US', {maximumFractionDigits:1})}{partySelected === 2 && Number((missionAmount *  party2Fee) / 100).toLocaleString('en-US', {maximumFractionDigits:1})}
                                                         </div>
                                                         {Number(missionAmount) > 0 && address !== null ? 
@@ -627,7 +627,7 @@ const BBQAncientForrest = ({ config, navigate, callMode, setisLoading, txupdate,
                                     <>
                                         {address !== null ?
                                             <div className="nftCard" style={{justifyContent: "flex-start", height: "500px", margin: '20px'}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaqwsxafpj3acgdjmvn4hfodrhj5vdeq4cdiqtaaekpjiuamzcbhq" width="150" alt="Can not load metadata." />
+                                                <img src="https://gateway.commudao.xyz/ipfs/bafkreiaqwsxafpj3acgdjmvn4hfodrhj5vdeq4cdiqtaaekpjiuamzcbhq" width="150" alt="Can not load metadata." />
                                                 <div style={{margin: "20px 0", fontSize: "18px"}} className="emp pixel">CommuDAO Servant Incubator</div>
                                                 <input
                                                     style={{width: "90%", padding: "5px 10px", marginBottom: "20px", border: "1px solid #dddade", fontSize: "18px"}}

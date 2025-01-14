@@ -220,10 +220,10 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
             let nfts = []
             let response1 = null
             try {
-                response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response1 = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft1 = response1 !== null ? await response1.json() : {image: null, name: null}
-            const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_1 = nft1.image !== null ? nft1.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_1_Name = nft1.name
             if (response1 !== null) {
                 nfts.push({
@@ -240,10 +240,10 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
 
             let response2 = null
             try {
-                response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response2 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft2 = response2 !== null ? await response2.json() : {image: null, name: null}
-            const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_2_Name = nft2.name
             if (response2 !== null) {
                 nfts.push({
@@ -260,10 +260,10 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
             
             let response3 = null
             try {
-                response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response3 = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft3 = response3 !== null ? await response3.json() : {image: null, name: null}
-            const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_3 = nft3.image !== null ? nft3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_3_Name = nft3.name
             if (response3 !== null) {
                 nfts.push({
@@ -280,10 +280,10 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
 
             let response4 = null
             try {
-                response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response4 = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft4 = response4 !== null ? await response4.json() : {image: null, name: null}
-            const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_4 = nft4.image !== null ? nft4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_4_Name = nft4.name
             if (response4 !== null) {
                 nfts.push({
@@ -300,10 +300,10 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
             
             let response5 = null
             try {
-                response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response5 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft5 = response5 !== null ? await response5.json() : {image: null, name: null}
-            const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_5 = nft5.image !== null ? nft5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_5_Name = nft5.name
             if (response5 !== null) {
                 nfts.push({
@@ -320,10 +320,10 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
 
             let response6 = null
             try {
-                response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response6 = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft6 = response6 !== null ? await response6.json() : {image: null, name: null}
-            const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_6 = nft6.image !== null ? nft6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_6_Name = nft6.name
             if (response6 !== null) {
                 nfts.push({
@@ -340,10 +340,10 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
 
             let response7 = null
             try {
-                response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response7 = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft7 = response7 !== null ? await response7.json() : {image: null, name: null}
-            const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_7 = nft7.image !== null ? nft7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_7_Name = nft7.name
             if (response7 !== null) {
                 nfts.push({
@@ -406,7 +406,7 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
                 } catch {}
 
@@ -414,7 +414,7 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
                     Col: 1,
                     Id: yournftwallet[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
@@ -728,12 +728,12 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
                     </div>
                 </div>
             }
-            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaxkxb6ajdih52bwme2q3ikeedjyrgad6p53njchr6dhopnltimre')", overflow: "scroll"}}>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://gateway.commudao.xyz/ipfs/bafkreiaxkxb6ajdih52bwme2q3ikeedjyrgad6p53njchr6dhopnltimre')", overflow: "scroll"}}>
                 <div className="SubfieldBanner">
                     <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Jasper Cave</div>
                 </div>
                 <div className="SubfieldBanner">
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="150" alt="$JASP" />
+                    <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="150" alt="$JASP" />
                 </div>
             </div>
 
@@ -792,14 +792,14 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                                     JASP BALANCE (GWEI UNIT)
                                     <div style={{display: "flex", flexDirection: "row"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
                                         <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                     </div>
                                 </div>
                                 <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
                                     JASP PENDING (GWEI UNIT)
                                     <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="20" alt="$JASP"/>
                                         <div style={{marginLeft: "5px"}}>{Number(jasperPending).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                     </div>
                                 </div>
@@ -813,21 +813,21 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
                                     <div style={{display: "flex", flexDirection: "row"}}>
                                         {gasselected === "CTUNA" &&
                                             <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="20" alt="$CTUNA"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="20" alt="$CTUNA"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(ctunaBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                                 <div style={{marginLeft: "5px"}}>/500</div>
                                             </>
                                         }
                                         {gasselected === "SX31" &&
                                             <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="20" alt="$SX31"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="20" alt="$SX31"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(sx31Balance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>
                                                 <div style={{marginLeft: "5px"}}>/500</div>
                                             </>
                                         }
                                         {gasselected === "PIZZA" &&
                                             <>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="20" alt="$PZA"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="20" alt="$PZA"/>
                                                 {csIdEquip === '0' ? <><div style={{marginLeft: "5px"}}>{Number(pzaBalance).toLocaleString('en-US', {maximumFractionDigits:1})}</div>/5000</> : <>Free Gas Remain: {100 - csUsage}</>}
                                             </>
                                         }
@@ -870,21 +870,21 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
                                 <div style={{position: "relative", width: "150px", height: "400px", margin: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {hatSlot !== null ?
                                         <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
                                     }
                                     {hatSlotLevel !== null &&
                                         <div className="slotlevel" style={{position: "absolute", top: "65px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div>
                                     }
                                     {clothSlot !== null ?
                                         <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
                                     }
                                     {clothSlotLevel !== null &&
                                         <div className="slotlevel"  style={{position: "absolute", top: "215px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div>
                                     }
                                     {shoesSlot !== null ?
                                         <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
                                     }
                                     {shoesSlotLevel !== null &&
                                         <div className="slotlevel" style={{position: "absolute", top: "365px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div>
@@ -896,17 +896,17 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
                                         <>
                                             {characterSlot !== null ?
                                                 <>
-                                                    {(Number(skinSlot1) === 0 || (characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia")) &&
+                                                    {(Number(skinSlot1) === 0 || (characterSlot !== "https://gateway.commudao.xyz/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://gateway.commudao.xyz/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia")) &&
                                                         <img src={characterSlot} width="300px" alt="Can not load metadata." />
                                                     }
-                                                    {(characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1) &&
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata." />
+                                                    {(characterSlot === "https://gateway.commudao.xyz/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1) &&
+                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata." />
                                                     }
-                                                    {(characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1) &&
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="300px" alt="Can not load metadata." />
+                                                    {(characterSlot === "https://gateway.commudao.xyz/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1) &&
+                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="300px" alt="Can not load metadata." />
                                                     }
                                                 </> :
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
+                                                <img src="https://gateway.commudao.xyz/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
                                             }
                                         </> :
                                         <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -917,27 +917,27 @@ const Jaspercave = ({ config, intrasubModetext, navigate, callMode, setisLoading
                                         <div style={{position: "absolute", top: "300px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div>
                                     }
                                     {(isOp && isStakeNow && !lastedSTOPT && isRunout) &&
-                                        <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div>
+                                        <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://gateway.commudao.xyz/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div>
                                     }
                                 </div>
                                 <div style={{position: "relative", width: "150px", height: "400px", margin: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {accSlot !== null ?
                                         <img src={accSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlotLevel !== null &&
                                         <div className="slotlevel"  style={{position: "absolute", top: "65px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div>
                                     }
                                     {backSlot !== null ?
                                         <img src={backSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
                                     }
                                     {backSlotLevel !== null &&
                                         <div className="slotlevel" style={{position: "absolute", top: "215px", padding: "2px", fontSize: "25px"}}>+{backSlotLevel}</div>
                                     }
                                     {weaponSlot !== null ?
                                         <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
                                     }
                                     {wpSlotLevel !== null &&
                                         <div className="slotlevel" style={{position: "absolute", top: "365px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div>

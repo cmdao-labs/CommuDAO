@@ -152,13 +152,13 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                 }) : null
                 for (let i = 0; i <= yournftwallet.length - 1; i++) {
                     const nftipfs = data3[i].result
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     const nft = await response.json()
                     nfts.push({
                         Col: 1,
                         Id: yournftwallet[i].Id,
                         Name: nft.name + " #" + yournftwallet[i].Id,
-                        Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                        Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                         Description: nft.description,
                         Attribute: nft.attributes,
                         RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
@@ -208,7 +208,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                         Col: 2,
                         Id: yournftwallet2[i].Id,
                         Name: "CM Cat Meaw Ory JIBJIB #" + yournftwallet2[i].Id,
-                        Image: "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu/" + yournftwallet2[i].Id + ".png",
+                        Image: "https://gateway.commudao.xyz/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu/" + yournftwallet2[i].Id + ".png",
                         Description: "",
                         Attribute: [],
                         RewardPerSec: bonus,
@@ -296,7 +296,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                 }) : null
                 for (let i = 0; i <= yournftwallet5.length - 1; i++) {
                     const nftipfs = data8[i].result
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     const nft = await response.json()
                     let letter = ''
                     if (yournftwallet5[i].Id.slice(0, 5) === '10026') {
@@ -312,7 +312,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                         Col: 5,
                         Id: yournftwallet5[i].Id,
                         Name: nft.name + ' #' + letter + (yournftwallet5[i].Id % 1000),
-                        Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                        Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                         Description: nft.description,
                         Attribute: [],
                         RewardPerSec: 0,
@@ -356,13 +356,13 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                 }) : null
                 for (let i = 0; i <= yournftwallet6.length - 1; i++) {
                     const nftipfs = data10[i].result
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     const nft = await response.json()
                     nfts.push({
                         Col: 6,
                         Id: yournftwallet6[i].Id,
                         Name: nft.name + " #" + yournftwallet6[i].Id,
-                        Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                        Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                         Description: nft.description,
                         Attribute: nft.attributes,
                         RewardPerSec: 0,
@@ -409,10 +409,10 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                 const nftipfs = mkp_data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
                 } catch {}
-                const image = nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
+                const image = nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")
                 let count = null
                 let currencyindex = null
                 let price = null
@@ -520,7 +520,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Col: 2,
                     Id: Number(mkp2wallet[i].Id),
                     Name: "CM Cat Meaw Ory JIBJIB #" + mkp2wallet[i].Id,
-                    Image: "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu/" + mkp2wallet[i].Id + ".png",
+                    Image: "https://gateway.commudao.xyz/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu/" + mkp2wallet[i].Id + ".png",
                     Description: "",
                     Attribute: [],
                     RewardPerSec: bonus,
@@ -555,7 +555,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Col: 2,
                     Id: yournftsell2[i].Id,
                     Name: "CM Cat Meaw Ory JIBJIB #" + yournftsell2[i].Id,
-                    Image: "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu/" + yournftsell2[i].Id + ".png",
+                    Image: "https://gateway.commudao.xyz/ipfs/bafybeid7j5by6pensqrh3v353cwnw7kdcbenf4rqwjrktvy2qodbxqrbuu/" + yournftsell2[i].Id + ".png",
                     Description: "",
                     Attribute: [],
                     RewardPerSec: bonus,
@@ -647,7 +647,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Col: 4,
                     Id: yournftsell4[i].Id,
                     Name: "CM Hexa Cat Meaw JIB JIB #" + yournftsell4[i].Id,
-                    Image: "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + yournftsell4[i].Id + ".png",
+                    Image: "https://gateway.commudao.xyz/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + yournftsell4[i].Id + ".png",
                     Description: "",
                     Attribute: [],
                     RewardPerSec: bonus,
@@ -692,7 +692,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                 const nftipfs = mkp_data9[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
                 } catch {}
                 let count = null
@@ -725,7 +725,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Col: 5,
                     Id: Number(mkp5wallet[i].Id),
                     Name: nft.name + ' #' + letter + (mkp5wallet[i].Id % 1000),
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 0,
@@ -757,7 +757,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Col: 5,
                     Id: yournftsell5[i].Id,
                     Name: nft.name + ' #' + letter + (yournftsell5[i].Id % 1000),
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 0,
@@ -802,7 +802,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                 const nftipfs = mkp_data11[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
                 } catch {}
                 let count = null
@@ -825,7 +825,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Col: 6,
                     Id: Number(mkp6wallet[i].Id),
                     Name: nft.name + " #" + mkp6wallet[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 0,
@@ -847,7 +847,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     Col: 6,
                     Id: yournftsell6[i].Id,
                     Name: nft.name + " #" + yournftsell6[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: 0,
@@ -1021,7 +1021,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                                 <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                                     <div style={{height: "30px", padding: "0 5px", marginRight: "10px", lineHeight: "32px"}} className="bold">SELL AS</div>
                                     <div style={{width: "fit-content", height: "30px", margin: 0, padding: "5px", border: "1px solid", borderRadius: "10px", fontSize: "12px"}} className="items bold">
-                                        {currencyselected === "CMJ" ? <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/> : <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>}
+                                        {currencyselected === "CMJ" ? <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/> : <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>}
                                         <select style={{padding: "5px", margin: "5px", fontSize: "16px", letterSpacing: "1px", border: "none"}} className="pixel" value={currencyselected} onChange={(event) => {setCurrencyselected(event.target.value)}}>
                                             <option value="CMJ">CMJ</option>
                                             <option value="JUSDT">JUSDT</option>
@@ -1046,7 +1046,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                     <div style={{fontSize: "17px", width: "fit-content", marginTop: "30px"}} className="pixel">NFTs Second-hand marketplace provided In DApp.</div>
                 </div>
                 <div className="SubfieldBanner">
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcsFn3ZKhZTM7PvRLdCCuPERi1vDdHzQowsHWFSLcBCsr" width="150" alt="MKP_Logo" />
+                    <img src="https://gateway.commudao.xyz/ipfs/QmcsFn3ZKhZTM7PvRLdCCuPERi1vDdHzQowsHWFSLcBCsr" width="150" alt="MKP_Logo" />
                 </div>
             </div>
 
@@ -1174,7 +1174,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                                                             <div className="pixel emp">{item.Name}</div>
                                                             <div className="pixel">{item.RewardPerSec} {item.Col === 1 || item.Col === 3 ? <>cmpow per sec</> : <>bonus per sec</>}</div>
                                                             <div style={{display: "flex", flexDirection: "row"}} className="pixel">
-                                                                {item.Currencyindex === 1 ? <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/> : <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>}
+                                                                {item.Currencyindex === 1 ? <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/> : <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>}
                                                                 <div style={{marginLeft: "5px"}}>{item.Price}</div>
                                                             </div>
                                                             <div style={{fontSize: "12px"}} className="light">[Seller : {item.Seller}]</div>
@@ -1199,7 +1199,7 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                                                             <div className="pixel emp">{item.Name}</div>
                                                             <div className="pixel">{item.RewardPerSec} {item.Col === 1 || item.Col === 3 ? <>cmpow per sec</> : <>bonus per sec</>}</div>
                                                             <div style={{display: "flex", flexDirection: "row"}} className="pixel">
-                                                                {item.Currencyindex === 1 ? <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/> : <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>}
+                                                                {item.Currencyindex === 1 ? <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/> : <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>}
                                                                 <div style={{marginLeft: "5px"}}>{item.Price}</div>
                                                             </div>
                                                             <div style={{fontSize: "12px"}} className="light">[Seller : {item.Seller}]</div>
@@ -1227,11 +1227,11 @@ const Mkp = ({ config, subModeText, callMode, navigate, setisLoading, txupdate, 
                                     <div style={{marginTop: "20px", fontSize: "15px", letterSpacing: "1px"}} className="bold">Tokens</div>
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll pixel">
                                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="20" alt="$CMJ"/>
                                             <div style={{marginLeft: "5px"}}>{Number(cmjBalance).toFixed(3)}</div>
                                         </div>
                                         <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" width="20" alt="$JUSDT"/>
                                             <div style={{marginLeft: "5px"}}>{Number(jusdtBalance).toFixed(3)}</div>
                                         </div>
                                     </div>

@@ -626,7 +626,7 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
         <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
             <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                 <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiacnhg5fsdlywlxfatj6y6aapbzcmroqvrler3mvlta6fappoe3um?img-width=400&img-height=400" width="230" alt="NPC_Angelo" />
+                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiacnhg5fsdlywlxfatj6y6aapbzcmroqvrler3mvlta6fappoe3um?img-width=400&img-height=400" width="230" alt="NPC_Angelo" />
                 </div>
                 {mode === 1 &&
                     <>
@@ -642,9 +642,9 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     </select>
                                     <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                         &nbsp;1
-                                        {gasselected === "SWAR" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi?img-width=50&img-height=50" width="22" alt="$SWAR"/> &nbsp;=&nbsp; <div className="emp">{priceSWAR}</div></>}
-                                        {gasselected === "ANGB" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m?img-width=50&img-height=50" width="22" alt="$ANGB"/> &nbsp;=&nbsp; <div className="emp">{priceANGB}</div></>}
-                                        &nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                        {gasselected === "SWAR" && <>&nbsp;<img src="https://gateway.commudao.xyz/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi?img-width=50&img-height=50" width="22" alt="$SWAR"/> &nbsp;=&nbsp; <div className="emp">{priceSWAR}</div></>}
+                                        {gasselected === "ANGB" && <>&nbsp;<img src="https://gateway.commudao.xyz/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m?img-width=50&img-height=50" width="22" alt="$ANGB"/> &nbsp;=&nbsp; <div className="emp">{priceANGB}</div></>}
+                                        &nbsp;<img src="https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
                                     </div>
                                 </div>
                                 <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>
@@ -670,13 +670,13 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             ></input>
                             {gasselected === "SWAR" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: swarBalance}}; handleSwapSWAR(bal);}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi?img-width=50&img-height=50" width="22" alt="$SWAR"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi?img-width=50&img-height=50" width="22" alt="$SWAR"/>
                                     <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "ANGB" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: angbBalance}}; handleSwapUni(1, bal);}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m?img-width=50&img-height=50" width="22" alt="$ANGB"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m?img-width=50&img-height=50" width="22" alt="$ANGB"/>
                                     <div style={{marginLeft: "5px"}}>{Number(angbBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
@@ -735,7 +735,7 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     }
                                 }}
                             >
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                <img src="https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
                                 <div style={{marginLeft: "5px"}}>{Number(wjbcBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         </div>
@@ -833,13 +833,13 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             ></input>
                             {gasselected === "SWAR" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(swarBalance)}}; handleAddSwar(bal);}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi?img-width=50&img-height=50" width="22" alt="$SWAR"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi?img-width=50&img-height=50" width="22" alt="$SWAR"/>
                                     <div style={{marginLeft: "5px"}}>{Number(swarBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "ANGB" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(angbBalance)}}; handleAddUni(1, bal);}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m?img-width=50&img-height=50" width="22" alt="$ANGB"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m?img-width=50&img-height=50" width="22" alt="$ANGB"/>
                                     <div style={{marginLeft: "5px"}}>{Number(angbBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
@@ -873,7 +873,7 @@ const Ammmerchant4 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     }
                                     
                                 }}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                <img src="https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
                                 <div style={{marginLeft: "5px"}}>{Number(wjbcBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         </div>

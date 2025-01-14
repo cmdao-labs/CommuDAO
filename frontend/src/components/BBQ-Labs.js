@@ -2589,7 +2589,7 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
                                     width="20"
                                     alt="$WOOD"
                                     style={{cursor: "crosshair"}}
@@ -2602,7 +2602,7 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
                                                     address: woodToken,
                                                     symbol: 'WOOD',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
                                                 },
                                             },
                                         })
@@ -2613,7 +2613,7 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
 
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV"
+                                    src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV"
                                     width="20"
                                     alt="$GEMSTONE"
                                     style={{cursor: "crosshair"}}
@@ -2626,7 +2626,7 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
                                                     address: gemToken,
                                                     symbol: 'HRM-GEM',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV',
                                                 },
                                             },
                                         })
@@ -2640,7 +2640,7 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
                                     width="20"
                                     alt="$BBQ"
                                     style={{cursor: "crosshair"}}
@@ -2653,7 +2653,7 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
                                                     address: bbqToken,
                                                     symbol: 'BBQ',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
                                                 },
                                             },
                                         })
@@ -2664,7 +2664,7 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
 
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
+                                    src="https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
                                     width="20"
                                     alt="$INF.POW"
                                     style={{cursor: "crosshair"}}
@@ -2677,7 +2677,7 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
                                                     address: infpowLab,
                                                     symbol: 'INF-POW-BBQ',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
                                                 },
                                             },
                                         })
@@ -2698,13 +2698,13 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                                         <div style={{margin: "0 5px"}}>1,000</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidm3tpt3xpcmypzeaqicyxvihmygzu5mw3v74o6b2wve6ar5pdbs4" height="18" alt="$CMD"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidm3tpt3xpcmypzeaqicyxvihmygzu5mw3v74o6b2wve6ar5pdbs4" height="18" alt="$CMD"/>
                                         <div style={{margin: "0 5px"}}>0.01</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                         <div style={{margin: "0 5px"}}>
                                             {isCraftBBQ !== null ?
                                                 <>
@@ -2736,7 +2736,7 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
                                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                                     <div style={{display: "flex", flexDirection: "row"}}>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                                                         <div style={{margin: "0 5px"}}>
                                                             {isCraftBBQ !== null ?
                                                                 <>
@@ -2768,18 +2768,18 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px 10px 80px 10px"}}>
                                 <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmfE4Ruu1ckrrnMJBS1E6x9jejuiXhV3533AboaRtXU9cj" width="200" alt="INF.POW_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmfE4Ruu1ckrrnMJBS1E6x9jejuiXhV3533AboaRtXU9cj" width="200" alt="INF.POW_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="18" alt="$GEMSTONE"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="18" alt="$GEMSTONE"/>
                                         <div style={{margin: "0 5px"}}>500</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidm3tpt3xpcmypzeaqicyxvihmygzu5mw3v74o6b2wve6ar5pdbs4" height="18" alt="$CMD"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidm3tpt3xpcmypzeaqicyxvihmygzu5mw3v74o6b2wve6ar5pdbs4" height="18" alt="$CMD"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" height="18" alt="$INF.POW"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" height="18" alt="$INF.POW"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                     </div>
                                 </div>
@@ -2823,7 +2823,7 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
                         <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{width: "100%", textAlign: "left", display: "flex", flexDirection: "row"}} className='emp'>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>&nbsp;
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>&nbsp;
                                     $BBQ TRANSPORT HUB
                                 </div>
                                 <div style={{height: "80%", overflow: "scroll"}} className="pixel">
@@ -3618,7 +3618,7 @@ const BBQLabs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupda
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px 10px 80px 10px"}}>
                                 <div style={{width: "100%", textAlign: "left", display: "flex", flexDirection: "row",}} className='emp'>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" height="20" alt="$INF.POW"/>&nbsp;
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" height="20" alt="$INF.POW"/>&nbsp;
                                     $INF.POW TRANSPORT HUB
                                 </div>
                                 <div style={{height: "80%", overflow: "scroll"}} className="pixel">
