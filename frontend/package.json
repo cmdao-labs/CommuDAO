@@ -1,6 +1,6 @@
 {
   "name": "commu-dao",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "private": true,
   "dependencies": {
     "@tanstack/react-query": "^5.59.15",

@@ -88,45 +88,45 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                 } catch {}
                 let _reward = 0
                 if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '00') {
-                    _reward = 15
+                    _reward = 70
                 } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '01') {
-                    _reward = 85
+                    _reward = 77
                 } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '02') {
-                    _reward = 95
+                    _reward = 85
                 } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '03') {
-                    _reward = 100
+                    _reward = 93
                 } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '04') {
-                    _reward = 105
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '05') {
-                    _reward = 110
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '06') {
-                    _reward = 115
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '07') {
                     _reward = 120
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '08') {
-                    _reward = 125
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '09') {
-                    _reward = 130
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '10') {
-                    _reward = 135
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '11') {
-                    _reward = 150
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '12') {
-                    _reward = 155
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '13') {
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '05') {
+                    _reward = 132
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '06') {
+                    _reward = 145
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '07') {
                     _reward = 160
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '14') {
-                    _reward = 165
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '15') {
-                    _reward = 180
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '16') {
-                    _reward = 185
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '17') {
-                    _reward = 190
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '18') {
-                    _reward = 195
-                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '19') {
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '08') {
                     _reward = 250
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '09') {
+                    _reward = 275
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '10') {
+                    _reward = 303
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '11') {
+                    _reward = 333
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '12') {
+                    _reward = 350
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '13') {
+                    _reward = 385
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '14') {
+                    _reward = 424
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '15') {
+                    _reward = 466
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '16') {
+                    _reward = 600
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '17') {
+                    _reward = 660
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '18') {
+                    _reward = 726
+                } else if (String(yournftstake[i].Id).padStart(20, '0').slice(0, 2) === '19') {
+                    _reward = 799
                 }
                 _allDaily += Number(Number(_reward * 0.0000002 * 86400).toFixed(2))
 
@@ -184,45 +184,45 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                 } catch {}
                 let _reward = 0
                 if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '00') {
-                    _reward = 15
+                    _reward = 70
                 } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '01') {
-                    _reward = 85
+                    _reward = 77
                 } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '02') {
-                    _reward = 95
+                    _reward = 85
                 } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '03') {
-                    _reward = 100
+                    _reward = 93
                 } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '04') {
-                    _reward = 105
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '05') {
-                    _reward = 110
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '06') {
-                    _reward = 115
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '07') {
                     _reward = 120
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '08') {
-                    _reward = 125
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '09') {
-                    _reward = 130
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '10') {
-                    _reward = 135
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '11') {
-                    _reward = 150
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '12') {
-                    _reward = 155
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '13') {
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '05') {
+                    _reward = 132
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '06') {
+                    _reward = 145
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '07') {
                     _reward = 160
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '14') {
-                    _reward = 165
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '15') {
-                    _reward = 180
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '16') {
-                    _reward = 185
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '17') {
-                    _reward = 190
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '18') {
-                    _reward = 195
-                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '19') {
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '08') {
                     _reward = 250
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '09') {
+                    _reward = 275
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '10') {
+                    _reward = 303
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '11') {
+                    _reward = 333
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '12') {
+                    _reward = 350
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '13') {
+                    _reward = 385
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '14') {
+                    _reward = 424
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '15') {
+                    _reward = 466
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '16') {
+                    _reward = 600
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '17') {
+                    _reward = 660
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '18') {
+                    _reward = 726
+                } else if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '19') {
+                    _reward = 799
                 }
                 nfts.push({
                     Id: yournftwallet[i].Id,
