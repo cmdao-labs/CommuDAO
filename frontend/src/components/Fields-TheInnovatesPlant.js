@@ -83,7 +83,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                 const nftipfs = data1[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
                 } catch {}
                 let _reward = 0
@@ -133,7 +133,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                 nfts.push({
                     Id: yournftstake[i].Id,
                     Name: nft.name + " [" + yournftstake[i].Id + "]",
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(_reward * 0.0000002 * 86400).toFixed(4),
@@ -178,9 +178,9 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
-                    nft.image = nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")
+                    nft.image = nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")
                 } catch {}
                 let _reward = 0
                 if (String(yournftwallet[i].Id).padStart(20, '0').slice(0, 2) === '00') {
@@ -368,14 +368,14 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                             <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                             <div style={{fontSize: "24px", marginBottom: "20px", display: "flex", justifyContent: "center"}}>
                                 {nft.length > 0 && nft[0] !== null ? allDaily : 0}
-                                <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-height=50" width="30" alt="$II"/>
+                                <img style={{marginLeft: "10px"}} src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-height=50" width="30" alt="$II"/>
                             </div>
                         </div>
                         <div className="headfield bold">
                             <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                             <div style={{fontSize: "24px", marginBottom: "20px", display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "center"}}>
                                 {nft.length > 0 && nft[0] !== null ? Number(allReward).toLocaleString('en-US', {maximumFractionDigits:2}) : 0}
-                                <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-height=50" width="30" alt="$II"/>
+                                <img style={{margin: "0 10px"}} src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-height=50" width="30" alt="$II"/>
                                 {address !== null && intrasubModetext !== undefined ?
                                     <>
                                         {address.toUpperCase() === intrasubModetext.toUpperCase() && allReward > 0 ?
@@ -391,7 +391,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                             <div style={{marginBottom: "20px"}}>BALANCE</div>
                             <div style={{fontSize: "24px", marginBottom: "20px", display: "flex", justifyContent: "center"}}>
                                 {nft.length > 0 ? Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:2}) : 0}
-                                <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-height=50" width="30" alt="$II"/>
+                                <img style={{marginLeft: "10px"}} src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-height=50" width="30" alt="$II"/>
                             </div>
                         </div>
                     </div>
@@ -418,7 +418,7 @@ const TheInnovatesPlantField = ({ config, intrasubModetext, navigate, callMode, 
                                                 </div>
                                                 <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
                                                     <>Earn: {String(item.RewardPerSec)}</>&nbsp;
-                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-height=50" width="12" alt="$II
+                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-height=50" width="12" alt="$II
                                                     "/>&nbsp;
                                                     <>II/DAY</>
                                                 </div>

@@ -198,7 +198,7 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                 const nftipfs = data2[0].result
                 const nftData = data2[1].result
                 const reward = data2[2].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                 const nft = await response.json()
                 let level = 0
                 let expMax = 0
@@ -228,7 +228,7 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                 nfts.push({
                     Id: String(yournftstake[i].Id),
                     Name: nftData[0],
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Class: theClass,
                     Level: level,
                     Exp: ethers.utils.formatEther(String(nftData[1])),
@@ -265,7 +265,7 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                 })
                 const nftipfs = data3[0].result
                 const nftData = data3[1].result
-                const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                 const nft = await response.json()
                 let level = 0
                 let expMax = 0
@@ -295,7 +295,7 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                 nfts.push({
                     Id: String(yournftwallet[i].Id),
                     Name: nftData[0],
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Class: theClass,
                     Level: level,
                     Exp: ethers.utils.formatEther(String(nftData[1])),
@@ -597,12 +597,12 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
 
     return (
         <>
-            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeib5stifg5jcqqxsy4kbwwb6xovei5biyspuzhlwrsng4i62ppwpwy')", overflow: "scroll"}}>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://gateway.commudao.xyz/ipfs/bafybeib5stifg5jcqqxsy4kbwwb6xovei5biyspuzhlwrsng4i62ppwpwy')", overflow: "scroll"}}>
                 <div className="SubfieldBanner">
                     <div className="pixel" style={{padding: "5px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Ancient Forest</div>
                 </div>
                 <div className="SubfieldBanner">
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="150" alt="$WOOD" />
+                    <img src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="150" alt="$WOOD" />
                 </div>
             </div>
             
@@ -665,8 +665,8 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                                                     <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left",}} className="bold">
                                                         Pending Rewards
                                                         <div style={{fontSize: "10px"}} className="emp">EXP: +{Number(item.RewardWood).toFixed(0)}</div>
-                                                        <div style={{fontSize: "10px"}} className="emp"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> {item.RewardWood}</div>
-                                                        <div style={{fontSize: "10px"}} className="emp"><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="12" alt="$CMJ"/> {item.RewardCmj}</div>
+                                                        <div style={{fontSize: "10px"}} className="emp"><img src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" width="12" alt="$WOOD"/> {item.RewardWood}</div>
+                                                        <div style={{fontSize: "10px"}} className="emp"><img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="12" alt="$CMJ"/> {item.RewardCmj}</div>
                                                     </div>
                                                     {item.RewardWood > 0 ?
                                                         <div style={{lineHeight: 2, height: "fit-content", marginTop: "25px"}} className="pixel button" onClick={() => {unstakeNft(item.Id, false, 0)}}>HARVEST</div> :
@@ -679,7 +679,7 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                                     <>
                                         {address !== null ?
                                             <div className="nftCard" style={{justifyContent: "flex-start", padding: "30px 20px", height: "500px", margin: '10px'}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiaqwsxafpj3acgdjmvn4hfodrhj5vdeq4cdiqtaaekpjiuamzcbhq" width="150" alt="Can not load metadata." />
+                                                <img src="https://gateway.commudao.xyz/ipfs/bafkreiaqwsxafpj3acgdjmvn4hfodrhj5vdeq4cdiqtaaekpjiuamzcbhq" width="150" alt="Can not load metadata." />
                                                 <div style={{margin: "20px 0", fontSize: "18px"}} className="emp pixel">CommuDAO Servant Incubator</div>
                                                 <input
                                                     style={{width: "90%", padding: "5px 10px", marginBottom: "20px", border: "1px solid #dddade", fontSize: "18px"}}
@@ -706,7 +706,7 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                         }
                         {address !== null &&
                             <div style={{justifyContent: "space-around", padding: "30px 20px", height: "500px", margin: '10px'}} className="nftCard">
-                                <img src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiax35zfioffpmp3tlyjwdrz2dplldgm5qokqi5p3b76cmomtkfri4' width="150" alt="Can not load metadata." />
+                                <img src='https://gateway.commudao.xyz/ipfs/bafybeiax35zfioffpmp3tlyjwdrz2dplldgm5qokqi5p3b76cmomtkfri4' width="150" alt="Can not load metadata." />
                                 <div style={{width: 300, padding: "5px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between", textAlign: "left"}} className="pixel">
                                     <div style={{lineHeight: 2, fontSize: "14px", textAlign: "left",}}>
                                         <div style={{color: "red"}}>Fishmon [Lv. 5]</div>
@@ -735,7 +735,7 @@ const AncientForrest = ({ config, callMode, navigate, setisLoading, txupdate, se
                                 <div style={{width: 300, padding: "5px 20px", border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                     <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left",}} className="bold">
                                         Rewards
-                                        <div style={{fontSize: "14px"}}><img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="12" alt="$PLAT"/> 1 per defeat</div>
+                                        <div style={{fontSize: "14px"}}><img src="https://gateway.commudao.xyz/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="12" alt="$PLAT"/> 1 per defeat</div>
                                     </div>
                                     {Number(monInfo01[0]) > 0 && Number(userInfo01[1]) > 0?
                                         <div style={{lineHeight: 2, height: "fit-content", fontSize: "16px"}} className="pixel button" onClick={() => fight01Handle(1)}>ATTACK</div> :

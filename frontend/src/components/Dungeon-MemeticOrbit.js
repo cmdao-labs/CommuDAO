@@ -682,10 +682,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             let nfts = []
             let res_main_char = null
             try {
-                res_main_char = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_char = data[0].status === 'success' ? await fetch(data[0].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_char = res_main_char !== null ? await res_main_char.json() : {image: null, name: null}
-            const nftEQ_main_char_Img = nft_main_char.image !== null ? nft_main_char.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_char_Img = nft_main_char.image !== null ? nft_main_char.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_char_Name = nft_main_char.name
             if (res_main_char !== null) {
                 nfts.push({
@@ -702,10 +702,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_acc1 = null
             try {
-                res_main_acc1 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_acc1 = data[1].status === 'success' ? await fetch(data[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_acc = res_main_acc1 !== null ? await res_main_acc1.json() : {image: null, name: null}
-            const nftEQ_main_acc_Img = nft_main_acc.image !== null ? nft_main_acc.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc_Img = nft_main_acc.image !== null ? nft_main_acc.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_acc_Name = nft_main_acc.name
             if (res_main_acc1 !== null) {
                 nfts.push({
@@ -722,10 +722,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_back = null
             try {
-                res_main_back = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_back = data[2].status === 'success' ? await fetch(data[2].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_back = res_main_back !== null ? await res_main_back.json() : {image: null, name: null}
-            const nftEQ_main_back_Img = nft_main_back.image !== null ? nft_main_back.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_back_Img = nft_main_back.image !== null ? nft_main_back.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_back_Name = nft_main_back.name
             if (res_main_back !== null) {
                 nfts.push({
@@ -742,10 +742,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_shoes = null
             try {
-                res_main_shoes = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_shoes = data[3].status === 'success' ? await fetch(data[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_shoes = res_main_shoes !== null ? await res_main_shoes.json() : {image: null, name: null}
-            const nftEQ_main_shoes_Img = nft_main_shoes.image !== null ? nft_main_shoes.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_shoes_Img = nft_main_shoes.image !== null ? nft_main_shoes.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_shoes_Name = nft_main_shoes.name
             if (res_main_shoes !== null) {
                 nfts.push({
@@ -762,10 +762,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_wp1 = null
             try {
-                res_main_wp1 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_wp1 = data[4].status === 'success' ? await fetch(data[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_wp1 = res_main_wp1 !== null ? await res_main_wp1.json() : {image: null, name: null}
-            const nftEQ_main_wp1_Img = nft_main_wp1.image !== null ? nft_main_wp1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_wp1_Img = nft_main_wp1.image !== null ? nft_main_wp1.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_wp1_Name = nft_main_wp1.name
             if (res_main_wp1 !== null) {
                 nfts.push({
@@ -782,10 +782,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_cloth = null
             try {
-                res_main_cloth = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_cloth = data[5].status === 'success' ? await fetch(data[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_cloth = res_main_cloth !== null ? await res_main_cloth.json() : {image: null, name: null}
-            const nftEQ_main_cloth_Img = nft_main_cloth.image !== null ? nft_main_cloth.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_cloth_Img = nft_main_cloth.image !== null ? nft_main_cloth.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_cloth_Name = nft_main_cloth.name
             if (res_main_cloth !== null) {
                 nfts.push({
@@ -802,10 +802,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_hat = null
             try {
-                res_main_hat = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_hat = data[6].status === 'success' ? await fetch(data[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_hat = res_main_hat !== null ? await res_main_hat.json() : {image: null, name: null}
-            const nftEQ_main_hat_Img = nft_main_hat.image !== null ? nft_main_hat.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_hat_Img = nft_main_hat.image !== null ? nft_main_hat.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_hat_Name = nft_main_hat.name
             if (res_main_hat !== null) {
                 nfts.push({
@@ -822,10 +822,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_wp2 = null
             try {
-                res_main_wp2 = data[7].status === 'success' ? await fetch(data[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_wp2 = data[7].status === 'success' ? await fetch(data[7].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_wp2 = res_main_wp2 !== null ? await res_main_wp2.json() : {image: null, name: null}
-            const nftEQ_main_wp2_Img = nft_main_wp2.image !== null ? nft_main_wp2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_wp2_Img = nft_main_wp2.image !== null ? nft_main_wp2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_wp2_Name = nft_main_wp2.name
             if (res_main_wp2 !== null) {
                 nfts.push({
@@ -842,10 +842,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_acc2 = null
             try {
-                res_main_acc2 = data[8].status === 'success' ? await fetch(data[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_acc2 = data[8].status === 'success' ? await fetch(data[8].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_acc2 = res_main_acc2 !== null ? await res_main_acc2.json() : {image: null, name: null}
-            const nftEQ_main_acc2_Img = nft_main_acc2.image !== null ? nft_main_acc2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc2_Img = nft_main_acc2.image !== null ? nft_main_acc2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_acc2_Name = nft_main_acc2.name
             if (res_main_acc2 !== null) {
                 nfts.push({
@@ -862,10 +862,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_acc3 = null
             try {
-                res_main_acc3 = data[9].status === 'success' ? await fetch(data[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_acc3 = data[9].status === 'success' ? await fetch(data[9].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_acc3 = res_main_acc3 !== null ? await res_main_acc3.json() : {image: null, name: null}
-            const nftEQ_main_acc3_Img = nft_main_acc3.image !== null ? nft_main_acc3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc3_Img = nft_main_acc3.image !== null ? nft_main_acc3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_acc3_Name = nft_main_acc3.name
             if (res_main_acc3 !== null) {
                 nfts.push({
@@ -882,10 +882,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_acc4 = null
             try {
-                res_main_acc4 = data[10].status === 'success' ? await fetch(data[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_acc4 = data[10].status === 'success' ? await fetch(data[10].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_acc4 = res_main_acc4 !== null ? await res_main_acc4.json() : {image: null, name: null}
-            const nftEQ_main_acc4_Img = nft_main_acc4.image !== null ? nft_main_acc4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc4_Img = nft_main_acc4.image !== null ? nft_main_acc4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_acc4_Name = nft_main_acc4.name
             if (res_main_acc4 !== null) {
                 nfts.push({
@@ -902,10 +902,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_acc5 = null
             try {
-                res_main_acc5 = data[11].status === 'success' ? await fetch(data[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_acc5 = data[11].status === 'success' ? await fetch(data[11].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_acc5 = res_main_acc5 !== null ? await res_main_acc5.json() : {image: null, name: null}
-            const nftEQ_main_acc5_Img = nft_main_acc5.image !== null ? nft_main_acc5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc5_Img = nft_main_acc5.image !== null ? nft_main_acc5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_acc5_Name = nft_main_acc5.name
             if (res_main_acc5 !== null) {
                 nfts.push({
@@ -922,10 +922,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_acc6 = null
             try {
-                res_main_acc6 = data[12].status === 'success' ? await fetch(data[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_acc6 = data[12].status === 'success' ? await fetch(data[12].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_acc6 = res_main_acc6 !== null ? await res_main_acc6.json() : {image: null, name: null}
-            const nftEQ_main_acc6_Img = nft_main_acc6.image !== null ? nft_main_acc6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_acc6_Img = nft_main_acc6.image !== null ? nft_main_acc6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_acc6_Name = nft_main_acc6.name
             if (res_main_acc6 !== null) {
                 nfts.push({
@@ -942,10 +942,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_soul = null
             try {
-                res_main_soul = data[13].status === 'success' ? await fetch(data[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_soul = data[13].status === 'success' ? await fetch(data[13].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_soul = res_main_soul !== null ? await res_main_soul.json() : {image: null, name: null}
-            const nftEQ_main_soul_Img = nft_main_soul.image !== null ? nft_main_soul.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_soul_Img = nft_main_soul.image !== null ? nft_main_soul.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_soul_Name = nft_main_soul.name
             if (res_main_soul !== null) {
                 nfts.push({
@@ -962,10 +962,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_main_badge = null
             try {
-                res_main_badge = data[14].status === 'success' ? await fetch(data[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_main_badge = data[14].status === 'success' ? await fetch(data[14].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_main_badge = res_main_badge !== null ? await res_main_badge.json() : {image: null, name: null}
-            const nftEQ_main_badge_Img = nft_main_badge.image !== null ? nft_main_badge.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_main_badge_Img = nft_main_badge.image !== null ? nft_main_badge.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_main_badge_Name = nft_main_badge.name
             if (res_main_badge !== null) {
                 nfts.push({
@@ -984,10 +984,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             let memeSS1cmpow = 0
             let res_meme_char_ss1 = null
             try {
-                res_meme_char_ss1 = data[15].status === 'success' ? await fetch(data[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_char_ss1 = data[15].status === 'success' ? await fetch(data[15].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_char_ss1 = res_meme_char_ss1 !== null ? await res_meme_char_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_char_ss1_Img = nft_meme_char_ss1.image !== null ? nft_meme_char_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_char_ss1_Img = nft_meme_char_ss1.image !== null ? nft_meme_char_ss1.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_meme_char_ss1_Name = nft_meme_char_ss1.name
             memeSS1cmpow += res_meme_char_ss1 !== null ? Number(nftEQMemeSS1[0]) % 100000 : 0
             if (res_meme_char_ss1 !== null) {
@@ -1006,10 +1006,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_meme_hat_ss1 = null
             try {
-                res_meme_hat_ss1 = data[16].status === 'success' ? await fetch(data[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_hat_ss1 = data[16].status === 'success' ? await fetch(data[16].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_hat_ss1 = res_meme_hat_ss1 !== null ? await res_meme_hat_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_hat_ss1_Img = nft_meme_hat_ss1.image !== null ? nft_meme_hat_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_hat_ss1_Img = nft_meme_hat_ss1.image !== null ? nft_meme_hat_ss1.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_meme_hat_ss1_Name = nft_meme_hat_ss1.name
             memeSS1cmpow += res_meme_hat_ss1 !== null ? Number(nftEQMemeSS1[1]) % 100000 : 0
             if (res_meme_hat_ss1 !== null) {
@@ -1028,10 +1028,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_meme_cloth_ss1 = null
             try {
-                res_meme_cloth_ss1 = data[17].status === 'success' ? await fetch(data[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_cloth_ss1 = data[17].status === 'success' ? await fetch(data[17].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_cloth_ss1 = res_meme_cloth_ss1 !== null ? await res_meme_cloth_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_cloth_ss1_Img = nft_meme_cloth_ss1.image !== null ? nft_meme_cloth_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_cloth_ss1_Img = nft_meme_cloth_ss1.image !== null ? nft_meme_cloth_ss1.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_meme_cloth_ss1_Name = nft_meme_cloth_ss1.name
             memeSS1cmpow += res_meme_cloth_ss1 !== null ? Number(nftEQMemeSS1[2]) % 100000 : 0
             if (res_meme_cloth_ss1 !== null) {
@@ -1050,10 +1050,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_meme_acc_ss1 = null
             try {
-                res_meme_acc_ss1 = data[18].status === 'success' ? await fetch(data[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_acc_ss1 = data[18].status === 'success' ? await fetch(data[18].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_acc_ss1 = res_meme_acc_ss1 !== null ? await res_meme_acc_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_acc_ss1_Img = nft_meme_acc_ss1.image !== null ? nft_meme_acc_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_acc_ss1_Img = nft_meme_acc_ss1.image !== null ? nft_meme_acc_ss1.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             memeSS1cmpow += res_meme_acc_ss1 !== null ? Number(nftEQMemeSS1[3]) % 100000 : 0
             if (res_meme_acc_ss1 !== null) {
                 nfts.push({
@@ -1071,10 +1071,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_meme_back_ss1 = null
             try {
-                res_meme_back_ss1 = data[19].status === 'success' ? await fetch(data[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_back_ss1 = data[19].status === 'success' ? await fetch(data[19].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_back_ss1 = res_meme_back_ss1 !== null ? await res_meme_back_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_back_ss1_Img = nft_meme_back_ss1.image !== null ? nft_meme_back_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_back_ss1_Img = nft_meme_back_ss1.image !== null ? nft_meme_back_ss1.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_meme_back_ss1_Name = nft_meme_back_ss1.name
             memeSS1cmpow += res_meme_back_ss1 !== null ? Number(nftEQMemeSS1[4]) % 100000 : 0
             if (res_meme_back_ss1 !== null) {
@@ -1093,10 +1093,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_meme_shoes_ss1 = null
             try {
-                res_meme_shoes_ss1 = data[20].status === 'success' ? await fetch(data[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_shoes_ss1 = data[20].status === 'success' ? await fetch(data[20].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_shoes_ss1 = res_meme_shoes_ss1 !== null ? await res_meme_shoes_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_shoes_ss1_Img = nft_meme_shoes_ss1.image !== null ? nft_meme_shoes_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_shoes_ss1_Img = nft_meme_shoes_ss1.image !== null ? nft_meme_shoes_ss1.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_meme_shoes_ss1_Name = nft_meme_shoes_ss1.name
             memeSS1cmpow += res_meme_back_ss1 !== null ? Number(nftEQMemeSS1[5]) % 100000 : 0
             if (res_meme_back_ss1 !== null) {
@@ -1115,10 +1115,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_meme_weapon_ss1 = null
             try {
-                res_meme_weapon_ss1 = data[21].status === 'success' ? await fetch(data[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_weapon_ss1 = data[21].status === 'success' ? await fetch(data[21].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_weapon_ss1 = res_meme_weapon_ss1 !== null ? await res_meme_weapon_ss1.json() : {image: null, name: null}
-            const nftEQ_meme_weapon_ss1_Img = nft_meme_weapon_ss1.image !== null ? nft_meme_weapon_ss1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_weapon_ss1_Img = nft_meme_weapon_ss1.image !== null ? nft_meme_weapon_ss1.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_meme_weapon_ss1_Name = nft_meme_weapon_ss1.name
             memeSS1cmpow += res_meme_weapon_ss1 !== null ? Number(nftEQMemeSS1[6]) % 100000 : 0
             if (res_meme_weapon_ss1 !== null) {
@@ -1139,10 +1139,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             let memeSS2cmpow = 0
             let res_meme_char_ss2 = null
             try {
-                res_meme_char_ss2 = data[27].status === 'success' ? await fetch(data[27].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_char_ss2 = data[27].status === 'success' ? await fetch(data[27].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_char_ss2 = res_meme_char_ss2 !== null ? await res_meme_char_ss2.json() : {image: null, name: null}
-            const nftEQ_meme_char_ss2_Img = nft_meme_char_ss2.image !== null ? nft_meme_char_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_char_ss2_Img = nft_meme_char_ss2.image !== null ? nft_meme_char_ss2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_meme_char_ss2_Name = nft_meme_char_ss2.name
             memeSS2cmpow += res_meme_char_ss2 !== null ? Number(nftEQMemeSS2[0]) % 100000 : 0
             if (res_meme_char_ss2 !== null) {
@@ -1161,10 +1161,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_meme_hat_ss2 = null
             try {
-                res_meme_hat_ss2 = data[28].status === 'success' ? await fetch(data[28].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_hat_ss2 = data[28].status === 'success' ? await fetch(data[28].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_hat_ss2 = res_meme_hat_ss2 !== null ? await res_meme_hat_ss2.json() : {image: null, name: null}
-            const nftEQ_meme_hat_ss2_Img = nft_meme_hat_ss2.image !== null ? nft_meme_hat_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_hat_ss2_Img = nft_meme_hat_ss2.image !== null ? nft_meme_hat_ss2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_meme_hat_ss2_Name = nft_meme_hat_ss2.name
             memeSS2cmpow += res_meme_hat_ss2 !== null ? Number(nftEQMemeSS2[1]) % 100000 : 0
             if (res_meme_hat_ss2 !== null) {
@@ -1183,10 +1183,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_meme_cloth_ss2 = null
             try {
-                res_meme_cloth_ss2 = data[29].status === 'success' ? await fetch(data[29].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_cloth_ss2 = data[29].status === 'success' ? await fetch(data[29].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_cloth_ss2 = res_meme_cloth_ss2 !== null ? await res_meme_cloth_ss2.json() : {image: null, name: null}
-            const nftEQ_meme_cloth_ss2_Img = nft_meme_cloth_ss2.image !== null ? nft_meme_cloth_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_cloth_ss2_Img = nft_meme_cloth_ss2.image !== null ? nft_meme_cloth_ss2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_meme_cloth_ss2_Name = nft_meme_cloth_ss2.name
             memeSS2cmpow += res_meme_cloth_ss2 !== null ? Number(nftEQMemeSS2[2]) % 100000 : 0
             if (res_meme_cloth_ss2 !== null) {
@@ -1205,11 +1205,11 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_meme_acc_ss2 = null
             try {
-                res_meme_acc_ss2 = data[30].status === 'success' ? await fetch(data[30].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_acc_ss2 = data[30].status === 'success' ? await fetch(data[30].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_acc_ss2 = res_meme_acc_ss2 !== null ? await res_meme_acc_ss2.json() : {image: null, name: null}
             const nftEQ_meme_acc_ss2_Name = nft_meme_acc_ss2.name
-            const nftEQ_meme_acc_ss2_Img = nft_meme_acc_ss2.image !== null ? nft_meme_acc_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_acc_ss2_Img = nft_meme_acc_ss2.image !== null ? nft_meme_acc_ss2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             memeSS2cmpow += res_meme_acc_ss2 !== null ? Number(nftEQMemeSS2[3]) % 100000 : 0
             if (res_meme_acc_ss2 !== null) {
                 nfts.push({
@@ -1227,10 +1227,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_meme_back_ss2 = null
             try {
-                res_meme_back_ss2 = data[31].status === 'success' ? await fetch(data[31].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_back_ss2 = data[31].status === 'success' ? await fetch(data[31].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_back_ss2 = res_meme_back_ss2 !== null ? await res_meme_back_ss2.json() : {image: null, name: null}
-            const nftEQ_meme_back_ss2_Img = nft_meme_back_ss2.image !== null ? nft_meme_back_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_back_ss2_Img = nft_meme_back_ss2.image !== null ? nft_meme_back_ss2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_meme_back_ss2_Name = nft_meme_back_ss2.name
             memeSS2cmpow += res_meme_back_ss2 !== null ? Number(nftEQMemeSS2[4]) % 100000 : 0
             if (res_meme_back_ss2 !== null) {
@@ -1249,10 +1249,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_meme_shoes_ss2 = null
             try {
-                res_meme_shoes_ss2 = data[32].status === 'success' ? await fetch(data[32].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_shoes_ss2 = data[32].status === 'success' ? await fetch(data[32].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_shoes_ss2 = res_meme_shoes_ss2 !== null ? await res_meme_shoes_ss2.json() : {image: null, name: null}
-            const nftEQ_meme_shoes_ss2_Img = nft_meme_shoes_ss2.image !== null ? nft_meme_shoes_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_shoes_ss2_Img = nft_meme_shoes_ss2.image !== null ? nft_meme_shoes_ss2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_meme_shoes_ss2_Name = nft_meme_shoes_ss2.name
             memeSS2cmpow += res_meme_back_ss2 !== null ? Number(nftEQMemeSS2[5]) % 100000 : 0
             if (res_meme_back_ss2 !== null) {
@@ -1271,10 +1271,10 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             }
             let res_meme_weapon_ss2 = null
             try {
-                res_meme_weapon_ss2 = data[33].status === 'success' ? await fetch(data[33].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                res_meme_weapon_ss2 = data[33].status === 'success' ? await fetch(data[33].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft_meme_weapon_ss2 = res_meme_weapon_ss2 !== null ? await res_meme_weapon_ss2.json() : {image: null, name: null}
-            const nftEQ_meme_weapon_ss2_Img = nft_meme_weapon_ss2.image !== null ? nft_meme_weapon_ss2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_meme_weapon_ss2_Img = nft_meme_weapon_ss2.image !== null ? nft_meme_weapon_ss2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_meme_weapon_ss2_Name = nft_meme_weapon_ss2.name
             memeSS2cmpow += res_meme_weapon_ss2 !== null ? Number(nftEQMemeSS2[6]) % 100000 : 0
             if (res_meme_weapon_ss2 !== null) {
@@ -1351,14 +1351,14 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
                 } catch {}
                 nfts.push({
                     Col: 1,
                     Id: yournftwallet[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet[i].Id.slice(-5)),
@@ -1405,14 +1405,14 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                 const nftipfs = data5[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
                 } catch {}
                 nfts.push({
                     Col: 2,
                     Id: yournftwallet2[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet2[i].Id.slice(-5)),
@@ -1459,14 +1459,14 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                 const nftipfs = data7[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
                 } catch {}
                 nfts.push({
                     Col: 3,
                     Id: yournftwallet3[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(yournftwallet3[i].Id.slice(-5)),
@@ -1814,7 +1814,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                     </div>
                 </div>
             }
-            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYeJjdaanuuX27L1RyXLM957MitBQRQ5qr3W4hZJFoGjy')", overflow: "scroll"}}>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://gateway.commudao.xyz/ipfs/QmYeJjdaanuuX27L1RyXLM957MitBQRQ5qr3W4hZJFoGjy')", overflow: "scroll"}}>
                 <div className="SubfieldBanner">
                     <div className="pixel" style={{fontSize: "75px", color: "#fff", width: "fit-content"}}>Memetic Orbit</div>
                 </div>
@@ -1877,7 +1877,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     REWARD BALANCE
                                     {!isEnd ? 
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="20" alt="$GOLD"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="20" alt="$GOLD"/>
                                             <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                         </div> :
                                         <div style={{color: "#5f6476"}}>SS is over</div>
@@ -1887,7 +1887,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     REWARD PENDING
                                     {!isEnd ? 
                                         <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="20" alt="$GOLD"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="20" alt="$GOLD"/>
                                             <div style={{marginLeft: "5px"}}>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                         </div> :
                                         <div style={{color: "#5f6476"}}>SS is over</div>
@@ -1899,7 +1899,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                         <div style={{display: "flex", flexDirection: "row"}}>
                                             {ss === 2 &&
                                                 <>
-                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="20" alt="$DOIJIB"/>
+                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="20" alt="$DOIJIB"/>
                                                     <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                                                 </>
                                             }
@@ -1950,34 +1950,34 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                 <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {accSlot !== null ?
                                         <img src={accSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{accSlotLevel}</div>}
                                     {accSlot2 !== null ?
                                         <img src={accSlot2} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "237.5px", padding: "2px", fontSize: "25px"}}>+{accSlot2Level}</div> }
                                     {accSlot3 !== null ?
                                         <img src={accSlot3} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlot3Level !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{accSlot3Level}</div>}
                                 </div>
                                 <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {hatSlot !== null ?
                                         <img src={hatSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmZvuiGgx38WFMGFtcrfU4NHf17Sg5nHRZRDoVsWufZjC9" width="100px" alt="Can not load metadata." />
                                     }
                                     {hatSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{hatSlotLevel}</div>}
                                     {clothSlot !== null ?
                                         <img src={clothSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmPiUeAzB1tbMCY4eYJ1EFNJfq8NxtgNFMidFi9RymiEjh" width="100px" alt="Can not load metadata." />
                                     }
                                     {clothSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "237.5px", padding: "2px", fontSize: "25px"}}>+{clothSlotLevel}</div>}
                                     {shoesSlot !== null ?
                                         <img src={shoesSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmeLCpgvRG5AejKn6W1ZtHSMdGmJX14xrpnNYjns1kqQbS" width="100px" alt="Can not load metadata." />
                                     }
                                     {shoesSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{shoesSlotLevel}</div>}
                                 </div>
@@ -1985,12 +1985,12 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     <div style={{position: "relative", width: "300px", height: "150px", padding: "0 20px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
                                         {soulSlot !== null ?
                                             <img src={soulSlot} width="100px" alt="Can not load metadata." /> :
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmdSRjFFCUZJiLBxy5JUgVL4vezt4vXnux1JjFbQQgZCpP" width="100px" alt="Can not load metadata." />
+                                            <img src="https://gateway.commudao.xyz/ipfs/QmdSRjFFCUZJiLBxy5JUgVL4vezt4vXnux1JjFbQQgZCpP" width="100px" alt="Can not load metadata." />
                                         }
                                         {soulSlotLevel !== null && <div style={{position: "absolute", top: "90px", right: "200px", padding: "2px", fontSize: "25px"}}>+{soulSlotLevel}</div>}
                                         {badgeSlot !== null ?
                                             <img src={badgeSlot} width="100px" alt="Can not load metadata." /> :
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQG17rt5uiChPpvHwivdZPX5Cm6PhoGyCYNzPyfs3ohT5" width="100px" alt="Can not load metadata." />
+                                            <img src="https://gateway.commudao.xyz/ipfs/QmQG17rt5uiChPpvHwivdZPX5Cm6PhoGyCYNzPyfs3ohT5" width="100px" alt="Can not load metadata." />
                                         }
                                         {badgeSlotLevel !== null && <div style={{position: "absolute", top: "90px", right: "50px", padding: "2px", fontSize: "25px"}}>+{badgeSlotLevel}</div>}
                                     </div>
@@ -1998,17 +1998,17 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                         <>
                                             {characterSlot !== null ?
                                                 <>
-                                                    {(Number(skinSlot1) === 0 || (characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia")) &&
+                                                    {(Number(skinSlot1) === 0 || (characterSlot !== "https://gateway.commudao.xyz/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && characterSlot !== "https://gateway.commudao.xyz/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia")) &&
                                                         <img src={characterSlot} width="300px" alt="Can not load metadata." />
                                                     }
-                                                    {characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1 &&
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata." />
+                                                    {characterSlot === "https://gateway.commudao.xyz/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m" && Number(String(skinSlot1).slice(0, 1)) === 1 &&
+                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreibynd6gqsb7idmhy7xk5qx5cdzmayvns7gfj7dsvpfymg2kjjajtm" width="300px" alt="Can not load metadata." />
                                                     }
-                                                    {characterSlot === "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1 &&
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="300px" alt="Can not load metadata." />
+                                                    {characterSlot === "https://gateway.commudao.xyz/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" && Number(String(skinSlot1).slice(0, 1)) === 1 &&
+                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreif5fecf5rqrlixcxtpzplo7frtftt3yh2cmx6oca4l2jxuryjju2m" width="300px" alt="Can not load metadata." />
                                                     }
                                                 </> :
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
+                                                <img src="https://gateway.commudao.xyz/ipfs/Qmdm1Eg3n9aEbJuuYqsMoFex3WUMpHMxnnKmjwjpErCDMC" width="300px" alt="Can not load metadata." />
                                             }
                                         </> :
                                         <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -2017,40 +2017,40 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     }
                                     {characterSlotLevel !== null && <div style={{position: "absolute", bottom: "15px", right: "20px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{characterSlotLevel}</div>}
                                     {/*isOp && isStakeNow && !lastedSTOPT && isRunout &&
-                                        <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div>
+                                        <div style={{position: "absolute", top: "300px", left: 0, border: "1px solid rgb(70, 55, 169)", boxShadow: "6px 6px 0 #00000040", borderRadius: 0, background: "rgb(103, 186, 167)"}} className="button" onClick={mintStOPT}>Obtain stOPT <img src="https://gateway.commudao.xyz/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/></div>
                                     */}
                                 </div>
                                 <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {accSlot4 !== null ?
                                         <img src={accSlot4} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlot4Level !== null && <div className="slotlevel" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{accSlot4Level}</div>}
                                     {backSlot !== null ?
                                         <img src={backSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmeJWEps9kHZbcU3bYqbyUfyc8kWYXS5xBi1dnr8Basvk9" width="100px" alt="Can not load metadata." />
                                     }
                                     {backSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "237.5px", fontSize: "25px"}}>+{backSlotLevel}</div>}
                                     {weaponSlot !== null ?
                                         <img src={weaponSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
                                     }
                                     {wpSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{wpSlotLevel}</div>}
                                 </div>
                                 <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {accSlot5 !== null ?
                                         <img src={accSlot5} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlot5Level !== null && <div className="slotlevel" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{accSlot5Level}</div>}
                                     {accSlot6 !== null ?
                                         <img src={accSlot6} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmUCug7hrWCYwLfboWhtNvNAXmrzVfPaptBt2B8htcM7mt" width="100px" alt="Can not load metadata." />
                                     }
                                     {accSlot6Level !== null && <div className="slotlevel" style={{position: "absolute", top: "237.5px", padding: "2px", fontSize: "25px"}}>+{accSlot6Level}</div>}
                                     {weaponSlot2 !== null ?
                                         <img src={weaponSlot2} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
                                     }
                                     {wpSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{wpSlot2Level}</div>}
                                 </div>
@@ -2072,7 +2072,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 2 concludes at 11:59 PM on October 28th.</div>
                                     <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the seasonal badge nft claiming. The season ends in 28 + 7 days.</div>
                                     <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>                            
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZ9tfCVpoApPyVYuB7b5frTiu6Wc5feFUuderaCKQ6LU7" width="100px" alt="Can not load metadata." />
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmZ9tfCVpoApPyVYuB7b5frTiu6Wc5feFUuderaCKQ6LU7" width="100px" alt="Can not load metadata." />
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         {(!isClaimBadge2 && ss2AccSlot !== null && ss2BackSlot !== null && ss2CharacterSlot !== null && ss2ClothSlot !== null && ss2HatSlot !== null && ss2ShoesSlot !== null && ss2WeaponSlot !== null) && <div style={{alignSelf: "center", marginTop: "10px", fontSize: "14px"}} className="button" onClick={() => claimBadge(2)}>CLAIM BADGE</div>}
                                     </div>
@@ -2082,17 +2082,17 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                 <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {ss2HatSlot !== null ?
                                         <img src={ss2HatSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmcJg97MWcc58JcTU4Z69phZr5iUDRXHc4H6kFKhy8iqL1" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmcJg97MWcc58JcTU4Z69phZr5iUDRXHc4H6kFKhy8iqL1" width="100px" alt="Can not load metadata." />
                                     }
                                     {ss2HatSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{ss2HatSlotLevel}</div>}
                                     {ss2ClothSlot !== null ?
                                         <img src={ss2ClothSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZEch1ACdpn1UdRA91wm7ky2bDH2QJXHg1tPKo683Xyv9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmZEch1ACdpn1UdRA91wm7ky2bDH2QJXHg1tPKo683Xyv9" width="100px" alt="Can not load metadata." />
                                     }
                                     {ss2ClothSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "237.5px", padding: "2px", fontSize: "25px"}}>+{ss2ClothSlotLevel}</div>}
                                     {ss2ShoesSlot !== null ?
                                         <img src={ss2ShoesSlot} width="100px" alt="" /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQBwQeRGM68cNnFWEQKxEJvxHh8GsXGgw7rze2zDkhq6Q" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmQBwQeRGM68cNnFWEQKxEJvxHh8GsXGgw7rze2zDkhq6Q" width="100px" alt="Can not load metadata." />
                                     }
                                     {ss2ShoesSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{ss2ShoesSlotLevel}</div>}
                                 </div>
@@ -2102,7 +2102,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                         <>
                                             {ss2CharacterSlot !== null ?
                                                 <img src={ss2CharacterSlot} width="300px" alt="Can not load metadata." /> :
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRTR62zSMJiSYZ4h1HeMrcGJCnmzrphKNgaVRtM1PnxMw" width="300px" alt="Can not load metadata." />
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmRTR62zSMJiSYZ4h1HeMrcGJCnmzrphKNgaVRtM1PnxMw" width="300px" alt="Can not load metadata." />
                                             }
                                         </> :
                                         <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -2114,17 +2114,17 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                 <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {ss2AccSlot !== null ?
                                         <img src={ss2AccSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmNhfFs1kSzPYMJaYjcdqu44vUrCBQk2uD4DdkFK89KvNH" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmNhfFs1kSzPYMJaYjcdqu44vUrCBQk2uD4DdkFK89KvNH" width="100px" alt="Can not load metadata." />
                                     }
                                     {ss2AccSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "85px", fontSize: "25px"}}>+{ss2AccSlotLevel}</div>}
                                     {ss2BackSlot !== null ?
                                         <img src={ss2BackSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXfGctM5uGHYU8SMwWa1bUJTosvEBwFzT2gbkhc87yKKj" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmXfGctM5uGHYU8SMwWa1bUJTosvEBwFzT2gbkhc87yKKj" width="100px" alt="Can not load metadata." />
                                     }
                                     {ss2BackSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "237.5px", fontSize: "25px"}}>+{ss2BackSlotLevel}</div>}
                                     {ss2WeaponSlot !== null ?
                                         <img src={ss2WeaponSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmS2VnY8FGWR5o1rBo8cx74t2s5SYuJE5ufPEvjEeAL1cN" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmS2VnY8FGWR5o1rBo8cx74t2s5SYuJE5ufPEvjEeAL1cN" width="100px" alt="Can not load metadata." />
                                     }
                                     {ss2WpSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{ss2WpSlotLevel}</div>}
                                 </div>
@@ -2146,7 +2146,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 1 concludes at 11:59 PM on August 28th.</div>
                                     <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the seasonal badge nft claiming. The season ends in 28 + 7 days.</div>
                                     <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmTaAzPsargodLJao3VPqCyGi94FwfSEKQzQjT5WNY5SA3" width="100px" alt="Can not load metadata." />
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmTaAzPsargodLJao3VPqCyGi94FwfSEKQzQjT5WNY5SA3" width="100px" alt="Can not load metadata." />
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                                         {(!isClaimBadge && ss1AccSlot !== null && ss1BackSlot !== null && ss1CharacterSlot !== null && ss1ClothSlot !== null && ss1HatSlot !== null && ss1ShoesSlot !== null && ss1WeaponSlot !== null) && <div style={{alignSelf: "center", marginTop: "10px", fontSize: "14px"}} className="button" onClick={() => claimBadge(1)}>CLAIM BADGE</div>}
                                     </div>
@@ -2156,17 +2156,17 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                 <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {ss1HatSlot !== null ?
                                         <img src={ss1HatSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSgooLEbo2MrxT3rNzFKq1fGkweGZJhV2ejPhKpAgoSWr" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmSgooLEbo2MrxT3rNzFKq1fGkweGZJhV2ejPhKpAgoSWr" width="100px" alt="Can not load metadata." />
                                     }
                                     {ss1HatSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{ss1HatSlotLevel}</div>}
                                     {ss1ClothSlot !== null ?
                                         <img src={ss1ClothSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPY9gNNpai3UGtx8jSsohn3scvsioJM7AvmQLbFnBjvwq" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmPY9gNNpai3UGtx8jSsohn3scvsioJM7AvmQLbFnBjvwq" width="100px" alt="Can not load metadata." />
                                     }
                                     {ss1ClothSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "237.5px", padding: "2px", fontSize: "25px"}}>+{ss1ClothSlotLevel}</div>}
                                     {ss1ShoesSlot !== null ?
                                         <img src={ss1ShoesSlot} width="100px" alt="" /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmT4aYAh5veaM7fawV4MbufZBGWKFcJ4QmXdzNqmHYMxXk" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmT4aYAh5veaM7fawV4MbufZBGWKFcJ4QmXdzNqmHYMxXk" width="100px" alt="Can not load metadata." />
                                     }
                                     {ss1ShoesSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{ss1ShoesSlotLevel}</div>}
                                 </div>
@@ -2176,7 +2176,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                         <>
                                             {ss1CharacterSlot !== null ?
                                                 <img src={ss1CharacterSlot} width="300px" alt="Can not load metadata." /> :
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmViHN4xqFWr9x9t4q1QGMNanm3f7u2fBD6PU9x4ZKdyzk" width="300px" alt="Can not load metadata." />
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmViHN4xqFWr9x9t4q1QGMNanm3f7u2fBD6PU9x4ZKdyzk" width="300px" alt="Can not load metadata." />
                                             }
                                         </> :
                                         <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -2188,16 +2188,16 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                 <div style={{position: "relative", width: "150px", height: "400px", padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {ss1AccSlot !== null ?
                                         <img src={ss1AccSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYYCgcgbqdh59kuyuXSxWom7igRYqPnXLY4DNjL3mJpY8" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmYYCgcgbqdh59kuyuXSxWom7igRYqPnXLY4DNjL3mJpY8" width="100px" alt="Can not load metadata." />
                                     }
                                     {ss1BackSlot !== null ?
                                         <img src={ss1BackSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRFpQsLUgJPjgXXBeREddUVAEcyJwzqG79VJ7BeYd8LSj" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmRFpQsLUgJPjgXXBeREddUVAEcyJwzqG79VJ7BeYd8LSj" width="100px" alt="Can not load metadata." />
                                     }
                                     {ss1BackSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "237.5px", right: "50px", fontSize: "25px"}}>+{ss1BackSlotLevel}</div> }
                                     {ss1WeaponSlot !== null ?
                                         <img src={ss1WeaponSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRKTx7BpuUicaecf4bKYSroAvedLGw3mncWAHHSfLszJc" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmRKTx7BpuUicaecf4bKYSroAvedLGw3mncWAHHSfLszJc" width="100px" alt="Can not load metadata." />
                                     }
                                     {ss1WpSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", right: "50px", padding: "2px", fontSize: "25px"}}>+{ss1WpSlotLevel}</div>}
                                 </div>

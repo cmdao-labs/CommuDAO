@@ -1669,7 +1669,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img 
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"
                                     width="20"
                                     alt="$CMJ"
                                     style={{cursor: "crosshair"}}
@@ -1682,7 +1682,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: cmjToken,
                                                     symbol: 'CMJ',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u',
                                                 },
                                             },
                                         })
@@ -1692,7 +1692,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img 
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"
                                     width="20"
                                     alt="$JTAO"
                                     style={{cursor: "crosshair"}}
@@ -1705,7 +1705,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: taomeme,
                                                     symbol: 'JTAO',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm',
                                                 },
                                             },
                                         })
@@ -1719,7 +1719,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
                                     width="20"
                                     alt="$WOOD"
                                     style={{cursor: "crosshair"}}
@@ -1732,7 +1732,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: woodField,
                                                     symbol: 'WOOD',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
                                                 },
                                             },
                                         })
@@ -1742,7 +1742,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e"
                                     width="20"
                                     alt="$stOPT"
                                     style={{cursor: "crosshair"}}
@@ -1755,7 +1755,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: stOPT,
                                                     symbol: 'stOPT',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e',
                                                 },
                                             },
                                         })
@@ -1765,7 +1765,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"
                                     width="20"
                                     alt="$CU"
                                     style={{cursor: "crosshair"}}
@@ -1778,7 +1778,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: cuToken,
                                                     symbol: 'CU',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
                                                 },
                                             },
                                         })
@@ -1788,7 +1788,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"
                                     width="20"
                                     alt="$JASP"
                                     style={{cursor: "crosshair"}}
@@ -1801,7 +1801,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: cuToken,
                                                     symbol: 'JASP',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy',
                                                 },
                                             },
                                         })
@@ -1815,7 +1815,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe"
                                     width="20"
                                     alt="$TUNA"
                                     style={{cursor: "crosshair"}}
@@ -1828,7 +1828,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: tunaField,
                                                     symbol: 'TUNA',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe',
                                                 },
                                             },
                                         })
@@ -1838,7 +1838,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i"
                                     width="20"
                                     alt="$MICE"
                                     style={{cursor: "crosshair"}}
@@ -1851,7 +1851,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: fieldMice,
                                                     symbol: 'MICE',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i',
                                                 },
                                             },
                                         })
@@ -1861,7 +1861,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re"
                                     width="20"
                                     alt="$VABAG"
                                     style={{cursor: "crosshair"}}
@@ -1874,7 +1874,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: vabag,
                                                     symbol: 'VABAG',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re',
                                                 },
                                             },
                                         })
@@ -1884,7 +1884,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m"
                                     width="20"
                                     alt="$ANGB"
                                     style={{cursor: "crosshair"}}
@@ -1897,7 +1897,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: dunANGB,
                                                     symbol: 'ANGB',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m',
                                                 },
                                             },
                                         })
@@ -1907,7 +1907,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4"
+                                    src="https://gateway.commudao.xyz/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4"
                                     width="20"
                                     alt="$GEAR"
                                     style={{cursor: "crosshair"}}
@@ -1920,7 +1920,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: gearField,
                                                     symbol: 'GEAR',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4',
                                                 },
                                             },
                                         })
@@ -1930,7 +1930,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi"
+                                    src="https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi"
                                     width="20"
                                     alt="$DOIJIB"
                                     style={{cursor: "crosshair"}}
@@ -1943,7 +1943,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: doijibToken,
                                                     symbol: 'DOIJIB',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi',
                                                 },
                                             },
                                         })
@@ -1957,7 +1957,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
                                     width="20"
                                     alt="$BBQ"
                                     style={{cursor: "crosshair"}}
@@ -1970,7 +1970,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: bbqToken,
                                                     symbol: 'BBQ',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
                                                 },
                                             },
                                         })
@@ -1980,7 +1980,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"
                                     width="20"
                                     alt="$PZA"
                                     style={{cursor: "crosshair"}}
@@ -1993,7 +1993,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: pzaLab,
                                                     symbol: 'PZA',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
                                                 },
                                             },
                                         })
@@ -2003,7 +2003,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"
                                     width="20"
                                     alt="$SIL"
                                     style={{cursor: "crosshair"}}
@@ -2016,7 +2016,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: silToken,
                                                     symbol: 'SIL',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde',
                                                 },
                                             },
                                         })
@@ -2026,7 +2026,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
                                     width="20"
                                     alt="$GOLD"
                                     style={{cursor: "crosshair"}}
@@ -2039,7 +2039,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: goldToken,
                                                     symbol: 'GOLD',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
                                                 },
                                             },
                                         })
@@ -2049,7 +2049,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"
                                     width="20"
                                     alt="$PLAT"
                                     style={{cursor: "crosshair"}}
@@ -2062,7 +2062,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: platToken,
                                                     symbol: 'PLAT',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa',
                                                 },
                                             },
                                         })
@@ -2072,7 +2072,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw"
+                                    src="https://gateway.commudao.xyz/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw"
                                     width="20"
                                     alt="$PLUTO"
                                     style={{cursor: "crosshair"}}
@@ -2085,7 +2085,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: plutoToken,
                                                     symbol: 'PLUTO',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw',
                                                 },
                                             },
                                         })
@@ -2097,7 +2097,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC"
+                                    src="https://gateway.commudao.xyz/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC"
                                     width="20"
                                     alt="$F.BTC"
                                     style={{cursor: "crosshair"}}
@@ -2110,7 +2110,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: fbtcToken,
                                                     symbol: 'F.BTC',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC',
                                                 },
                                             },
                                         })
@@ -2120,7 +2120,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh"
+                                    src="https://gateway.commudao.xyz/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh"
                                     width="20"
                                     alt="$X4"
                                     style={{cursor: "crosshair"}}
@@ -2133,7 +2133,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: x4Token,
                                                     symbol: 'X4',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh',
                                                 },
                                             },
                                         })
@@ -2147,7 +2147,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"
                                     width="20"
                                     alt="$CTUNA"
                                     style={{cursor: "crosshair"}}
@@ -2160,7 +2160,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: ctunaLab,
                                                     symbol: 'CTUNA',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i',
                                                 },
                                             },
                                         })
@@ -2170,7 +2170,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"
                                     width="20"
                                     alt="$SX31"
                                     style={{cursor: "crosshair"}}
@@ -2183,7 +2183,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: sx31Lab,
                                                     symbol: 'SX31',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4',
                                                 },
                                             },
                                         })
@@ -2193,7 +2193,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi"
                                     width="20"
                                     alt="$SWAR"
                                     style={{cursor: "crosshair"}}
@@ -2206,7 +2206,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: swarLab,
                                                     symbol: 'SWAR',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi',
                                                 },
                                             },
                                         })
@@ -2216,7 +2216,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu"
+                                    src="https://gateway.commudao.xyz/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu"
                                     width="20"
                                     alt="$STAR"
                                     style={{cursor: "crosshair"}}
@@ -2229,7 +2229,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: starLab,
                                                     symbol: 'AP-STAR',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu',
                                                 },
                                             },
                                         })
@@ -2239,7 +2239,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"
+                                    src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q"
                                     width="20"
                                     alt="$II"
                                     style={{cursor: "crosshair"}}
@@ -2252,7 +2252,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: iiLab,
                                                     symbol: 'TDM - II',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q',
                                                 },
                                             },
                                         })
@@ -2262,7 +2262,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm"
+                                    src="https://gateway.commudao.xyz/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm"
                                     width="20"
                                     alt="$EE"
                                     style={{cursor: "crosshair"}}
@@ -2275,7 +2275,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: dunEE,
                                                     symbol: 'TDM-EE',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm',
                                                 },
                                             },
                                         })
@@ -2287,7 +2287,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVpWGEYVs1J27STXuFUVScpPSrJtRKHBjzWNADerykPEJ"
+                                    src="https://gateway.commudao.xyz/ipfs/QmVpWGEYVs1J27STXuFUVScpPSrJtRKHBjzWNADerykPEJ"
                                     width="20"
                                     alt="$DOISTAR"
                                     style={{cursor: "crosshair"}}
@@ -2300,7 +2300,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                     address: doistarToken,
                                                     symbol: 'DOISTAR',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVpWGEYVs1J27STXuFUVScpPSrJtRKHBjzWNADerykPEJ',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/QmVpWGEYVs1J27STXuFUVScpPSrJtRKHBjzWNADerykPEJ',
                                                 },
                                             },
                                         })
@@ -2321,13 +2321,13 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                                         <div style={{margin: "0 5px"}}>100</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" height="18" alt="$JBC"/>
                                         <div style={{margin: "0 5px"}}>0.01</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                         <div style={{margin: "0 5px"}}>
                                             {isCraftBBQ !== null ?
                                                 <>
@@ -2362,7 +2362,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                                 <div style={{marginTop: "10px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "15px", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-gavel"></i></div>
                                                     <div style={{display: "flex", flexDirection: "row"}}>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                                                         <div style={{margin: "0 5px"}}>
                                                             {isCraftBBQ !== null ?
                                                                 <>
@@ -2397,18 +2397,18 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXQdWZs4VTcbUFJCv42onZCqXjhYJ4S1ek9fAZGfbeVSi" width="200" alt="Pizza_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmXQdWZs4VTcbUFJCv42onZCqXjhYJ4S1ek9fAZGfbeVSi" width="200" alt="Pizza_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                         <div style={{margin: "0 5px"}}>10,000</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreibtp4almzmdovhvygxeyykw5fa6pqe76cbdum4quispehlddqgp2e" height="18" alt="$stOPT"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="18" alt="$PZA"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu" height="18" alt="$PZA"/>
                                         <div style={{margin: "0 5px"}}>500</div>
                                     </div>
                                 </div>
@@ -2447,18 +2447,18 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmdpfkSTFj8BY8f6RjtLzp4e1P1eF76zWo9qngx9FPmogv" width="210" alt="$SIL_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmdpfkSTFj8BY8f6RjtLzp4e1P1eF76zWo9qngx9FPmogv" width="210" alt="$SIL_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>
                                         <div style={{margin: "0 5px"}}>150,000</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>
                                         <div style={{margin: "0 5px"}}>5,000</div>
                                     </div>
                                 </div>
@@ -2500,18 +2500,18 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmWhS1SzApFMZA9DGYyv6BcW48d8EEn97dnHmfs7cCNRLM" width="220" alt="$GOLD_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmWhS1SzApFMZA9DGYyv6BcW48d8EEn97dnHmfs7cCNRLM" width="220" alt="$GOLD_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" height="18" alt="$SIL"/>
                                         <div style={{margin: "0 5px"}}>10,000</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
                                         <div style={{margin: "0 5px"}}>5</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
                                         <div style={{margin: "0 5px"}}>500</div>
                                     </div>
                                 </div>
@@ -2550,18 +2550,18 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXuWRk4JQuepXzEM5N2f64StpwpypfEBtVzfjRqmHivUE" width="230" alt="$PLAT_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmXuWRk4JQuepXzEM5N2f64StpwpypfEBtVzfjRqmHivUE" width="230" alt="$PLAT_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="18" alt="$GOLD"/>
                                         <div style={{margin: "0 5px"}}>300</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
                                         <div style={{margin: "0 5px"}}>5</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
                                         <div style={{margin: "0 5px"}}>100</div>
                                     </div>
                                 </div>
@@ -2600,18 +2600,18 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXEZM8Pm1puJwoxRzTBeeuxtyb81XJVL1A47mDEEtYpoG" width="230" alt="$PLUTO_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmXEZM8Pm1puJwoxRzTBeeuxtyb81XJVL1A47mDEEtYpoG" width="230" alt="$PLUTO_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                         <div style={{margin: "0 5px"}}>100 GWEI</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                         <div style={{margin: "0 5px"}}>5</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" height="18" alt="$PLUTO"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" height="18" alt="$PLUTO"/>
                                         <div style={{margin: "0 5px"}}>5 GWEI</div>
                                     </div>
                                 </div>
@@ -2653,18 +2653,18 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmctFaWmze1R6rKCFJkGBS6zBeABX5X6r3Nuv9M46AvJxr" width="200" alt="$F.BTC_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmctFaWmze1R6rKCFJkGBS6zBeABX5X6r3Nuv9M46AvJxr" width="200" alt="$F.BTC_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" height="18" alt="$PLUTO"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" height="18" alt="$PLUTO"/>
                                         <div style={{margin: "0 5px"}}>20 GWEI</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVpWGEYVs1J27STXuFUVScpPSrJtRKHBjzWNADerykPEJ" height="18" alt="$DOISTAR"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmVpWGEYVs1J27STXuFUVScpPSrJtRKHBjzWNADerykPEJ" height="18" alt="$DOISTAR"/>
                                         <div style={{margin: "0 5px"}}>10</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC" height="18" alt="$F.BTC"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC" height="18" alt="$F.BTC"/>
                                         <div style={{margin: "0 5px"}}>1 SAT</div>
                                     </div>
                                 </div>
@@ -2703,18 +2703,18 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px 10px 80px 10px"}}>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible"}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmReQu734pS2Dt474RBME1LYUec2f2XgE2EDWAKCeX5RJg" width="220" alt="$X4_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmReQu734pS2Dt474RBME1LYUec2f2XgE2EDWAKCeX5RJg" width="220" alt="$X4_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC" height="18" alt="$F.BTC"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC" height="18" alt="$F.BTC"/>
                                         <div style={{margin: "0 5px"}}>10 SAT</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLATINUM"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLATINUM"/>
                                         <div style={{margin: "0 5px"}}>1,000</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh" height="18" alt="$X4"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh" height="18" alt="$X4"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                     </div>
                                 </div>
@@ -2758,7 +2758,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
                                     <div className='light' style={{marginLeft: "10px"}}>CM Digital</div>
                                 </div>
                                 <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
@@ -2767,13 +2767,13 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="18" alt="$TUNA"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" height="18" alt="$TUNA"/>
                                         <div style={{margin: "0 5px"}}>50</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                         <div style={{margin: "0 5px"}}>10</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
                                         <div style={{margin: "0 5px"}}>50</div>
                                     </div>
                                 </div>
@@ -2812,7 +2812,7 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center"}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
                                     <div className='light' style={{marginLeft: "10px"}}>CM Digital</div>
                                 </div>
                                 <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
@@ -2821,13 +2821,13 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="18" alt="$MICE"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="18" alt="$MICE"/>
                                         <div style={{margin: "0 5px"}}>50</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                         <div style={{margin: "0 5px"}}>9</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
                                         <div style={{margin: "0 5px"}}>50</div>
                                     </div>
                                 </div>
@@ -2866,22 +2866,22 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifgqrnqujzsozg56l4wfvqwxgf72kgjjwtwq6aedeywwfmvlg7on4" width="30px" alt="CM" />
                                     <div className='light' style={{marginLeft: "10px"}}>CM Digital</div>
                                 </div>
                                 <div style={{width: "200px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", zIndex: 2}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZmfbTakZsWQhZP7achSgqUJjqyajrziTq8YyNVndtuQ1" width="220" alt="Large_SX31_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmZmfbTakZsWQhZP7achSgqUJjqyajrziTq8YyNVndtuQ1" width="220" alt="Large_SX31_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="18" alt="$MICE"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidcakmgzpqytuzlvvok72r2hg2n5tqb25jfwecymelylaysdzkd6i" height="18" alt="$MICE"/>
                                         <div style={{margin: "0 5px"}}>500</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                         <div style={{margin: "0 5px"}}>90</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4" height="18" alt="$SX31"/>
                                         <div style={{margin: "0 5px"}}>500</div>
                                     </div>
                                 </div>
@@ -2923,22 +2923,22 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiaetddgerc54omjenjo65653ez37uezi4lgib64uc3uwsc522lcx4" width="220" alt="$SW_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiaetddgerc54omjenjo65653ez37uezi4lgib64uc3uwsc522lcx4" width="220" alt="$SW_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="18" alt="$VABAG"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia6rbj3o47qbw7o3vqd6ogylwjcjay5phsve5pixfvmw7nexwx3re" height="18" alt="$VABAG"/>
                                         <div style={{margin: "0 5px"}}>10</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" height="18" alt="$SWAR"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi" height="18" alt="$SWAR"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                     </div>
                                 </div>
@@ -2977,22 +2977,22 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeib5uqywe3cpzmxofduwgii7ooawzcyoe62jys34rltqprxes5uhja" width="250" alt="$STAR_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeib5uqywe3cpzmxofduwgii7ooawzcyoe62jys34rltqprxes5uhja" width="250" alt="$STAR_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="18" alt="$ANGB"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m" height="18" alt="$ANGB"/>
                                         <div style={{margin: "0 5px"}}>40</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu" height="18" alt="$STAR"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu" height="18" alt="$STAR"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                     </div>
                                 </div>
@@ -3034,18 +3034,18 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus & DOIJIB</div>
                                 </div>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYdNTzX1mGY2Wuk5DVv8M9vJEQKR9MFxYGmcrx5S9GZP8" width="220" alt="$DOISTAR_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmYdNTzX1mGY2Wuk5DVv8M9vJEQKR9MFxYGmcrx5S9GZP8" width="220" alt="$DOISTAR_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu" height="18" alt="$STAR"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafybeideve73vg6mtnwzjjmrol66idxoe3orfxrjbdairhwbumyj3a46eu" height="18" alt="$STAR"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="18" alt="$DOIJIB"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="18" alt="$DOIJIB"/>
                                         <div style={{margin: "0 5px"}}>100,000</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVpWGEYVs1J27STXuFUVScpPSrJtRKHBjzWNADerykPEJ" height="18" alt="$DOISTAR"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmVpWGEYVs1J27STXuFUVScpPSrJtRKHBjzWNADerykPEJ" height="18" alt="$DOISTAR"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                     </div>
                                 </div>
@@ -3087,22 +3087,22 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                         <div style={{width: "95%", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>Taodum & Taomeme</div>
                                 </div>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmfQhrhSNw5Ldegjeu8vF2wSv432uWesQYe5kyW1cWgntV" width="170" alt="$II_Factory"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/QmfQhrhSNw5Ldegjeu8vF2wSv432uWesQYe5kyW1cWgntV" width="170" alt="$II_Factory"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
                                         <div style={{margin: "0 5px"}}>888</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" height="18" alt="$JTAO"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" height="18" alt="$JTAO"/>
                                         <div style={{margin: "0 5px"}}>8</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                     </div>
                                 </div>
@@ -3141,22 +3141,22 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px 10px 80px 10px"}}>
                                 <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>Taodum & Taomeme</div>
                                 </div>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiabwndglvszkrvnpfgqfxuidtqa22zxdfkpiivkpvqpjiwe2cxrbu" width="210" alt="$II_Factory02"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiabwndglvszkrvnpfgqfxuidtqa22zxdfkpiivkpvqpjiwe2cxrbu" width="210" alt="$II_Factory02"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4" height="18" alt="$GEAR"/>
                                         <div style={{margin: "0 5px"}}>88,888</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" height="18" alt="$JTAO"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" height="18" alt="$JTAO"/>
                                         <div style={{margin: "0 5px"}}>128</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q" height="18" alt="$II"/>
                                         <div style={{margin: "0 5px"}}>8</div>
                                     </div>
                                 </div>
@@ -3195,22 +3195,22 @@ const Labs = ({ config, callMode, navigate, setisLoading, txupdate, setTxupdate,
                             </div>
                             <div className="nftCard" style={{position: "relative", justifyContent: "center", margin: "10px"}}>
                                 <div style={{position: "absolute", top: 15, right: 15, padding: "7.5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>Taodum & Taomeme</div>
                                 </div>
                                 <div style={{width: "350px", height: "218.18px", display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", zIndex: 2}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigs7ilnbpesbmxgnucbiqjsiy7dpovhjhkrkl2ubdczzteaqfn62e" width="220" alt="$PLAT_Factory02"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeigs7ilnbpesbmxgnucbiqjsiy7dpovhjhkrkl2ubdczzteaqfn62e" width="220" alt="$PLAT_Factory02"/>
                                 </div>
                                 <div style={{marginTop: "30px", width: "320px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}} className="pixel">
                                     <div><i style={{fontSize: "18px", marginRight: "5px"}} className="fa fa-flask"></i></div>
                                     <div style={{display: "flex", flexDirection: "row", fontSize: "15px"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm" height="18" alt="$EE"/>
                                         <div style={{margin: "0 5px"}}>888</div>
                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                         <div style={{margin: "0 5px"}}>1</div>
                                         <i style={{fontSize: "16px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="18" alt="$PLAT"/>
                                         <div style={{margin: "0 5px"}}>10</div>
                                     </div>
                                 </div>

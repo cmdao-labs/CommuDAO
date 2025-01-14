@@ -26,7 +26,7 @@ const OPMall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdat
                     <div style={{textAlign: "left", height: "fit-content", width: "94%", display: "flex", flexDirection: "column", justifyContent: "flex-start"}} className="pixel">
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div className="nftCard" style={{justifyContent: "center", margin: "10px"}}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYzsLujATTRCW59ByddhxubEDXPtAb2fdtNvGYXutL2RC" height="230" alt="T1_BKC" />
+                                <img src="https://gateway.commudao.xyz/ipfs/QmYzsLujATTRCW59ByddhxubEDXPtAb2fdtNvGYXutL2RC" height="230" alt="T1_BKC" />
                                 <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                                     <div className="pixel">
                                         NFT Collection

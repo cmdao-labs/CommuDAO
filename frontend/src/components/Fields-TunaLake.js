@@ -245,12 +245,12 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
 
     return (
         <>
-            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4lsq5nxdq2srf3rb6n7ksm4ykkz2twldneu6k46fimij3iq4zye')", overflow: "scroll"}}>
+            <div className="fieldBanner" style={{display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "space-between", textAlign: "left", backgroundImage: "url('https://gateway.commudao.xyz/ipfs/bafkreib4lsq5nxdq2srf3rb6n7ksm4ykkz2twldneu6k46fimij3iq4zye')", overflow: "scroll"}}>
                 <div className="SubfieldBanner">
                     <div className="pixel" style={{padding: "5px", width: "fit-content", color: "#fff", background: "rgb(0, 0, 0, 0.6)", backdropFilter: "blur(10px)"}}>Tuna Lake</div>
                 </div>
                 <div className="SubfieldBanner">
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="150" alt="$TUNA" />
+                    <img src="https://gateway.commudao.xyz/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="150" alt="$TUNA" />
                 </div>
             </div>
 
@@ -275,14 +275,14 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
                             <div style={{marginBottom: "20px"}}>TOTAL DAILY REWARD</div>
                             <div style={{fontSize: "24px", marginBottom: "20px"}}>
                                 {nft.length > 0 && nft[0] !== null ? allDaily.toFixed(2) : 0}
-                                <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="24" alt="$TUNA"/>
+                                <img style={{marginLeft: "10px"}} src="https://gateway.commudao.xyz/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="24" alt="$TUNA"/>
                             </div>
                         </div>
                         <div className="headfield bold">
                             <div style={{marginBottom: "20px"}}>TOTAL PENDING REWARD</div>
                             <div style={{fontSize: "24px", marginBottom: "20px", display: "flex", flexFlow: "row wrap", alignItems: "center", justifyContent: "center"}}>
                                 {nft.length > 0 && nft[0] !== null ? allReward.toFixed(3) : 0}
-                                <img style={{margin: "0 10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="24" alt="$TUNA"/>
+                                <img style={{margin: "0 10px"}} src="https://gateway.commudao.xyz/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="24" alt="$TUNA"/>
                                 {address !== null && intrasubModetext !== undefined ?
                                     <>
                                         {address.toUpperCase() === intrasubModetext.toUpperCase() && allReward > 0 ?
@@ -298,7 +298,7 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
                             <div style={{marginBottom: "20px"}}>BALANCE</div>
                             <div style={{fontSize: "24px", marginBottom: "20px"}}>
                                 {nft.length > 0 ? Number(tunaBalance).toFixed(3) : 0}
-                                <img style={{marginLeft: "10px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="24" alt="$TUNA"/>
+                                <img style={{marginLeft: "10px"}} src="https://gateway.commudao.xyz/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="24" alt="$TUNA"/>
                             </div>
                         </div>
                     </div>
@@ -326,13 +326,13 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
                                                 <div>
                                                     Earn: {ethers.utils.formatEther(String(item.RewardPerSec * 86400 * 10**14))}
                                                     &nbsp;
-                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
+                                                    <img src="https://gateway.commudao.xyz/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
                                                     TUNA/DAY
                                                 </div>
                                                 <div style={{width: 300, padding: 20, border: "1px solid #dddade", borderRadius: 12, display: "flex", flexDirection: "row", alignItem: "center", justifyContent: "space-between"}}>
                                                     <div style={{lineHeight: 2, fontSize: "12px", textAlign: "left"}}>
                                                         Pending Rewards<br></br>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreifqroahbmxgnmsqdot5bzu3xbsa7y27mnlo6k45efgidmqxqrstbe" width="12" alt="$TUNA"/>
                                                         {ethers.utils.formatEther(String(item.Reward))}
                                                     </div>
                                                     {address !== null && intrasubModetext !== undefined ?

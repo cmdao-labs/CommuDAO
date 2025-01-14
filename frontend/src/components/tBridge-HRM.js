@@ -164,7 +164,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                         <div>BITKUB CHAIN Balance: {substanceSelected === "SALM" && Number(salmBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{substanceSelected === "AGUA" && Number(aguaBalance).toLocaleString('en-US', {maximumFractionDigits:2})}{substanceSelected === "COSMOS" && Number(cosmosBalance).toLocaleString('en-US', {maximumFractionDigits:2})} {substanceSelected}</div>
                         {substanceSelected === "SALM" &&
                             <img 
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34"
+                                src="https://gateway.commudao.xyz/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34"
                                 width="20"
                                 alt="$SALM"
                                 style={{cursor: "crosshair", marginLeft: "5px"}}
@@ -177,7 +177,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                 address: salmBKC,
                                                 symbol: 'SALM',
                                                 decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34',
+                                                image: 'https://gateway.commudao.xyz/ipfs/bafkreicj63qksujn46s6skyyvqeny2fmptp2eu5u6hcicawalqjhtopm34',
                                             },
                                         },
                                     })
@@ -186,7 +186,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                         }
                         {substanceSelected === "AGUA" &&
                             <img 
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq"
+                                src="https://gateway.commudao.xyz/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq"
                                 width="20"
                                 alt="$AGUA"
                                 style={{cursor: "crosshair", marginLeft: "5px"}}
@@ -199,7 +199,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                 address: aguaBKC,
                                                 symbol: 'AGUA',
                                                 decimals: 0,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq',
+                                                image: 'https://gateway.commudao.xyz/ipfs/bafkreibueyqenddliwzqeoafwtlktmnm33xqhfkxknucigj7ovpr7y5qeq',
                                             },
                                         },
                                     })
@@ -208,7 +208,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                         }
                         {substanceSelected === "COSMOS" &&
                             <img 
-                                src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq"
+                                src="https://gateway.commudao.xyz/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq"
                                 width="20"
                                 alt="$CMOS"
                                 style={{cursor: "crosshair", marginLeft: "5px"}}
@@ -221,7 +221,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                 address: cosmosBKC,
                                                 symbol: 'CMOS',
                                                 decimals: 18,
-                                                image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq',
+                                                image: 'https://gateway.commudao.xyz/ipfs/bafkreidcxukia62wzaaes6wpsdgpw3yjshrjm7nwijwldxdthkepsebumq',
                                             },
                                         },
                                     })
@@ -232,7 +232,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                     <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray", display: "flex", alignItems: "center"}}>
                         <div>BBQ CHAIN Balance: {Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})} ENGY</div>
                         <img 
-                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB"
+                            src="https://gateway.commudao.xyz/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB"
                             width="20"
                             alt="$HRM-ENGY"
                             style={{cursor: "crosshair", marginLeft: "5px"}}
@@ -245,7 +245,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                             address: engyBBQ,
                                             symbol: 'HRM-ENGY',
                                             decimals: 18,
-                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB',
+                                            image: 'https://gateway.commudao.xyz/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB',
                                         },
                                     },
                                 })
@@ -285,7 +285,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                     <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray",  display: "flex", alignItems: "center"}}>
                         <div>OP MAINNET Balance: {Number(infpowBalance).toLocaleString('en-US', {maximumFractionDigits:2})} INF.POW</div>
                         <img 
-                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
+                            src="https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
                             width="20"
                             alt="$INF.POW"
                             style={{cursor: "crosshair", marginLeft: "5px"}}
@@ -298,7 +298,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                             address: infpowOP,
                                             symbol: 'INF.POW',
                                             decimals: 18,
-                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
+                                            image: 'https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
                                         },
                                     },
                                 })
@@ -308,7 +308,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                     <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray", display: "flex", alignItems: "center"}}>
                         <div>JIBCHAIN Balance: {Number(infpowJBCBalance).toLocaleString('en-US', {maximumFractionDigits:2})} INF.POW</div>
                         <img 
-                            src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
+                            src="https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
                             width="20"
                             alt="$INF.POW.JBC"
                             style={{cursor: "crosshair", marginLeft: "5px"}}
@@ -321,7 +321,7 @@ const TBridgeHRM = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                             address: infpowJBC,
                                             symbol: 'INF-POW-JBC',
                                             decimals: 18,
-                                            image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
+                                            image: 'https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
                                         },
                                     },
                                 })

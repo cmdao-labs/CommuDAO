@@ -672,10 +672,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             let nfts = []
             let response0_slot1 = null
             try {
-                response0_slot1 = data_slot1[3].status === 'success' ? await fetch(data_slot1[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response0_slot1 = data_slot1[3].status === 'success' ? await fetch(data_slot1[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft1 = response0_slot1 !== null ? await response0_slot1.json() : {image: null, name: null}
-            const nftEQ_1_Img = nft1.image !== null ? nft1.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_1_Img = nft1.image !== null ? nft1.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_1_Name = nft1.name
             if (response0_slot1 !== null) {
                 nfts.push({
@@ -691,10 +691,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response1_slot1 = null
             try {
-                response1_slot1 = data_slot1[4].status === 'success' ? await fetch(data_slot1[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response1_slot1 = data_slot1[4].status === 'success' ? await fetch(data_slot1[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft2 = response1_slot1 !== null ? await response1_slot1.json() : {image: null, name: null}
-            const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_2_Img = nft2.image !== null ? nft2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_2_Name = nft2.name
             if (response1_slot1 !== null) {
                 nfts.push({
@@ -710,10 +710,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response2_slot1 = null
             try {
-                response2_slot1 = data_slot1[5].status === 'success' ? await fetch(data_slot1[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response2_slot1 = data_slot1[5].status === 'success' ? await fetch(data_slot1[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft3 = response2_slot1 !== null ? await response2_slot1.json() : {image: null, name: null}
-            const nftEQ_3_Img = nft3.image !== null ? nft3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_3_Img = nft3.image !== null ? nft3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_3_Name = nft3.name
             if (response2_slot1 !== null) {
                 nfts.push({
@@ -729,10 +729,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response3_slot1 = null
             try {
-                response3_slot1 = data_slot1[6].status === 'success' ? await fetch(data_slot1[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response3_slot1 = data_slot1[6].status === 'success' ? await fetch(data_slot1[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft4 = response3_slot1 !== null ? await response3_slot1.json() : {image: null, name: null}
-            const nftEQ_4_Img = nft4.image !== null ? nft4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_4_Img = nft4.image !== null ? nft4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_4_Name = nft4.name
             if (response3_slot1 !== null) {
                 nfts.push({
@@ -748,10 +748,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response4_slot1 = null
             try {
-                response4_slot1 = data_slot1[7].status === 'success' ? await fetch(data_slot1[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response4_slot1 = data_slot1[7].status === 'success' ? await fetch(data_slot1[7].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft5 = response4_slot1 !== null ? await response4_slot1.json() : {image: null, name: null}
-            const nftEQ_5_Img = nft5.image !== null ? nft5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_5_Img = nft5.image !== null ? nft5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_5_Name = nft5.name
             if (response4_slot1 !== null) {
                 nfts.push({
@@ -767,10 +767,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response5_slot1 = null
             try {
-                response5_slot1 = data_slot1[8].status === 'success' ? await fetch(data_slot1[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response5_slot1 = data_slot1[8].status === 'success' ? await fetch(data_slot1[8].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft6 = response5_slot1 !== null ? await response5_slot1.json() : {image: null, name: null}
-            const nftEQ_6_Img = nft6.image !== null ? nft6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_6_Img = nft6.image !== null ? nft6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_6_Name = nft6.name
             if (response5_slot1 !== null) {
                 nfts.push({
@@ -786,10 +786,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response6_slot1 = null
             try {
-                response6_slot1 = data_slot1[9].status === 'success' ? await fetch(data_slot1[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response6_slot1 = data_slot1[9].status === 'success' ? await fetch(data_slot1[9].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft7 = response6_slot1 !== null ? await response6_slot1.json() : {image: null, name: null}
-            const nftEQ_7_Img = nft7.image !== null ? nft7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_7_Img = nft7.image !== null ? nft7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_7_Name = nft7.name
             if (response6_slot1 !== null) {
                 nfts.push({
@@ -805,10 +805,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response7_slot1 = null
             try {
-                response7_slot1 = data_slot1[10].status === 'success' ? await fetch(data_slot1[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response7_slot1 = data_slot1[10].status === 'success' ? await fetch(data_slot1[10].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft8 = response7_slot1 !== null ? await response7_slot1.json() : {image: null, name: null}
-            const nftEQ_8_Img = nft8.image !== null ? nft8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_8_Img = nft8.image !== null ? nft8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_8_Name = nft8.name
             if (response7_slot1 !== null) {
                 nfts.push({
@@ -824,10 +824,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response8_slot1 = null
             try {
-                response8_slot1 = data_slot1[11].status === 'success' ? await fetch(data_slot1[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response8_slot1 = data_slot1[11].status === 'success' ? await fetch(data_slot1[11].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft9 = response8_slot1 !== null ? await response8_slot1.json() : {image: null, name: null}
-            const nftEQ_9_Img = nft9.image !== null ? nft9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_9_Img = nft9.image !== null ? nft9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_9_Name = nft9.name
             if (response8_slot1 !== null) {
                 nfts.push({
@@ -843,10 +843,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response9_slot1 = null
             try {
-                response9_slot1 = data_slot1[12].status === 'success' ? await fetch(data_slot1[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response9_slot1 = data_slot1[12].status === 'success' ? await fetch(data_slot1[12].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft10 = response9_slot1 !== null ? await response9_slot1.json() : {image: null, name: null}
-            const nftEQ_10_Img = nft10.image !== null ? nft10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_10_Img = nft10.image !== null ? nft10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_10_Name = nft10.name
             if (response9_slot1 !== null) {
                 nfts.push({
@@ -862,10 +862,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response10_slot1 = null
             try {
-                response10_slot1 = data_slot1[13].status === 'success' ? await fetch(data_slot1[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response10_slot1 = data_slot1[13].status === 'success' ? await fetch(data_slot1[13].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft11 = response10_slot1 !== null ? await response10_slot1.json() : {image: null, name: null}
-            const nftEQ_11_Img = nft11.image !== null ? nft11.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_11_Img = nft11.image !== null ? nft11.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_11_Name = nft11.name
             if (response10_slot1 !== null) {
                 nfts.push({
@@ -881,10 +881,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response11_slot1 = null
             try {
-                response11_slot1 = data_slot1[14].status === 'success' ? await fetch(data_slot1[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response11_slot1 = data_slot1[14].status === 'success' ? await fetch(data_slot1[14].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft12 = response11_slot1 !== null ? await response11_slot1.json() : {image: null, name: null}
-            const nftEQ_12_Img = nft12.image !== null ? nft12.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_12_Img = nft12.image !== null ? nft12.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_12_Name = nft12.name
             if (response11_slot1 !== null) {
                 nfts.push({
@@ -900,10 +900,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response12_slot1 = null
             try {
-                response12_slot1 = data_slot1[15].status === 'success' ? await fetch(data_slot1[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response12_slot1 = data_slot1[15].status === 'success' ? await fetch(data_slot1[15].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft13 = response12_slot1 !== null ? await response12_slot1.json() : {image: null, name: null}
-            const nftEQ_13_Img = nft13.image !== null ? nft13.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_13_Img = nft13.image !== null ? nft13.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_13_Name = nft13.name
             if (response12_slot1 !== null) {
                 nfts.push({
@@ -919,10 +919,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response13_slot1 = null
             try {
-                response13_slot1 = data_slot1[16].status === 'success' ? await fetch(data_slot1[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response13_slot1 = data_slot1[16].status === 'success' ? await fetch(data_slot1[16].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft14 = response13_slot1 !== null ? await response13_slot1.json() : {image: null, name: null}
-            const nftEQ_14_Img = nft14.image !== null ? nft14.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_14_Img = nft14.image !== null ? nft14.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_14_Name = nft14.name
             if (response13_slot1 !== null) {
                 nfts.push({
@@ -938,10 +938,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response14_slot1 = null
             try {
-                response14_slot1 = data_slot1[17].status === 'success' ? await fetch(data_slot1[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response14_slot1 = data_slot1[17].status === 'success' ? await fetch(data_slot1[17].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft15 = response14_slot1 !== null ? await response14_slot1.json() : {image: null, name: null}
-            const nftEQ_15_Img = nft15.image !== null ? nft15.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_15_Img = nft15.image !== null ? nft15.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_15_Name = nft15.name
             if (response14_slot1 !== null) {
                 nfts.push({
@@ -957,10 +957,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response15_slot1 = null
             try {
-                response15_slot1 = data_slot1[18].status === 'success' ? await fetch(data_slot1[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response15_slot1 = data_slot1[18].status === 'success' ? await fetch(data_slot1[18].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft16 = response15_slot1 !== null ? await response15_slot1.json() : {image: null, name: null}
-            const nftEQ_16_Img = nft16.image !== null ? nft16.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_16_Img = nft16.image !== null ? nft16.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_16_Name = nft16.name
             if (response15_slot1 !== null) {
                 nfts.push({
@@ -976,10 +976,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response16_slot1 = null
             try {
-                response16_slot1 = data_slot1[19].status === 'success' ? await fetch(data_slot1[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response16_slot1 = data_slot1[19].status === 'success' ? await fetch(data_slot1[19].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft17 = response16_slot1 !== null ? await response16_slot1.json() : {image: null, name: null}
-            const nftEQ_17_Img = nft17.image !== null ? nft17.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_17_Img = nft17.image !== null ? nft17.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_17_Name = nft17.name
             if (response16_slot1 !== null) {
                 nfts.push({
@@ -995,10 +995,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response17_slot1 = null
             try {
-                response17_slot1 = data_slot1[20].status === 'success' ? await fetch(data_slot1[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response17_slot1 = data_slot1[20].status === 'success' ? await fetch(data_slot1[20].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft18 = response17_slot1 !== null ? await response17_slot1.json() : {image: null, name: null}
-            const nftEQ_18_Img = nft18.image !== null ? nft18.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_18_Img = nft18.image !== null ? nft18.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_18_Name = nft18.name
             if (response17_slot1 !== null) {
                 nfts.push({
@@ -1014,10 +1014,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response18_slot1 = null
             try {
-                response18_slot1 = data_slot1[21].status === 'success' ? await fetch(data_slot1[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response18_slot1 = data_slot1[21].status === 'success' ? await fetch(data_slot1[21].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft19 = response18_slot1 !== null ? await response18_slot1.json() : {image: null, name: null}
-            const nftEQ_19_Img = nft19.image !== null ? nft19.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_19_Img = nft19.image !== null ? nft19.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_19_Name = nft19.name
             if (response18_slot1 !== null) {
                 nfts.push({
@@ -1033,10 +1033,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response19_slot1 = null
             try {
-                response19_slot1 = data_slot1[22].status === 'success' ? await fetch(data_slot1[22].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response19_slot1 = data_slot1[22].status === 'success' ? await fetch(data_slot1[22].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft20 = response19_slot1 !== null ? await response19_slot1.json() : {image: null, name: null}
-            const nftEQ_20_Img = nft20.image !== null ? nft20.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_20_Img = nft20.image !== null ? nft20.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_20_Name = nft20.name
             if (response19_slot1 !== null) {
                 nfts.push({
@@ -1052,10 +1052,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response20_slot1 = null
             try {
-                response20_slot1 = data_slot1[23].status === 'success' ? await fetch(data_slot1[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response20_slot1 = data_slot1[23].status === 'success' ? await fetch(data_slot1[23].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft21 = response20_slot1 !== null ? await response20_slot1.json() : {image: null, name: null}
-            const nftEQ_21_Img = nft21.image !== null ? nft21.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_21_Img = nft21.image !== null ? nft21.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_21_Name = nft21.name
             if (response20_slot1 !== null) {
                 nfts.push({
@@ -1071,10 +1071,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response21_slot1 = null
             try {
-                response21_slot1 = data_slot1[24].status === 'success' ? await fetch(data_slot1[24].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response21_slot1 = data_slot1[24].status === 'success' ? await fetch(data_slot1[24].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft22 = response21_slot1 !== null ? await response21_slot1.json() : {image: null, name: null}
-            const nftEQ_22_Img = nft22.image !== null ? nft22.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_22_Img = nft22.image !== null ? nft22.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_22_Name = nft22.name
             if (response21_slot1 !== null) {
                 nfts.push({
@@ -1090,10 +1090,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response22_slot1 = null
             try {
-                response22_slot1 = data_slot1[25].status === 'success' ? await fetch(data_slot1[25].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response22_slot1 = data_slot1[25].status === 'success' ? await fetch(data_slot1[25].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft23 = response22_slot1 !== null ? await response22_slot1.json() : {image: null, name: null}
-            const nftEQ_23_Img = nft23.image !== null ? nft23.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_23_Img = nft23.image !== null ? nft23.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_23_Name = nft23.name
             if (response22_slot1 !== null) {
                 nfts.push({
@@ -1109,10 +1109,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response23_slot1 = null
             try {
-                response23_slot1 = data_slot1[26].status === 'success' ? await fetch(data_slot1[26].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response23_slot1 = data_slot1[26].status === 'success' ? await fetch(data_slot1[26].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft24 = response23_slot1 !== null ? await response23_slot1.json() : {image: null, name: null}
-            const nftEQ_24_Img = nft24.image !== null ? nft24.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_24_Img = nft24.image !== null ? nft24.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_24_Name = nft24.name
             if (response23_slot1 !== null) {
                 nfts.push({
@@ -1128,10 +1128,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response24_slot1 = null
             try {
-                response24_slot1 = data_slot1[27].status === 'success' ? await fetch(data_slot1[27].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response24_slot1 = data_slot1[27].status === 'success' ? await fetch(data_slot1[27].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft25 = response24_slot1 !== null ? await response24_slot1.json() : {image: null, name: null}
-            const nftEQ_25_Img = nft25.image !== null ? nft25.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_25_Img = nft25.image !== null ? nft25.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_25_Name = nft25.name
             if (response24_slot1 !== null) {
                 nfts.push({
@@ -1216,10 +1216,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             ]
             let response0_slot2 = null
             try {
-                response0_slot2 = data_slot2[1].status === 'success' ? await fetch(data_slot2[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response0_slot2 = data_slot2[1].status === 'success' ? await fetch(data_slot2[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft1_2 = response0_slot2 !== null ? await response0_slot2.json() : {image: null, name: null}
-            const nftEQ_1_2_Img = nft1_2.image !== null ? nft1_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_1_2_Img = nft1_2.image !== null ? nft1_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_1_2_Name = nft1_2.name
             if (response0_slot2 !== null) {
                 nfts.push({
@@ -1235,10 +1235,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response1_slot2 = null
             try {
-                response1_slot2 = data_slot2[2].status === 'success' ? await fetch(data_slot2[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response1_slot2 = data_slot2[2].status === 'success' ? await fetch(data_slot2[2].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft2_2 = response1_slot2 !== null ? await response1_slot2.json() : {image: null, name: null}
-            const nftEQ_2_2_Img = nft2_2.image !== null ? nft2_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_2_2_Img = nft2_2.image !== null ? nft2_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_2_2_Name = nft2_2.name
             if (response1_slot2 !== null) {
                 nfts.push({
@@ -1254,10 +1254,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response2_slot2 = null
             try {
-                response2_slot2 = data_slot2[3].status === 'success' ? await fetch(data_slot2[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response2_slot2 = data_slot2[3].status === 'success' ? await fetch(data_slot2[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft3_2 = response2_slot2 !== null ? await response2_slot2.json() : {image: null, name: null}
-            const nftEQ_3_2_Img = nft3_2.image !== null ? nft3_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_3_2_Img = nft3_2.image !== null ? nft3_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_3_2_Name = nft3_2.name
             if (response2_slot2 !== null) {
                 nfts.push({
@@ -1273,10 +1273,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response3_slot2 = null
             try {
-                response3_slot2 = data_slot2[4].status === 'success' ? await fetch(data_slot2[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response3_slot2 = data_slot2[4].status === 'success' ? await fetch(data_slot2[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft4_2 = response3_slot2 !== null ? await response3_slot2.json() : {image: null, name: null}
-            const nftEQ_4_2_Img = nft4_2.image !== null ? nft4_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_4_2_Img = nft4_2.image !== null ? nft4_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_4_2_Name = nft4_2.name
             if (response3_slot2 !== null) {
                 nfts.push({
@@ -1292,10 +1292,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response4_slot2 = null
             try {
-                response4_slot2 = data_slot2[5].status === 'success' ? await fetch(data_slot2[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response4_slot2 = data_slot2[5].status === 'success' ? await fetch(data_slot2[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft5_2 = response4_slot2 !== null ? await response4_slot2.json() : {image: null, name: null}
-            const nftEQ_5_2_Img = nft5_2.image !== null ? nft5_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_5_2_Img = nft5_2.image !== null ? nft5_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_5_2_Name = nft5_2.name
             if (response4_slot2 !== null) {
                 nfts.push({
@@ -1311,10 +1311,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response5_slot2 = null
             try {
-                response5_slot2 = data_slot2[6].status === 'success' ? await fetch(data_slot2[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response5_slot2 = data_slot2[6].status === 'success' ? await fetch(data_slot2[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft6_2 = response5_slot2 !== null ? await response5_slot2.json() : {image: null, name: null}
-            const nftEQ_6_2_Img = nft6_2.image !== null ? nft6_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_6_2_Img = nft6_2.image !== null ? nft6_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_6_2_Name = nft6_2.name
             if (response5_slot2 !== null) {
                 nfts.push({
@@ -1330,10 +1330,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response6_slot2 = null
             try {
-                response6_slot2 = data_slot2[7].status === 'success' ? await fetch(data_slot2[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response6_slot2 = data_slot2[7].status === 'success' ? await fetch(data_slot2[7].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft7_2 = response6_slot2 !== null ? await response6_slot2.json() : {image: null, name: null}
-            const nftEQ_7_2_Img = nft7_2.image !== null ? nft7_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_7_2_Img = nft7_2.image !== null ? nft7_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_7_2_Name = nft7_2.name
             if (response6_slot2 !== null) {
                 nfts.push({
@@ -1349,10 +1349,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response7_slot2 = null
             try {
-                response7_slot2 = data_slot2[8].status === 'success' ? await fetch(data_slot2[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response7_slot2 = data_slot2[8].status === 'success' ? await fetch(data_slot2[8].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft8_2 = response7_slot2 !== null ? await response7_slot2.json() : {image: null, name: null}
-            const nftEQ_8_2_Img = nft8_2.image !== null ? nft8_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_8_2_Img = nft8_2.image !== null ? nft8_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_8_2_Name = nft8_2.name
             if (response7_slot2 !== null) {
                 nfts.push({
@@ -1368,10 +1368,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response8_slot2 = null
             try {
-                response8_slot2 = data_slot2[9].status === 'success' ? await fetch(data_slot2[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response8_slot2 = data_slot2[9].status === 'success' ? await fetch(data_slot2[9].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft9_2 = response8_slot2 !== null ? await response8_slot2.json() : {image: null, name: null}
-            const nftEQ_9_2_Img = nft9_2.image !== null ? nft9_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_9_2_Img = nft9_2.image !== null ? nft9_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_9_2_Name = nft9_2.name
             if (response8_slot2 !== null) {
                 nfts.push({
@@ -1387,10 +1387,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response9_slot2 = null
             try {
-                response9_slot2 = data_slot2[10].status === 'success' ? await fetch(data_slot2[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response9_slot2 = data_slot2[10].status === 'success' ? await fetch(data_slot2[10].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft10_2 = response9_slot2 !== null ? await response9_slot2.json() : {image: null, name: null}
-            const nftEQ_10_2_Img = nft10_2.image !== null ? nft10_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_10_2_Img = nft10_2.image !== null ? nft10_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_10_2_Name = nft10_2.name
             if (response9_slot2 !== null) {
                 nfts.push({
@@ -1406,10 +1406,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response10_slot2 = null
             try {
-                response10_slot2 = data_slot2[11].status === 'success' ? await fetch(data_slot2[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response10_slot2 = data_slot2[11].status === 'success' ? await fetch(data_slot2[11].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft11_2 = response10_slot2 !== null ? await response10_slot2.json() : {image: null, name: null}
-            const nftEQ_11_2_Img = nft11_2.image !== null ? nft11_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_11_2_Img = nft11_2.image !== null ? nft11_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_11_2_Name = nft11_2.name
             if (response10_slot2 !== null) {
                 nfts.push({
@@ -1425,10 +1425,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response11_slot2 = null
             try {
-                response11_slot2 = data_slot2[12].status === 'success' ? await fetch(data_slot2[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response11_slot2 = data_slot2[12].status === 'success' ? await fetch(data_slot2[12].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft12_2 = response11_slot2 !== null ? await response11_slot2.json() : {image: null, name: null}
-            const nftEQ_12_2_Img = nft12_2.image !== null ? nft12_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_12_2_Img = nft12_2.image !== null ? nft12_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_12_2_Name = nft12_2.name
             if (response11_slot2 !== null) {
                 nfts.push({
@@ -1444,10 +1444,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response12_slot2 = null
             try {
-                response12_slot2 = data_slot2[13].status === 'success' ? await fetch(data_slot2[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response12_slot2 = data_slot2[13].status === 'success' ? await fetch(data_slot2[13].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft13_2 = response12_slot2 !== null ? await response12_slot2.json() : {image: null, name: null}
-            const nftEQ_13_2_Img = nft13_2.image !== null ? nft13_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_13_2_Img = nft13_2.image !== null ? nft13_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_13_2_Name = nft13_2.name
             if (response12_slot2 !== null) {
                 nfts.push({
@@ -1463,10 +1463,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response13_slot2 = null
             try {
-                response13_slot2 = data_slot2[14].status === 'success' ? await fetch(data_slot2[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response13_slot2 = data_slot2[14].status === 'success' ? await fetch(data_slot2[14].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft14_2 = response13_slot2 !== null ? await response13_slot2.json() : {image: null, name: null}
-            const nftEQ_14_2_Img = nft14_2.image !== null ? nft14_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_14_2_Img = nft14_2.image !== null ? nft14_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_14_2_Name = nft14_2.name
             if (response13_slot2 !== null) {
                 nfts.push({
@@ -1482,10 +1482,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response14_slot2 = null
             try {
-                response14_slot2 = data_slot2[15].status === 'success' ? await fetch(data_slot2[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response14_slot2 = data_slot2[15].status === 'success' ? await fetch(data_slot2[15].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft15_2 = response14_slot2 !== null ? await response14_slot2.json() : {image: null, name: null}
-            const nftEQ_15_2_Img = nft15_2.image !== null ? nft15_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_15_2_Img = nft15_2.image !== null ? nft15_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_15_2_Name = nft15_2.name
             if (response14_slot2 !== null) {
                 nfts.push({
@@ -1501,10 +1501,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response15_slot2 = null
             try {
-                response15_slot2 = data_slot2[16].status === 'success' ? await fetch(data_slot2[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response15_slot2 = data_slot2[16].status === 'success' ? await fetch(data_slot2[16].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft16_2 = response15_slot2 !== null ? await response15_slot2.json() : {image: null, name: null}
-            const nftEQ_16_2_Img = nft16_2.image !== null ? nft16_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_16_2_Img = nft16_2.image !== null ? nft16_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_16_2_Name = nft16_2.name
             if (response15_slot2 !== null) {
                 nfts.push({
@@ -1520,10 +1520,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response16_slot2 = null
             try {
-                response16_slot2 = data_slot2[17].status === 'success' ? await fetch(data_slot2[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response16_slot2 = data_slot2[17].status === 'success' ? await fetch(data_slot2[17].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft17_2 = response16_slot2 !== null ? await response16_slot2.json() : {image: null, name: null}
-            const nftEQ_17_2_Img = nft17_2.image !== null ? nft17_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_17_2_Img = nft17_2.image !== null ? nft17_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_17_2_Name = nft17_2.name
             if (response16_slot2 !== null) {
                 nfts.push({
@@ -1539,10 +1539,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response17_slot2 = null
             try {
-                response17_slot2 = data_slot2[18].status === 'success' ? await fetch(data_slot2[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response17_slot2 = data_slot2[18].status === 'success' ? await fetch(data_slot2[18].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft18_2 = response17_slot2 !== null ? await response17_slot2.json() : {image: null, name: null}
-            const nftEQ_18_2_Img = nft18_2.image !== null ? nft18_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_18_2_Img = nft18_2.image !== null ? nft18_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_18_2_Name = nft18_2.name
             if (response17_slot2 !== null) {
                 nfts.push({
@@ -1558,10 +1558,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response18_slot2 = null
             try {
-                response18_slot2 = data_slot2[19].status === 'success' ? await fetch(data_slot2[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response18_slot2 = data_slot2[19].status === 'success' ? await fetch(data_slot2[19].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft19_2 = response18_slot2 !== null ? await response18_slot2.json() : {image: null, name: null}
-            const nftEQ_19_2_Img = nft19_2.image !== null ? nft19_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_19_2_Img = nft19_2.image !== null ? nft19_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_19_2_Name = nft19_2.name
             if (response18_slot2 !== null) {
                 nfts.push({
@@ -1577,10 +1577,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response19_slot2 = null
             try {
-                response19_slot2 = data_slot2[20].status === 'success' ? await fetch(data_slot2[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response19_slot2 = data_slot2[20].status === 'success' ? await fetch(data_slot2[20].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft20_2 = response19_slot2 !== null ? await response19_slot2.json() : {image: null, name: null}
-            const nftEQ_20_2_Img = nft20_2.image !== null ? nft20_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_20_2_Img = nft20_2.image !== null ? nft20_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_20_2_Name = nft20_2.name
             if (response19_slot2 !== null) {
                 nfts.push({
@@ -1596,10 +1596,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response20_slot2 = null
             try {
-                response20_slot2 = data_slot2[21].status === 'success' ? await fetch(data_slot2[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response20_slot2 = data_slot2[21].status === 'success' ? await fetch(data_slot2[21].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft21_2 = response20_slot2 !== null ? await response20_slot2.json() : {image: null, name: null}
-            const nftEQ_21_2_Img = nft21_2.image !== null ? nft21_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_21_2_Img = nft21_2.image !== null ? nft21_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_21_2_Name = nft21_2.name
             if (response20_slot2 !== null) {
                 nfts.push({
@@ -1615,10 +1615,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response21_slot2 = null
             try {
-                response21_slot2 = data_slot2[22].status === 'success' ? await fetch(data_slot2[22].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response21_slot2 = data_slot2[22].status === 'success' ? await fetch(data_slot2[22].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft22_2 = response21_slot2 !== null ? await response21_slot2.json() : {image: null, name: null}
-            const nftEQ_22_2_Img = nft22_2.image !== null ? nft22_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_22_2_Img = nft22_2.image !== null ? nft22_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_22_2_Name = nft22_2.name
             if (response21_slot2 !== null) {
                 nfts.push({
@@ -1634,10 +1634,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response22_slot2 = null
             try {
-                response22_slot2 = data_slot2[23].status === 'success' ? await fetch(data_slot2[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response22_slot2 = data_slot2[23].status === 'success' ? await fetch(data_slot2[23].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft23_2 = response22_slot2 !== null ? await response22_slot2.json() : {image: null, name: null}
-            const nftEQ_23_2_Img = nft23_2.image !== null ? nft23_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_23_2_Img = nft23_2.image !== null ? nft23_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_23_2_Name = nft23_2.name
             if (response22_slot2 !== null) {
                 nfts.push({
@@ -1653,10 +1653,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response23_slot2 = null
             try {
-                response23_slot2 = data_slot2[24].status === 'success' ? await fetch(data_slot2[24].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response23_slot2 = data_slot2[24].status === 'success' ? await fetch(data_slot2[24].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft24_2 = response23_slot2 !== null ? await response23_slot2.json() : {image: null, name: null}
-            const nftEQ_24_2_Img = nft24_2.image !== null ? nft24_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_24_2_Img = nft24_2.image !== null ? nft24_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_24_2_Name = nft24_2.name
             if (response23_slot2 !== null) {
                 nfts.push({
@@ -1672,10 +1672,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response24_slot2 = null
             try {
-                response24_slot2 = data_slot2[25].status === 'success' ? await fetch(data_slot2[25].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response24_slot2 = data_slot2[25].status === 'success' ? await fetch(data_slot2[25].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft25_2 = response24_slot2 !== null ? await response24_slot2.json() : {image: null, name: null}
-            const nftEQ_25_2_Img = nft25_2.image !== null ? nft25_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_25_2_Img = nft25_2.image !== null ? nft25_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_25_2_Name = nft25_2.name
             if (response24_slot2 !== null) {
                 nfts.push({
@@ -1758,10 +1758,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             ]
             let response0_slot3 = null
             try {
-                response0_slot3 = data_slot3[1].status === 'success' ? await fetch(data_slot3[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response0_slot3 = data_slot3[1].status === 'success' ? await fetch(data_slot3[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft1_3 = response0_slot3 !== null ? await response0_slot3.json() : {image: null, name: null}
-            const nftEQ_1_3_Img = nft1_3.image !== null ? nft1_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_1_3_Img = nft1_3.image !== null ? nft1_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_1_3_Name = nft1_3.name
             if (response0_slot3 !== null) {
                 nfts.push({
@@ -1777,10 +1777,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response1_slot3 = null
             try {
-                response1_slot3 = data_slot3[2].status === 'success' ? await fetch(data_slot3[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response1_slot3 = data_slot3[2].status === 'success' ? await fetch(data_slot3[2].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft2_3 = response1_slot3 !== null ? await response1_slot3.json() : {image: null, name: null}
-            const nftEQ_2_3_Img = nft2_3.image !== null ? nft2_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_2_3_Img = nft2_3.image !== null ? nft2_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_2_3_Name = nft2_3.name
             if (response1_slot3 !== null) {
                 nfts.push({
@@ -1796,10 +1796,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response2_slot3 = null
             try {
-                response2_slot3 = data_slot3[3].status === 'success' ? await fetch(data_slot3[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response2_slot3 = data_slot3[3].status === 'success' ? await fetch(data_slot3[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft3_3 = response2_slot3 !== null ? await response2_slot3.json() : {image: null, name: null}
-            const nftEQ_3_3_Img = nft3_3.image !== null ? nft3_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_3_3_Img = nft3_3.image !== null ? nft3_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_3_3_Name = nft3_3.name
             if (response2_slot3 !== null) {
                 nfts.push({
@@ -1815,10 +1815,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response3_slot3 = null
             try {
-                response3_slot3 = data_slot3[4].status === 'success' ? await fetch(data_slot3[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response3_slot3 = data_slot3[4].status === 'success' ? await fetch(data_slot3[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft4_3 = response3_slot3 !== null ? await response3_slot3.json() : {image: null, name: null}
-            const nftEQ_4_3_Img = nft4_3.image !== null ? nft4_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_4_3_Img = nft4_3.image !== null ? nft4_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_4_3_Name = nft4_3.name
             if (response3_slot3 !== null) {
                 nfts.push({
@@ -1834,10 +1834,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response4_slot3 = null
             try {
-                response4_slot3 = data_slot3[5].status === 'success' ? await fetch(data_slot3[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response4_slot3 = data_slot3[5].status === 'success' ? await fetch(data_slot3[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft5_3 = response4_slot3 !== null ? await response4_slot3.json() : {image: null, name: null}
-            const nftEQ_5_3_Img = nft5_3.image !== null ? nft5_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_5_3_Img = nft5_3.image !== null ? nft5_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_5_3_Name = nft5_3.name
             if (response4_slot3 !== null) {
                 nfts.push({
@@ -1853,10 +1853,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response5_slot3 = null
             try {
-                response5_slot3 = data_slot3[6].status === 'success' ? await fetch(data_slot3[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response5_slot3 = data_slot3[6].status === 'success' ? await fetch(data_slot3[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft6_3 = response5_slot3 !== null ? await response5_slot3.json() : {image: null, name: null}
-            const nftEQ_6_3_Img = nft6_3.image !== null ? nft6_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_6_3_Img = nft6_3.image !== null ? nft6_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_6_3_Name = nft6_3.name
             if (response5_slot3 !== null) {
                 nfts.push({
@@ -1872,10 +1872,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response6_slot3 = null
             try {
-                response6_slot3 = data_slot3[7].status === 'success' ? await fetch(data_slot3[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response6_slot3 = data_slot3[7].status === 'success' ? await fetch(data_slot3[7].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft7_3 = response6_slot3 !== null ? await response6_slot3.json() : {image: null, name: null}
-            const nftEQ_7_3_Img = nft7_3.image !== null ? nft7_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_7_3_Img = nft7_3.image !== null ? nft7_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_7_3_Name = nft7_3.name
             if (response6_slot3 !== null) {
                 nfts.push({
@@ -1891,10 +1891,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response7_slot3 = null
             try {
-                response7_slot3 = data_slot3[8].status === 'success' ? await fetch(data_slot3[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response7_slot3 = data_slot3[8].status === 'success' ? await fetch(data_slot3[8].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft8_3 = response7_slot3 !== null ? await response7_slot3.json() : {image: null, name: null}
-            const nftEQ_8_3_Img = nft8_3.image !== null ? nft8_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_8_3_Img = nft8_3.image !== null ? nft8_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_8_3_Name = nft8_3.name
             if (response7_slot3 !== null) {
                 nfts.push({
@@ -1910,10 +1910,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response8_slot3 = null
             try {
-                response8_slot3 = data_slot3[9].status === 'success' ? await fetch(data_slot3[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response8_slot3 = data_slot3[9].status === 'success' ? await fetch(data_slot3[9].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft9_3 = response8_slot3 !== null ? await response8_slot3.json() : {image: null, name: null}
-            const nftEQ_9_3_Img = nft9_3.image !== null ? nft9_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_9_3_Img = nft9_3.image !== null ? nft9_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_9_3_Name = nft9_3.name
             if (response8_slot3 !== null) {
                 nfts.push({
@@ -1929,10 +1929,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response9_slot3 = null
             try {
-                response9_slot3 = data_slot3[10].status === 'success' ? await fetch(data_slot3[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response9_slot3 = data_slot3[10].status === 'success' ? await fetch(data_slot3[10].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft10_3 = response9_slot3 !== null ? await response9_slot3.json() : {image: null, name: null}
-            const nftEQ_10_3_Img = nft10_3.image !== null ? nft10_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_10_3_Img = nft10_3.image !== null ? nft10_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_10_3_Name = nft10_3.name
             if (response9_slot3 !== null) {
                 nfts.push({
@@ -1948,10 +1948,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response10_slot3 = null
             try {
-                response10_slot3 = data_slot3[11].status === 'success' ? await fetch(data_slot3[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response10_slot3 = data_slot3[11].status === 'success' ? await fetch(data_slot3[11].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft11_3 = response10_slot3 !== null ? await response10_slot3.json() : {image: null, name: null}
-            const nftEQ_11_3_Img = nft11_3.image !== null ? nft11_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_11_3_Img = nft11_3.image !== null ? nft11_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_11_3_Name = nft11_3.name
             if (response10_slot3 !== null) {
                 nfts.push({
@@ -1967,10 +1967,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response11_slot3 = null
             try {
-                response11_slot3 = data_slot3[12].status === 'success' ? await fetch(data_slot3[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response11_slot3 = data_slot3[12].status === 'success' ? await fetch(data_slot3[12].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft12_3 = response11_slot3 !== null ? await response11_slot3.json() : {image: null, name: null}
-            const nftEQ_12_3_Img = nft12_3.image !== null ? nft12_2.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_12_3_Img = nft12_3.image !== null ? nft12_2.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_12_3_Name = nft12_3.name
             if (response11_slot3 !== null) {
                 nfts.push({
@@ -1986,10 +1986,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response12_slot3 = null
             try {
-                response12_slot3 = data_slot3[13].status === 'success' ? await fetch(data_slot3[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response12_slot3 = data_slot3[13].status === 'success' ? await fetch(data_slot3[13].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft13_3 = response12_slot3 !== null ? await response12_slot3.json() : {image: null, name: null}
-            const nftEQ_13_3_Img = nft13_3.image !== null ? nft13_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_13_3_Img = nft13_3.image !== null ? nft13_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_13_3_Name = nft13_3.name
             if (response12_slot3 !== null) {
                 nfts.push({
@@ -2005,10 +2005,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response13_slot3 = null
             try {
-                response13_slot3 = data_slot3[14].status === 'success' ? await fetch(data_slot3[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response13_slot3 = data_slot3[14].status === 'success' ? await fetch(data_slot3[14].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft14_3 = response13_slot3 !== null ? await response13_slot3.json() : {image: null, name: null}
-            const nftEQ_14_3_Img = nft14_3.image !== null ? nft14_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_14_3_Img = nft14_3.image !== null ? nft14_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_14_3_Name = nft14_3.name
             if (response13_slot3 !== null) {
                 nfts.push({
@@ -2024,10 +2024,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response14_slot3 = null
             try {
-                response14_slot3 = data_slot3[15].status === 'success' ? await fetch(data_slot3[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response14_slot3 = data_slot3[15].status === 'success' ? await fetch(data_slot3[15].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft15_3 = response14_slot3 !== null ? await response14_slot3.json() : {image: null, name: null}
-            const nftEQ_15_3_Img = nft15_3.image !== null ? nft15_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_15_3_Img = nft15_3.image !== null ? nft15_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_15_3_Name = nft15_3.name
             if (response14_slot3 !== null) {
                 nfts.push({
@@ -2043,10 +2043,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response15_slot3 = null
             try {
-                response15_slot3 = data_slot3[16].status === 'success' ? await fetch(data_slot3[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response15_slot3 = data_slot3[16].status === 'success' ? await fetch(data_slot3[16].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft16_3 = response15_slot3 !== null ? await response15_slot3.json() : {image: null, name: null}
-            const nftEQ_16_3_Img = nft16_3.image !== null ? nft16_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_16_3_Img = nft16_3.image !== null ? nft16_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_16_3_Name = nft16_3.name
             if (response15_slot3 !== null) {
                 nfts.push({
@@ -2062,10 +2062,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response16_slot3 = null
             try {
-                response16_slot3 = data_slot3[17].status === 'success' ? await fetch(data_slot3[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response16_slot3 = data_slot3[17].status === 'success' ? await fetch(data_slot3[17].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft17_3 = response16_slot3 !== null ? await response16_slot3.json() : {image: null, name: null}
-            const nftEQ_17_3_Img = nft17_3.image !== null ? nft17_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_17_3_Img = nft17_3.image !== null ? nft17_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_17_3_Name = nft17_3.name
             if (response16_slot3 !== null) {
                 nfts.push({
@@ -2081,10 +2081,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response17_slot3 = null
             try {
-                response17_slot3 = data_slot3[18].status === 'success' ? await fetch(data_slot3[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response17_slot3 = data_slot3[18].status === 'success' ? await fetch(data_slot3[18].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft18_3 = response17_slot3 !== null ? await response17_slot3.json() : {image: null, name: null}
-            const nftEQ_18_3_Img = nft18_3.image !== null ? nft18_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_18_3_Img = nft18_3.image !== null ? nft18_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_18_3_Name = nft18_3.name
             if (response17_slot3 !== null) {
                 nfts.push({
@@ -2100,10 +2100,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response18_slot3 = null
             try {
-                response18_slot3 = data_slot3[19].status === 'success' ? await fetch(data_slot3[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response18_slot3 = data_slot3[19].status === 'success' ? await fetch(data_slot3[19].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft19_3 = response18_slot3 !== null ? await response18_slot3.json() : {image: null, name: null}
-            const nftEQ_19_3_Img = nft19_3.image !== null ? nft19_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_19_3_Img = nft19_3.image !== null ? nft19_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_19_3_Name = nft19_3.name
             if (response18_slot3 !== null) {
                 nfts.push({
@@ -2119,10 +2119,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response19_slot3 = null
             try {
-                response19_slot3 = data_slot3[20].status === 'success' ? await fetch(data_slot3[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response19_slot3 = data_slot3[20].status === 'success' ? await fetch(data_slot3[20].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft20_3 = response19_slot3 !== null ? await response19_slot3.json() : {image: null, name: null}
-            const nftEQ_20_3_Img = nft20_3.image !== null ? nft20_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_20_3_Img = nft20_3.image !== null ? nft20_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_20_3_Name = nft20_3.name
             if (response19_slot3 !== null) {
                 nfts.push({
@@ -2138,10 +2138,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response20_slot3 = null
             try {
-                response20_slot3 = data_slot3[21].status === 'success' ? await fetch(data_slot3[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response20_slot3 = data_slot3[21].status === 'success' ? await fetch(data_slot3[21].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft21_3 = response20_slot3 !== null ? await response20_slot3.json() : {image: null, name: null}
-            const nftEQ_21_3_Img = nft21_3.image !== null ? nft21_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_21_3_Img = nft21_3.image !== null ? nft21_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_21_3_Name = nft21_3.name
             if (response20_slot3 !== null) {
                 nfts.push({
@@ -2157,10 +2157,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response21_slot3 = null
             try {
-                response21_slot3 = data_slot3[22].status === 'success' ? await fetch(data_slot3[22].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response21_slot3 = data_slot3[22].status === 'success' ? await fetch(data_slot3[22].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft22_3 = response21_slot3 !== null ? await response21_slot3.json() : {image: null, name: null}
-            const nftEQ_22_3_Img = nft22_3.image !== null ? nft22_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_22_3_Img = nft22_3.image !== null ? nft22_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_22_3_Name = nft22_3.name
             if (response21_slot3 !== null) {
                 nfts.push({
@@ -2176,10 +2176,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response22_slot3 = null
             try {
-                response22_slot3 = data_slot3[23].status === 'success' ? await fetch(data_slot3[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response22_slot3 = data_slot3[23].status === 'success' ? await fetch(data_slot3[23].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft23_3 = response22_slot3 !== null ? await response22_slot3.json() : {image: null, name: null}
-            const nftEQ_23_3_Img = nft23_3.image !== null ? nft23_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_23_3_Img = nft23_3.image !== null ? nft23_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_23_3_Name = nft23_3.name
             if (response22_slot3 !== null) {
                 nfts.push({
@@ -2195,10 +2195,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response23_slot3 = null
             try {
-                response23_slot3 = data_slot3[24].status === 'success' ? await fetch(data_slot3[24].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response23_slot3 = data_slot3[24].status === 'success' ? await fetch(data_slot3[24].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft24_3 = response23_slot3 !== null ? await response23_slot3.json() : {image: null, name: null}
-            const nftEQ_24_3_Img = nft24_3.image !== null ? nft24_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_24_3_Img = nft24_3.image !== null ? nft24_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_24_3_Name = nft24_3.name
             if (response23_slot3 !== null) {
                 nfts.push({
@@ -2214,10 +2214,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response24_slot3 = null
             try {
-                response24_slot3 = data_slot3[25].status === 'success' ? await fetch(data_slot3[25].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response24_slot3 = data_slot3[25].status === 'success' ? await fetch(data_slot3[25].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft25_3 = response24_slot3 !== null ? await response24_slot3.json() : {image: null, name: null}
-            const nftEQ_25_3_Img = nft25_3.image !== null ? nft25_3.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_25_3_Img = nft25_3.image !== null ? nft25_3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_25_3_Name = nft25_3.name
             if (response24_slot3 !== null) {
                 nfts.push({
@@ -2300,10 +2300,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             ]
             let response0_slot4 = null
             try {
-                response0_slot4 = data_slot4[1].status === 'success' ? await fetch(data_slot4[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response0_slot4 = data_slot4[1].status === 'success' ? await fetch(data_slot4[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft1_4 = response0_slot4 !== null ? await response0_slot4.json() : {image: null, name: null}
-            const nftEQ_1_4_Img = nft1_4.image !== null ? nft1_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_1_4_Img = nft1_4.image !== null ? nft1_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_1_4_Name = nft1_4.name
             if (response0_slot4 !== null) {
                 nfts.push({
@@ -2319,10 +2319,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response1_slot4 = null
             try {
-                response1_slot4 = data_slot4[2].status === 'success' ? await fetch(data_slot4[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response1_slot4 = data_slot4[2].status === 'success' ? await fetch(data_slot4[2].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft2_4 = response1_slot4 !== null ? await response1_slot4.json() : {image: null, name: null}
-            const nftEQ_2_4_Img = nft2_4.image !== null ? nft2_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_2_4_Img = nft2_4.image !== null ? nft2_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_2_4_Name = nft2_4.name
             if (response1_slot4 !== null) {
                 nfts.push({
@@ -2338,10 +2338,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response2_slot4 = null
             try {
-                response2_slot4 = data_slot4[3].status === 'success' ? await fetch(data_slot4[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response2_slot4 = data_slot4[3].status === 'success' ? await fetch(data_slot4[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft3_4 = response2_slot4 !== null ? await response2_slot4.json() : {image: null, name: null}
-            const nftEQ_3_4_Img = nft3_4.image !== null ? nft3_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_3_4_Img = nft3_4.image !== null ? nft3_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_3_4_Name = nft3_4.name
             if (response2_slot4 !== null) {
                 nfts.push({
@@ -2357,10 +2357,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response3_slot4 = null
             try {
-                response3_slot4 = data_slot4[4].status === 'success' ? await fetch(data_slot4[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response3_slot4 = data_slot4[4].status === 'success' ? await fetch(data_slot4[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft4_4 = response3_slot4 !== null ? await response3_slot4.json() : {image: null, name: null}
-            const nftEQ_4_4_Img = nft4_4.image !== null ? nft4_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_4_4_Img = nft4_4.image !== null ? nft4_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_4_4_Name = nft4_4.name
             if (response3_slot4 !== null) {
                 nfts.push({
@@ -2376,10 +2376,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response4_slot4 = null
             try {
-                response4_slot4 = data_slot4[5].status === 'success' ? await fetch(data_slot4[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response4_slot4 = data_slot4[5].status === 'success' ? await fetch(data_slot4[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft5_4 = response4_slot4 !== null ? await response4_slot4.json() : {image: null, name: null}
-            const nftEQ_5_4_Img = nft5_4.image !== null ? nft5_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_5_4_Img = nft5_4.image !== null ? nft5_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_5_4_Name = nft5_4.name
             if (response4_slot4 !== null) {
                 nfts.push({
@@ -2395,10 +2395,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response5_slot4 = null
             try {
-                response5_slot4 = data_slot4[6].status === 'success' ? await fetch(data_slot4[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response5_slot4 = data_slot4[6].status === 'success' ? await fetch(data_slot4[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft6_4 = response5_slot4 !== null ? await response5_slot4.json() : {image: null, name: null}
-            const nftEQ_6_4_Img = nft6_4.image !== null ? nft6_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_6_4_Img = nft6_4.image !== null ? nft6_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_6_4_Name = nft6_4.name
             if (response5_slot4 !== null) {
                 nfts.push({
@@ -2414,10 +2414,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response6_slot4 = null
             try {
-                response6_slot4 = data_slot4[7].status === 'success' ? await fetch(data_slot4[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response6_slot4 = data_slot4[7].status === 'success' ? await fetch(data_slot4[7].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft7_4 = response6_slot4 !== null ? await response6_slot4.json() : {image: null, name: null}
-            const nftEQ_7_4_Img = nft7_4.image !== null ? nft7_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_7_4_Img = nft7_4.image !== null ? nft7_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_7_4_Name = nft7_4.name
             if (response6_slot4 !== null) {
                 nfts.push({
@@ -2433,10 +2433,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response7_slot4 = null
             try {
-                response7_slot4 = data_slot4[8].status === 'success' ? await fetch(data_slot4[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response7_slot4 = data_slot4[8].status === 'success' ? await fetch(data_slot4[8].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft8_4 = response7_slot4 !== null ? await response7_slot4.json() : {image: null, name: null}
-            const nftEQ_8_4_Img = nft8_4.image !== null ? nft8_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_8_4_Img = nft8_4.image !== null ? nft8_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_8_4_Name = nft8_4.name
             if (response7_slot4 !== null) {
                 nfts.push({
@@ -2452,10 +2452,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response8_slot4 = null
             try {
-                response8_slot4 = data_slot4[9].status === 'success' ? await fetch(data_slot4[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response8_slot4 = data_slot4[9].status === 'success' ? await fetch(data_slot4[9].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft9_4 = response8_slot4 !== null ? await response8_slot4.json() : {image: null, name: null}
-            const nftEQ_9_4_Img = nft9_4.image !== null ? nft9_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_9_4_Img = nft9_4.image !== null ? nft9_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_9_4_Name = nft9_4.name
             if (response8_slot4 !== null) {
                 nfts.push({
@@ -2471,10 +2471,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response9_slot4 = null
             try {
-                response9_slot4 = data_slot4[10].status === 'success' ? await fetch(data_slot4[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response9_slot4 = data_slot4[10].status === 'success' ? await fetch(data_slot4[10].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft10_4 = response9_slot4 !== null ? await response9_slot4.json() : {image: null, name: null}
-            const nftEQ_10_4_Img = nft10_4.image !== null ? nft10_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_10_4_Img = nft10_4.image !== null ? nft10_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_10_4_Name = nft10_4.name
             if (response9_slot4 !== null) {
                 nfts.push({
@@ -2490,10 +2490,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response10_slot4 = null
             try {
-                response10_slot4 = data_slot4[11].status === 'success' ? await fetch(data_slot4[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response10_slot4 = data_slot4[11].status === 'success' ? await fetch(data_slot4[11].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft11_4 = response10_slot4 !== null ? await response10_slot4.json() : {image: null, name: null}
-            const nftEQ_11_4_Img = nft11_4.image !== null ? nft11_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_11_4_Img = nft11_4.image !== null ? nft11_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_11_4_Name = nft11_4.name
             if (response10_slot4 !== null) {
                 nfts.push({
@@ -2509,10 +2509,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response11_slot4 = null
             try {
-                response11_slot4 = data_slot4[12].status === 'success' ? await fetch(data_slot4[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response11_slot4 = data_slot4[12].status === 'success' ? await fetch(data_slot4[12].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft12_4 = response11_slot4 !== null ? await response11_slot4.json() : {image: null, name: null}
-            const nftEQ_12_4_Img = nft12_4.image !== null ? nft12_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_12_4_Img = nft12_4.image !== null ? nft12_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_12_4_Name = nft12_4.name
             if (response11_slot4 !== null) {
                 nfts.push({
@@ -2528,10 +2528,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response12_slot4 = null
             try {
-                response12_slot4 = data_slot4[13].status === 'success' ? await fetch(data_slot4[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response12_slot4 = data_slot4[13].status === 'success' ? await fetch(data_slot4[13].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft13_4 = response12_slot4 !== null ? await response12_slot4.json() : {image: null, name: null}
-            const nftEQ_13_4_Img = nft13_4.image !== null ? nft13_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_13_4_Img = nft13_4.image !== null ? nft13_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_13_4_Name = nft13_4.name
             if (response12_slot4 !== null) {
                 nfts.push({
@@ -2547,10 +2547,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response13_slot4 = null
             try {
-                response13_slot4 = data_slot4[14].status === 'success' ? await fetch(data_slot4[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response13_slot4 = data_slot4[14].status === 'success' ? await fetch(data_slot4[14].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft14_4 = response13_slot4 !== null ? await response13_slot4.json() : {image: null, name: null}
-            const nftEQ_14_4_Img = nft14_4.image !== null ? nft14_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_14_4_Img = nft14_4.image !== null ? nft14_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_14_4_Name = nft14_4.name
             if (response13_slot4 !== null) {
                 nfts.push({
@@ -2566,10 +2566,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response14_slot4 = null
             try {
-                response14_slot4 = data_slot4[15].status === 'success' ? await fetch(data_slot4[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response14_slot4 = data_slot4[15].status === 'success' ? await fetch(data_slot4[15].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft15_4 = response14_slot4 !== null ? await response14_slot4.json() : {image: null, name: null}
-            const nftEQ_15_4_Img = nft15_4.image !== null ? nft15_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_15_4_Img = nft15_4.image !== null ? nft15_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_15_4_Name = nft15_4.name
             if (response14_slot4 !== null) {
                 nfts.push({
@@ -2585,10 +2585,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response15_slot4 = null
             try {
-                response15_slot4 = data_slot4[16].status === 'success' ? await fetch(data_slot4[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response15_slot4 = data_slot4[16].status === 'success' ? await fetch(data_slot4[16].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft16_4 = response15_slot4 !== null ? await response15_slot4.json() : {image: null, name: null}
-            const nftEQ_16_4_Img = nft16_4.image !== null ? nft16_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_16_4_Img = nft16_4.image !== null ? nft16_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_16_4_Name = nft16_4.name
             if (response15_slot4 !== null) {
                 nfts.push({
@@ -2604,10 +2604,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response16_slot4 = null
             try {
-                response16_slot4 = data_slot4[17].status === 'success' ? await fetch(data_slot4[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response16_slot4 = data_slot4[17].status === 'success' ? await fetch(data_slot4[17].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft17_4 = response16_slot4 !== null ? await response16_slot4.json() : {image: null, name: null}
-            const nftEQ_17_4_Img = nft17_4.image !== null ? nft17_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_17_4_Img = nft17_4.image !== null ? nft17_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_17_4_Name = nft17_4.name
             if (response16_slot4 !== null) {
                 nfts.push({
@@ -2623,10 +2623,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response17_slot4 = null
             try {
-                response17_slot4 = data_slot4[18].status === 'success' ? await fetch(data_slot4[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response17_slot4 = data_slot4[18].status === 'success' ? await fetch(data_slot4[18].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft18_4 = response17_slot4 !== null ? await response17_slot4.json() : {image: null, name: null}
-            const nftEQ_18_4_Img = nft18_4.image !== null ? nft18_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_18_4_Img = nft18_4.image !== null ? nft18_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_18_4_Name = nft18_3.name
             if (response17_slot4 !== null) {
                 nfts.push({
@@ -2642,10 +2642,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response18_slot4 = null
             try {
-                response18_slot4 = data_slot4[19].status === 'success' ? await fetch(data_slot4[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response18_slot4 = data_slot4[19].status === 'success' ? await fetch(data_slot4[19].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft19_4 = response18_slot4 !== null ? await response18_slot4.json() : {image: null, name: null}
-            const nftEQ_19_4_Img = nft19_4.image !== null ? nft19_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_19_4_Img = nft19_4.image !== null ? nft19_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_19_4_Name = nft19_4.name
             if (response18_slot4 !== null) {
                 nfts.push({
@@ -2661,10 +2661,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response19_slot4 = null
             try {
-                response19_slot4 = data_slot4[20].status === 'success' ? await fetch(data_slot4[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response19_slot4 = data_slot4[20].status === 'success' ? await fetch(data_slot4[20].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft20_4 = response19_slot4 !== null ? await response19_slot4.json() : {image: null, name: null}
-            const nftEQ_20_4_Img = nft20_4.image !== null ? nft20_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_20_4_Img = nft20_4.image !== null ? nft20_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_20_4_Name = nft20_4.name
             if (response19_slot4 !== null) {
                 nfts.push({
@@ -2680,10 +2680,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response20_slot4 = null
             try {
-                response20_slot4 = data_slot4[21].status === 'success' ? await fetch(data_slot4[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response20_slot4 = data_slot4[21].status === 'success' ? await fetch(data_slot4[21].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft21_4 = response20_slot4 !== null ? await response20_slot4.json() : {image: null, name: null}
-            const nftEQ_21_4_Img = nft21_4.image !== null ? nft21_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_21_4_Img = nft21_4.image !== null ? nft21_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_21_4_Name = nft21_4.name
             if (response20_slot4 !== null) {
                 nfts.push({
@@ -2699,10 +2699,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response21_slot4 = null
             try {
-                response21_slot4 = data_slot4[22].status === 'success' ? await fetch(data_slot4[22].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response21_slot4 = data_slot4[22].status === 'success' ? await fetch(data_slot4[22].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft22_4 = response21_slot4 !== null ? await response21_slot4.json() : {image: null, name: null}
-            const nftEQ_22_4_Img = nft22_4.image !== null ? nft22_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_22_4_Img = nft22_4.image !== null ? nft22_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_22_4_Name = nft22_4.name
             if (response21_slot4 !== null) {
                 nfts.push({
@@ -2718,10 +2718,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response22_slot4 = null
             try {
-                response22_slot4 = data_slot4[23].status === 'success' ? await fetch(data_slot4[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response22_slot4 = data_slot4[23].status === 'success' ? await fetch(data_slot4[23].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft23_4 = response22_slot4 !== null ? await response22_slot4.json() : {image: null, name: null}
-            const nftEQ_23_4_Img = nft23_4.image !== null ? nft23_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_23_4_Img = nft23_4.image !== null ? nft23_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_23_4_Name = nft23_4.name
             if (response22_slot4 !== null) {
                 nfts.push({
@@ -2737,10 +2737,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response23_slot4 = null
             try {
-                response23_slot4 = data_slot4[24].status === 'success' ? await fetch(data_slot4[24].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response23_slot4 = data_slot4[24].status === 'success' ? await fetch(data_slot4[24].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft24_4 = response23_slot4 !== null ? await response23_slot4.json() : {image: null, name: null}
-            const nftEQ_24_4_Img = nft24_4.image !== null ? nft24_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_24_4_Img = nft24_4.image !== null ? nft24_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_24_4_Name = nft24_4.name
             if (response23_slot4 !== null) {
                 nfts.push({
@@ -2756,10 +2756,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response24_slot4 = null
             try {
-                response24_slot4 = data_slot4[25].status === 'success' ? await fetch(data_slot4[25].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response24_slot4 = data_slot4[25].status === 'success' ? await fetch(data_slot4[25].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft25_4 = response24_slot4 !== null ? await response24_slot4.json() : {image: null, name: null}
-            const nftEQ_25_4_Img = nft25_4.image !== null ? nft25_4.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_25_4_Img = nft25_4.image !== null ? nft25_4.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_25_4_Name = nft25_4.name
             if (response24_slot4 !== null) {
                 nfts.push({
@@ -2842,10 +2842,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             ]
             let response0_slot5 = null
             try {
-                response0_slot5 = data_slot5[1].status === 'success' ? await fetch(data_slot5[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response0_slot5 = data_slot5[1].status === 'success' ? await fetch(data_slot5[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft1_5 = response0_slot5 !== null ? await response0_slot5.json() : {image: null, name: null}
-            const nftEQ_1_5_Img = nft1_5.image !== null ? nft1_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_1_5_Img = nft1_5.image !== null ? nft1_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_1_5_Name = nft1_5.name
             if (response0_slot5 !== null) {
                 nfts.push({
@@ -2861,10 +2861,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response1_slot5 = null
             try {
-                response1_slot5 = data_slot5[2].status === 'success' ? await fetch(data_slot5[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response1_slot5 = data_slot5[2].status === 'success' ? await fetch(data_slot5[2].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft2_5 = response1_slot5 !== null ? await response1_slot5.json() : {image: null, name: null}
-            const nftEQ_2_5_Img = nft2_5.image !== null ? nft2_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_2_5_Img = nft2_5.image !== null ? nft2_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_2_5_Name = nft2_5.name
             if (response1_slot5 !== null) {
                 nfts.push({
@@ -2880,10 +2880,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response2_slot5 = null
             try {
-                response2_slot5 = data_slot5[3].status === 'success' ? await fetch(data_slot5[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response2_slot5 = data_slot5[3].status === 'success' ? await fetch(data_slot5[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft3_5 = response2_slot5 !== null ? await response2_slot5.json() : {image: null, name: null}
-            const nftEQ_3_5_Img = nft3_5.image !== null ? nft3_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_3_5_Img = nft3_5.image !== null ? nft3_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_3_5_Name = nft3_5.name
             if (response2_slot5 !== null) {
                 nfts.push({
@@ -2899,10 +2899,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response3_slot5 = null
             try {
-                response3_slot5 = data_slot5[4].status === 'success' ? await fetch(data_slot5[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response3_slot5 = data_slot5[4].status === 'success' ? await fetch(data_slot5[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft4_5 = response3_slot5 !== null ? await response3_slot5.json() : {image: null, name: null}
-            const nftEQ_4_5_Img = nft4_5.image !== null ? nft4_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_4_5_Img = nft4_5.image !== null ? nft4_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_4_5_Name = nft4_5.name
             if (response3_slot5 !== null) {
                 nfts.push({
@@ -2918,10 +2918,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response4_slot5 = null
             try {
-                response4_slot5 = data_slot5[5].status === 'success' ? await fetch(data_slot5[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response4_slot5 = data_slot5[5].status === 'success' ? await fetch(data_slot5[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft5_5 = response4_slot5 !== null ? await response4_slot5.json() : {image: null, name: null}
-            const nftEQ_5_5_Img = nft5_5.image !== null ? nft5_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_5_5_Img = nft5_5.image !== null ? nft5_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_5_5_Name = nft5_5.name
             if (response4_slot5 !== null) {
                 nfts.push({
@@ -2937,10 +2937,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response5_slot5 = null
             try {
-                response5_slot5 = data_slot5[6].status === 'success' ? await fetch(data_slot5[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response5_slot5 = data_slot5[6].status === 'success' ? await fetch(data_slot5[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft6_5 = response5_slot5 !== null ? await response5_slot5.json() : {image: null, name: null}
-            const nftEQ_6_5_Img = nft6_5.image !== null ? nft6_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_6_5_Img = nft6_5.image !== null ? nft6_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_6_5_Name = nft6_5.name
             if (response5_slot5 !== null) {
                 nfts.push({
@@ -2956,10 +2956,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response6_slot5 = null
             try {
-                response6_slot5 = data_slot5[7].status === 'success' ? await fetch(data_slot5[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response6_slot5 = data_slot5[7].status === 'success' ? await fetch(data_slot5[7].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft7_5 = response6_slot5 !== null ? await response6_slot5.json() : {image: null, name: null}
-            const nftEQ_7_5_Img = nft7_5.image !== null ? nft7_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_7_5_Img = nft7_5.image !== null ? nft7_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_7_5_Name = nft7_5.name
             if (response6_slot5 !== null) {
                 nfts.push({
@@ -2975,10 +2975,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response7_slot5 = null
             try {
-                response7_slot5 = data_slot5[8].status === 'success' ? await fetch(data_slot5[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response7_slot5 = data_slot5[8].status === 'success' ? await fetch(data_slot5[8].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft8_5 = response7_slot5 !== null ? await response7_slot5.json() : {image: null, name: null}
-            const nftEQ_8_5_Img = nft8_5.image !== null ? nft8_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_8_5_Img = nft8_5.image !== null ? nft8_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_8_5_Name = nft8_5.name
             if (response7_slot5 !== null) {
                 nfts.push({
@@ -2994,10 +2994,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response8_slot5 = null
             try {
-                response8_slot5 = data_slot5[9].status === 'success' ? await fetch(data_slot5[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response8_slot5 = data_slot5[9].status === 'success' ? await fetch(data_slot5[9].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft9_5 = response8_slot5 !== null ? await response8_slot5.json() : {image: null, name: null}
-            const nftEQ_9_5_Img = nft9_5.image !== null ? nft9_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_9_5_Img = nft9_5.image !== null ? nft9_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_9_5_Name = nft9_5.name
             if (response8_slot5 !== null) {
                 nfts.push({
@@ -3013,10 +3013,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response9_slot5 = null
             try {
-                response9_slot5 = data_slot5[10].status === 'success' ? await fetch(data_slot5[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response9_slot5 = data_slot5[10].status === 'success' ? await fetch(data_slot5[10].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft10_5 = response9_slot5 !== null ? await response9_slot5.json() : {image: null, name: null}
-            const nftEQ_10_5_Img = nft10_5.image !== null ? nft10_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_10_5_Img = nft10_5.image !== null ? nft10_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_10_5_Name = nft10_5.name
             if (response9_slot5 !== null) {
                 nfts.push({
@@ -3032,10 +3032,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response10_slot5 = null
             try {
-                response10_slot5 = data_slot5[11].status === 'success' ? await fetch(data_slot5[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response10_slot5 = data_slot5[11].status === 'success' ? await fetch(data_slot5[11].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft11_5 = response10_slot5 !== null ? await response10_slot5.json() : {image: null, name: null}
-            const nftEQ_11_5_Img = nft11_5.image !== null ? nft11_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_11_5_Img = nft11_5.image !== null ? nft11_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_11_5_Name = nft11_5.name
             if (response10_slot5 !== null) {
                 nfts.push({
@@ -3051,10 +3051,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response11_slot5 = null
             try {
-                response11_slot5 = data_slot5[12].status === 'success' ? await fetch(data_slot5[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response11_slot5 = data_slot5[12].status === 'success' ? await fetch(data_slot5[12].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft12_5 = response11_slot5 !== null ? await response11_slot5.json() : {image: null, name: null}
-            const nftEQ_12_5_Img = nft12_5.image !== null ? nft12_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_12_5_Img = nft12_5.image !== null ? nft12_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_12_5_Name = nft12_5.name
             if (response11_slot5 !== null) {
                 nfts.push({
@@ -3070,10 +3070,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response12_slot5 = null
             try {
-                response12_slot5 = data_slot5[13].status === 'success' ? await fetch(data_slot5[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response12_slot5 = data_slot5[13].status === 'success' ? await fetch(data_slot5[13].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft13_5 = response12_slot5 !== null ? await response12_slot5.json() : {image: null, name: null}
-            const nftEQ_13_5_Img = nft13_5.image !== null ? nft13_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_13_5_Img = nft13_5.image !== null ? nft13_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_13_5_Name = nft13_5.name
             if (response12_slot5 !== null) {
                 nfts.push({
@@ -3089,10 +3089,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response13_slot5 = null
             try {
-                response13_slot5 = data_slot5[14].status === 'success' ? await fetch(data_slot5[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response13_slot5 = data_slot5[14].status === 'success' ? await fetch(data_slot5[14].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft14_5 = response13_slot5 !== null ? await response13_slot5.json() : {image: null, name: null}
-            const nftEQ_14_5_Img = nft14_5.image !== null ? nft14_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_14_5_Img = nft14_5.image !== null ? nft14_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_14_5_Name = nft14_5.name
             if (response13_slot5 !== null) {
                 nfts.push({
@@ -3108,10 +3108,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response14_slot5 = null
             try {
-                response14_slot5 = data_slot5[15].status === 'success' ? await fetch(data_slot5[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response14_slot5 = data_slot5[15].status === 'success' ? await fetch(data_slot5[15].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft15_5 = response14_slot5 !== null ? await response14_slot5.json() : {image: null, name: null}
-            const nftEQ_15_5_Img = nft15_5.image !== null ? nft15_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_15_5_Img = nft15_5.image !== null ? nft15_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_15_5_Name = nft15_5.name
             if (response14_slot5 !== null) {
                 nfts.push({
@@ -3127,10 +3127,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response15_slot5 = null
             try {
-                response15_slot5 = data_slot5[16].status === 'success' ? await fetch(data_slot5[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response15_slot5 = data_slot5[16].status === 'success' ? await fetch(data_slot5[16].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft16_5 = response15_slot5 !== null ? await response15_slot5.json() : {image: null, name: null}
-            const nftEQ_16_5_Img = nft16_5.image !== null ? nft16_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_16_5_Img = nft16_5.image !== null ? nft16_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_16_5_Name = nft16_5.name
             if (response15_slot5 !== null) {
                 nfts.push({
@@ -3146,10 +3146,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response16_slot5 = null
             try {
-                response16_slot5 = data_slot5[17].status === 'success' ? await fetch(data_slot5[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response16_slot5 = data_slot5[17].status === 'success' ? await fetch(data_slot5[17].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft17_5 = response16_slot5 !== null ? await response16_slot5.json() : {image: null, name: null}
-            const nftEQ_17_5_Img = nft17_5.image !== null ? nft17_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_17_5_Img = nft17_5.image !== null ? nft17_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_17_5_Name = nft17_5.name
             if (response16_slot5 !== null) {
                 nfts.push({
@@ -3165,10 +3165,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response17_slot5 = null
             try {
-                response17_slot5 = data_slot5[18].status === 'success' ? await fetch(data_slot5[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response17_slot5 = data_slot5[18].status === 'success' ? await fetch(data_slot5[18].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft18_5 = response17_slot5 !== null ? await response17_slot5.json() : {image: null, name: null}
-            const nftEQ_18_5_Img = nft18_5.image !== null ? nft18_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_18_5_Img = nft18_5.image !== null ? nft18_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_18_5_Name = nft18_5.name
             if (response17_slot5 !== null) {
                 nfts.push({
@@ -3184,10 +3184,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response18_slot5 = null
             try {
-                response18_slot5 = data_slot5[19].status === 'success' ? await fetch(data_slot5[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response18_slot5 = data_slot5[19].status === 'success' ? await fetch(data_slot5[19].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft19_5 = response18_slot5 !== null ? await response18_slot5.json() : {image: null, name: null}
-            const nftEQ_19_5_Img = nft19_5.image !== null ? nft19_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_19_5_Img = nft19_5.image !== null ? nft19_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_19_5_Name = nft19_5.name
             if (response18_slot5 !== null) {
                 nfts.push({
@@ -3203,10 +3203,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response19_slot5 = null
             try {
-                response19_slot5 = data_slot5[20].status === 'success' ? await fetch(data_slot5[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response19_slot5 = data_slot5[20].status === 'success' ? await fetch(data_slot5[20].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft20_5 = response19_slot5 !== null ? await response19_slot5.json() : {image: null, name: null}
-            const nftEQ_20_5_Img = nft20_5.image !== null ? nft20_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_20_5_Img = nft20_5.image !== null ? nft20_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_20_5_Name = nft20_5.name
             if (response19_slot5 !== null) {
                 nfts.push({
@@ -3222,10 +3222,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response20_slot5 = null
             try {
-                response20_slot5 = data_slot5[21].status === 'success' ? await fetch(data_slot5[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response20_slot5 = data_slot5[21].status === 'success' ? await fetch(data_slot5[21].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft21_5 = response20_slot5 !== null ? await response20_slot5.json() : {image: null, name: null}
-            const nftEQ_21_5_Img = nft21_5.image !== null ? nft21_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_21_5_Img = nft21_5.image !== null ? nft21_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_21_5_Name = nft21_5.name
             if (response20_slot5 !== null) {
                 nfts.push({
@@ -3241,10 +3241,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response21_slot5 = null
             try {
-                response21_slot5 = data_slot5[22].status === 'success' ? await fetch(data_slot5[22].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response21_slot5 = data_slot5[22].status === 'success' ? await fetch(data_slot5[22].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft22_5 = response21_slot5 !== null ? await response21_slot5.json() : {image: null, name: null}
-            const nftEQ_22_5_Img = nft22_5.image !== null ? nft22_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_22_5_Img = nft22_5.image !== null ? nft22_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_22_5_Name = nft22_5.name
             if (response21_slot5 !== null) {
                 nfts.push({
@@ -3260,10 +3260,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response22_slot5 = null
             try {
-                response22_slot5 = data_slot5[23].status === 'success' ? await fetch(data_slot5[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response22_slot5 = data_slot5[23].status === 'success' ? await fetch(data_slot5[23].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft23_5 = response22_slot5 !== null ? await response22_slot5.json() : {image: null, name: null}
-            const nftEQ_23_5_Img = nft23_5.image !== null ? nft23_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_23_5_Img = nft23_5.image !== null ? nft23_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_23_5_Name = nft23_5.name
             if (response22_slot5 !== null) {
                 nfts.push({
@@ -3279,10 +3279,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response23_slot5 = null
             try {
-                response23_slot5 = data_slot5[24].status === 'success' ? await fetch(data_slot5[24].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response23_slot5 = data_slot5[24].status === 'success' ? await fetch(data_slot5[24].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft24_5 = response23_slot5 !== null ? await response23_slot5.json() : {image: null, name: null}
-            const nftEQ_24_5_Img = nft24_5.image !== null ? nft24_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_24_5_Img = nft24_5.image !== null ? nft24_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_24_5_Name = nft24_5.name
             if (response23_slot5 !== null) {
                 nfts.push({
@@ -3298,10 +3298,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response24_slot5 = null
             try {
-                response24_slot5 = data_slot5[25].status === 'success' ? await fetch(data_slot5[25].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response24_slot5 = data_slot5[25].status === 'success' ? await fetch(data_slot5[25].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft25_5 = response24_slot5 !== null ? await response24_slot5.json() : {image: null, name: null}
-            const nftEQ_25_5_Img = nft25_5.image !== null ? nft25_5.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_25_5_Img = nft25_5.image !== null ? nft25_5.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_25_5_Name = nft25_5.name
             if (response24_slot5 !== null) {
                 nfts.push({
@@ -3384,10 +3384,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             ]
             let response0_slot6 = null
             try {
-                response0_slot6 = data_slot6[1].status === 'success' ? await fetch(data_slot6[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response0_slot6 = data_slot6[1].status === 'success' ? await fetch(data_slot6[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft1_6 = response0_slot6 !== null ? await response0_slot6.json() : {image: null, name: null}
-            const nftEQ_1_6_Img = nft1_6.image !== null ? nft1_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_1_6_Img = nft1_6.image !== null ? nft1_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_1_6_Name = nft1_6.name
             if (response0_slot6 !== null) {
                 nfts.push({
@@ -3403,10 +3403,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response1_slot6 = null
             try {
-                response1_slot6 = data_slot6[2].status === 'success' ? await fetch(data_slot6[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response1_slot6 = data_slot6[2].status === 'success' ? await fetch(data_slot6[2].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft2_6 = response1_slot6 !== null ? await response1_slot6.json() : {image: null, name: null}
-            const nftEQ_2_6_Img = nft2_6.image !== null ? nft2_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_2_6_Img = nft2_6.image !== null ? nft2_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_2_6_Name = nft2_6.name
             if (response1_slot6 !== null) {
                 nfts.push({
@@ -3422,10 +3422,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response2_slot6 = null
             try {
-                response2_slot6 = data_slot6[3].status === 'success' ? await fetch(data_slot6[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response2_slot6 = data_slot6[3].status === 'success' ? await fetch(data_slot6[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft3_6 = response2_slot6 !== null ? await response2_slot6.json() : {image: null, name: null}
-            const nftEQ_3_6_Img = nft3_6.image !== null ? nft3_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_3_6_Img = nft3_6.image !== null ? nft3_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_3_6_Name = nft3_6.name
             if (response2_slot6 !== null) {
                 nfts.push({
@@ -3441,10 +3441,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response3_slot6 = null
             try {
-                response3_slot6 = data_slot6[4].status === 'success' ? await fetch(data_slot6[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response3_slot6 = data_slot6[4].status === 'success' ? await fetch(data_slot6[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft4_6 = response3_slot6 !== null ? await response3_slot6.json() : {image: null, name: null}
-            const nftEQ_4_6_Img = nft4_6.image !== null ? nft4_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_4_6_Img = nft4_6.image !== null ? nft4_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_4_6_Name = nft4_6.name
             if (response3_slot6 !== null) {
                 nfts.push({
@@ -3460,10 +3460,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response4_slot6 = null
             try {
-                response4_slot6 = data_slot6[5].status === 'success' ? await fetch(data_slot6[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response4_slot6 = data_slot6[5].status === 'success' ? await fetch(data_slot6[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft5_6 = response4_slot6 !== null ? await response4_slot6.json() : {image: null, name: null}
-            const nftEQ_5_6_Img = nft5_6.image !== null ? nft5_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_5_6_Img = nft5_6.image !== null ? nft5_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_5_6_Name = nft5_6.name
             if (response4_slot6 !== null) {
                 nfts.push({
@@ -3479,10 +3479,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response5_slot6 = null
             try {
-                response5_slot6 = data_slot6[6].status === 'success' ? await fetch(data_slot6[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response5_slot6 = data_slot6[6].status === 'success' ? await fetch(data_slot6[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft6_6 = response5_slot6 !== null ? await response5_slot6.json() : {image: null, name: null}
-            const nftEQ_6_6_Img = nft6_6.image !== null ? nft6_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_6_6_Img = nft6_6.image !== null ? nft6_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_6_6_Name = nft6_6.name
             if (response5_slot6 !== null) {
                 nfts.push({
@@ -3498,10 +3498,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response6_slot6 = null
             try {
-                response6_slot6 = data_slot6[7].status === 'success' ? await fetch(data_slot6[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response6_slot6 = data_slot6[7].status === 'success' ? await fetch(data_slot6[7].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft7_6 = response6_slot6 !== null ? await response6_slot6.json() : {image: null, name: null}
-            const nftEQ_7_6_Img = nft7_6.image !== null ? nft7_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_7_6_Img = nft7_6.image !== null ? nft7_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_7_6_Name = nft7_6.name
             if (response6_slot6 !== null) {
                 nfts.push({
@@ -3517,10 +3517,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response7_slot6 = null
             try {
-                response7_slot6 = data_slot6[8].status === 'success' ? await fetch(data_slot6[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response7_slot6 = data_slot6[8].status === 'success' ? await fetch(data_slot6[8].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft8_6 = response7_slot6 !== null ? await response7_slot6.json() : {image: null, name: null}
-            const nftEQ_8_6_Img = nft8_6.image !== null ? nft8_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_8_6_Img = nft8_6.image !== null ? nft8_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_8_6_Name = nft8_6.name
             if (response7_slot6 !== null) {
                 nfts.push({
@@ -3536,10 +3536,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response8_slot6 = null
             try {
-                response8_slot6 = data_slot6[9].status === 'success' ? await fetch(data_slot6[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response8_slot6 = data_slot6[9].status === 'success' ? await fetch(data_slot6[9].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft9_6 = response8_slot6 !== null ? await response8_slot6.json() : {image: null, name: null}
-            const nftEQ_9_6_Img = nft9_6.image !== null ? nft9_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_9_6_Img = nft9_6.image !== null ? nft9_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_9_6_Name = nft9_6.name
             if (response8_slot6 !== null) {
                 nfts.push({
@@ -3555,10 +3555,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response9_slot6 = null
             try {
-                response9_slot6 = data_slot6[10].status === 'success' ? await fetch(data_slot6[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response9_slot6 = data_slot6[10].status === 'success' ? await fetch(data_slot6[10].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft10_6 = response9_slot6 !== null ? await response9_slot6.json() : {image: null, name: null}
-            const nftEQ_10_6_Img = nft10_6.image !== null ? nft10_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_10_6_Img = nft10_6.image !== null ? nft10_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_10_6_Name = nft10_6.name
             if (response9_slot6 !== null) {
                 nfts.push({
@@ -3574,10 +3574,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response10_slot6 = null
             try {
-                response10_slot6 = data_slot6[11].status === 'success' ? await fetch(data_slot6[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response10_slot6 = data_slot6[11].status === 'success' ? await fetch(data_slot6[11].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft11_6 = response10_slot6 !== null ? await response10_slot6.json() : {image: null, name: null}
-            const nftEQ_11_6_Img = nft11_6.image !== null ? nft11_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_11_6_Img = nft11_6.image !== null ? nft11_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_11_6_Name = nft11_6.name
             if (response10_slot6 !== null) {
                 nfts.push({
@@ -3593,10 +3593,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response11_slot6 = null
             try {
-                response11_slot6 = data_slot6[12].status === 'success' ? await fetch(data_slot6[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response11_slot6 = data_slot6[12].status === 'success' ? await fetch(data_slot6[12].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft12_6 = response11_slot6 !== null ? await response11_slot6.json() : {image: null, name: null}
-            const nftEQ_12_6_Img = nft12_6.image !== null ? nft12_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_12_6_Img = nft12_6.image !== null ? nft12_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_12_6_Name = nft12_6.name
             if (response11_slot6 !== null) {
                 nfts.push({
@@ -3612,10 +3612,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response12_slot6 = null
             try {
-                response12_slot6 = data_slot6[13].status === 'success' ? await fetch(data_slot6[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response12_slot6 = data_slot6[13].status === 'success' ? await fetch(data_slot6[13].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft13_6 = response12_slot6 !== null ? await response12_slot6.json() : {image: null, name: null}
-            const nftEQ_13_6_Img = nft13_6.image !== null ? nft13_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_13_6_Img = nft13_6.image !== null ? nft13_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_13_6_Name = nft13_6.name
             if (response12_slot6 !== null) {
                 nfts.push({
@@ -3631,10 +3631,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response13_slot6 = null
             try {
-                response13_slot6 = data_slot6[14].status === 'success' ? await fetch(data_slot6[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response13_slot6 = data_slot6[14].status === 'success' ? await fetch(data_slot6[14].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft14_6 = response13_slot6 !== null ? await response13_slot6.json() : {image: null, name: null}
-            const nftEQ_14_6_Img = nft14_6.image !== null ? nft14_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_14_6_Img = nft14_6.image !== null ? nft14_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_14_6_Name = nft14_6.name
             if (response13_slot6 !== null) {
                 nfts.push({
@@ -3650,10 +3650,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response14_slot6 = null
             try {
-                response14_slot6 = data_slot6[15].status === 'success' ? await fetch(data_slot6[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response14_slot6 = data_slot6[15].status === 'success' ? await fetch(data_slot6[15].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft15_6 = response14_slot6 !== null ? await response14_slot6.json() : {image: null, name: null}
-            const nftEQ_15_6_Img = nft15_6.image !== null ? nft15_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_15_6_Img = nft15_6.image !== null ? nft15_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_15_6_Name = nft15_6.name
             if (response14_slot6 !== null) {
                 nfts.push({
@@ -3669,10 +3669,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response15_slot6 = null
             try {
-                response15_slot6 = data_slot6[16].status === 'success' ? await fetch(data_slot6[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response15_slot6 = data_slot6[16].status === 'success' ? await fetch(data_slot6[16].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft16_6 = response15_slot6 !== null ? await response15_slot6.json() : {image: null, name: null}
-            const nftEQ_16_6_Img = nft16_6.image !== null ? nft16_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_16_6_Img = nft16_6.image !== null ? nft16_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_16_6_Name = nft16_6.name
             if (response15_slot6 !== null) {
                 nfts.push({
@@ -3688,10 +3688,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response16_slot6 = null
             try {
-                response16_slot6 = data_slot6[17].status === 'success' ? await fetch(data_slot6[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response16_slot6 = data_slot6[17].status === 'success' ? await fetch(data_slot6[17].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft17_6 = response16_slot6 !== null ? await response16_slot6.json() : {image: null, name: null}
-            const nftEQ_17_6_Img = nft17_6.image !== null ? nft17_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_17_6_Img = nft17_6.image !== null ? nft17_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_17_6_Name = nft17_6.name
             if (response16_slot6 !== null) {
                 nfts.push({
@@ -3707,10 +3707,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response17_slot6 = null
             try {
-                response17_slot6 = data_slot6[18].status === 'success' ? await fetch(data_slot6[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response17_slot6 = data_slot6[18].status === 'success' ? await fetch(data_slot6[18].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft18_6 = response17_slot6 !== null ? await response17_slot6.json() : {image: null, name: null}
-            const nftEQ_18_6_Img = nft18_6.image !== null ? nft18_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_18_6_Img = nft18_6.image !== null ? nft18_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_18_6_Name = nft18_6.name
             if (response17_slot6 !== null) {
                 nfts.push({
@@ -3726,10 +3726,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response18_slot6 = null
             try {
-                response18_slot6 = data_slot6[19].status === 'success' ? await fetch(data_slot6[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response18_slot6 = data_slot6[19].status === 'success' ? await fetch(data_slot6[19].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft19_6 = response18_slot6 !== null ? await response18_slot6.json() : {image: null, name: null}
-            const nftEQ_19_6_Img = nft19_6.image !== null ? nft19_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_19_6_Img = nft19_6.image !== null ? nft19_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_19_6_Name = nft19_6.name
             if (response18_slot6 !== null) {
                 nfts.push({
@@ -3745,10 +3745,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response19_slot6 = null
             try {
-                response19_slot6 = data_slot6[20].status === 'success' ? await fetch(data_slot6[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response19_slot6 = data_slot6[20].status === 'success' ? await fetch(data_slot6[20].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft20_6 = response19_slot6 !== null ? await response19_slot6.json() : {image: null, name: null}
-            const nftEQ_20_6_Img = nft20_6.image !== null ? nft20_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_20_6_Img = nft20_6.image !== null ? nft20_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_20_6_Name = nft20_6.name
             if (response19_slot6 !== null) {
                 nfts.push({
@@ -3764,10 +3764,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response20_slot6 = null
             try {
-                response20_slot6 = data_slot6[21].status === 'success' ? await fetch(data_slot6[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response20_slot6 = data_slot6[21].status === 'success' ? await fetch(data_slot6[21].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft21_6 = response20_slot6 !== null ? await response20_slot6.json() : {image: null, name: null}
-            const nftEQ_21_6_Img = nft21_6.image !== null ? nft21_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_21_6_Img = nft21_6.image !== null ? nft21_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_21_6_Name = nft21_6.name
             if (response20_slot6 !== null) {
                 nfts.push({
@@ -3783,10 +3783,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response21_slot6 = null
             try {
-                response21_slot6 = data_slot6[22].status === 'success' ? await fetch(data_slot6[22].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response21_slot6 = data_slot6[22].status === 'success' ? await fetch(data_slot6[22].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft22_6 = response21_slot6 !== null ? await response21_slot6.json() : {image: null, name: null}
-            const nftEQ_22_6_Img = nft22_6.image !== null ? nft22_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_22_6_Img = nft22_6.image !== null ? nft22_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_22_6_Name = nft22_6.name
             if (response21_slot6 !== null) {
                 nfts.push({
@@ -3802,10 +3802,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response22_slot6 = null
             try {
-                response22_slot6 = data_slot6[23].status === 'success' ? await fetch(data_slot6[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response22_slot6 = data_slot6[23].status === 'success' ? await fetch(data_slot6[23].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft23_6 = response22_slot6 !== null ? await response22_slot6.json() : {image: null, name: null}
-            const nftEQ_23_6_Img = nft23_6.image !== null ? nft23_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_23_6_Img = nft23_6.image !== null ? nft23_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_23_6_Name = nft23_6.name
             if (response22_slot6 !== null) {
                 nfts.push({
@@ -3821,10 +3821,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response23_slot6 = null
             try {
-                response23_slot6 = data_slot6[24].status === 'success' ? await fetch(data_slot6[24].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response23_slot6 = data_slot6[24].status === 'success' ? await fetch(data_slot6[24].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft24_6 = response23_slot6 !== null ? await response23_slot6.json() : {image: null, name: null}
-            const nftEQ_24_6_Img = nft24_6.image !== null ? nft24_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_24_6_Img = nft24_6.image !== null ? nft24_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_24_6_Name = nft24_6.name
             if (response23_slot6 !== null) {
                 nfts.push({
@@ -3840,10 +3840,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response24_slot6 = null
             try {
-                response24_slot6 = data_slot6[25].status === 'success' ? await fetch(data_slot6[25].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response24_slot6 = data_slot6[25].status === 'success' ? await fetch(data_slot6[25].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft25_6 = response24_slot6 !== null ? await response24_slot6.json() : {image: null, name: null}
-            const nftEQ_25_6_Img = nft25_6.image !== null ? nft25_6.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_25_6_Img = nft25_6.image !== null ? nft25_6.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_25_6_Name = nft25_6.name
             if (response24_slot6 !== null) {
                 nfts.push({
@@ -3926,10 +3926,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             ]
             let response0_slot7 = null
             try {
-                response0_slot7 = data_slot7[1].status === 'success' ? await fetch(data_slot7[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response0_slot7 = data_slot7[1].status === 'success' ? await fetch(data_slot7[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft1_7 = response0_slot7 !== null ? await response0_slot7.json() : {image: null, name: null}
-            const nftEQ_1_7_Img = nft1_7.image !== null ? nft1_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_1_7_Img = nft1_7.image !== null ? nft1_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_1_7_Name = nft1_7.name
             if (response0_slot7 !== null) {
                 nfts.push({
@@ -3945,10 +3945,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response1_slot7 = null
             try {
-                response1_slot7 = data_slot7[2].status === 'success' ? await fetch(data_slot7[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response1_slot7 = data_slot7[2].status === 'success' ? await fetch(data_slot7[2].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft2_7 = response1_slot7 !== null ? await response1_slot7.json() : {image: null, name: null}
-            const nftEQ_2_7_Img = nft2_7.image !== null ? nft2_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_2_7_Img = nft2_7.image !== null ? nft2_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_2_7_Name = nft2_7.name
             if (response1_slot7 !== null) {
                 nfts.push({
@@ -3964,10 +3964,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response2_slot7 = null
             try {
-                response2_slot7 = data_slot7[3].status === 'success' ? await fetch(data_slot7[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response2_slot7 = data_slot7[3].status === 'success' ? await fetch(data_slot7[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft3_7 = response2_slot7 !== null ? await response2_slot7.json() : {image: null, name: null}
-            const nftEQ_3_7_Img = nft3_7.image !== null ? nft3_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_3_7_Img = nft3_7.image !== null ? nft3_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_3_7_Name = nft3_7.name
             if (response2_slot7 !== null) {
                 nfts.push({
@@ -3983,10 +3983,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response3_slot7 = null
             try {
-                response3_slot7 = data_slot7[4].status === 'success' ? await fetch(data_slot7[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response3_slot7 = data_slot7[4].status === 'success' ? await fetch(data_slot7[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft4_7 = response3_slot7 !== null ? await response3_slot7.json() : {image: null, name: null}
-            const nftEQ_4_7_Img = nft4_7.image !== null ? nft4_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_4_7_Img = nft4_7.image !== null ? nft4_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_4_7_Name = nft4_7.name
             if (response3_slot7 !== null) {
                 nfts.push({
@@ -4002,10 +4002,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response4_slot7 = null
             try {
-                response4_slot7 = data_slot7[5].status === 'success' ? await fetch(data_slot7[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response4_slot7 = data_slot7[5].status === 'success' ? await fetch(data_slot7[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft5_7 = response4_slot7 !== null ? await response4_slot7.json() : {image: null, name: null}
-            const nftEQ_5_7_Img = nft5_7.image !== null ? nft5_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_5_7_Img = nft5_7.image !== null ? nft5_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_5_7_Name = nft5_7.name
             if (response4_slot7 !== null) {
                 nfts.push({
@@ -4021,10 +4021,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response5_slot7 = null
             try {
-                response5_slot7 = data_slot7[6].status === 'success' ? await fetch(data_slot7[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response5_slot7 = data_slot7[6].status === 'success' ? await fetch(data_slot7[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft6_7 = response5_slot7 !== null ? await response5_slot7.json() : {image: null, name: null}
-            const nftEQ_6_7_Img = nft6_7.image !== null ? nft6_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_6_7_Img = nft6_7.image !== null ? nft6_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_6_7_Name = nft6_7.name
             if (response5_slot7 !== null) {
                 nfts.push({
@@ -4040,10 +4040,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response6_slot7 = null
             try {
-                response6_slot7 = data_slot7[7].status === 'success' ? await fetch(data_slot7[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response6_slot7 = data_slot7[7].status === 'success' ? await fetch(data_slot7[7].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft7_7 = response6_slot7 !== null ? await response6_slot7.json() : {image: null, name: null}
-            const nftEQ_7_7_Img = nft7_7.image !== null ? nft7_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_7_7_Img = nft7_7.image !== null ? nft7_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_7_7_Name = nft7_7.name
             if (response6_slot7 !== null) {
                 nfts.push({
@@ -4059,10 +4059,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response7_slot7 = null
             try {
-                response7_slot7 = data_slot7[8].status === 'success' ? await fetch(data_slot7[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response7_slot7 = data_slot7[8].status === 'success' ? await fetch(data_slot7[8].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft8_7 = response7_slot7 !== null ? await response7_slot7.json() : {image: null, name: null}
-            const nftEQ_8_7_Img = nft8_7.image !== null ? nft8_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_8_7_Img = nft8_7.image !== null ? nft8_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_8_7_Name = nft8_7.name
             if (response7_slot7 !== null) {
                 nfts.push({
@@ -4078,10 +4078,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response8_slot7 = null
             try {
-                response8_slot7 = data_slot7[9].status === 'success' ? await fetch(data_slot7[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response8_slot7 = data_slot7[9].status === 'success' ? await fetch(data_slot7[9].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft9_7 = response8_slot7 !== null ? await response8_slot7.json() : {image: null, name: null}
-            const nftEQ_9_7_Img = nft9_7.image !== null ? nft9_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_9_7_Img = nft9_7.image !== null ? nft9_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_9_7_Name = nft9_7.name
             if (response8_slot7 !== null) {
                 nfts.push({
@@ -4097,10 +4097,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response9_slot7 = null
             try {
-                response9_slot7 = data_slot7[10].status === 'success' ? await fetch(data_slot7[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response9_slot7 = data_slot7[10].status === 'success' ? await fetch(data_slot7[10].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft10_7 = response9_slot7 !== null ? await response9_slot7.json() : {image: null, name: null}
-            const nftEQ_10_7_Img = nft10_7.image !== null ? nft10_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_10_7_Img = nft10_7.image !== null ? nft10_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_10_7_Name = nft10_7.name
             if (response9_slot7 !== null) {
                 nfts.push({
@@ -4116,10 +4116,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response10_slot7 = null
             try {
-                response10_slot7 = data_slot7[11].status === 'success' ? await fetch(data_slot7[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response10_slot7 = data_slot7[11].status === 'success' ? await fetch(data_slot7[11].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft11_7 = response10_slot7 !== null ? await response10_slot7.json() : {image: null, name: null}
-            const nftEQ_11_7_Img = nft11_7.image !== null ? nft11_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_11_7_Img = nft11_7.image !== null ? nft11_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_11_7_Name = nft11_7.name
             if (response10_slot7 !== null) {
                 nfts.push({
@@ -4135,10 +4135,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response11_slot7 = null
             try {
-                response11_slot7 = data_slot7[12].status === 'success' ? await fetch(data_slot7[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response11_slot7 = data_slot7[12].status === 'success' ? await fetch(data_slot7[12].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft12_7 = response11_slot7 !== null ? await response11_slot7.json() : {image: null, name: null}
-            const nftEQ_12_7_Img = nft12_7.image !== null ? nft12_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_12_7_Img = nft12_7.image !== null ? nft12_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_12_7_Name = nft12_7.name
             if (response11_slot7 !== null) {
                 nfts.push({
@@ -4154,10 +4154,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response12_slot7 = null
             try {
-                response12_slot7 = data_slot7[13].status === 'success' ? await fetch(data_slot7[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response12_slot7 = data_slot7[13].status === 'success' ? await fetch(data_slot7[13].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft13_7 = response12_slot7 !== null ? await response12_slot7.json() : {image: null, name: null}
-            const nftEQ_13_7_Img = nft13_7.image !== null ? nft13_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_13_7_Img = nft13_7.image !== null ? nft13_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_13_7_Name = nft13_7.name
             if (response12_slot7 !== null) {
                 nfts.push({
@@ -4173,10 +4173,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response13_slot7 = null
             try {
-                response13_slot7 = data_slot7[14].status === 'success' ? await fetch(data_slot7[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response13_slot7 = data_slot7[14].status === 'success' ? await fetch(data_slot7[14].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft14_7 = response13_slot7 !== null ? await response13_slot7.json() : {image: null, name: null}
-            const nftEQ_14_7_Img = nft14_7.image !== null ? nft14_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_14_7_Img = nft14_7.image !== null ? nft14_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_14_7_Name = nft14_7.name
             if (response13_slot7 !== null) {
                 nfts.push({
@@ -4192,10 +4192,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response14_slot7 = null
             try {
-                response14_slot7 = data_slot7[15].status === 'success' ? await fetch(data_slot7[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response14_slot7 = data_slot7[15].status === 'success' ? await fetch(data_slot7[15].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft15_7 = response14_slot7 !== null ? await response14_slot7.json() : {image: null, name: null}
-            const nftEQ_15_7_Img = nft15_7.image !== null ? nft15_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_15_7_Img = nft15_7.image !== null ? nft15_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_15_7_Name = nft15_7.name
             if (response14_slot7 !== null) {
                 nfts.push({
@@ -4211,10 +4211,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response15_slot7 = null
             try {
-                response15_slot7 = data_slot7[16].status === 'success' ? await fetch(data_slot7[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response15_slot7 = data_slot7[16].status === 'success' ? await fetch(data_slot7[16].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft16_7 = response15_slot7 !== null ? await response15_slot7.json() : {image: null, name: null}
-            const nftEQ_16_7_Img = nft16_7.image !== null ? nft16_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_16_7_Img = nft16_7.image !== null ? nft16_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_16_7_Name = nft16_7.name
             if (response15_slot7 !== null) {
                 nfts.push({
@@ -4230,10 +4230,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response16_slot7 = null
             try {
-                response16_slot7 = data_slot7[17].status === 'success' ? await fetch(data_slot7[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response16_slot7 = data_slot7[17].status === 'success' ? await fetch(data_slot7[17].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft17_7 = response16_slot7 !== null ? await response16_slot7.json() : {image: null, name: null}
-            const nftEQ_17_7_Img = nft17_7.image !== null ? nft17_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_17_7_Img = nft17_7.image !== null ? nft17_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_17_7_Name = nft17_7.name
             if (response16_slot7 !== null) {
                 nfts.push({
@@ -4249,10 +4249,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response17_slot7 = null
             try {
-                response17_slot7 = data_slot7[18].status === 'success' ? await fetch(data_slot7[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response17_slot7 = data_slot7[18].status === 'success' ? await fetch(data_slot7[18].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft18_7 = response17_slot7 !== null ? await response17_slot7.json() : {image: null, name: null}
-            const nftEQ_18_7_Img = nft18_7.image !== null ? nft18_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_18_7_Img = nft18_7.image !== null ? nft18_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_18_7_Name = nft18_7.name
             if (response17_slot7 !== null) {
                 nfts.push({
@@ -4268,10 +4268,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response18_slot7 = null
             try {
-                response18_slot7 = data_slot7[19].status === 'success' ? await fetch(data_slot7[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response18_slot7 = data_slot7[19].status === 'success' ? await fetch(data_slot7[19].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft19_7 = response18_slot7 !== null ? await response18_slot7.json() : {image: null, name: null}
-            const nftEQ_19_7_Img = nft19_7.image !== null ? nft19_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_19_7_Img = nft19_7.image !== null ? nft19_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_19_7_Name = nft19_7.name
             if (response18_slot7 !== null) {
                 nfts.push({
@@ -4287,10 +4287,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response19_slot7 = null
             try {
-                response19_slot7 = data_slot7[20].status === 'success' ? await fetch(data_slot7[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response19_slot7 = data_slot7[20].status === 'success' ? await fetch(data_slot7[20].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft20_7 = response19_slot7 !== null ? await response19_slot7.json() : {image: null, name: null}
-            const nftEQ_20_7_Img = nft20_7.image !== null ? nft20_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_20_7_Img = nft20_7.image !== null ? nft20_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_20_7_Name = nft20_7.name
             if (response19_slot7 !== null) {
                 nfts.push({
@@ -4306,10 +4306,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response20_slot7 = null
             try {
-                response20_slot7 = data_slot7[21].status === 'success' ? await fetch(data_slot7[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response20_slot7 = data_slot7[21].status === 'success' ? await fetch(data_slot7[21].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft21_7 = response20_slot7 !== null ? await response20_slot7.json() : {image: null, name: null}
-            const nftEQ_21_7_Img = nft21_7.image !== null ? nft21_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_21_7_Img = nft21_7.image !== null ? nft21_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_21_7_Name = nft21_7.name
             if (response20_slot7 !== null) {
                 nfts.push({
@@ -4325,10 +4325,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response21_slot7 = null
             try {
-                response21_slot7 = data_slot7[22].status === 'success' ? await fetch(data_slot7[22].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response21_slot7 = data_slot7[22].status === 'success' ? await fetch(data_slot7[22].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft22_7 = response21_slot7 !== null ? await response21_slot7.json() : {image: null, name: null}
-            const nftEQ_22_7_Img = nft22_7.image !== null ? nft22_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_22_7_Img = nft22_7.image !== null ? nft22_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_22_7_Name = nft22_7.name
             if (response21_slot7 !== null) {
                 nfts.push({
@@ -4344,10 +4344,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response22_slot7 = null
             try {
-                response22_slot7 = data_slot7[23].status === 'success' ? await fetch(data_slot7[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response22_slot7 = data_slot7[23].status === 'success' ? await fetch(data_slot7[23].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft23_7 = response22_slot7 !== null ? await response22_slot7.json() : {image: null, name: null}
-            const nftEQ_23_7_Img = nft23_7.image !== null ? nft23_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_23_7_Img = nft23_7.image !== null ? nft23_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_23_7_Name = nft23_7.name
             if (response22_slot7 !== null) {
                 nfts.push({
@@ -4363,10 +4363,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response23_slot7 = null
             try {
-                response23_slot7 = data_slot7[24].status === 'success' ? await fetch(data_slot7[24].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response23_slot7 = data_slot7[24].status === 'success' ? await fetch(data_slot7[24].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft24_7 = response23_slot7 !== null ? await response23_slot7.json() : {image: null, name: null}
-            const nftEQ_24_7_Img = nft24_7.image !== null ? nft24_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_24_7_Img = nft24_7.image !== null ? nft24_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_24_7_Name = nft24_7.name
             if (response23_slot7 !== null) {
                 nfts.push({
@@ -4382,10 +4382,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response24_slot7 = null
             try {
-                response24_slot7 = data_slot7[25].status === 'success' ? await fetch(data_slot7[25].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response24_slot7 = data_slot7[25].status === 'success' ? await fetch(data_slot7[25].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft25_7 = response24_slot7 !== null ? await response24_slot7.json() : {image: null, name: null}
-            const nftEQ_25_7_Img = nft25_7.image !== null ? nft25_7.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_25_7_Img = nft25_7.image !== null ? nft25_7.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_25_7_Name = nft25_7.name
             if (response24_slot7 !== null) {
                 nfts.push({
@@ -4468,10 +4468,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             ]
             let response0_slot8 = null
             try {
-                response0_slot8 = data_slot8[1].status === 'success' ? await fetch(data_slot8[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response0_slot8 = data_slot8[1].status === 'success' ? await fetch(data_slot8[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft1_8 = response0_slot8 !== null ? await response0_slot8.json() : {image: null, name: null}
-            const nftEQ_1_8_Img = nft1_8.image !== null ? nft1_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_1_8_Img = nft1_8.image !== null ? nft1_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_1_8_Name = nft1_8.name
             if (response0_slot8 !== null) {
                 nfts.push({
@@ -4487,10 +4487,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response1_slot8 = null
             try {
-                response1_slot8 = data_slot8[2].status === 'success' ? await fetch(data_slot8[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response1_slot8 = data_slot8[2].status === 'success' ? await fetch(data_slot8[2].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft2_8 = response1_slot8 !== null ? await response1_slot8.json() : {image: null, name: null}
-            const nftEQ_2_8_Img = nft2_8.image !== null ? nft2_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_2_8_Img = nft2_8.image !== null ? nft2_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_2_8_Name = nft2_8.name
             if (response1_slot8 !== null) {
                 nfts.push({
@@ -4506,10 +4506,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response2_slot8 = null
             try {
-                response2_slot8 = data_slot8[3].status === 'success' ? await fetch(data_slot8[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response2_slot8 = data_slot8[3].status === 'success' ? await fetch(data_slot8[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft3_8 = response2_slot8 !== null ? await response2_slot8.json() : {image: null, name: null}
-            const nftEQ_3_8_Img = nft3_8.image !== null ? nft3_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_3_8_Img = nft3_8.image !== null ? nft3_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_3_8_Name = nft3_8.name
             if (response2_slot8 !== null) {
                 nfts.push({
@@ -4525,10 +4525,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response3_slot8 = null
             try {
-                response3_slot8 = data_slot8[4].status === 'success' ? await fetch(data_slot8[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response3_slot8 = data_slot8[4].status === 'success' ? await fetch(data_slot8[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft4_8 = response3_slot8 !== null ? await response3_slot8.json() : {image: null, name: null}
-            const nftEQ_4_8_Img = nft4_8.image !== null ? nft4_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_4_8_Img = nft4_8.image !== null ? nft4_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_4_8_Name = nft4_8.name
             if (response3_slot8 !== null) {
                 nfts.push({
@@ -4544,10 +4544,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response4_slot8 = null
             try {
-                response4_slot8 = data_slot8[5].status === 'success' ? await fetch(data_slot8[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response4_slot8 = data_slot8[5].status === 'success' ? await fetch(data_slot8[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft5_8 = response4_slot8 !== null ? await response4_slot8.json() : {image: null, name: null}
-            const nftEQ_5_8_Img = nft5_8.image !== null ? nft5_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_5_8_Img = nft5_8.image !== null ? nft5_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_5_8_Name = nft5_8.name
             if (response4_slot8 !== null) {
                 nfts.push({
@@ -4563,10 +4563,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response5_slot8 = null
             try {
-                response5_slot8 = data_slot8[6].status === 'success' ? await fetch(data_slot8[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response5_slot8 = data_slot8[6].status === 'success' ? await fetch(data_slot8[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft6_8 = response5_slot8 !== null ? await response5_slot8.json() : {image: null, name: null}
-            const nftEQ_6_8_Img = nft6_8.image !== null ? nft6_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_6_8_Img = nft6_8.image !== null ? nft6_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_6_8_Name = nft6_8.name
             if (response5_slot8 !== null) {
                 nfts.push({
@@ -4582,10 +4582,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response6_slot8 = null
             try {
-                response6_slot8 = data_slot8[7].status === 'success' ? await fetch(data_slot8[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response6_slot8 = data_slot8[7].status === 'success' ? await fetch(data_slot8[7].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft7_8 = response6_slot8 !== null ? await response6_slot8.json() : {image: null, name: null}
-            const nftEQ_7_8_Img = nft7_8.image !== null ? nft7_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_7_8_Img = nft7_8.image !== null ? nft7_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_7_8_Name = nft7_8.name
             if (response6_slot8 !== null) {
                 nfts.push({
@@ -4601,10 +4601,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response7_slot8 = null
             try {
-                response7_slot8 = data_slot8[8].status === 'success' ? await fetch(data_slot8[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response7_slot8 = data_slot8[8].status === 'success' ? await fetch(data_slot8[8].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft8_8 = response7_slot8 !== null ? await response7_slot8.json() : {image: null, name: null}
-            const nftEQ_8_8_Img = nft8_8.image !== null ? nft8_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_8_8_Img = nft8_8.image !== null ? nft8_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_8_8_Name = nft8_8.name
             if (response7_slot8 !== null) {
                 nfts.push({
@@ -4620,10 +4620,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response8_slot8 = null
             try {
-                response8_slot8 = data_slot8[9].status === 'success' ? await fetch(data_slot8[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response8_slot8 = data_slot8[9].status === 'success' ? await fetch(data_slot8[9].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft9_8 = response8_slot8 !== null ? await response8_slot8.json() : {image: null, name: null}
-            const nftEQ_9_8_Img = nft9_8.image !== null ? nft9_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_9_8_Img = nft9_8.image !== null ? nft9_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_9_8_Name = nft9_8.name
             if (response8_slot8 !== null) {
                 nfts.push({
@@ -4639,10 +4639,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response9_slot8 = null
             try {
-                response9_slot8 = data_slot8[10].status === 'success' ? await fetch(data_slot8[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response9_slot8 = data_slot8[10].status === 'success' ? await fetch(data_slot8[10].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft10_8 = response9_slot8 !== null ? await response9_slot8.json() : {image: null, name: null}
-            const nftEQ_10_8_Img = nft10_8.image !== null ? nft10_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_10_8_Img = nft10_8.image !== null ? nft10_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_10_8_Name = nft10_8.name
             if (response9_slot8 !== null) {
                 nfts.push({
@@ -4658,10 +4658,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response10_slot8 = null
             try {
-                response10_slot8 = data_slot8[11].status === 'success' ? await fetch(data_slot8[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response10_slot8 = data_slot8[11].status === 'success' ? await fetch(data_slot8[11].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft11_8 = response10_slot8 !== null ? await response10_slot8.json() : {image: null, name: null}
-            const nftEQ_11_8_Img = nft11_8.image !== null ? nft11_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_11_8_Img = nft11_8.image !== null ? nft11_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_11_8_Name = nft11_8.name
             if (response10_slot8 !== null) {
                 nfts.push({
@@ -4677,10 +4677,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response11_slot8 = null
             try {
-                response11_slot8 = data_slot8[12].status === 'success' ? await fetch(data_slot8[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response11_slot8 = data_slot8[12].status === 'success' ? await fetch(data_slot8[12].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft12_8 = response11_slot8 !== null ? await response11_slot8.json() : {image: null, name: null}
-            const nftEQ_12_8_Img = nft12_8.image !== null ? nft12_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_12_8_Img = nft12_8.image !== null ? nft12_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_12_8_Name = nft12_8.name
             if (response11_slot8 !== null) {
                 nfts.push({
@@ -4696,10 +4696,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response12_slot8 = null
             try {
-                response12_slot8 = data_slot8[13].status === 'success' ? await fetch(data_slot8[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response12_slot8 = data_slot8[13].status === 'success' ? await fetch(data_slot8[13].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft13_8 = response12_slot8 !== null ? await response12_slot8.json() : {image: null, name: null}
-            const nftEQ_13_8_Img = nft13_8.image !== null ? nft13_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_13_8_Img = nft13_8.image !== null ? nft13_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_13_8_Name = nft13_8.name
             if (response12_slot8 !== null) {
                 nfts.push({
@@ -4715,10 +4715,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response13_slot8 = null
             try {
-                response13_slot8 = data_slot8[14].status === 'success' ? await fetch(data_slot8[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response13_slot8 = data_slot8[14].status === 'success' ? await fetch(data_slot8[14].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft14_8 = response13_slot8 !== null ? await response13_slot8.json() : {image: null, name: null}
-            const nftEQ_14_8_Img = nft14_8.image !== null ? nft14_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_14_8_Img = nft14_8.image !== null ? nft14_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_14_8_Name = nft14_8.name
             if (response13_slot8 !== null) {
                 nfts.push({
@@ -4734,10 +4734,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response14_slot8 = null
             try {
-                response14_slot8 = data_slot8[15].status === 'success' ? await fetch(data_slot8[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response14_slot8 = data_slot8[15].status === 'success' ? await fetch(data_slot8[15].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft15_8 = response14_slot8 !== null ? await response14_slot8.json() : {image: null, name: null}
-            const nftEQ_15_8_Img = nft15_8.image !== null ? nft15_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_15_8_Img = nft15_8.image !== null ? nft15_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_15_8_Name = nft15_8.name
             if (response14_slot8 !== null) {
                 nfts.push({
@@ -4753,10 +4753,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response15_slot8 = null
             try {
-                response15_slot8 = data_slot8[16].status === 'success' ? await fetch(data_slot8[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response15_slot8 = data_slot8[16].status === 'success' ? await fetch(data_slot8[16].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft16_8 = response15_slot8 !== null ? await response15_slot8.json() : {image: null, name: null}
-            const nftEQ_16_8_Img = nft16_8.image !== null ? nft16_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_16_8_Img = nft16_8.image !== null ? nft16_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_16_8_Name = nft16_8.name
             if (response15_slot8 !== null) {
                 nfts.push({
@@ -4772,10 +4772,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response16_slot8 = null
             try {
-                response16_slot8 = data_slot8[17].status === 'success' ? await fetch(data_slot8[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response16_slot8 = data_slot8[17].status === 'success' ? await fetch(data_slot8[17].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft17_8 = response16_slot8 !== null ? await response16_slot8.json() : {image: null, name: null}
-            const nftEQ_17_8_Img = nft17_8.image !== null ? nft17_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_17_8_Img = nft17_8.image !== null ? nft17_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_17_8_Name = nft17_8.name
             if (response16_slot8 !== null) {
                 nfts.push({
@@ -4791,10 +4791,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response17_slot8 = null
             try {
-                response17_slot8 = data_slot8[18].status === 'success' ? await fetch(data_slot8[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response17_slot8 = data_slot8[18].status === 'success' ? await fetch(data_slot8[18].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft18_8 = response17_slot8 !== null ? await response17_slot8.json() : {image: null, name: null}
-            const nftEQ_18_8_Img = nft18_8.image !== null ? nft18_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_18_8_Img = nft18_8.image !== null ? nft18_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_18_8_Name = nft18_8.name
             if (response17_slot8 !== null) {
                 nfts.push({
@@ -4810,10 +4810,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response18_slot8 = null
             try {
-                response18_slot8 = data_slot8[19].status === 'success' ? await fetch(data_slot8[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response18_slot8 = data_slot8[19].status === 'success' ? await fetch(data_slot8[19].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft19_8 = response18_slot8 !== null ? await response18_slot8.json() : {image: null, name: null}
-            const nftEQ_19_8_Img = nft19_8.image !== null ? nft19_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_19_8_Img = nft19_8.image !== null ? nft19_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_19_8_Name = nft19_8.name
             if (response18_slot8 !== null) {
                 nfts.push({
@@ -4829,10 +4829,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response19_slot8 = null
             try {
-                response19_slot8 = data_slot8[20].status === 'success' ? await fetch(data_slot8[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response19_slot8 = data_slot8[20].status === 'success' ? await fetch(data_slot8[20].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft20_8 = response19_slot8 !== null ? await response19_slot8.json() : {image: null, name: null}
-            const nftEQ_20_8_Img = nft20_8.image !== null ? nft20_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_20_8_Img = nft20_8.image !== null ? nft20_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_20_8_Name = nft20_8.name
             if (response19_slot8 !== null) {
                 nfts.push({
@@ -4848,10 +4848,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response20_slot8 = null
             try {
-                response20_slot8 = data_slot8[21].status === 'success' ? await fetch(data_slot8[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response20_slot8 = data_slot8[21].status === 'success' ? await fetch(data_slot8[21].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft21_8 = response20_slot8 !== null ? await response20_slot8.json() : {image: null, name: null}
-            const nftEQ_21_8_Img = nft21_8.image !== null ? nft21_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_21_8_Img = nft21_8.image !== null ? nft21_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_21_8_Name = nft21_8.name
             if (response20_slot8 !== null) {
                 nfts.push({
@@ -4867,10 +4867,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response21_slot8 = null
             try {
-                response21_slot8 = data_slot8[22].status === 'success' ? await fetch(data_slot8[22].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response21_slot8 = data_slot8[22].status === 'success' ? await fetch(data_slot8[22].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft22_8 = response21_slot8 !== null ? await response21_slot8.json() : {image: null, name: null}
-            const nftEQ_22_8_Img = nft22_8.image !== null ? nft22_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_22_8_Img = nft22_8.image !== null ? nft22_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_22_8_Name = nft22_8.name
             if (response21_slot8 !== null) {
                 nfts.push({
@@ -4886,10 +4886,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response22_slot8 = null
             try {
-                response22_slot8 = data_slot8[23].status === 'success' ? await fetch(data_slot8[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response22_slot8 = data_slot8[23].status === 'success' ? await fetch(data_slot8[23].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft23_8 = response22_slot8 !== null ? await response22_slot8.json() : {image: null, name: null}
-            const nftEQ_23_8_Img = nft23_8.image !== null ? nft23_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_23_8_Img = nft23_8.image !== null ? nft23_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_23_8_Name = nft23_8.name
             if (response22_slot8 !== null) {
                 nfts.push({
@@ -4905,10 +4905,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response23_slot8 = null
             try {
-                response23_slot8 = data_slot8[24].status === 'success' ? await fetch(data_slot8[24].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response23_slot8 = data_slot8[24].status === 'success' ? await fetch(data_slot8[24].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft24_8 = response23_slot8 !== null ? await response23_slot8.json() : {image: null, name: null}
-            const nftEQ_24_8_Img = nft24_8.image !== null ? nft24_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_24_8_Img = nft24_8.image !== null ? nft24_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_24_8_Name = nft24_8.name
             if (response23_slot8 !== null) {
                 nfts.push({
@@ -4924,10 +4924,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response24_slot8 = null
             try {
-                response24_slot8 = data_slot8[25].status === 'success' ? await fetch(data_slot8[25].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response24_slot8 = data_slot8[25].status === 'success' ? await fetch(data_slot8[25].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft25_8 = response24_slot8 !== null ? await response24_slot8.json() : {image: null, name: null}
-            const nftEQ_25_8_Img = nft25_8.image !== null ? nft25_8.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_25_8_Img = nft25_8.image !== null ? nft25_8.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_25_8_Name = nft25_8.name
             if (response24_slot8 !== null) {
                 nfts.push({
@@ -5010,10 +5010,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             ]
             let response0_slot9 = null
             try {
-                response0_slot9 = data_slot9[1].status === 'success' ? await fetch(data_slot9[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response0_slot9 = data_slot9[1].status === 'success' ? await fetch(data_slot9[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft1_9 = response0_slot9 !== null ? await response0_slot9.json() : {image: null, name: null}
-            const nftEQ_1_9_Img = nft1_9.image !== null ? nft1_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_1_9_Img = nft1_9.image !== null ? nft1_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_1_9_Name = nft1_9.name
             if (response0_slot9 !== null) {
                 nfts.push({
@@ -5029,10 +5029,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response1_slot9 = null
             try {
-                response1_slot9 = data_slot9[2].status === 'success' ? await fetch(data_slot9[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response1_slot9 = data_slot9[2].status === 'success' ? await fetch(data_slot9[2].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft2_9 = response1_slot9 !== null ? await response1_slot9.json() : {image: null, name: null}
-            const nftEQ_2_9_Img = nft2_9.image !== null ? nft2_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_2_9_Img = nft2_9.image !== null ? nft2_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_2_9_Name = nft2_9.name
             if (response1_slot9 !== null) {
                 nfts.push({
@@ -5048,10 +5048,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response2_slot9 = null
             try {
-                response2_slot9 = data_slot9[3].status === 'success' ? await fetch(data_slot9[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response2_slot9 = data_slot9[3].status === 'success' ? await fetch(data_slot9[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft3_9 = response2_slot9 !== null ? await response2_slot9.json() : {image: null, name: null}
-            const nftEQ_3_9_Img = nft3_9.image !== null ? nft3_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_3_9_Img = nft3_9.image !== null ? nft3_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_3_9_Name = nft3_9.name
             if (response2_slot9 !== null) {
                 nfts.push({
@@ -5067,10 +5067,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response3_slot9 = null
             try {
-                response3_slot9 = data_slot9[4].status === 'success' ? await fetch(data_slot9[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response3_slot9 = data_slot9[4].status === 'success' ? await fetch(data_slot9[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft4_9 = response3_slot9 !== null ? await response3_slot9.json() : {image: null, name: null}
-            const nftEQ_4_9_Img = nft4_9.image !== null ? nft4_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_4_9_Img = nft4_9.image !== null ? nft4_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_4_9_Name = nft4_9.name
             if (response3_slot9 !== null) {
                 nfts.push({
@@ -5086,10 +5086,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response4_slot9 = null
             try {
-                response4_slot9 = data_slot9[5].status === 'success' ? await fetch(data_slot9[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response4_slot9 = data_slot9[5].status === 'success' ? await fetch(data_slot9[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft5_9 = response4_slot9 !== null ? await response4_slot9.json() : {image: null, name: null}
-            const nftEQ_5_9_Img = nft5_9.image !== null ? nft5_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_5_9_Img = nft5_9.image !== null ? nft5_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_5_9_Name = nft5_9.name
             if (response4_slot9 !== null) {
                 nfts.push({
@@ -5105,10 +5105,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response5_slot9 = null
             try {
-                response5_slot9 = data_slot9[6].status === 'success' ? await fetch(data_slot9[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response5_slot9 = data_slot9[6].status === 'success' ? await fetch(data_slot9[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft6_9 = response5_slot9 !== null ? await response5_slot9.json() : {image: null, name: null}
-            const nftEQ_6_9_Img = nft6_9.image !== null ? nft6_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_6_9_Img = nft6_9.image !== null ? nft6_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_6_9_Name = nft6_9.name
             if (response5_slot9 !== null) {
                 nfts.push({
@@ -5124,10 +5124,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response6_slot9 = null
             try {
-                response6_slot9 = data_slot9[7].status === 'success' ? await fetch(data_slot9[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response6_slot9 = data_slot9[7].status === 'success' ? await fetch(data_slot9[7].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft7_9 = response6_slot9 !== null ? await response6_slot9.json() : {image: null, name: null}
-            const nftEQ_7_9_Img = nft7_9.image !== null ? nft7_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_7_9_Img = nft7_9.image !== null ? nft7_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_7_9_Name = nft7_9.name
             if (response6_slot9 !== null) {
                 nfts.push({
@@ -5143,10 +5143,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response7_slot9 = null
             try {
-                response7_slot9 = data_slot9[8].status === 'success' ? await fetch(data_slot9[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response7_slot9 = data_slot9[8].status === 'success' ? await fetch(data_slot9[8].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft8_9 = response7_slot9 !== null ? await response7_slot9.json() : {image: null, name: null}
-            const nftEQ_8_9_Img = nft8_9.image !== null ? nft8_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_8_9_Img = nft8_9.image !== null ? nft8_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_8_9_Name = nft8_9.name
             if (response7_slot9 !== null) {
                 nfts.push({
@@ -5162,10 +5162,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response8_slot9 = null
             try {
-                response8_slot9 = data_slot9[9].status === 'success' ? await fetch(data_slot9[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response8_slot9 = data_slot9[9].status === 'success' ? await fetch(data_slot9[9].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft9_9 = response8_slot9 !== null ? await response8_slot9.json() : {image: null, name: null}
-            const nftEQ_9_9_Img = nft9_9.image !== null ? nft9_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_9_9_Img = nft9_9.image !== null ? nft9_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_9_9_Name = nft9_9.name
             if (response8_slot9 !== null) {
                 nfts.push({
@@ -5181,10 +5181,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response9_slot9 = null
             try {
-                response9_slot9 = data_slot9[10].status === 'success' ? await fetch(data_slot9[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response9_slot9 = data_slot9[10].status === 'success' ? await fetch(data_slot9[10].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft10_9 = response9_slot9 !== null ? await response9_slot9.json() : {image: null, name: null}
-            const nftEQ_10_9_Img = nft10_9.image !== null ? nft10_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_10_9_Img = nft10_9.image !== null ? nft10_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_10_9_Name = nft10_9.name
             if (response9_slot9 !== null) {
                 nfts.push({
@@ -5200,10 +5200,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response10_slot9 = null
             try {
-                response10_slot9 = data_slot9[11].status === 'success' ? await fetch(data_slot9[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response10_slot9 = data_slot9[11].status === 'success' ? await fetch(data_slot9[11].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft11_9 = response10_slot9 !== null ? await response10_slot9.json() : {image: null, name: null}
-            const nftEQ_11_9_Img = nft11_9.image !== null ? nft11_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_11_9_Img = nft11_9.image !== null ? nft11_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_11_9_Name = nft11_9.name
             if (response10_slot9 !== null) {
                 nfts.push({
@@ -5219,10 +5219,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response11_slot9 = null
             try {
-                response11_slot9 = data_slot9[12].status === 'success' ? await fetch(data_slot9[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response11_slot9 = data_slot9[12].status === 'success' ? await fetch(data_slot9[12].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft12_9 = response11_slot9 !== null ? await response11_slot9.json() : {image: null, name: null}
-            const nftEQ_12_9_Img = nft12_9.image !== null ? nft12_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_12_9_Img = nft12_9.image !== null ? nft12_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_12_9_Name = nft12_9.name
             if (response11_slot9 !== null) {
                 nfts.push({
@@ -5238,10 +5238,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response12_slot9 = null
             try {
-                response12_slot9 = data_slot9[13].status === 'success' ? await fetch(data_slot9[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response12_slot9 = data_slot9[13].status === 'success' ? await fetch(data_slot9[13].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft13_9 = response12_slot9 !== null ? await response12_slot9.json() : {image: null, name: null}
-            const nftEQ_13_9_Img = nft13_9.image !== null ? nft13_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_13_9_Img = nft13_9.image !== null ? nft13_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_13_9_Name = nft13_9.name
             if (response12_slot9 !== null) {
                 nfts.push({
@@ -5257,10 +5257,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response13_slot9 = null
             try {
-                response13_slot9 = data_slot9[14].status === 'success' ? await fetch(data_slot9[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response13_slot9 = data_slot9[14].status === 'success' ? await fetch(data_slot9[14].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft14_9 = response13_slot9 !== null ? await response13_slot9.json() : {image: null, name: null}
-            const nftEQ_14_9_Img = nft14_9.image !== null ? nft14_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_14_9_Img = nft14_9.image !== null ? nft14_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_14_9_Name = nft14_9.name
             if (response13_slot9 !== null) {
                 nfts.push({
@@ -5276,10 +5276,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response14_slot9 = null
             try {
-                response14_slot9 = data_slot9[15].status === 'success' ? await fetch(data_slot9[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response14_slot9 = data_slot9[15].status === 'success' ? await fetch(data_slot9[15].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft15_9 = response14_slot9 !== null ? await response14_slot9.json() : {image: null, name: null}
-            const nftEQ_15_9_Img = nft15_9.image !== null ? nft15_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_15_9_Img = nft15_9.image !== null ? nft15_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_15_9_Name = nft15_9.name
             if (response14_slot9 !== null) {
                 nfts.push({
@@ -5295,10 +5295,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response15_slot9 = null
             try {
-                response15_slot9 = data_slot9[16].status === 'success' ? await fetch(data_slot9[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response15_slot9 = data_slot9[16].status === 'success' ? await fetch(data_slot9[16].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft16_9 = response15_slot9 !== null ? await response15_slot9.json() : {image: null, name: null}
-            const nftEQ_16_9_Img = nft16_9.image !== null ? nft16_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_16_9_Img = nft16_9.image !== null ? nft16_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_16_9_Name = nft16_9.name
             if (response15_slot9 !== null) {
                 nfts.push({
@@ -5314,10 +5314,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response16_slot9 = null
             try {
-                response16_slot9 = data_slot9[17].status === 'success' ? await fetch(data_slot9[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response16_slot9 = data_slot9[17].status === 'success' ? await fetch(data_slot9[17].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft17_9 = response16_slot9 !== null ? await response16_slot9.json() : {image: null, name: null}
-            const nftEQ_17_9_Img = nft17_9.image !== null ? nft17_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_17_9_Img = nft17_9.image !== null ? nft17_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_17_9_Name = nft17_9.name
             if (response16_slot9 !== null) {
                 nfts.push({
@@ -5333,10 +5333,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response17_slot9 = null
             try {
-                response17_slot9 = data_slot9[18].status === 'success' ? await fetch(data_slot9[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response17_slot9 = data_slot9[18].status === 'success' ? await fetch(data_slot9[18].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft18_9 = response17_slot9 !== null ? await response17_slot9.json() : {image: null, name: null}
-            const nftEQ_18_9_Img = nft18_9.image !== null ? nft18_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_18_9_Img = nft18_9.image !== null ? nft18_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_18_9_Name = nft18_9.name
             if (response17_slot9 !== null) {
                 nfts.push({
@@ -5352,10 +5352,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response18_slot9 = null
             try {
-                response18_slot9 = data_slot9[19].status === 'success' ? await fetch(data_slot9[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response18_slot9 = data_slot9[19].status === 'success' ? await fetch(data_slot9[19].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft19_9 = response18_slot9 !== null ? await response18_slot9.json() : {image: null, name: null}
-            const nftEQ_19_9_Img = nft19_9.image !== null ? nft19_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_19_9_Img = nft19_9.image !== null ? nft19_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_19_9_Name = nft19_9.name
             if (response18_slot9 !== null) {
                 nfts.push({
@@ -5371,10 +5371,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response19_slot9 = null
             try {
-                response19_slot9 = data_slot9[20].status === 'success' ? await fetch(data_slot9[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response19_slot9 = data_slot9[20].status === 'success' ? await fetch(data_slot9[20].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft20_9 = response19_slot9 !== null ? await response19_slot9.json() : {image: null, name: null}
-            const nftEQ_20_9_Img = nft20_9.image !== null ? nft20_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_20_9_Img = nft20_9.image !== null ? nft20_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_20_9_Name = nft20_9.name
             if (response19_slot9 !== null) {
                 nfts.push({
@@ -5390,10 +5390,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response20_slot9 = null
             try {
-                response20_slot9 = data_slot9[21].status === 'success' ? await fetch(data_slot9[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response20_slot9 = data_slot9[21].status === 'success' ? await fetch(data_slot9[21].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft21_9 = response20_slot9 !== null ? await response20_slot9.json() : {image: null, name: null}
-            const nftEQ_21_9_Img = nft21_9.image !== null ? nft21_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_21_9_Img = nft21_9.image !== null ? nft21_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_21_9_Name = nft21_9.name
             if (response20_slot9 !== null) {
                 nfts.push({
@@ -5409,10 +5409,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response21_slot9 = null
             try {
-                response21_slot9 = data_slot9[22].status === 'success' ? await fetch(data_slot9[22].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response21_slot9 = data_slot9[22].status === 'success' ? await fetch(data_slot9[22].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft22_9 = response21_slot9 !== null ? await response21_slot9.json() : {image: null, name: null}
-            const nftEQ_22_9_Img = nft22_9.image !== null ? nft22_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_22_9_Img = nft22_9.image !== null ? nft22_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_22_9_Name = nft22_9.name
             if (response21_slot9 !== null) {
                 nfts.push({
@@ -5428,10 +5428,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response22_slot9 = null
             try {
-                response22_slot9 = data_slot9[23].status === 'success' ? await fetch(data_slot9[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response22_slot9 = data_slot9[23].status === 'success' ? await fetch(data_slot9[23].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft23_9 = response22_slot9 !== null ? await response22_slot9.json() : {image: null, name: null}
-            const nftEQ_23_9_Img = nft23_9.image !== null ? nft23_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_23_9_Img = nft23_9.image !== null ? nft23_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_23_9_Name = nft23_9.name
             if (response22_slot9 !== null) {
                 nfts.push({
@@ -5447,10 +5447,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response23_slot9 = null
             try {
-                response23_slot9 = data_slot9[24].status === 'success' ? await fetch(data_slot9[24].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response23_slot9 = data_slot9[24].status === 'success' ? await fetch(data_slot9[24].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft24_9 = response23_slot9 !== null ? await response23_slot9.json() : {image: null, name: null}
-            const nftEQ_24_9_Img = nft24_9.image !== null ? nft24_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_24_9_Img = nft24_9.image !== null ? nft24_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_24_9_Name = nft24_9.name
             if (response23_slot9 !== null) {
                 nfts.push({
@@ -5466,10 +5466,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response24_slot9 = null
             try {
-                response24_slot9 = data_slot9[25].status === 'success' ? await fetch(data_slot9[25].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response24_slot9 = data_slot9[25].status === 'success' ? await fetch(data_slot9[25].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft25_9 = response24_slot9 !== null ? await response24_slot9.json() : {image: null, name: null}
-            const nftEQ_25_9_Img = nft25_9.image !== null ? nft25_9.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_25_9_Img = nft25_9.image !== null ? nft25_9.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_25_9_Name = nft25_9.name
             if (response24_slot9 !== null) {
                 nfts.push({
@@ -5552,10 +5552,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             ]
             let response0_slot10 = null
             try {
-                response0_slot10 = data_slot10[1].status === 'success' ? await fetch(data_slot10[1].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response0_slot10 = data_slot10[1].status === 'success' ? await fetch(data_slot10[1].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft1_10 = response0_slot10 !== null ? await response0_slot10.json() : {image: null, name: null}
-            const nftEQ_1_10_Img = nft1_10.image !== null ? nft1_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_1_10_Img = nft1_10.image !== null ? nft1_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_1_10_Name = nft1_10.name
             if (response0_slot10 !== null) {
                 nfts.push({
@@ -5571,10 +5571,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response1_slot10 = null
             try {
-                response1_slot10 = data_slot10[2].status === 'success' ? await fetch(data_slot10[2].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response1_slot10 = data_slot10[2].status === 'success' ? await fetch(data_slot10[2].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft2_10 = response1_slot10 !== null ? await response1_slot10.json() : {image: null, name: null}
-            const nftEQ_2_10_Img = nft2_10.image !== null ? nft2_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_2_10_Img = nft2_10.image !== null ? nft2_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_2_10_Name = nft2_10.name
             if (response1_slot10 !== null) {
                 nfts.push({
@@ -5590,10 +5590,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response2_slot10 = null
             try {
-                response2_slot10 = data_slot10[3].status === 'success' ? await fetch(data_slot10[3].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response2_slot10 = data_slot10[3].status === 'success' ? await fetch(data_slot10[3].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft3_10 = response2_slot10 !== null ? await response2_slot10.json() : {image: null, name: null}
-            const nftEQ_3_10_Img = nft3_10.image !== null ? nft3_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_3_10_Img = nft3_10.image !== null ? nft3_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_3_10_Name = nft3_10.name
             if (response2_slot10 !== null) {
                 nfts.push({
@@ -5609,10 +5609,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response3_slot10 = null
             try {
-                response3_slot10 = data_slot10[4].status === 'success' ? await fetch(data_slot10[4].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response3_slot10 = data_slot10[4].status === 'success' ? await fetch(data_slot10[4].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft4_10 = response3_slot10 !== null ? await response3_slot10.json() : {image: null, name: null}
-            const nftEQ_4_10_Img = nft4_10.image !== null ? nft4_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_4_10_Img = nft4_10.image !== null ? nft4_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_4_10_Name = nft4_10.name
             if (response3_slot10 !== null) {
                 nfts.push({
@@ -5628,10 +5628,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response4_slot10 = null
             try {
-                response4_slot10 = data_slot10[5].status === 'success' ? await fetch(data_slot10[5].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response4_slot10 = data_slot10[5].status === 'success' ? await fetch(data_slot10[5].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft5_10 = response4_slot10 !== null ? await response4_slot10.json() : {image: null, name: null}
-            const nftEQ_5_10_Img = nft5_10.image !== null ? nft5_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_5_10_Img = nft5_10.image !== null ? nft5_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_5_10_Name = nft5_10.name
             if (response4_slot10 !== null) {
                 nfts.push({
@@ -5647,10 +5647,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response5_slot10 = null
             try {
-                response5_slot10 = data_slot10[6].status === 'success' ? await fetch(data_slot10[6].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response5_slot10 = data_slot10[6].status === 'success' ? await fetch(data_slot10[6].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft6_10 = response5_slot10 !== null ? await response5_slot10.json() : {image: null, name: null}
-            const nftEQ_6_10_Img = nft6_10.image !== null ? nft6_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_6_10_Img = nft6_10.image !== null ? nft6_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_6_10_Name = nft6_10.name
             if (response5_slot10 !== null) {
                 nfts.push({
@@ -5666,10 +5666,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response6_slot10 = null
             try {
-                response6_slot10 = data_slot10[7].status === 'success' ? await fetch(data_slot10[7].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response6_slot10 = data_slot10[7].status === 'success' ? await fetch(data_slot10[7].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft7_10 = response6_slot10 !== null ? await response6_slot10.json() : {image: null, name: null}
-            const nftEQ_7_10_Img = nft7_10.image !== null ? nft7_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_7_10_Img = nft7_10.image !== null ? nft7_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_7_10_Name = nft7_10.name
             if (response6_slot10 !== null) {
                 nfts.push({
@@ -5685,10 +5685,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response7_slot10 = null
             try {
-                response7_slot10 = data_slot10[8].status === 'success' ? await fetch(data_slot10[8].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response7_slot10 = data_slot10[8].status === 'success' ? await fetch(data_slot10[8].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft8_10 = response7_slot10 !== null ? await response7_slot10.json() : {image: null, name: null}
-            const nftEQ_8_10_Img = nft8_10.image !== null ? nft8_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_8_10_Img = nft8_10.image !== null ? nft8_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_8_10_Name = nft8_10.name
             if (response7_slot10 !== null) {
                 nfts.push({
@@ -5704,10 +5704,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response8_slot10 = null
             try {
-                response8_slot10 = data_slot10[9].status === 'success' ? await fetch(data_slot10[9].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response8_slot10 = data_slot10[9].status === 'success' ? await fetch(data_slot10[9].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft9_10 = response8_slot10 !== null ? await response8_slot10.json() : {image: null, name: null}
-            const nftEQ_9_10_Img = nft9_10.image !== null ? nft9_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_9_10_Img = nft9_10.image !== null ? nft9_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_9_10_Name = nft9_10.name
             if (response8_slot10 !== null) {
                 nfts.push({
@@ -5723,10 +5723,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response9_slot10 = null
             try {
-                response9_slot10 = data_slot10[10].status === 'success' ? await fetch(data_slot10[10].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response9_slot10 = data_slot10[10].status === 'success' ? await fetch(data_slot10[10].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft10_10 = response9_slot10 !== null ? await response9_slot10.json() : {image: null, name: null}
-            const nftEQ_10_10_Img = nft10_10.image !== null ? nft10_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_10_10_Img = nft10_10.image !== null ? nft10_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_10_10_Name = nft10_10.name
             if (response9_slot10 !== null) {
                 nfts.push({
@@ -5742,10 +5742,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response10_slot10 = null
             try {
-                response10_slot10 = data_slot10[11].status === 'success' ? await fetch(data_slot10[11].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response10_slot10 = data_slot10[11].status === 'success' ? await fetch(data_slot10[11].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft11_10 = response10_slot10 !== null ? await response10_slot10.json() : {image: null, name: null}
-            const nftEQ_11_10_Img = nft11_10.image !== null ? nft11_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_11_10_Img = nft11_10.image !== null ? nft11_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_11_10_Name = nft11_10.name
             if (response10_slot10 !== null) {
                 nfts.push({
@@ -5761,10 +5761,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response11_slot10 = null
             try {
-                response11_slot10 = data_slot10[12].status === 'success' ? await fetch(data_slot10[12].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response11_slot10 = data_slot10[12].status === 'success' ? await fetch(data_slot10[12].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft12_10 = response11_slot10 !== null ? await response11_slot10.json() : {image: null, name: null}
-            const nftEQ_12_10_Img = nft12_10.image !== null ? nft12_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_12_10_Img = nft12_10.image !== null ? nft12_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_12_10_Name = nft12_9.name
             if (response11_slot10 !== null) {
                 nfts.push({
@@ -5780,10 +5780,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response12_slot10 = null
             try {
-                response12_slot10 = data_slot10[13].status === 'success' ? await fetch(data_slot10[13].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response12_slot10 = data_slot10[13].status === 'success' ? await fetch(data_slot10[13].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft13_10 = response12_slot10 !== null ? await response12_slot10.json() : {image: null, name: null}
-            const nftEQ_13_10_Img = nft13_10.image !== null ? nft13_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_13_10_Img = nft13_10.image !== null ? nft13_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_13_10_Name = nft13_10.name
             if (response12_slot10 !== null) {
                 nfts.push({
@@ -5799,10 +5799,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response13_slot10 = null
             try {
-                response13_slot10 = data_slot10[14].status === 'success' ? await fetch(data_slot10[14].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response13_slot10 = data_slot10[14].status === 'success' ? await fetch(data_slot10[14].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft14_10 = response13_slot10 !== null ? await response13_slot10.json() : {image: null, name: null}
-            const nftEQ_14_10_Img = nft14_10.image !== null ? nft14_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_14_10_Img = nft14_10.image !== null ? nft14_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_14_10_Name = nft14_10.name
             if (response13_slot10 !== null) {
                 nfts.push({
@@ -5818,10 +5818,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response14_slot10 = null
             try {
-                response14_slot10 = data_slot10[15].status === 'success' ? await fetch(data_slot10[15].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response14_slot10 = data_slot10[15].status === 'success' ? await fetch(data_slot10[15].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft15_10 = response14_slot10 !== null ? await response14_slot10.json() : {image: null, name: null}
-            const nftEQ_15_10_Img = nft15_10.image !== null ? nft15_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_15_10_Img = nft15_10.image !== null ? nft15_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_15_10_Name = nft15_10.name
             if (response14_slot10 !== null) {
                 nfts.push({
@@ -5837,10 +5837,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response15_slot10 = null
             try {
-                response15_slot10 = data_slot10[16].status === 'success' ? await fetch(data_slot10[16].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response15_slot10 = data_slot10[16].status === 'success' ? await fetch(data_slot10[16].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft16_10 = response15_slot10 !== null ? await response15_slot10.json() : {image: null, name: null}
-            const nftEQ_16_10_Img = nft16_10.image !== null ? nft16_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_16_10_Img = nft16_10.image !== null ? nft16_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_16_10_Name = nft16_10.name
             if (response15_slot10 !== null) {
                 nfts.push({
@@ -5856,10 +5856,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response16_slot10 = null
             try {
-                response16_slot10 = data_slot10[17].status === 'success' ? await fetch(data_slot10[17].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response16_slot10 = data_slot10[17].status === 'success' ? await fetch(data_slot10[17].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft17_10 = response16_slot10 !== null ? await response16_slot10.json() : {image: null, name: null}
-            const nftEQ_17_10_Img = nft17_10.image !== null ? nft17_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_17_10_Img = nft17_10.image !== null ? nft17_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_17_10_Name = nft17_10.name
             if (response16_slot10 !== null) {
                 nfts.push({
@@ -5875,10 +5875,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response17_slot10 = null
             try {
-                response17_slot10 = data_slot10[18].status === 'success' ? await fetch(data_slot10[18].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response17_slot10 = data_slot10[18].status === 'success' ? await fetch(data_slot10[18].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft18_10 = response17_slot10 !== null ? await response17_slot10.json() : {image: null, name: null}
-            const nftEQ_18_10_Img = nft18_10.image !== null ? nft18_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_18_10_Img = nft18_10.image !== null ? nft18_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_18_10_Name = nft18_10.name
             if (response17_slot10 !== null) {
                 nfts.push({
@@ -5894,10 +5894,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response18_slot10 = null
             try {
-                response18_slot10 = data_slot10[19].status === 'success' ? await fetch(data_slot10[19].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response18_slot10 = data_slot10[19].status === 'success' ? await fetch(data_slot10[19].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft19_10 = response18_slot10 !== null ? await response18_slot10.json() : {image: null, name: null}
-            const nftEQ_19_10_Img = nft19_10.image !== null ? nft19_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_19_10_Img = nft19_10.image !== null ? nft19_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_19_10_Name = nft19_10.name
             if (response18_slot10 !== null) {
                 nfts.push({
@@ -5913,10 +5913,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response19_slot10 = null
             try {
-                response19_slot10 = data_slot10[20].status === 'success' ? await fetch(data_slot10[20].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response19_slot10 = data_slot10[20].status === 'success' ? await fetch(data_slot10[20].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft20_10 = response19_slot10 !== null ? await response19_slot10.json() : {image: null, name: null}
-            const nftEQ_20_10_Img = nft20_10.image !== null ? nft20_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_20_10_Img = nft20_10.image !== null ? nft20_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_20_10_Name = nft20_10.name
             if (response19_slot10 !== null) {
                 nfts.push({
@@ -5932,10 +5932,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response20_slot10 = null
             try {
-                response20_slot10 = data_slot10[21].status === 'success' ? await fetch(data_slot10[21].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response20_slot10 = data_slot10[21].status === 'success' ? await fetch(data_slot10[21].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft21_10 = response20_slot10 !== null ? await response20_slot10.json() : {image: null, name: null}
-            const nftEQ_21_10_Img = nft21_10.image !== null ? nft21_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_21_10_Img = nft21_10.image !== null ? nft21_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_21_10_Name = nft21_10.name
             if (response20_slot10 !== null) {
                 nfts.push({
@@ -5951,10 +5951,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response21_slot10 = null
             try {
-                response21_slot10 = data_slot10[22].status === 'success' ? await fetch(data_slot10[22].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response21_slot10 = data_slot10[22].status === 'success' ? await fetch(data_slot10[22].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft22_10 = response21_slot10 !== null ? await response21_slot10.json() : {image: null, name: null}
-            const nftEQ_22_10_Img = nft22_10.image !== null ? nft22_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_22_10_Img = nft22_10.image !== null ? nft22_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_22_10_Name = nft22_10.name
             if (response21_slot10 !== null) {
                 nfts.push({
@@ -5970,10 +5970,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response22_slot10 = null
             try {
-                response22_slot10 = data_slot10[23].status === 'success' ? await fetch(data_slot10[23].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response22_slot10 = data_slot10[23].status === 'success' ? await fetch(data_slot10[23].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft23_10 = response22_slot10 !== null ? await response22_slot10.json() : {image: null, name: null}
-            const nftEQ_23_10_Img = nft23_10.image !== null ? nft23_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_23_10_Img = nft23_10.image !== null ? nft23_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_23_10_Name = nft23_10.name
             if (response22_slot10 !== null) {
                 nfts.push({
@@ -5989,10 +5989,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response23_slot10 = null
             try {
-                response23_slot10 = data_slot10[24].status === 'success' ? await fetch(data_slot10[24].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response23_slot10 = data_slot10[24].status === 'success' ? await fetch(data_slot10[24].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft24_10 = response23_slot10 !== null ? await response23_slot10.json() : {image: null, name: null}
-            const nftEQ_24_10_Img = nft24_10.image !== null ? nft24_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_24_10_Img = nft24_10.image !== null ? nft24_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_24_10_Name = nft24_10.name
             if (response23_slot10 !== null) {
                 nfts.push({
@@ -6008,10 +6008,10 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
             }
             let response24_slot10 = null
             try {
-                response24_slot10 = data_slot10[25].status === 'success' ? await fetch(data_slot10[25].result.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/")) : null
+                response24_slot10 = data_slot10[25].status === 'success' ? await fetch(data_slot10[25].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
             } catch {}
             const nft25_10 = response24_slot10 !== null ? await response24_slot10.json() : {image: null, name: null}
-            const nftEQ_25_10_Img = nft25_10.image !== null ? nft25_10.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/") : null
+            const nftEQ_25_10_Img = nft25_10.image !== null ? nft25_10.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
             const nftEQ_25_10_Name = nft25_10.name
             if (response24_slot10 !== null) {
                 nfts.push({
@@ -6069,7 +6069,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                 const nftipfs = data3[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
                 } catch {}
                 nfts.push({
@@ -6077,7 +6077,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                     Col: 1,
                     Id: yournftwallet[i].Id,
                     Name: nft.name,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: Number(String(yournftwallet[i].Id).slice(-7)),
@@ -6865,7 +6865,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                     <div className="pixel" style={{fontSize: "75px", width: "fit-content"}}>The Endless Tower</div>
                 </div>
                 <div className="SubfieldBanner">
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" width="150" alt="$GEM" />
+                    <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" width="150" alt="$GEM" />
                 </div>
             </div>
             
@@ -6934,14 +6934,14 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE BALANCE
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot1 !== 0 && timeToRunoutSlot1 !== null  ? "#ff007a" : "#5f6476"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot1).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
@@ -6953,7 +6953,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                             <div style={{display: "flex", flexDirection: "row"}}>
                                                 {gasselected === "ENGY" &&
                                                     <>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
                                                         <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                                     </>
                                                 }
@@ -7184,14 +7184,14 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE BALANCE
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot2 !== 0 && timeToRunoutSlot2 !== null  ? "#ff007a" : "#5f6476"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot2).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
@@ -7203,7 +7203,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                             <div style={{display: "flex", flexDirection: "row"}}>
                                                 {gasselected === "ENGY" &&
                                                     <>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
                                                         <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                                     </>
                                                 }
@@ -7434,14 +7434,14 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE BALANCE
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot3 !== 0 && timeToRunoutSlot3 !== null  ? "#ff007a" : "#5f6476"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot3).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
@@ -7453,7 +7453,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                             <div style={{display: "flex", flexDirection: "row"}}>
                                                 {gasselected === "ENGY" &&
                                                     <>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
                                                         <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                                     </>
                                                 }
@@ -7684,14 +7684,14 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE BALANCE
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot4 !== 0 && timeToRunoutSlot4 !== null  ? "#ff007a" : "#5f6476"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot4).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
@@ -7703,7 +7703,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                             <div style={{display: "flex", flexDirection: "row"}}>
                                                 {gasselected === "ENGY" &&
                                                     <>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
                                                         <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                                     </>
                                                 }
@@ -7934,14 +7934,14 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE BALANCE
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot5 !== 0 && timeToRunoutSlot5 !== null  ? "#ff007a" : "#5f6476"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot5).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
@@ -7953,7 +7953,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                             <div style={{display: "flex", flexDirection: "row"}}>
                                                 {gasselected === "ENGY" &&
                                                     <>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
                                                         <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                                     </>
                                                 }
@@ -8184,14 +8184,14 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE BALANCE
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot6 !== 0 && timeToRunoutSlot6 !== null  ? "#ff007a" : "#5f6476"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot6).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
@@ -8203,7 +8203,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                             <div style={{display: "flex", flexDirection: "row"}}>
                                                 {gasselected === "ENGY" &&
                                                     <>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
                                                         <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                                     </>
                                                 }
@@ -8434,14 +8434,14 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE BALANCE
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot7 !== 0 && timeToRunoutSlot7 !== null  ? "#ff007a" : "#5f6476"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot7).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
@@ -8453,7 +8453,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                             <div style={{display: "flex", flexDirection: "row"}}>
                                                 {gasselected === "ENGY" &&
                                                     <>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
                                                         <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                                     </>
                                                 }
@@ -8684,14 +8684,14 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE BALANCE
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot8 !== 0 && timeToRunoutSlot8 !== null  ? "#ff007a" : "#5f6476"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot8).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
@@ -8703,7 +8703,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                             <div style={{display: "flex", flexDirection: "row"}}>
                                                 {gasselected === "ENGY" &&
                                                     <>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
                                                         <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                                     </>
                                                 }
@@ -8934,14 +8934,14 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE BALANCE
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot9 !== 0 && timeToRunoutSlot9 !== null  ? "#ff007a" : "#5f6476"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot9).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
@@ -8953,7 +8953,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                             <div style={{display: "flex", flexDirection: "row"}}>
                                                 {gasselected === "ENGY" &&
                                                     <>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
                                                         <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                                     </>
                                                 }
@@ -9184,14 +9184,14 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE BALANCE
                                             <div style={{display: "flex", flexDirection: "row"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
                                         <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                             GEMSTONE PENDING
                                             <div style={{display: "flex", flexDirection: "row", color: timeToRunoutSlot10 !== 0 && timeToRunoutSlot10 !== null  ? "#ff007a" : "#5f6476"}}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmYLecZgsc6hgV931h3VDhvvXKeMjturKRKyGyTNDxX9JV" height="20" alt="$GEM"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(gemPendingSlot10).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                             </div>
                                         </div>
@@ -9203,7 +9203,7 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
                                             <div style={{display: "flex", flexDirection: "row"}}>
                                                 {gasselected === "ENGY" &&
                                                     <>
-                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
+                                                        <img src="https://gateway.commudao.xyz/ipfs/QmYyCnpA39K7F7iu9BR9YdPJTfXfzzFVhQuu4RT1y7XffB" height="20" alt="$ENGY"/>
                                                         <div style={{marginLeft: "5px"}}>{Number(engyBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                                     </>
                                                 }

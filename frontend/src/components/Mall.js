@@ -1119,7 +1119,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                 <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
                                     <div style={{height: "30px", padding: "0 5px", lineHeight: "32px"}} className="bold">WRAPPED</div>
                                     <div style={{width: "fit-content", height: "30px", margin: 0, border: "none", fontSize: "12px"}} className="items bold">
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="20" alt="$WJBC"/>
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="20" alt="$WJBC"/>
                                     </div>
                                 </div>
                                 <div style={{margin: "10px 0", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
@@ -1143,7 +1143,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                     <div className="wrapper">
                         <div className="bold" style={{width: "500px", height: "700px", padding: "50px", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", fontSize: "40px", letterSpacing: "3px"}}>
                             <video autoPlay loop width="400">
-                                <source src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiawnfpq4e6nxowydbmchi3kx6aq3d7wj76yx35dvz7hbbd3ij67pa" type="video/mp4" />
+                                <source src="https://gateway.commudao.xyz/ipfs/bafybeiawnfpq4e6nxowydbmchi3kx6aq3d7wj76yx35dvz7hbbd3ij67pa" type="video/mp4" />
                             </video>
                             <div className="button" style={{width: "50%", background: "gray"}} onClick={() => setIsSpecialModal(false)}>CLOSE</div>
                         </div>
@@ -1177,7 +1177,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq"
                                     width="20"
                                     alt="$WJBC"
                                     style={{cursor: "crosshair"}}
@@ -1190,7 +1190,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: wjbcToken,
                                                     symbol: 'WJBC',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq',
                                                 },
                                             },
                                         })
@@ -1200,7 +1200,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u"
                                     width="20"
                                     alt="$CMJ"
                                     style={{cursor: "crosshair"}}
@@ -1213,7 +1213,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: cmjToken,
                                                     symbol: 'CMJ',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u',
                                                 },
                                             },
                                         })
@@ -1223,7 +1223,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi"
                                     width="20"
                                     alt="$JUSDT"
                                     style={{cursor: "crosshair"}}
@@ -1236,7 +1236,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: jusdtToken,
                                                     symbol: 'JUSDT',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi',
                                                 },
                                             },
                                         })
@@ -1246,7 +1246,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img 
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm"
                                     width="20"
                                     alt="$JTAO"
                                     style={{cursor: "crosshair"}}
@@ -1259,7 +1259,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: taomeme,
                                                     symbol: 'JTAO',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm',
                                                 },
                                             },
                                         })
@@ -1273,7 +1273,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4"
                                     width="20"
                                     alt="$WOOD"
                                     style={{cursor: "crosshair"}}
@@ -1286,7 +1286,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: woodToken,
                                                     symbol: 'WOOD',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4',
                                                 },
                                             },
                                         })
@@ -1296,7 +1296,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq"
                                     width="20"
                                     alt="$BBQ"
                                     style={{cursor: "crosshair"}}
@@ -1309,7 +1309,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: bbqToken,
                                                     symbol: 'BBQ',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq',
                                                 },
                                             },
                                         })
@@ -1319,7 +1319,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu"
                                     width="20"
                                     alt="$PZA"
                                     style={{cursor: "crosshair"}}
@@ -1332,7 +1332,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: pzaLab,
                                                     symbol: 'PZA',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreifq5hc6oprfye7ha3q5lhly545rx6c4idua7v6mrpz5nqxcrefluu',
                                                 },
                                             },
                                         })
@@ -1342,7 +1342,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq"
                                     width="20"
                                     alt="$CU"
                                     style={{cursor: "crosshair"}}
@@ -1355,7 +1355,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: dunCopper,
                                                     symbol: 'CU',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq',
                                                 },
                                             },
                                         })
@@ -1365,7 +1365,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde"
                                     width="20"
                                     alt="$SIL"
                                     style={{cursor: "crosshair"}}
@@ -1378,7 +1378,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: silToken,
                                                     symbol: 'SIL',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde',
                                                 },
                                             },
                                         })
@@ -1388,7 +1388,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm"
                                     width="20"
                                     alt="$GOLD"
                                     style={{cursor: "crosshair"}}
@@ -1401,7 +1401,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: goldToken,
                                                     symbol: 'GOLD',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm',
                                                 },
                                             },
                                         })
@@ -1414,7 +1414,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa"
                                     width="20"
                                     alt="$PLAT"
                                     style={{cursor: "crosshair"}}
@@ -1427,7 +1427,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: platToken,
                                                     symbol: 'PLAT',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa',
                                                 },
                                             },
                                         })
@@ -1437,7 +1437,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy"
                                     width="20"
                                     alt="$JASP"
                                     style={{cursor: "crosshair"}}
@@ -1450,7 +1450,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: dunJasper,
                                                     symbol: 'JASP',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy',
                                                 },
                                             },
                                         })
@@ -1460,7 +1460,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw"
+                                    src="https://gateway.commudao.xyz/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw"
                                     width="20"
                                     alt="$PLUTO"
                                     style={{cursor: "crosshair"}}
@@ -1473,7 +1473,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: platToken,
                                                     symbol: 'PLUTO',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw',
                                                 },
                                             },
                                         })
@@ -1483,7 +1483,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC"
+                                    src="https://gateway.commudao.xyz/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC"
                                     width="20"
                                     alt="$F.BTC"
                                     style={{cursor: "crosshair"}}
@@ -1496,7 +1496,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: fbtcToken,
                                                     symbol: 'F.BTC',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC',
                                                 },
                                             },
                                         })
@@ -1506,7 +1506,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh"
+                                    src="https://gateway.commudao.xyz/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh"
                                     width="20"
                                     alt="$X4"
                                     style={{cursor: "crosshair"}}
@@ -1519,7 +1519,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: x4Token,
                                                     symbol: 'X4',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh',
                                                 },
                                             },
                                         })
@@ -1529,7 +1529,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
+                                    src="https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
                                     width="20"
                                     alt="$INF.POW"
                                     style={{cursor: "crosshair"}}
@@ -1542,7 +1542,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: infpowToken,
                                                     symbol: 'INF-POW-JBC',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
                                                 },
                                             },
                                         })
@@ -1554,7 +1554,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0 10px 20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e"
                                     width="20"
                                     alt="$OS"
                                     style={{cursor: "crosshair"}}
@@ -1567,7 +1567,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: osToken,
                                                     symbol: 'OS',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e',
                                                 },
                                             },
                                         })
@@ -1581,7 +1581,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i"
                                     width="20"
                                     alt="$CTUNA"
                                     style={{cursor: "crosshair"}}
@@ -1594,7 +1594,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: ctunaLab,
                                                     symbol: 'CTUNA',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i',
                                                 },
                                             },
                                         })
@@ -1604,7 +1604,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4"
                                     width="20"
                                     alt="$SX31"
                                     style={{cursor: "crosshair"}}
@@ -1617,7 +1617,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: sx31Lab,
                                                     symbol: 'SX31',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreicldm4vbw2ywy7dyrsjbwd5mk6hno3pxpwggdvxjlocbneg5webx4',
                                                 },
                                             },
                                         })
@@ -1627,7 +1627,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi?img-width=50&img-height=50"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi?img-width=50&img-height=50"
                                     width="20"
                                     alt="$SWAR"
                                     style={{cursor: "crosshair"}}
@@ -1640,7 +1640,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: swarLab,
                                                     symbol: 'SWAR',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreib4zlmwnydgolgzkfldaz2zsxh6pg3k4wemiigura7gbnj7i36ygi',
                                                 },
                                             },
                                         })
@@ -1650,7 +1650,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m?img-width=50&img-height=50"
+                                    src="https://gateway.commudao.xyz/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m?img-width=50&img-height=50"
                                     width="20"
                                     alt="$ANGB"
                                     style={{cursor: "crosshair"}}
@@ -1663,7 +1663,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: dunAngb,
                                                     symbol: 'ANGB',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafkreiev2kbirflwhlqbwd6zh6trd7gx62tijviekwewd6zaogm4vzrh7m',
                                                 },
                                             },
                                         })
@@ -1673,7 +1673,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50"
+                                    src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50"
                                     width="20"
                                     alt="$II"
                                     style={{cursor: "crosshair"}}
@@ -1686,7 +1686,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: iiLab,
                                                     symbol: 'TDM - II',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q',
                                                 },
                                             },
                                         })
@@ -1696,7 +1696,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50"
+                                    src="https://gateway.commudao.xyz/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50"
                                     width="20"
                                     alt="$EE"
                                     style={{cursor: "crosshair"}}
@@ -1709,7 +1709,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: dunEE,
                                                     symbol: 'TDM-EE',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm',
                                                 },
                                             },
                                         })
@@ -1722,7 +1722,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0px 10px 20px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4?img-width=50&img-height=50"
+                                    src="https://gateway.commudao.xyz/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4?img-width=50&img-height=50"
                                     width="20"
                                     alt="$GEAR"
                                     style={{cursor: "crosshair"}}
@@ -1735,7 +1735,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: gearToken,
                                                     symbol: 'GEAR',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4',
                                                 },
                                             },
                                         })
@@ -1746,7 +1746,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "0px 10px 20px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
                                 <img
-                                    src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi?img-width=50&img-height=50"
+                                    src="https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi?img-width=50&img-height=50"
                                     width="20"
                                     alt="$DOIJIB"
                                     style={{cursor: "crosshair"}}
@@ -1759,7 +1759,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                     address: doijibToken,
                                                     symbol: 'DOIJIB',
                                                     decimals: 18,
-                                                    image: 'https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi',
+                                                    image: 'https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi',
                                                 },
                                             },
                                         })
@@ -1787,7 +1787,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                                     <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRW1q89QaD29zvC8h5bg4yZBcmsqj4aG8FPAe1RddvM6Y?img-width=400&img-height=400" width="230" alt="NPC_Gamy" />
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmRW1q89QaD29zvC8h5bg4yZBcmsqj4aG8FPAe1RddvM6Y?img-width=400&img-height=400" width="230" alt="NPC_Gamy" />
                                     </div>
                                     <div style={{maxHeight: "110px"}}>
                                         <div style={{fontSize: "20px", width: "380px"}} className="pixel">GAMY, THE PRESALE AGENT</div>
@@ -1800,8 +1800,8 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                                 </select>
                                                 <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                                     &nbsp;
-                                                    {tokenselected === "DOIJIB" && <>10,000.00&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/> &nbsp;=&nbsp; <div className="emp">1</div></>}
-                                                    &nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                                    {tokenselected === "DOIJIB" && <>10,000.00&nbsp;<img src="https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" width="22" alt="$DOIJIB"/> &nbsp;=&nbsp; <div className="emp">1</div></>}
+                                                    &nbsp;<img src="https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -1824,7 +1824,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                         ></input>
                                         {tokenselected === "DOIJIB" && 
                                             <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => setInputBuy(wjbcBalance)}>
-                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                                <img src="https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
                                                 <div style={{marginLeft: "5px"}}>{Number(wjbcBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                             </div>
                                         }
@@ -1858,7 +1858,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Songkran Splasher</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifz2fgy43d4qigdwp35r3izgyvwip2rugswdvkkcj4xl5cytxs5ti?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreifz2fgy43d4qigdwp35r3izgyvwip2rugswdvkkcj4xl5cytxs5ti?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", height: "200px", fontSize: "15px", marginTop: "10px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -1886,7 +1886,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>15</div>
                                         </div>
                                     </div>
@@ -1910,7 +1910,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Golden Dragon Armor </div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibgzv6zcq4yuj2n44dw6o7ydwllepwry5nulqzdx4s2c7poabxwxa?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreibgzv6zcq4yuj2n44dw6o7ydwllepwry5nulqzdx4s2c7poabxwxa?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -1938,7 +1938,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>15</div>
                                         </div>
                                     </div>
@@ -1962,7 +1962,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Adventure's Muffler</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigeuohgaw2jvgromogakix34kit2ab6pclreddmbzubp22nkqmpma?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreigeuohgaw2jvgromogakix34kit2ab6pclreddmbzubp22nkqmpma?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -1990,7 +1990,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>15</div>
                                         </div>
                                     </div>
@@ -2016,7 +2016,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Golden Dragon Boots</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif4fk7tqca2vdovvtwufxyx2snoolbwofvdvjoqi35y6mvaahhkve?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreif4fk7tqca2vdovvtwufxyx2snoolbwofvdvjoqi35y6mvaahhkve?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2044,7 +2044,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>15</div>
                                         </div>
                                     </div>
@@ -2068,7 +2068,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Golden Dragon Accessory</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiem7ixjm7xomcrhfkla73ye7ajah6d7xi7hw6a6seozclccaewipy?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreiem7ixjm7xomcrhfkla73ye7ajah6d7xi7hw6a6seozclccaewipy?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2096,7 +2096,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>15</div>
                                         </div>
                                     </div>
@@ -2120,7 +2120,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Guardian's Helm</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigr33les3na44zns7nznxltedxluhor5klfsduzolpwinqzsrcc6q?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreigr33les3na44zns7nznxltedxluhor5klfsduzolpwinqzsrcc6q?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2148,7 +2148,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>15</div>
                                         </div>
                                     </div>
@@ -2176,7 +2176,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div className='light' style={{marginLeft: "10px"}}>CMDAO-LABS SUPPORT</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">SAPIENS #04</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreia4kwbvcyynfxu77fpguwoogfqqe45kktalxylnad4wivnhqjtt2m?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2192,7 +2192,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="$JUSDT"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="$JUSDT"/>
                                             <div style={{marginLeft: "7.5px"}}>20</div>
                                         </div>
                                     </div>
@@ -2218,7 +2218,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div className='light' style={{marginLeft: "10px"}}>CMDAO-LABS SUPPORT</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Chō-Senjiryakketsu Vol.3</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifgwtom3va2wm4wdur4eupbnoxjfvxr3765ebkpisron73ydmq3sa?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreifgwtom3va2wm4wdur4eupbnoxjfvxr3765ebkpisron73ydmq3sa?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2234,7 +2234,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="$JUSDT"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="$JUSDT"/>
                                             <div style={{marginLeft: "7.5px"}}>2</div>
                                         </div>
                                     </div>
@@ -2261,12 +2261,12 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Angel Plus - Adventurer Card D +0 Vol.4</div>
                                 <video muted loop width="175" style={{alignSelf: "flex-start", marginTop: "20px"}}>
-                                    <source src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeia2c5qcwshxdqw6gvvezehsnn5r7u5d2oxkduwzydbzxxu3hfzzze" type="video/mp4" />
+                                    <source src="https://gateway.commudao.xyz/ipfs/bafybeia2c5qcwshxdqw6gvvezehsnn5r7u5d2oxkduwzydbzxxu3hfzzze" type="video/mp4" />
                                 </video>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
@@ -2283,7 +2283,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>10</div>
                                         </div>
                                     </div>
@@ -2306,11 +2306,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Hero (Character)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiafeumwvilddqiakxaabht5bcu2khkeyjr275jtbwyryd6upbh6bm?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafybeiafeumwvilddqiakxaabht5bcu2khkeyjr275jtbwyryd6upbh6bm?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2326,7 +2326,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>10</div>
                                         </div>
                                     </div>
@@ -2349,11 +2349,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Claymore (Sword)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigcv7pn4azsrjkzccyeyq6nkg6sntwnh3czrfth6ubwudo6imuhyu" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreigcv7pn4azsrjkzccyeyq6nkg6sntwnh3czrfth6ubwudo6imuhyu" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2369,7 +2369,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>10</div>
                                         </div>
                                     </div>
@@ -2394,11 +2394,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Shield (Shield)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreihdt2twkixgg27erb5rlawm37v4owvq2j5pq2753tmf55hhgjr7ia" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreihdt2twkixgg27erb5rlawm37v4owvq2j5pq2753tmf55hhgjr7ia" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2414,7 +2414,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>10</div>
                                         </div>
                                     </div>
@@ -2437,11 +2437,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Full Plate (Armor)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiehp5d2ccxovqmb7qtriafsnku7xlifr345zlsrmane3fvwoskhle" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreiehp5d2ccxovqmb7qtriafsnku7xlifr345zlsrmane3fvwoskhle" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2457,7 +2457,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>10</div>
                                         </div>
                                     </div>
@@ -2480,11 +2480,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Helm (Helmet)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiepodq6oo7xlme6tjnjus3cberubwu4sfgdvbnou7tdtbrj4hzm2q" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreiepodq6oo7xlme6tjnjus3cberubwu4sfgdvbnou7tdtbrj4hzm2q" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2500,7 +2500,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>10</div>
                                         </div>
                                     </div>
@@ -2525,11 +2525,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Crusader Boots (Boots)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreialnqwhhuikji7fov3tc73dv6qqb74okxkiihuogk3dekzotg3vni" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreialnqwhhuikji7fov3tc73dv6qqb74okxkiihuogk3dekzotg3vni" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2545,7 +2545,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>10</div>
                                         </div>
                                     </div>
@@ -2568,11 +2568,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Imperium Ring (Ring)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiagnfkgkzdazovsfu33d2v22eyotizgy4zg66okkmwwt7unswungi" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreiagnfkgkzdazovsfu33d2v22eyotizgy4zg66okkmwwt7unswungi" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2588,7 +2588,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>10</div>
                                         </div>
                                     </div>
@@ -2611,12 +2611,12 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -20, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibha4mwuymx4o5mp4n3hou3fryvka4wul53sawa4xtqvkrn32i7g4?img-width=50&img-height=50" width="30px" alt="AngelPlus" />
                                     <div className='light' style={{marginLeft: "10px"}}>Angel Plus</div>
                                 </div>
                                 <div style={{position: "absolute", top: 40, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">Gashapon</div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">Spirit of Rina (Fairy)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeien4iziizhs2xkaxsruphh5um7zvkuons2nj2bo775kckok2vyhey?img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafybeien4iziizhs2xkaxsruphh5um7zvkuons2nj2bo775kckok2vyhey?img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", height: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2644,7 +2644,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>20</div>
                                         </div>
                                     </div>
@@ -2669,11 +2669,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - Naruta (Main Char)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih6lcghzq7kygz2uxpksueczcj36xptexylmyum5zwwx265h2222u?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafybeih6lcghzq7kygz2uxpksueczcj36xptexylmyum5zwwx265h2222u?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2689,7 +2689,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>20</div>
                                         </div>
                                     </div>
@@ -2712,11 +2712,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - TD-88 Blaster (Weapon)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiglw3a5wuszv7zkmfw55e2bcaoxinsjwjinckccg4lxg2juoeegmu?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafybeiglw3a5wuszv7zkmfw55e2bcaoxinsjwjinckccg4lxg2juoeegmu?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2732,7 +2732,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>20</div>
                                         </div>
                                     </div>
@@ -2755,11 +2755,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - X8 Haptic Bootsuit (Cloth)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih5zbbv5tjdug5qbnzbmusaqwgy3z4ecs3uii7t6g7q7ynhnr3d5q?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafybeih5zbbv5tjdug5qbnzbmusaqwgy3z4ecs3uii7t6g7q7ynhnr3d5q?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2775,7 +2775,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>20</div>
                                         </div>
                                     </div>
@@ -2800,11 +2800,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - Cosmo Crest (Hat)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeia3bm6ju5fhokrjnovbgbm3mw422jwxa72bnoo4ihgf2upsfrbmlm?img-width=400&img-height=400" height="150" alt='Can not load metadata.'/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafybeia3bm6ju5fhokrjnovbgbm3mw422jwxa72bnoo4ihgf2upsfrbmlm?img-width=400&img-height=400" height="150" alt='Can not load metadata.'/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2820,7 +2820,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>20</div>
                                         </div>
                                     </div>
@@ -2843,11 +2843,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - Prism Propel Wings (Back)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfyxqmdjjz3xispk7vil22asr4wnzffxbuh47dy42qofy4zxnfb4?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafybeicfyxqmdjjz3xispk7vil22asr4wnzffxbuh47dy42qofy4zxnfb4?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2863,7 +2863,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>20</div>
                                         </div>
                                     </div>
@@ -2886,11 +2886,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - Phoenix Phalanx Ring (Accessory)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifmkrjl457rtfkve2ktn3ynx4yev5oqygpsvppeo4csm26fqormha?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafybeifmkrjl457rtfkve2ktn3ynx4yev5oqygpsvppeo4csm26fqormha?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2906,7 +2906,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>20</div>
                                         </div>
                                     </div>
@@ -2931,11 +2931,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">NARUTA NFT - Galactic Walkers (Shoes)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicmgffdl5eb4op32ck2vvri5f4ruxzxk6nkmu6eqcxabu27glmvmu?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafybeicmgffdl5eb4op32ck2vvri5f4ruxzxk6nkmu6eqcxabu27glmvmu?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2951,7 +2951,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="jusdt"/>
                                             <div style={{marginLeft: "7.5px"}}>20</div>
                                         </div>
                                     </div>
@@ -2978,7 +2978,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div className='light' style={{marginLeft: "10px"}}>DOIJIB</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}} className="pixel">DOIJIB NFT - BB</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmZPNdmmD86o1VmQK4tpW952FH53LZbyngYrziCW4vwYXb?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/QmZPNdmmD86o1VmQK4tpW952FH53LZbyngYrziCW4vwYXb?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -2994,7 +2994,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="$JUSDT"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreif3vllg6mwswlqypqgtsh7i7wwap7zgrkvtlhdjoc63zjm7uv6vvi" height="18" alt="$JUSDT"/>
                                             <div style={{marginLeft: "7.5px"}}>10</div>
                                         </div>
                                     </div>
@@ -3022,7 +3022,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">KYC Shop</div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Multiverse Traveller Vol.4</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreigc4ivgjqocp7dh7bh3upl4tidhpe2w76muckmzyvulevbkoxdnce" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreigc4ivgjqocp7dh7bh3upl4tidhpe2w76muckmzyvulevbkoxdnce" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -3038,7 +3038,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                             <div style={{marginLeft: "7.5px"}}>40,000</div>
                                         </div>
                                     </div>
@@ -3062,7 +3062,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: 20, right: 30, padding: "10px 20px", background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", color: "#fff", fontSize: "14px", letterSpacing: 1, border: "1px solid #4637a9", boxShadow: "3px 3px 0 #0d0a1f"}} className="pixel">KYC Shop</div>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Novice Sword Vol.3</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiha7rbdsni6hvok2rs546zeowge2mwbfh3y75awlqv2u74zorltse" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreiha7rbdsni6hvok2rs546zeowge2mwbfh3y75awlqv2u74zorltse" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -3078,7 +3078,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                             <div style={{marginLeft: "7.5px"}}>40,000</div>
                                         </div>
                                     </div>
@@ -3101,7 +3101,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">TSW Valentine Ring</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiacm6fn5rjctuxyiirlmr7awp6ckesgffamingak4pif3kp6vgbri" height="160" alt="valentineringpic"/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreiacm6fn5rjctuxyiirlmr7awp6ckesgffamingak4pif3kp6vgbri" height="160" alt="valentineringpic"/>
                                 <div style={{alignSelf: "flex-start", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -3117,7 +3117,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreieyk6odnkrmghee3sc3nfnwxg7jhmyk2tgima3jkdmiy2oap2jc4i" height="18" alt="$CTUNA"/>
                                             <div style={{marginLeft: "7.5px"}}>2500</div>
                                         </div>
                                     </div>
@@ -3142,7 +3142,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Prophet of JBC</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieoamtkrbgj3kd3cqrdcvwzoj7swmwegmoyvcs5gqv22psyzzhvre" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreieoamtkrbgj3kd3cqrdcvwzoj7swmwegmoyvcs5gqv22psyzzhvre" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -3158,7 +3158,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                             <div style={{marginLeft: "7.5px"}}>1,000</div>
                                         </div>
                                     </div>
@@ -3181,7 +3181,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">VK, King of Commu</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibl25he5u74rw2mi24xhjl4yurmhoe6upn4qcbi5kn75e5uaz2ksa" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreibl25he5u74rw2mi24xhjl4yurmhoe6upn4qcbi5kn75e5uaz2ksa" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -3197,7 +3197,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                             <div style={{marginLeft: "7.5px"}}>5,500</div>
                                         </div>
                                     </div>
@@ -3220,7 +3220,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{alignSelf: "flex-start", fontSize: "16px", width: "380px"}}className="pixel">Chainsaw Pro Max</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibalc6if2y6qqp3kfxjkciabsdxxxpnx4djt6toap2c3n2bfcnfye" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/bafkreibalc6if2y6qqp3kfxjkciabsdxxxpnx4djt6toap2c3n2bfcnfye" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -3236,7 +3236,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="18" alt="$BBQ"/>
                                             <div style={{marginLeft: "7.5px"}}>100M</div>
                                         </div>
                                     </div>
@@ -3264,11 +3264,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "14px", width: "380px"}} className="pixel">NARUTA NFT x Songkran 2024 - Water gun (Weapon)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmXPAZvJWqhsMcD2U3KGkmTs6ipFS6oTNB91KP8PaYYxNP?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/QmXPAZvJWqhsMcD2U3KGkmTs6ipFS6oTNB91KP8PaYYxNP?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -3284,7 +3284,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50" height="18" alt="$EE"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50" height="18" alt="$EE"/>
                                             <div style={{marginLeft: "7.5px"}}>444,444</div>
                                         </div>
                                     </div>
@@ -3312,11 +3312,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "14px", width: "380px"}} className="pixel">NARUTA NFT x Songkran 2024 - Raincoat (Cloth)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmeBqjHUwyEYs6GW5GL4r4A8e5i5xLJ9ws1xexoMbkbYop?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/QmeBqjHUwyEYs6GW5GL4r4A8e5i5xLJ9ws1xexoMbkbYop?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -3332,7 +3332,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50" height="18" alt="$II"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50" height="18" alt="$II"/>
                                             <div style={{marginLeft: "7.5px"}}>22,222</div>
                                         </div>
                                     </div>
@@ -3360,11 +3360,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "14px", width: "380px"}} className="pixel">NARUTA NFT x Songkran 2024 - Goggles (Hat)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQFfNTnUVrdfNDNnavFb1uTAp8xv2eseDEwn8h4UkSAsg?img-width=400&img-height=400" height="150" alt='Can not load metadata.'/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/QmQFfNTnUVrdfNDNnavFb1uTAp8xv2eseDEwn8h4UkSAsg?img-width=400&img-height=400" height="150" alt='Can not load metadata.'/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -3380,7 +3380,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4?img-width=50&img-height=50" height="18" alt="$GEAR"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4?img-width=50&img-height=50" height="18" alt="$GEAR"/>
                                             <div style={{marginLeft: "7.5px"}}>999,999,999</div>
                                         </div>
                                     </div>
@@ -3410,11 +3410,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll", marginBottom: "80px"}} className="noscroll">
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 0", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "14px", width: "380px"}} className="pixel">NARUTA NFT x Songkran 2024 - Ring (Accessory)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmQcN43jVawFfZfU8hdyiF3of3UZZivyvLudo5ipSmRb5L?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/QmQcN43jVawFfZfU8hdyiF3of3UZZivyvLudo5ipSmRb5L?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -3430,7 +3430,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50" height="18" alt="$EE"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50" height="18" alt="$EE"/>
                                             <div style={{marginLeft: "7.5px"}}>444,444</div>
                                         </div>
                                     </div>
@@ -3458,11 +3458,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "14px", width: "380px"}} className="pixel">NARUTA NFT x Songkran 2024 - Backpacks (ฺBack)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmVfmxMSgSWEYEb4724GN9wXSk8WntDJirdAkh5TU5hYJY?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/QmVfmxMSgSWEYEb4724GN9wXSk8WntDJirdAkh5TU5hYJY?img-width=400&img-height=400" height="150" alt="Can not load metadata."/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -3478,7 +3478,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50" height="18" alt="$II"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50" height="18" alt="$II"/>
                                             <div style={{marginLeft: "7.5px"}}>22,222</div>
                                         </div>
                                     </div>
@@ -3506,11 +3506,11 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
 
                             <div className="nftCard" style={{position: "relative", justifyContent: "flex-start", height: "460px", margin: "20px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
                                 <div style={{position: "absolute", top: -25, right: -15, padding: "5px 20px", width: "150px", background: "#fff", letterSpacing: 1, border: "1px solid rgb(227, 227, 227)", boxShadow: "6px 6px 0 #00000040", display: "flex", flexDirection: "row", alignItems: "center", zIndex: 1}} className="bold">
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifetzaiv2i5anifvhumtbnq6ayvyqvrjn6hmq63vggg3r26gvzxce?img-width=50&img-height=50" width="30px" alt="TAODUM-TAOMEME" />
                                     <div className='light' style={{marginLeft: "10px"}}>TAODUM & TAOMEME</div>
                                 </div>
                                 <div style={{alignSelf: "flex-start", fontSize: "14px", width: "380px"}} className="pixel">NARUTA NFT x Songkran 2024 - Boots (ฺShoes)</div>
-                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/QmRvFFrpgPjLUaDxdwMhr8Wa5m29jQuH9GUHSug7GpvuM1?img-width=400&img-height=400" height="150" alt='Can not load metadata.'/>
+                                <img style={{alignSelf: "flex-start", marginTop: "20px"}} src="https://gateway.commudao.xyz/ipfs/QmRvFFrpgPjLUaDxdwMhr8Wa5m29jQuH9GUHSug7GpvuM1?img-width=400&img-height=400" height="150" alt='Can not load metadata.'/>
                                 <div style={{alignSelf: "flex-start", marginTop: "10px", minHeight: "200px", fontSize: "15px"}} className="pixel">
                                     <div style={{marginTop: "20px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Limited</div>
@@ -3526,7 +3526,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                                     <div style={{marginTop: "15px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
                                         <div>Price</div>
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4?img-width=50&img-height=50" height="18" alt="$GEAR"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafybeiegwsyuqu5d47hobxpnuj5zdsy2fgzautcobr6imm3soc4r6uibg4?img-width=50&img-height=50" height="18" alt="$GEAR"/>
                                             <div style={{marginLeft: "7.5px"}}>999,999,999</div>
                                         </div>
                                     </div>

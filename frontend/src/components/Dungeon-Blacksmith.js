@@ -118,12 +118,12 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                 })
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
                 } catch {}
                 const bonus = Number(String(yournft[i].Id).slice(-5))
                 nfts.push({
-                    Id: Number(yournft[i].Id), Name: nft.name, Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Id: Number(yournft[i].Id), Name: nft.name, Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                     RewardPerSec: bonus,
@@ -730,7 +730,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                     <div className="pixel" style={{fontSize: "75px", width: "fit-content"}}>Blacksmith House</div>
                 </div>
                 <div className="SubfieldBanner">
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiaovfcdl3edviln3dyucsmm57ciafqurxtnrdtfjhqsywh43mgmdy" height="200" alt="Blacksmith" />
+                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiaovfcdl3edviln3dyucsmm57ciafqurxtnrdtfjhqsywh43mgmdy" height="200" alt="Blacksmith" />
                 </div>
             </div>
 
@@ -750,19 +750,19 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                         <div style={{width: "250px", fontSize: "16px", letterSpacing: "1px"}} className="bold">Tokens</div>
                         <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll pixel">
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
+                                <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" width="22" alt="$CMJ"/>
                                 <div style={{marginLeft: "10px"}}>{Number(cmjBalance).toFixed(3)}</div>
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/>
+                                <img src="https://gateway.commudao.xyz/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/>
                                 <div style={{marginLeft: "10px"}}>{Number(cuBalance).toFixed(3)}</div>
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/>
+                                <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/>
                                 <div style={{marginLeft: "10px"}}>{Number(jaspBalance).toFixed(3)}</div>
                             </div>
                             <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px 20px 0", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" width="22" alt="$OS"/>
+                                <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" width="22" alt="$OS"/>
                                 <div style={{marginLeft: "10px"}}>{Number(osBalance).toFixed(3)}</div>
                             </div>
                         </div>
@@ -895,7 +895,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 500 ?
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreig3tupkgt4gj3upvi3q2pajoe34s4xfuzp77omcke7pjb6mb2crla" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafkreig3tupkgt4gj3upvi3q2pajoe34s4xfuzp77omcke7pjb6mb2crla" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -4)}R</div>
                                                                 </div> :
                                                                 <></>
@@ -909,7 +909,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 650 ?
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifevcy5ov5yx2cg77qyuz4xjrj6rmgexzib2w72wgxs5kyw2latcu" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifevcy5ov5yx2cg77qyuz4xjrj6rmgexzib2w72wgxs5kyw2latcu" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}2</div>
                                                                 </div> :
                                                                 <></>
@@ -923,7 +923,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 950 ?
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiavi27onvy2x7u4mt3no4ntps2f5katwuoi5a5rm6pbck6fheteb4" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiavi27onvy2x7u4mt3no4ntps2f5katwuoi5a5rm6pbck6fheteb4" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}4</div>
                                                                 </div> :
                                                                 <></>
@@ -937,7 +937,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 1550 ?
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicehlhjgcqjgtfeke7kuroe32td37tpo3nkflbhc2gfrjykcapnqe" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeicehlhjgcqjgtfeke7kuroe32td37tpo3nkflbhc2gfrjykcapnqe" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}6</div>
                                                                 </div> :
                                                                 <></>
@@ -1082,12 +1082,12 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                 Enchanted resource
                                                             </div>
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>
+                                                                <img src="https://gateway.commudao.xyz/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="18" alt="$CU"/>
                                                                 {Number(item.Id) % 100000 === 250 ?
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                     </> :
                                                                     <></>
@@ -1096,7 +1096,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>1000</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                     </> :
                                                                     <></>
@@ -1105,7 +1105,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>1500</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                     </> :
                                                                     <></>
@@ -1114,10 +1114,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>2500</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>5</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </> :
                                                                     <></>
@@ -1126,10 +1126,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>3000</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>6</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>100</div>
                                                                     </> :
                                                                     <></>
@@ -1138,10 +1138,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>4000</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>8</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>100</div>
                                                                     </> :
                                                                     <></>
@@ -1150,10 +1150,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>5000</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>100</div>
                                                                     </> :
                                                                     <></>
@@ -1162,10 +1162,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>7500</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>100</div>
                                                                     </> :
                                                                     <></>
@@ -1174,10 +1174,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>10000</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>100</div>
                                                                     </> :
                                                                     <></>
@@ -1186,10 +1186,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>12500</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>100</div>
                                                                     </> :
                                                                     <></>
@@ -1252,7 +1252,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             <i style={{marginTop: "10px", fontSize: "30px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                                             {Number(item.Id) % 100000 === 150 ?
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreibnnijprwt4zgmwe2zhzikpr7svq4iyz4lsilbefimxqtqcyjdjue" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafkreibnnijprwt4zgmwe2zhzikpr7svq4iyz4lsilbefimxqtqcyjdjue" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}} className="emp pixel">{item.Name} N +1</div>
                                                                 </div> :
                                                                 <></>
@@ -1273,7 +1273,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 400 ?
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreieemul5cpbiijd7v7w4wbrbbyjonoddiyyoz6ziqowggrjpu2cgye" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafkreieemul5cpbiijd7v7w4wbrbbyjonoddiyyoz6ziqowggrjpu2cgye" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -4)}R</div>
                                                                 </div> :
                                                                 <></>
@@ -1287,7 +1287,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 550 ?
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibg6zvac6eqgieocjfx3bz2tz3tb6lsduq2pz4hd6a3sqz455sau4" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibg6zvac6eqgieocjfx3bz2tz3tb6lsduq2pz4hd6a3sqz455sau4" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}2</div>
                                                                 </div> :
                                                                 <></>
@@ -1301,7 +1301,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 850 ?
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigrfawkbvdnvalhjjmf44veea5hi7t37ltaqrd5fg63ey4wflynrm" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeigrfawkbvdnvalhjjmf44veea5hi7t37ltaqrd5fg63ey4wflynrm" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}4</div>
                                                                 </div> :
                                                                 <></>
@@ -1315,7 +1315,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 1450 ?
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidyvcsmrzmtnwascngcxaeyoysgi645jz3buis3ilorbdslr63cwu" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeidyvcsmrzmtnwascngcxaeyoysgi645jz3buis3ilorbdslr63cwu" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}} className="emp pixel">{item.Name.slice(0, -1)}6</div>
                                                                 </div> :
                                                                 <></>
@@ -1460,12 +1460,12 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                 Enchanted resource
                                                             </div>
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                 {Number(item.Id) % 100000 === 150 ?
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>0.1 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                     </> :
                                                                     <></>
@@ -1474,7 +1474,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>0.2 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                     </> :
                                                                     <></>
@@ -1483,7 +1483,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>0.3 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                     </> :
                                                                     <></>
@@ -1492,10 +1492,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>5</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </> :
                                                                     <></>
@@ -1504,10 +1504,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>0.6 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>6</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>100</div>
                                                                     </> :
                                                                     <></>
@@ -1516,10 +1516,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>0.8 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>8</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>100</div>
                                                                     </> :
                                                                     <></>
@@ -1528,10 +1528,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>1 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>100</div>
                                                                     </> :
                                                                     <></>
@@ -1540,10 +1540,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>100</div>
                                                                     </> :
                                                                     <></>
@@ -1552,10 +1552,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>2 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>100</div>
                                                                     </> :
                                                                     <></>
@@ -1564,10 +1564,10 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                                     <>
                                                                         <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>100</div>
                                                                     </> :
                                                                     <></>
@@ -1656,13 +1656,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 750 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihlewrgj25x3p6nvqa7rrxh54j66c7lc3azkda2tds6wshhsslipu" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeihlewrgj25x3p6nvqa7rrxh54j66c7lc3azkda2tds6wshhsslipu" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1000 &&
                                                                 <div>
-                                                                    <img src={"https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeia7eeifiowqnq6tkm37u6wk4lm7jizlxb2i6sndggdathomvbezoy"} width="120" alt="Can not load metadata." />
+                                                                    <img src={"https://gateway.commudao.xyz/ipfs/bafybeia7eeifiowqnq6tkm37u6wk4lm7jizlxb2i6sndggdathomvbezoy"} width="120" alt="Can not load metadata." />
                                                                     {item.Name.slice(-4, -1) === "N +" && <div style={{width: "150px"}}>{item.Name.slice(0, -4)}R +2</div>}
                                                                     {item.Name.slice(-4, -1) === "R +" && <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>}
                                                                 </div>
@@ -1675,7 +1675,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeia6v737yn3r7knak2yxwqz3yhj4idldhstpen5qavsy7lk3zze3d4" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeia6v737yn3r7knak2yxwqz3yhj4idldhstpen5qavsy7lk3zze3d4" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -1687,13 +1687,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibvhkaneonaxrnhbc7zbpxjrezjkp4xszrugtpq6cs2dwouizzwt4" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibvhkaneonaxrnhbc7zbpxjrezjkp4xszrugtpq6cs2dwouizzwt4" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1800 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeid6ov5ip3oqbmgo7jzbpii42u67kqlhlm33jdfntokt5hgalsynzq" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeid6ov5ip3oqbmgo7jzbpii42u67kqlhlm33jdfntokt5hgalsynzq" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -1705,7 +1705,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3900 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeig4snhfyunadwnppx6uvfcqevwhfqqkddjcxd64txmnbbh3sdtjpm" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeig4snhfyunadwnppx6uvfcqevwhfqqkddjcxd64txmnbbh3sdtjpm" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -1717,7 +1717,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 6800 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihv5zwkzxpopuhxhzriwq72alnt7epssujj4tzom22y6iwltfomke" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeihv5zwkzxpopuhxhzriwq72alnt7epssujj4tzom22y6iwltfomke" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -1729,13 +1729,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 10500 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeig2i4khmr5m3zt4nplxrspylpebts47l7dg2l237txlvngowvspcy" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeig2i4khmr5m3zt4nplxrspylpebts47l7dg2l237txlvngowvspcy" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 3450 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiezbycb4fvrvdyoxbgi5xhybu3rsu42n73bzosplun455g3piev5u" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiezbycb4fvrvdyoxbgi5xhybu3rsu42n73bzosplun455g3piev5u" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -1747,7 +1747,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 5950 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifrjh6icoz3szmzuurwcf3wr3p32idzfy5dxza42ieo2tryj5mjli" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifrjh6icoz3szmzuurwcf3wr3p32idzfy5dxza42ieo2tryj5mjli" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -1759,7 +1759,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 9250 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibuv5a4sdapkp7ncpsn3yzlk2kit3jliwxp6sd5clphd7xia4xky4" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibuv5a4sdapkp7ncpsn3yzlk2kit3jliwxp6sd5clphd7xia4xky4" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -1771,13 +1771,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 13350 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifeshgxjiddolfuttdsgspbzdp7y7zjws4eoctklyi2wzjlbg74eu" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifeshgxjiddolfuttdsgspbzdp7y7zjws4eoctklyi2wzjlbg74eu" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 18050 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibfhaxkxp5z634v6rvhcymrcl2mtfl7keiecmbsgg5ygi7ofv2xsa" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibfhaxkxp5z634v6rvhcymrcl2mtfl7keiecmbsgg5ygi7ofv2xsa" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                                 </div>
                                                             }
@@ -2121,304 +2121,304 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}}>
                                                                 {Number(item.Id) % 100000 === 250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2650 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3400 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>130</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>200</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>290</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3900 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>440</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 6800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>970</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 8550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1450</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 10500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2170</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>180</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>260</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 4600 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>380</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>560</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 7500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>830</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 9250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1240</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 11200 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 13350 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2770</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>55</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>750</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 18050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>3850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>60</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>800</div>
                                                                     </>
                                                                 }
@@ -2544,13 +2544,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 750 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibuck4l6j3qla3jwbvwh3c3nonb3vww5oytn76m4fohs3qpfxlt54" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibuck4l6j3qla3jwbvwh3c3nonb3vww5oytn76m4fohs3qpfxlt54" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1000 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibtmtw43bbjgorck6z7qlks5fd6aoaufgk5uhyaz7q67dtdixmkh4" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibtmtw43bbjgorck6z7qlks5fd6aoaufgk5uhyaz7q67dtdixmkh4" width="120" alt="Can not load metadata." />
                                                                     {item.Name.slice(-4, -1) === "N +" && <div style={{width: "150px"}}>{item.Name.slice(0, -4)}R +2</div>}
                                                                     {item.Name.slice(-4, -1) === "R +" && <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>}
                                                                 </div>
@@ -2563,7 +2563,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibydefy4t6bckzi3dawzdxjh666pawc3nujp4vhat5ocohc4nfcl4" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibydefy4t6bckzi3dawzdxjh666pawc3nujp4vhat5ocohc4nfcl4" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -2575,13 +2575,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicahliaa3ro3os2mgiutbjlkp7mjciatrwysqxkvun3ecfx5rjw4y" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeicahliaa3ro3os2mgiutbjlkp7mjciatrwysqxkvun3ecfx5rjw4y" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1800 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigpvswa6bv3lfssrhjoqdq3hz5nrnazc6uagii3w25jj6d4j7qtr4" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeigpvswa6bv3lfssrhjoqdq3hz5nrnazc6uagii3w25jj6d4j7qtr4" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -2593,7 +2593,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3900 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeig4nyptfau2oml6vaylhs3hxeub7xiltd3hx5f7bd4jzi2xtwfbfy" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeig4nyptfau2oml6vaylhs3hxeub7xiltd3hx5f7bd4jzi2xtwfbfy" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -2605,7 +2605,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 6800 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiasbwb2x6ra47eeqp6fy4hhrrdc7ioxadnjo2soqbgklnl35axgmy" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiasbwb2x6ra47eeqp6fy4hhrrdc7ioxadnjo2soqbgklnl35axgmy" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -2617,13 +2617,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 10500 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihp5kptccspluqo3scdb6zvzgelhfdi2xjr2vpx4sytevj4zd346i" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeihp5kptccspluqo3scdb6zvzgelhfdi2xjr2vpx4sytevj4zd346i" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 3450 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicyt57mra3mm52zwuoekvaw6z4y7mgjo6tqpt6xhdyaec6hbjsnhy" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeicyt57mra3mm52zwuoekvaw6z4y7mgjo6tqpt6xhdyaec6hbjsnhy" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -2635,7 +2635,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 5950 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibck5qgu6nhnukiyqf66ojvxez3uputpaami6c5nxthbaswh6ac6e" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibck5qgu6nhnukiyqf66ojvxez3uputpaami6c5nxthbaswh6ac6e" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -2647,7 +2647,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 9250 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeid6xhc4dizecrnvnfbodjxefj37sk6zufdrzylnvc27mroulqq6ge" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeid6xhc4dizecrnvnfbodjxefj37sk6zufdrzylnvc27mroulqq6ge" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -2659,13 +2659,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 13350 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiaw2jmyd27tntntjdt2zb3gkqnyu4mqjf4v75wxn5h7yyo6ayj23e" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiaw2jmyd27tntntjdt2zb3gkqnyu4mqjf4v75wxn5h7yyo6ayj23e" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 18050 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihv2y6c7lmwbr3dsskyfzzxw7blmfjxi7xyz6s7tifwi4433eeeba" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeihv2y6c7lmwbr3dsskyfzzxw7blmfjxi7xyz6s7tifwi4433eeeba" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                                 </div>
                                                             }
@@ -3009,304 +3009,304 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}}>
                                                                 {Number(item.Id) % 100000 === 250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </>
                                                                 } 
                                                                 {Number(item.Id) % 100000 === 500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2650 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3400 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>130</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>200</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>290</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3900 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>440</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 6800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>970</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 8550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1450</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 10500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2170</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>180</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>260</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 4600 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>380</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>560</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 7500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>830</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 9250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1240</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 11200 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 13350 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2770</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>55</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>750</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 18050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>3850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>60</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>800</div>
                                                                     </>
                                                                 }
@@ -3432,13 +3432,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 750 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigfjtubf2bkbtfux4frxakg2lhldh466vgqdsqokfmna4s4ny5plu" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeigfjtubf2bkbtfux4frxakg2lhldh466vgqdsqokfmna4s4ny5plu" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 950 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeia3g7in5n7qfdutd7ans4rdutljxyvo4o4wvbnwsoau6szulovw44" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeia3g7in5n7qfdutd7ans4rdutljxyvo4o4wvbnwsoau6szulovw44" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -3450,7 +3450,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigtwkpxh4n4ubs53xczlqkoyu5tbgfst2coolbiypdodhxotyp4iu" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeigtwkpxh4n4ubs53xczlqkoyu5tbgfst2coolbiypdodhxotyp4iu" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -3462,25 +3462,25 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeierwfw25hyasoyujef67avzoqu7zhhlj72jlk4gzekhscrmzj2ax4" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeierwfw25hyasoyujef67avzoqu7zhhlj72jlk4gzekhscrmzj2ax4" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1800 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibglvexzr4rrslgzeeyyc4oanfyyudijupwwchcx2bqtyitjt7qxe" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibglvexzr4rrslgzeeyyc4oanfyyudijupwwchcx2bqtyitjt7qxe" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 3900 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifc3k3ze3tspj4skhu5fh3sjaaz7b2hvwzwmtl7yza7zmra75qluy" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifc3k3ze3tspj4skhu5fh3sjaaz7b2hvwzwmtl7yza7zmra75qluy" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 6800 &&
                                                                 <div>
-                                                                    <img src={"https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigurgdws327lktb24p5d6rkhori6zkkqwtiojwa6b4pj7l34r3vze"} width="120" alt="Can not load metadata." />
+                                                                    <img src={"https://gateway.commudao.xyz/ipfs/bafybeigurgdws327lktb24p5d6rkhori6zkkqwtiojwa6b4pj7l34r3vze"} width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -3492,37 +3492,37 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 10500 &&
                                                                 <div>
-                                                                    <img src={"https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihthekv3rdnhoy6q27ly44o3n2axcwq4hfe6rgzda3jhf5pi4sqdm"} width="120" alt="Can not load metadata." />
+                                                                    <img src={"https://gateway.commudao.xyz/ipfs/bafybeihthekv3rdnhoy6q27ly44o3n2axcwq4hfe6rgzda3jhf5pi4sqdm"} width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 3450 &&
                                                                 <div>
-                                                                    <img src={"https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifavcwgollo2lkh6x2lhz5yakxxjqd5jkcbrqmk2pcw4srxsxxbsq"} width="120" alt="Can not load metadata." />
+                                                                    <img src={"https://gateway.commudao.xyz/ipfs/bafybeifavcwgollo2lkh6x2lhz5yakxxjqd5jkcbrqmk2pcw4srxsxxbsq"} width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 5950 &&
                                                                 <div>
-                                                                    <img src={"https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiflstyd7n3tl3k5i3eflemggywjyerciw4jl2bzvjie5pyiskuxma"} width="120" alt="Can not load metadata." />
+                                                                    <img src={"https://gateway.commudao.xyz/ipfs/bafybeiflstyd7n3tl3k5i3eflemggywjyerciw4jl2bzvjie5pyiskuxma"} width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 9250 &&
                                                                 <div>
-                                                                    <img src={"https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeif5hdpupqi6yvnztqqvw55t6czmgr7br4sc42qoalmebvoxdqgtca"} width="120" alt="Can not load metadata." />
+                                                                    <img src={"https://gateway.commudao.xyz/ipfs/bafybeif5hdpupqi6yvnztqqvw55t6czmgr7br4sc42qoalmebvoxdqgtca"} width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 13350 &&
                                                                 <div>
-                                                                    <img src={"https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiheuglvgspbdxdl2inv75hulqezcctu4ap3cpkbft6d5sea36omda"} width="120" alt="Can not load metadata." />
+                                                                    <img src={"https://gateway.commudao.xyz/ipfs/bafybeiheuglvgspbdxdl2inv75hulqezcctu4ap3cpkbft6d5sea36omda"} width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 18050 &&
                                                                 <div>
-                                                                    <img src={"https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicbqakd42yefw43hqarrkedcoo5p347dyohad3nwnci7amhuraof4"} width="120" alt="Can not load metadata." />
+                                                                    <img src={"https://gateway.commudao.xyz/ipfs/bafybeicbqakd42yefw43hqarrkedcoo5p347dyohad3nwnci7amhuraof4"} width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                                 </div>
                                                             }
@@ -3850,304 +3850,304 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}}>
                                                                 {Number(item.Id) % 100000 === 250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2650 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3400 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>130</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>200</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>290</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3900 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>440</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 6800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>970</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 8550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1450</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 10500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2170</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>180</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>260</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 4600 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>380</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>560</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 7500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>830</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 9250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1240</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 11200 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 13350 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2770</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>55</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>750</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 18050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>3850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>60</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>800</div>
                                                                     </>
                                                                 }
@@ -4274,25 +4274,25 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 750 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiggh5665adov665f3or3d4kleulouwc5hwtexhekmp3oo2p5u3ise" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiggh5665adov665f3or3d4kleulouwc5hwtexhekmp3oo2p5u3ise" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 950 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih43snads6rama5e6zhsl5v6k5z3rtjmzdvhxsvnsgxi355k4frmu" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeih43snads6rama5e6zhsl5v6k5z3rtjmzdvhxsvnsgxi355k4frmu" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1450 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih43snads6rama5e6zhsl5v6k5z3rtjmzdvhxsvnsgxi355k4frmu" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeih43snads6rama5e6zhsl5v6k5z3rtjmzdvhxsvnsgxi355k4frmu" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifj4bqs5obxqkscst5d4egmdv6al6exsdrko3pptrsi6jqjbpq6re" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifj4bqs5obxqkscst5d4egmdv6al6exsdrko3pptrsi6jqjbpq6re" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -4304,13 +4304,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeieubrsdnfy5weskvt45tarpyhsqtt4a7mhqb3f6h4tjafex4hll3a" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeieubrsdnfy5weskvt45tarpyhsqtt4a7mhqb3f6h4tjafex4hll3a" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1800 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifseoike5x5qjmylfn6dt5k3zaaypfdhqartu6qchhrxvxxje5tfy" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifseoike5x5qjmylfn6dt5k3zaaypfdhqartu6qchhrxvxxje5tfy" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -4322,13 +4322,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3900 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeid6edzs3e75zlohrn7gamuml2ke5fnqwk6ffdhti6wlrjblcnlih4" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeid6edzs3e75zlohrn7gamuml2ke5fnqwk6ffdhti6wlrjblcnlih4" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 6800 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigvs3s4bko55oju3ote7avdspjru7jn7whrhfifjfaoo67v2iqeye" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeigvs3s4bko55oju3ote7avdspjru7jn7whrhfifjfaoo67v2iqeye" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -4340,37 +4340,37 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 10500 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibofksszpn7yjzgin5mxckybflyt3eqz2xuv7idmp4hto537ia7au" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeibofksszpn7yjzgin5mxckybflyt3eqz2xuv7idmp4hto537ia7au" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 3450 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihtnnofmcmyeu46n2oaxyzwgmi3fctle64vby2cx2fj3apzdwjsye" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeihtnnofmcmyeu46n2oaxyzwgmi3fctle64vby2cx2fj3apzdwjsye" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 5950 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiadnmpj4tqij4fwiirvccaldqychsmbaspxs42a7yjjg2vupoabgq" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiadnmpj4tqij4fwiirvccaldqychsmbaspxs42a7yjjg2vupoabgq" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 9250 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihccfbtxewve5n4lr275vsglgwofd7izbhgb37i2lfvgrbeph2trm" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeihccfbtxewve5n4lr275vsglgwofd7izbhgb37i2lfvgrbeph2trm" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 13350 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifxii555jwgwggmng6dnz367ulanndpjhnmptojelx4baojbqqbxe" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeifxii555jwgwggmng6dnz367ulanndpjhnmptojelx4baojbqqbxe" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 18050 &&
                                                                 <div>
-                                                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigdyykql2q65xvuvmoopdoixp72i7igwmxsfwhgajf5yjivbw6btu" width="120" alt="Can not load metadata." />
+                                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeigdyykql2q65xvuvmoopdoixp72i7igwmxsfwhgajf5yjivbw6btu" width="120" alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                                 </div>
                                                             }
@@ -4698,304 +4698,304 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                                 {Number(item.Id) % 100000 === 250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2650 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3400 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>130</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>200</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>290</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3900 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>440</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 6800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>970</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 8550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1450</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 10500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2170</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>180</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>260</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 4600 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>380</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>560</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 7500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>830</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 9250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1240</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 11200 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 13350 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2770</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>55</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>750</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 18050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>3850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>60</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>800</div>
                                                                     </>
                                                                 }
@@ -5122,13 +5122,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 750 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigjavmefqw7riwrwtqyr25jgdq2jknhzdhwitokvuwbolxngss6i4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeigjavmefqw7riwrwtqyr25jgdq2jknhzdhwitokvuwbolxngss6i4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidobsibdxnnb5wwdcm3an3g556rl7chvmne3lcpnpnzxumggejcba' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeidobsibdxnnb5wwdcm3an3g556rl7chvmne3lcpnpnzxumggejcba' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -5140,7 +5140,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidstkkedjjloah4h7mvzn2px3najodjwc5cltc2b7rp5tefemyelq' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeidstkkedjjloah4h7mvzn2px3najodjwc5cltc2b7rp5tefemyelq' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -5152,13 +5152,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeid7h2iwscqsj57pozjlli3mhly3zaociswe7cu65rml3pv736e34q' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeid7h2iwscqsj57pozjlli3mhly3zaociswe7cu65rml3pv736e34q' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeia5ja2bqysgayvaybjwoxc5l2waay7jv4xye3l5ogbupsz557kjs4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeia5ja2bqysgayvaybjwoxc5l2waay7jv4xye3l5ogbupsz557kjs4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -5170,13 +5170,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3900 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihecvtntvs6ks5nmt3od4noaa4g3xgilhysmkjd4qnea6ze5wzdhu' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeihecvtntvs6ks5nmt3od4noaa4g3xgilhysmkjd4qnea6ze5wzdhu' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 6800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeif6kqwxemxgcx4egfyxxnavhzgkvuou3ksgtx7y2wbplqz3jluwia' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeif6kqwxemxgcx4egfyxxnavhzgkvuou3ksgtx7y2wbplqz3jluwia' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -5188,37 +5188,37 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 10500 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibkfidfdcj22qthgwbzxzpwjn5sfbhf6f5osfkwrwdz67gfuffcki' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeibkfidfdcj22qthgwbzxzpwjn5sfbhf6f5osfkwrwdz67gfuffcki' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 3450 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeie77ydchbcgwnlpb6lb2oviaq5oge5hwzq4avkdboh3ixslpfcxqi' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeie77ydchbcgwnlpb6lb2oviaq5oge5hwzq4avkdboh3ixslpfcxqi' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 5950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiegmbq4uaievd6b5gh2lr6nwkap5opbchyu7vadvappwuh5xaa7v4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiegmbq4uaievd6b5gh2lr6nwkap5opbchyu7vadvappwuh5xaa7v4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 9250 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidhtqanfbb546eetut2i2x5qxjgwgslderqc7vho7yqzf2w7cmw4i' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeidhtqanfbb546eetut2i2x5qxjgwgslderqc7vho7yqzf2w7cmw4i' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 13350 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifu2xbpoe5dnuvx57jsgbwctf4akovul3dgaozffzzw73smphl46u' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeifu2xbpoe5dnuvx57jsgbwctf4akovul3dgaozffzzw73smphl46u' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 18050 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibldjaqnxjrngahjmmrmunoksb6opgusu5kof42a2lo474kxm22oq' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeibldjaqnxjrngahjmmrmunoksb6opgusu5kof42a2lo474kxm22oq' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                                 </div>
                                                             }
@@ -5546,304 +5546,304 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                                 {Number(item.Id) % 100000 === 250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2650 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3400 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>130</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>200</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>290</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3900 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>440</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 6800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>970</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 8550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1450</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 10500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2170</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>180</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>260</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 4600 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>380</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>560</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 7500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>830</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 9250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1240</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 11200 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 13350 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2770</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>55</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>750</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 18050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>3850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>60</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>800</div>
                                                                     </>
                                                                 }
@@ -5970,13 +5970,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 750 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibwtcyctsrznjyp3wizleealpmqdoedu4vjuy5f7gwoxj5b4bxbxu' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeibwtcyctsrznjyp3wizleealpmqdoedu4vjuy5f7gwoxj5b4bxbxu' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeic47starmj6nf3nwgxo3baclxgfhiaohydpytemzjkwkhpvdybwjq' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeic47starmj6nf3nwgxo3baclxgfhiaohydpytemzjkwkhpvdybwjq' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -5988,7 +5988,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifo6kqvyw3teyxlq4v7b3yfr6iy2km7f4eh3fh3u2hhrace3f5y2m' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeifo6kqvyw3teyxlq4v7b3yfr6iy2km7f4eh3fh3u2hhrace3f5y2m' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -6000,13 +6000,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicqfrq4hbrnfeguhgapt55ym64j22i6xergda2v2tuk46nn2rnutu' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeicqfrq4hbrnfeguhgapt55ym64j22i6xergda2v2tuk46nn2rnutu' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihciv25ah5qzfpmw5klaj6v5b2l75narphvc645qcfujz2kesdpqq' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeihciv25ah5qzfpmw5klaj6v5b2l75narphvc645qcfujz2kesdpqq' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -6018,13 +6018,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3900 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeickkynfffdtcjhxan34xmhtgl2go27fyho6az5ytbutgbd2ea773m' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeickkynfffdtcjhxan34xmhtgl2go27fyho6az5ytbutgbd2ea773m' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 6800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeickdnkxndvr2d5prhisy23pyqwt43uu6x53nd52nhy24cw2toxxqm' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeickdnkxndvr2d5prhisy23pyqwt43uu6x53nd52nhy24cw2toxxqm' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -6036,37 +6036,37 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 10500 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiecz2qz7ehm7bv2qw744cvjjz725xzmvrehiknisiks7difga4gm4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiecz2qz7ehm7bv2qw744cvjjz725xzmvrehiknisiks7difga4gm4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 3450 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiftkamiq674fjjhjsrn5tdsyp5tnivklb2x72ssoajfvsdz5fnfm4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiftkamiq674fjjhjsrn5tdsyp5tnivklb2x72ssoajfvsdz5fnfm4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 5950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihs7nntnfrohlsm62ts7dgs662hyfa6n7izz5wvagfmhtx5mtwy5u' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeihs7nntnfrohlsm62ts7dgs662hyfa6n7izz5wvagfmhtx5mtwy5u' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 9250 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiajxrjquh6htnb6f52lmxwy2btzgfa5rwutnasnjg5fnvemjew57u' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiajxrjquh6htnb6f52lmxwy2btzgfa5rwutnasnjg5fnvemjew57u' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 13350 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifuxe2ebyrhqhc6npgtjw5pzhqqwquf4bjgqqqgqczdt6y3fk34nm' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeifuxe2ebyrhqhc6npgtjw5pzhqqwquf4bjgqqqgqczdt6y3fk34nm' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 18050 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigfb3ugb4gsatc7wxf2shwpudyx5hmgkjclx3qv6k4maz5orrmpay' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeigfb3ugb4gsatc7wxf2shwpudyx5hmgkjclx3qv6k4maz5orrmpay' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                                 </div>
                                                             }
@@ -6394,304 +6394,304 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                                 {Number(item.Id) % 100000 === 250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2650 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3400 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>130</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>200</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>290</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3900 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>440</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 6800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>970</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 8550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1450</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 10500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2170</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>180</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>260</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 4600 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>380</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>560</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 7500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>830</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 9250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1240</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 11200 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 13350 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2770</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>55</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>750</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 18050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>3850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>60</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>800</div>
                                                                     </>
                                                                 }
@@ -6818,13 +6818,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 750 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidwmqw34p3bd4rvxaauctul2kko7nevxf4kecbaof6e44rqbmrcmq' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeidwmqw34p3bd4rvxaauctul2kko7nevxf4kecbaof6e44rqbmrcmq' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiejyjt647lddtocxztwy3iqyhwko3dx4xlhy2yehotpgm356ybyg4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiejyjt647lddtocxztwy3iqyhwko3dx4xlhy2yehotpgm356ybyg4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -6836,7 +6836,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifr5olkw5xp6bydpexgcteibm2jymf5m6uhmu3fzhwjy3oolmzxsm' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeifr5olkw5xp6bydpexgcteibm2jymf5m6uhmu3fzhwjy3oolmzxsm' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -6848,13 +6848,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifaa5t74k4d5vpapnjfa5zzualjfjxwt4mrxjumxfwbjmzcxevhry' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeifaa5t74k4d5vpapnjfa5zzualjfjxwt4mrxjumxfwbjmzcxevhry' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeieh2suxfsooien4isue4mocy5bi4uoxdp2c2eregov5oynvyhh5ie' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeieh2suxfsooien4isue4mocy5bi4uoxdp2c2eregov5oynvyhh5ie' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -6866,13 +6866,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3900 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeieonfjykydp7etwevkzrlqklqpg3vfu2y5b3qd6suarfoyl37vqky' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeieonfjykydp7etwevkzrlqklqpg3vfu2y5b3qd6suarfoyl37vqky' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 6800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiagsffhx7u75qn3ehpobzo7zzevhp5itt2kmgw6lwo5ma2dftvlbi' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiagsffhx7u75qn3ehpobzo7zzevhp5itt2kmgw6lwo5ma2dftvlbi' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -6884,37 +6884,37 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 10500 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibcmf6nnxus25s76fppdbszbcajpcqbjuxn6it22qoodoi4hsigpm' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeibcmf6nnxus25s76fppdbszbcajpcqbjuxn6it22qoodoi4hsigpm' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 3450 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigng6bmk3iwy6yubgngns73aow2754lbzqqhgm5ixafcddk3wvqd4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeigng6bmk3iwy6yubgngns73aow2754lbzqqhgm5ixafcddk3wvqd4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 5950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifjln767m7kwuxy6yxzrlr7xgt4gk5r7y2pzkrknjec4ht5dgldf4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeifjln767m7kwuxy6yxzrlr7xgt4gk5r7y2pzkrknjec4ht5dgldf4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 9250 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifeaosdrk76arpy7vh73mfqpnfkunyordtesmz57wcfe4xhhlbskm' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeifeaosdrk76arpy7vh73mfqpnfkunyordtesmz57wcfe4xhhlbskm' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 13350 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeif25nhfdejsp4csa4xf6mytwvo3h2mdrvfla6rwtzmjq5d7gz65oq' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeif25nhfdejsp4csa4xf6mytwvo3h2mdrvfla6rwtzmjq5d7gz65oq' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 18050 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidywy4mnxfzuijgbpaditq6nhujgeawtyunjtfzybkbbllnxn4grm' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeidywy4mnxfzuijgbpaditq6nhujgeawtyunjtfzybkbbllnxn4grm' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                                 </div>
                                                             }
@@ -7242,304 +7242,304 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                                 {Number(item.Id) % 100000 === 250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2650 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3400 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>130</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>200</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>290</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3900 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>440</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 6800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>970</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 8550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1450</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 10500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2170</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>180</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>260</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 4600 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>380</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>560</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 7500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>830</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 9250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1240</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 11200 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 13350 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2770</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>55</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>750</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 18050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>3850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>60</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>800</div>
                                                                     </>
                                                                 }
@@ -7666,13 +7666,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 750 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeie75sapicz3nb6v4mcnfqtoyj4dkfoxy3kb5kk6hkajerlrwvrn3u' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeie75sapicz3nb6v4mcnfqtoyj4dkfoxy3kb5kk6hkajerlrwvrn3u' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigb44uukyxblsxcblsdhmswguzyhaju3hbsuvvg6j6tyosvhhqbvy' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeigb44uukyxblsxcblsdhmswguzyhaju3hbsuvvg6j6tyosvhhqbvy' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -7684,7 +7684,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffwhvtixnrkm4tv5fzab353ohic5wesdmnco52eshfepoqgg3hea' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiffwhvtixnrkm4tv5fzab353ohic5wesdmnco52eshfepoqgg3hea' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -7696,13 +7696,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidk63aqbzfflrc7tlbfohgvdqr5kqqvn7tlz2vkmqltytr2rvmucu' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeidk63aqbzfflrc7tlbfohgvdqr5kqqvn7tlz2vkmqltytr2rvmucu' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeie3dmxujnqwdrnhpmrykzfrdifsda7bhd4txhrymfwmazspvlwpny' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeie3dmxujnqwdrnhpmrykzfrdifsda7bhd4txhrymfwmazspvlwpny' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -7714,13 +7714,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3900 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeighxvykcoa6ltq5pkumqxdjaoo4e2ou4a6hddnvthp5u7cmc4ikvy' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeighxvykcoa6ltq5pkumqxdjaoo4e2ou4a6hddnvthp5u7cmc4ikvy' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 6800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeif46aqzixj6gimplh5qskkkynpd4oi5pdsyenhuh2q5wzlmfwjunm' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeif46aqzixj6gimplh5qskkkynpd4oi5pdsyenhuh2q5wzlmfwjunm' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -7732,37 +7732,37 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 10500 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibizruhyalimet3yj44xhke2doiii3xapgluw7jl7ayfximre4vry' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeibizruhyalimet3yj44xhke2doiii3xapgluw7jl7ayfximre4vry' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 3450 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicrm6bzkff3mbh6ki6dxigubxr7l7chu44fuowp5caoaozajdj6zi' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeicrm6bzkff3mbh6ki6dxigubxr7l7chu44fuowp5caoaozajdj6zi' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 5950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihgalj4aijtawksiz6h5oenr3kqcjpx6rlsznqdermpa3s4o2mdwu' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeihgalj4aijtawksiz6h5oenr3kqcjpx6rlsznqdermpa3s4o2mdwu' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 9250 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihd67fulxctcun773km2t3pds33qqsjbjrewgfrjylnqtsh2u6mrm' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeihd67fulxctcun773km2t3pds33qqsjbjrewgfrjylnqtsh2u6mrm' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 13350 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiguh3i2u72v7koqspiwchcucou5ca5nydwovaeyhpnxbt3a3lkxge' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiguh3i2u72v7koqspiwchcucou5ca5nydwovaeyhpnxbt3a3lkxge' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 18050 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiemu3idsjqmimsjrujpjj5ghfcnumoyn3dkfssp4szns3j5bp7ri4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiemu3idsjqmimsjrujpjj5ghfcnumoyn3dkfssp4szns3j5bp7ri4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                                 </div>
                                                             }
@@ -8090,304 +8090,304 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                                 {Number(item.Id) % 100000 === 250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2650 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3400 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>130</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>200</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>290</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3900 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>440</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 6800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>970</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 8550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1450</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 10500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2170</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>180</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>260</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 4600 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>380</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>560</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 7500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>830</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 9250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1240</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 11200 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 13350 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2770</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>55</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>750</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 18050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>3850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>60</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>800</div>
                                                                     </>
                                                                 }
@@ -8514,13 +8514,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 750 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibciwxuvtqp6ampxy5ulnpce5ds3fmtlg4f3lrdd7zbrqib44hx2q' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeibciwxuvtqp6ampxy5ulnpce5ds3fmtlg4f3lrdd7zbrqib44hx2q' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicjh2j5bcbqiz6paytsnonrjw2g6qry3kuftjzvhf4tzv7z4w3s7e' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeicjh2j5bcbqiz6paytsnonrjw2g6qry3kuftjzvhf4tzv7z4w3s7e' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -8532,7 +8532,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiechrhufeyowo4ozj3cqr3ojsxstfyuuc63erfxnesoq7jjt23p54' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiechrhufeyowo4ozj3cqr3ojsxstfyuuc63erfxnesoq7jjt23p54' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -8544,13 +8544,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeify7bktuh2uzxq4spekxtpg6wvcstoomcvnt2vfb5zuaz76cbht4i' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeify7bktuh2uzxq4spekxtpg6wvcstoomcvnt2vfb5zuaz76cbht4i' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeih2f3tx2zxbnnmcmxp7lt4syjt5wnygrithh5jwscuhxna3gfmvtq' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeih2f3tx2zxbnnmcmxp7lt4syjt5wnygrithh5jwscuhxna3gfmvtq' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -8562,13 +8562,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3900 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihw5bfy7mr373yfo2acy5ywvvkm3es77j6wcskfwfgnzzzftlbgni' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeihw5bfy7mr373yfo2acy5ywvvkm3es77j6wcskfwfgnzzzftlbgni' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 6800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiauywvcwiz4fciukscwvqqte3b2toit2kjy5xmh2ajyg2464g5iwq' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiauywvcwiz4fciukscwvqqte3b2toit2kjy5xmh2ajyg2464g5iwq' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -8580,37 +8580,37 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 10500 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigsjc76tydnh6d2trb2k3ponhocsuardmyt2bdz5ntdjpvduay5wu' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeigsjc76tydnh6d2trb2k3ponhocsuardmyt2bdz5ntdjpvduay5wu' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 3450 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiexcsgagsi724i35ic7xfmckq3fhgsdu654cuinxfehtmjfovtxem' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiexcsgagsi724i35ic7xfmckq3fhgsdu654cuinxfehtmjfovtxem' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 5950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeieft73kqjz2yxgxpx7yrhttiqi2cqlj2jaccffmtfbtynf33za6hy' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeieft73kqjz2yxgxpx7yrhttiqi2cqlj2jaccffmtfbtynf33za6hy' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 9250 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeib3e4xpotrtmi42rk7pp3upilcsxziaxkgk2pq3cfxdu73733vw4q' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeib3e4xpotrtmi42rk7pp3upilcsxziaxkgk2pq3cfxdu73733vw4q' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 13350 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibf4a6fmnpgd3vbfakmnhyyoryvwhvkwhnqepsco5vgikby57nr6e' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeibf4a6fmnpgd3vbfakmnhyyoryvwhvkwhnqepsco5vgikby57nr6e' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 18050 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihivxsrsk4a4xsngo2a7cjdo4bppsdaakgq7t2zmng2wr23tsunie' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeihivxsrsk4a4xsngo2a7cjdo4bppsdaakgq7t2zmng2wr23tsunie' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                                 </div>
                                                             }
@@ -8938,304 +8938,304 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                                 {Number(item.Id) % 100000 === 250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2650 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3400 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>130</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>200</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>290</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3900 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>440</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 6800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>970</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 8550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1450</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 10500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2170</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>180</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>260</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 4600 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>380</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>560</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 7500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>830</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 9250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1240</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 11200 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 13350 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2770</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>55</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>750</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 18050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>3850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>60</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>800</div>
                                                                     </>
                                                                 }
@@ -9362,13 +9362,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 750 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibnvvjlj6okorfbiwceizyyrozetljksf3fosjkbko3yo4mjfmtty' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeibnvvjlj6okorfbiwceizyyrozetljksf3fosjkbko3yo4mjfmtty' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihwagdp5o5ejxsajvedovzydzam5xk6cju3rfpomij7okws6wxora' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeihwagdp5o5ejxsajvedovzydzam5xk6cju3rfpomij7okws6wxora' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -9380,7 +9380,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeifczwtarpphcrusmkcw5g6kkyjd5voe765iaipvn6xix2m5dfnsam' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeifczwtarpphcrusmkcw5g6kkyjd5voe765iaipvn6xix2m5dfnsam' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -9392,13 +9392,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihxlcbuzkzmksb6yzgjrc4qa6c3j3zuvydoh4h5phuywmmjfjzsmi' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeihxlcbuzkzmksb6yzgjrc4qa6c3j3zuvydoh4h5phuywmmjfjzsmi' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiefkggspdqtnmkgxfrwtqtirt4jatrux4edox3qirzqdc4kb34ub4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiefkggspdqtnmkgxfrwtqtirt4jatrux4edox3qirzqdc4kb34ub4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -9410,13 +9410,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3900 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeig4q3gtftexqtxgzher47ocbxfxqpwgwghgdevjdnzl3hlewqcu6e' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeig4q3gtftexqtxgzher47ocbxfxqpwgwghgdevjdnzl3hlewqcu6e' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 6800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeicfesozxxoqqskaghbbm363g4p6klidcd4qwl3pgqezzsjitspyb4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeicfesozxxoqqskaghbbm363g4p6klidcd4qwl3pgqezzsjitspyb4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -9428,37 +9428,37 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 10500 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibu4vqbti5yj6l6f6bothjm6pbvha5ui2det3hr5pyowfar6kjwha' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeibu4vqbti5yj6l6f6bothjm6pbvha5ui2det3hr5pyowfar6kjwha' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 3450 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeia4kh62lz75b2363jyi3ubyukrmv6g47ye53pnjdduikjqd2waghu' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeia4kh62lz75b2363jyi3ubyukrmv6g47ye53pnjdduikjqd2waghu' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 5950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibry4ffghbt4725iqlle7pvvlzeb7yskrd3c7zvymt63dsq4p34ca' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeibry4ffghbt4725iqlle7pvvlzeb7yskrd3c7zvymt63dsq4p34ca' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 9250 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidzrh43uqsbjzcnorsrlqzujyt6lsh3h3c4ue3h2rgunurximak3q' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeidzrh43uqsbjzcnorsrlqzujyt6lsh3h3c4ue3h2rgunurximak3q' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 13350 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeielqjokmfqa2khkc4qwupchyupoqc3w4c7xhnwiqpeaw3rwhtqeey' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeielqjokmfqa2khkc4qwupchyupoqc3w4c7xhnwiqpeaw3rwhtqeey' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 18050 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeig2uvchwyhbo7w6catvgtnojxefomrovlhia27uvjjsexf7unvzoy' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeig2uvchwyhbo7w6catvgtnojxefomrovlhia27uvjjsexf7unvzoy' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                                 </div>
                                                             }
@@ -9786,304 +9786,304 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                                 {Number(item.Id) % 100000 === 250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2650 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3400 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>130</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>200</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>290</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3900 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>440</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 6800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>970</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 8550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1450</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 10500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2170</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>180</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>260</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 4600 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>380</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>560</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 7500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>830</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 9250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1240</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 11200 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 13350 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2770</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>55</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>750</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 18050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>3850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>60</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>800</div>
                                                                     </>
                                                                 }
@@ -10210,13 +10210,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 750 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeibgyiljiklwlu4pxbrfcozly2bdihmfarz4lypz2rjgqjqvunnu54' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeibgyiljiklwlu4pxbrfcozly2bdihmfarz4lypz2rjgqjqvunnu54' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}3</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigew7jc34iqqfds4ymhoy2ovgrt4wumeh5h5i3k4o2i4rxml6leja' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeigew7jc34iqqfds4ymhoy2ovgrt4wumeh5h5i3k4o2i4rxml6leja' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -10228,7 +10228,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 2000 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeie7jlsfz2tvf74gzphnmsrv4xgecjmcuz23suz6nwe3hkhjlrtaaa' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeie7jlsfz2tvf74gzphnmsrv4xgecjmcuz23suz6nwe3hkhjlrtaaa' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
@@ -10240,13 +10240,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3400 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiaads7vhu4a4gnd7p4fn62sqaypcdzbfem6vl3rg6dslaf3ja2pm4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiaads7vhu4a4gnd7p4fn62sqaypcdzbfem6vl3rg6dslaf3ja2pm4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 1800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihp4usd6l55q2jbjrkw7css3zvt2jjzwsbrtqwj6qpmfelzhtjg7y' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeihp4usd6l55q2jbjrkw7css3zvt2jjzwsbrtqwj6qpmfelzhtjg7y' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
@@ -10258,13 +10258,13 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 3900 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiaflmvhxq4hupimdgzyvmghrmm7l3bue3ytavpi2rbe6u2rnsstx4' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeiaflmvhxq4hupimdgzyvmghrmm7l3bue3ytavpi2rbe6u2rnsstx4' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 6800 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihzw5kdoj4vf4vkqdai3oaamamvoubqnqoaifnn6uugdf4oeleeqm' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeihzw5kdoj4vf4vkqdai3oaamamvoubqnqoaifnn6uugdf4oeleeqm' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
@@ -10276,37 +10276,37 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             }
                                                             {Number(item.Id) % 100000 === 10500 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeie6g5zltflwy6qsmz32thzvwi6qtb4mopknjsf3pkp6ij7egwsvum' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeie6g5zltflwy6qsmz32thzvwi6qtb4mopknjsf3pkp6ij7egwsvum' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 3450 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeidjznt3pterwxv7aanrgqpuxibhdtbbddac6nzrdr3644vhpwkqsa' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeidjznt3pterwxv7aanrgqpuxibhdtbbddac6nzrdr3644vhpwkqsa' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}2</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 5950 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigyyptr4gwcnby66g3yihxzi37vbfdvu32vplcymeu6pcuotmidjq' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeigyyptr4gwcnby66g3yihxzi37vbfdvu32vplcymeu6pcuotmidjq' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}4</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 9250 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeid6zc4fquqo6cdzfsjvjosf2p7l5j7a3pfmn6nrqbehked4gd4hxq' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeid6zc4fquqo6cdzfsjvjosf2p7l5j7a3pfmn6nrqbehked4gd4hxq' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}6</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 13350 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeict2gsuy2veaw2wbufdhrexgq6ykeexabn2nq2s2gdx7eiiv7jvja' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeict2gsuy2veaw2wbufdhrexgq6ykeexabn2nq2s2gdx7eiiv7jvja' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}8</div>
                                                                 </div>
                                                             }
                                                             {Number(item.Id) % 100000 === 18050 &&
                                                                 <div>
-                                                                    <img width="120" src='https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeievw34n5t6jf2omrjsy26zxlx5djwutn27xzhaprdktmdnvmps244' alt="Can not load metadata." />
+                                                                    <img width="120" src='https://gateway.commudao.xyz/ipfs/bafybeievw34n5t6jf2omrjsy26zxlx5djwutn27xzhaprdktmdnvmps244' alt="Can not load metadata." />
                                                                     <div style={{width: "150px"}}>{item.Name.slice(0, -1)}9</div>
                                                                 </div>
                                                             }
@@ -10634,304 +10634,304 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
                                                                 {Number(item.Id) % 100000 === 250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>0.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>150</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>10</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>300</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>1.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2000 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>2.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2650 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.0 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3400 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" height="18" alt="$JASP"/>
                                                                         <div style={{margin: "0 5px"}}>3.5 GWEI</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>130</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>15</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>350</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 1800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>200</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2750 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>290</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3900 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>440</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 6800 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>970</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 8550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1450</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 10500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2170</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 2550 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>180</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>20</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>400</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 3450 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>260</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>25</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>450</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 4600 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>380</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>30</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>500</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 5950 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>560</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>35</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>550</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 7500 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>830</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>40</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>600</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 9250 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1240</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>45</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>650</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 11200 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>1850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>50</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>700</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 13350 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>2770</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>55</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>750</div>
                                                                     </>
                                                                 }
                                                                 {Number(item.Id) % 100000 === 18050 &&
                                                                     <>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                                         <div style={{margin: "0 5px"}}>3850</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" height="18" alt="$JDAO"/>
                                                                         <div style={{margin: "0 5px"}}>60</div>
                                                                         <i style={{fontSize: "12px", margin: "5px 10px 5px 5px"}} className="fa fa-plus"></i>
-                                                                        <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
+                                                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreiabbtn5pc6di4nwfgpqkk3ss6njgzkt2evilc5i2r754pgiru5x4u" height="18" alt="$CMJ"/>
                                                                         <div style={{margin: "0 5px"}}>800</div>
                                                                     </>
                                                                 }
@@ -11070,7 +11070,7 @@ const Npcblacksmith = ({ config, navigate, callMode, setisLoading, txupdate, set
                                                             Break down to
                                                         </div>
                                                         <div style={{marginTop: "10px", display: "flex", flexDirection: "row"}} className="pixel">
-                                                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
+                                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" height="18" alt="$OS"/>
                                                             <div style={{margin: "0 5px"}}>{item.RewardPerSec}</div>
                                                         </div>
                                                     </div>

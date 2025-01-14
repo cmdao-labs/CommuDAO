@@ -21,7 +21,7 @@ const BBQFields = ({ callMode, navigate }) => {
             <div style={{width: "95%", marginTop: "20px", textIndent: "20px", fontSize: "15px", letterSpacing: "1px", textAlign: "left"}} className="bold">CommuDAO Fields</div>
             <div style={{width: "95%", marginBottom: "80px", minHeight: "0", justifyContent: "flex-start", flexWrap: "nowrap", overflow: "scroll"}} className="collection noscroll">
                 <div className="nftCard" style={{justifyContent: "center", margin: "10px", position: "relative", borderRadius: "5px", boxShadow: "none", border: "none", background: "rgba(0,0,0,.05)", fontSize: "12px"}}>
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreig4zuhnfry34cycnxx36d6im4qknip35rfp773yrpy6pjozhpkjya" height="230" alt="Field_AncientForest" />
+                    <img src="https://gateway.commudao.xyz/ipfs/bafkreig4zuhnfry34cycnxx36d6im4qknip35rfp773yrpy6pjozhpkjya" height="230" alt="Field_AncientForest" />
                     <div style={{marginTop: "30px", width: "340px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", fontSize: "14px"}}>
                         <div className="light">
                             <i style={{fontSize: "14px", marginRight: "5px"}} className="fa fa-ticket"></i>
@@ -35,7 +35,7 @@ const BBQFields = ({ callMode, navigate }) => {
                             Earn
                         </div>
                         <div style={{borderBottom: "1px dashed"}} className="pixel">
-                            <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
+                            <img src="https://gateway.commudao.xyz/ipfs/bafkreidldk7skx44xwstwat2evjyp4u5oy5nmamnrhurqtjapnwqzwccd4" height="18" alt="$WOOD"/>
                         </div>
                     </div>
                     <div style={{width: "220px", margin: "40px 130px 0 40px",  border: "1px dashed #4637a9", justifyContent: "center"}} className="pixel hashtag" onClick={() => {callMode(10001); navigate('/fields/ancient-forest-bbqchain');}}>Go to Ancient Forest</div>

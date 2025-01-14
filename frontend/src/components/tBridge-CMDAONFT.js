@@ -61,13 +61,13 @@ const TBridgeCMDAONFT = ({ config, setisLoading, txupdate, setTxupdate, setisErr
                 const nftipfs = data2[i].result
                 let nft = {name: "", image: "", description: "", attributes: ""}
                 try {
-                    const response = await fetch(nftipfs.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"))
+                    const response = await fetch(nftipfs.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"))
                     nft = await response.json()
                 } catch {}
                 nfts.push({
                     Id: yournftwallet[i].Id,
                     Name: nft.name + ' #' + yournftwallet[i].Id,
-                    Image: nft.image.replace("ipfs://", "https://apricot-secure-ferret-190.mypinata.cloud/ipfs/"),
+                    Image: nft.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/"),
                     Description: nft.description,
                     Attribute: nft.attributes,
                 })

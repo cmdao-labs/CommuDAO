@@ -424,7 +424,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
         <div className="nftCard" style={{alignItems: "center", justifyContent: "flex-start", height: "460px", margin: "20px 20px 20px 40px", boxShadow: "6px 6px 0 #00000040", border: "1px solid rgb(227, 227, 227)"}}>
             <div style={{marginTop: "10px", width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                 <div style={{height: "160px", width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center"}}>
-                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeigujzlvozogmovkcsai7o47bwewyj64goma2smlb3fsbjp24kgaua?img-width=400&img-height=400" width="220" alt="NPC_Auto_Taomi" />
+                    <img src="https://gateway.commudao.xyz/ipfs/bafybeigujzlvozogmovkcsai7o47bwewyj64goma2smlb3fsbjp24kgaua?img-width=400&img-height=400" width="220" alt="NPC_Auto_Taomi" />
                 </div>
                 {mode === 1 &&
                     <>
@@ -440,9 +440,9 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     </select>
                                     <div style={{fontSize: "16px", marginLeft: "5px", display: "flex", alignItems: "center", letterSpacing: "1px"}} className="pixel">
                                         &nbsp;1
-                                        {gasselected === "II" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50" width="22" alt="$II"/> &nbsp;=&nbsp; <div className="emp">{priceII}</div></>}
-                                        {gasselected === "EE" && <>&nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50" width="22" alt="$EE"/> &nbsp;=&nbsp; <div className="emp">{priceEE}</div></>}
-                                        &nbsp;<img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" width="22" alt="$JTAO"/>
+                                        {gasselected === "II" && <>&nbsp;<img src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50" width="22" alt="$II"/> &nbsp;=&nbsp; <div className="emp">{priceII}</div></>}
+                                        {gasselected === "EE" && <>&nbsp;<img src="https://gateway.commudao.xyz/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50" width="22" alt="$EE"/> &nbsp;=&nbsp; <div className="emp">{priceEE}</div></>}
+                                        &nbsp;<img src="https://gateway.commudao.xyz/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" width="22" alt="$JTAO"/>
                                     </div>
                                 </div>
                                 <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>
@@ -468,13 +468,13 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             ></input>
                             {gasselected === "II" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: iiBalance}}; handleSwapUni(1, bal);}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50" width="22" alt="$II"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50" width="22" alt="$II"/>
                                     <div style={{marginLeft: "5px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "EE" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: eeBalance}}; handleSwapUni(2, bal);}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50" width="22" alt="$EE"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50" width="22" alt="$EE"/>
                                     <div style={{marginLeft: "5px"}}>{Number(eeBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
@@ -533,7 +533,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     }
                                 }}
                             >
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" width="22" alt="$JTAO"/>
+                                <img src="https://gateway.commudao.xyz/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" width="22" alt="$JTAO"/>
                                 <div style={{marginLeft: "5px"}}>{Number(jtaoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         </div>
@@ -634,13 +634,13 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             ></input>
                             {gasselected === "II" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(iiBalance)}}; handleAddUni(1, bal);}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50" width="22" alt="$II"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50" width="22" alt="$II"/>
                                     <div style={{marginLeft: "5px"}}>{Number(iiBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "EE" && 
                                 <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: String(eeBalance)}}; handleAddUni(2, bal);}}>
-                                    <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50" width="22" alt="$EE"/>
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50" width="22" alt="$EE"/>
                                     <div style={{marginLeft: "5px"}}>{Number(eeBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
@@ -673,7 +673,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         handleAddUni_2(2, bal)
                                     }
                                 }}>
-                                <img src="https://apricot-secure-ferret-190.mypinata.cloud/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" width="22" alt="$JTAO"/>
+                                <img src="https://gateway.commudao.xyz/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" width="22" alt="$JTAO"/>
                                 <div style={{marginLeft: "5px"}}>{Number(jtaoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         </div>
