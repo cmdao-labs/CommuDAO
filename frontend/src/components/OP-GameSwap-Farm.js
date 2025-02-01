@@ -193,19 +193,19 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
                     <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>EPOCH:</div>
-                        <div style={{textAlign: "right"}}>5</div>
+                        <div style={{textAlign: "right"}}>6</div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Reward distribution on:</div>
-                        <div style={{textAlign: "right"}}>8-10 Jan 2025</div>
+                        <div style={{textAlign: "right"}}>8-10 Feb 2025</div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div></div>
-                        <a style={{display: "flex", textAlign: "right"}} href="https://vote.commudao.xyz/#/proposal/0x522889ea886ddf520121f0489cff934ad3a81d96c2b8fb7167346872663aba76" target="_blank" rel="noreferrer">Cast vote on Snapshot latest proposal to qualify</a>
+                        <a style={{display: "flex", textAlign: "right"}} href="https://vote.commudao.xyz/#/proposal/0x8839ae188fb89003f771528a9193b9fd873a77174e5fc6d6ecb8e777da16a3ea" target="_blank" rel="noreferrer">Cast vote on Snapshot latest proposal to qualify</a>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div></div>
-                        <div style={{textAlign: "right"}}>Terminated on 11.59 PM. Jan 7, 2025.</div>
+                        <div style={{textAlign: "right"}}>Terminated on 11.59 PM. Feb 7, 2025.</div>
                     </div>
                     <div style={{width: "75%", height: "80px", display: "flex", justifyContent: "space-between", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
