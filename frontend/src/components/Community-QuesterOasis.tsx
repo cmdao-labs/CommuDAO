@@ -1271,19 +1271,19 @@ const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setT
                         <div style={{width: "98%", marginTop: "10px", display: "flex", flexFlow: "column wrap", justifyContent: "space-between"}}>
                             <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                 <div>Top Questers</div>
-                                <div>X.XX CMJ</div>
+                                <div>467.775 CMJ</div>
                             </div>
                             <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                 <div>Top Strongest</div>
-                                <div>X.XX CMJ</div>
+                                <div>467.775 CMJ</div>
                             </div>
                             <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                 <div>Top Spender</div>
-                                <div>X.XX CMJ</div>
+                                <div>467.7751 CMJ</div>
                             </div>
                             <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
                                 <div>Top Money Mover</div>
-                                <div>X.XX CMJ</div>
+                                <div>155.925 CMJ</div>
                             </div>
                         </div>
                         <div style={{width: "98%", marginTop: "10px", color: "#fff"}}>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 20 for each leaderboard.</div>
