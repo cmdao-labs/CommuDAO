@@ -2,6 +2,7 @@ import React from 'react'
 import { readContract, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
+import { useDebouncedCallback } from 'use-debounce'
 
 const jdaoToken = '0x09bD3F5BFD9fA7dE25F7A2A75e1C317E4Df7Ef88'
 const cuToken = '0x42f5213c7b6281fc6fb2d6f10576f70db0a4c841'
@@ -105,8 +106,10 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
     const [reserveCmjINFPOW, setReserveCmjINFPOW] = React.useState("")
     const [reserveINFPOW, setReserveINFPOW] = React.useState("")
     const [infpowLpBalance, setInfpowLpBalance] = React.useState("0")
+    const [locksell, setLocksell] = React.useState(false)
+    const [lockbuy, setLockbuy] = React.useState(false)
 
-    const handleSwapUni = async (index, event) => {
+    const handleSwapUni = useDebouncedCallback(async (index, event) => {
         let addr = '0x0000000000000000000000000000000000000000'
         if (index === 1) {
             addr = jazziSIL
@@ -185,8 +188,10 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
         } else if (index === 11) {
             event.target.value !== "" ? setCmjBoughtINFPOW(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setCmjBoughtINFPOW("0.000")
         }
-    }
-    const handleSwapUni_2 = async (index, event) => {
+        if (Number(ethers.utils.formatEther(tokensBoughttokenTOcurr)) === 0) {setLocksell(true)}
+        else {setLocksell(false)}
+    }, 300)
+    const handleSwapUni_2 = useDebouncedCallback(async (index, event) => {
         let addr = '0x0000000000000000000000000000000000000000'
         if (index === 1) {
             addr = jazziSIL
@@ -211,7 +216,6 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
         } else if (index === 11) {
             addr = jazziINFPOW
         }
-        setInputSwap2(event.target.value)
         const _value = event.target.value !== "" ? ethers.utils.parseEther(event.target.value) : 0
         const data = await readContracts(config, {
             contracts: [
@@ -258,7 +262,11 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
         } else if (index === 11) {
             event.target.value !== "" ? setTokenBoughtINFPOW(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) : setTokenBoughtINFPOW("0.000")
         }
-    }
+        if ((index === 1 || index === 2 || index === 4 || index === 5 || index === 6 || index === 7 || index === 10 || index === 11 || index === 12) && Number(ethers.utils.formatEther(tokensBoughtcurrTOtoken)) === 0) {setLockbuy(true)}
+        else if (index === 9 && Number(tokensBoughtcurrTOtoken) === 0) {setLockbuy(true)}
+        else if ((index === 3 || index === 8) && Number(ethers.utils.formatUnits(String(tokensBoughtcurrTOtoken), "gwei")) === 0) {setLockbuy(true)}
+        else {setLockbuy(false)}
+    }, 300)
 
     const swapTokenHandleUni = async (index, _sell) => {
         let lp = '0x0000000000000000000000000000000000000000'
@@ -1083,7 +1091,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             <div style={{fontSize: "10px"}} className="light">5% TAX"</div>
                             <div style={{marginTop: "5px", width: "95%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                 <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
-                                    <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value)}}>
+                                    <select style={{padding: "1px", border: "none", borderRadius: "8px", fontSize: "16px"}} className="pixel" value={gasselected} onChange={(event) => {setGasselected(event.target.value); setInputSwap(''); setInputSwap2('');}}>
                                         <option value="JDAO">JDAO</option>
                                         <option value="OS">OS</option>
                                         <option value="CU">CU</option>
@@ -1126,100 +1134,100 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                 placeholder={"0 $" + gasselected}
                                 onChange={(event) => {
                                     if (gasselected === "JDAO") {
-                                        handleSwapUni(4, event)
+                                        handleSwapUni(4, event); setInputSwap(event.target.value);
                                     } else if (gasselected === "CU") {
-                                        handleSwapUni(5, event)
+                                        handleSwapUni(5, event); setInputSwap(event.target.value);
                                     } else if (gasselected === "SIL") {
-                                        handleSwapUni(1, event)
+                                        handleSwapUni(1, event); setInputSwap(event.target.value);
                                     } else if (gasselected === "GOLD") {
-                                        handleSwapUni(2, event)
+                                        handleSwapUni(2, event); setInputSwap(event.target.value);
                                     } else if (gasselected === "JASP") {
-                                        handleSwapUni(3, event)
+                                        handleSwapUni(3, event); setInputSwap(event.target.value);
                                     } else if (gasselected === "OS") {
-                                        handleSwapUni(6, event)
+                                        handleSwapUni(6, event); setInputSwap(event.target.value);
                                     } else if (gasselected === "PLAT") {
-                                        handleSwapUni(7, event)
+                                        handleSwapUni(7, event); setInputSwap(event.target.value);
                                     } else if (gasselected === "PLUTO") {
-                                        handleSwapUni(8, event)
+                                        handleSwapUni(8, event); setInputSwap(event.target.value);
                                     } else if (gasselected === "F.BTC") {
-                                        handleSwapUni(9, event)
+                                        handleSwapUni(9, event); setInputSwap(event.target.value);
                                     } else if (gasselected === "X4") {
-                                        handleSwapUni(10, event)
+                                        handleSwapUni(10, event); setInputSwap(event.target.value);
                                     } else if (gasselected === "INF.POW") {
-                                        handleSwapUni(11, event)
+                                        handleSwapUni(11, event); setInputSwap(event.target.value);
                                     }
                                 }}
                                 value={inputSwap}
                             ></input>
                             {gasselected === "JDAO" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: jdaoBalance}}; handleSwapUni(4, bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: jdaoBalance}}; handleSwapUni(4, bal); setInputSwap(jdaoBalance);}}>
                                     <img src="https://gateway.commudao.xyz/ipfs/bafkreia2bjrh7yw2vp23e5lnc6u75weg6nq7dzkyruggsnjxid6qtofeeq" width="22" alt="$JDAO"/>
                                     <div style={{marginLeft: "5px"}}>{Number(jdaoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "CU" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cuBalance}}; handleSwapUni(5, bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: cuBalance}}; handleSwapUni(5, bal); setInputSwap(cuBalance);}}>
                                     <img src="https://gateway.commudao.xyz/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" width="22" alt="$CU"/>
                                     <div style={{marginLeft: "5px"}}>{Number(cuBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "SIL" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: silBalance}}; handleSwapUni(1, bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: silBalance}}; handleSwapUni(1, bal); setInputSwap(silBalance);}}>
                                     <img src="https://gateway.commudao.xyz/ipfs/bafkreigld4xmmrmu763t2vsju3tqhcodgxxsrmgvrlfhdjktgujgcmpmde" width="22" alt="$SIL"/>
                                     <div style={{marginLeft: "5px"}}>{Number(silBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "GOLD" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: goldBalance}}; handleSwapUni(2, bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: goldBalance}}; handleSwapUni(2, bal); setInputSwap(goldBalance);}}>
                                     <img src="https://gateway.commudao.xyz/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" width="22" alt="$GOLD"/>
                                     <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "JASP" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: jaspBalance}}; handleSwapUni(3, bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: jaspBalance}}; handleSwapUni(3, bal); setInputSwap(jaspBalance);}}>
                                     <img src="https://gateway.commudao.xyz/ipfs/bafkreidfl4mgyczqwl3gtunpherc5ri3qbfzm2vevdwcojmhpz3viubopy" width="22" alt="$JASP"/>
                                     <div style={{marginLeft: "5px"}}>{Number(jaspBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "OS" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: osBalance}}; handleSwapUni(6, bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: osBalance}}; handleSwapUni(6, bal); setInputSwap(osBalance);}}>
                                     <img src="https://gateway.commudao.xyz/ipfs/bafkreico3y6ql5vudm35ttestwvffdacbp25h6t5ipbyncwr3qtzprrm5e" width="22" alt="$OS"/>
                                     <div style={{marginLeft: "5px"}}>{Number(osBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "PLAT" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: platBalance}}; handleSwapUni(7, bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: platBalance}}; handleSwapUni(7, bal); setInputSwap(platBalance);}}>
                                     <img src="https://gateway.commudao.xyz/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" width="22" alt="$PLAT"/>
                                     <div style={{marginLeft: "5px"}}>{Number(platBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "PLUTO" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: plutoBalance}}; handleSwapUni(8, bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: plutoBalance}}; handleSwapUni(8, bal); setInputSwap(plutoBalance);}}>
                                     <img src="https://gateway.commudao.xyz/ipfs/QmSd6B1WnUtzVqJPmEXqFSEudrdqCAE3LPkU64tttYeFPw" width="22" alt="$PLUTO"/>
                                     <div style={{marginLeft: "5px"}}>{Number(plutoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "F.BTC" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: fbtcBalance}}; handleSwapUni(9, bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: fbtcBalance}}; handleSwapUni(9, bal); setInputSwap(fbtcBalance);}}>
                                     <img src="https://gateway.commudao.xyz/ipfs/QmPieCpfHoce19DSB5Mv5GZmZeGHAUerJfgjX6NhgLYUVC" width="22" alt="$F.BTC"/>
                                     <div style={{marginLeft: "5px"}}>{Number(fbtcBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                                 </div>
                             }
                             {gasselected === "X4" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: x4Balance}}; handleSwapUni(10, bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: x4Balance}}; handleSwapUni(10, bal); setInputSwap(x4Balance);}}>
                                     <img src="https://gateway.commudao.xyz/ipfs/Qma5JyeNz8ME6H1XFxJCF4HmduDSC8mqLqmUs3SaMJbwzh" width="22" alt="$X4"/>
                                     <div style={{marginLeft: "5px"}}>{Number(x4Balance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                             {gasselected === "INF.POW" && 
-                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: infpowBalance}}; handleSwapUni(11, bal);}}>
+                                <div style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}} onClick={() => {const bal = {target: {value: infpowBalance}}; handleSwapUni(11, bal); setInputSwap(infpowBalance);}}>
                                     <img src="https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" width="22" alt="$INF.POW"/>
                                     <div style={{marginLeft: "5px"}}>{Number(infpowBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                                 </div>
                             }
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                            {address !== null ?
+                            {address !== null && !locksell ?
                                 <div style={{width: "30px"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "JDAO") {
@@ -1290,27 +1298,27 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                 placeholder="0 $CMJ"
                                 onChange={(event) => {
                                     if (gasselected === "JDAO") {
-                                        handleSwapUni_2(4, event)
+                                        handleSwapUni_2(4, event); setInputSwap2(event.target.value);
                                     } else if (gasselected === "CU") {
-                                        handleSwapUni_2(5, event)
+                                        handleSwapUni_2(5, event); setInputSwap2(event.target.value);
                                     } else if (gasselected === "SIL") {
-                                        handleSwapUni_2(1, event)
+                                        handleSwapUni_2(1, event); setInputSwap2(event.target.value);
                                     } else if (gasselected === "GOLD") {
-                                        handleSwapUni_2(2, event)
+                                        handleSwapUni_2(2, event); setInputSwap2(event.target.value);
                                     } else if (gasselected === "JASP") {
-                                        handleSwapUni_2(3, event)
+                                        handleSwapUni_2(3, event); setInputSwap2(event.target.value);
                                     } else if (gasselected === "OS") {
-                                        handleSwapUni_2(6, event)
+                                        handleSwapUni_2(6, event); setInputSwap2(event.target.value);
                                     } else if (gasselected === "PLAT") {
-                                        handleSwapUni_2(7, event)
+                                        handleSwapUni_2(7, event); setInputSwap2(event.target.value);
                                     } else if (gasselected === "PLUTO") {
-                                        handleSwapUni_2(8, event)
+                                        handleSwapUni_2(8, event); setInputSwap2(event.target.value);
                                     } else if (gasselected === "F.BTC") {
-                                        handleSwapUni_2(9, event)
+                                        handleSwapUni_2(9, event); setInputSwap2(event.target.value);
                                     } else if (gasselected === "X4") {
-                                        handleSwapUni_2(10, event)
+                                        handleSwapUni_2(10, event); setInputSwap2(event.target.value);
                                     } else if (gasselected === "INF.POW") {
-                                        handleSwapUni_2(11, event)
+                                        handleSwapUni_2(11, event); setInputSwap2(event.target.value);
                                     }
                                 }}
                                 value={inputSwap2}
@@ -1320,27 +1328,27 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                 onClick={() => {
                                     const bal = {target: {value: cmjBalance}};
                                     if (gasselected === "JDAO") {
-                                        handleSwapUni_2(4, bal)
+                                        handleSwapUni_2(4, bal); setInputSwap2(cmjBalance);
                                     } else if (gasselected === "CU") {
-                                        handleSwapUni_2(5, bal)
+                                        handleSwapUni_2(5, bal); setInputSwap2(cmjBalance);
                                     } else if (gasselected === "SIL") {
-                                        handleSwapUni_2(1, bal)
+                                        handleSwapUni_2(1, bal); setInputSwap2(cmjBalance);
                                     } else if (gasselected === "GOLD") {
-                                        handleSwapUni_2(2, bal)
+                                        handleSwapUni_2(2, bal); setInputSwap2(cmjBalance);
                                     } else if (gasselected === "JASP") {
-                                        handleSwapUni_2(3, bal)
+                                        handleSwapUni_2(3, bal); setInputSwap2(cmjBalance);
                                     } else if (gasselected === "OS") {
-                                        handleSwapUni_2(6, bal)
+                                        handleSwapUni_2(6, bal); setInputSwap2(cmjBalance);
                                     } else if (gasselected === "PLAT") {
-                                        handleSwapUni_2(7, bal)
+                                        handleSwapUni_2(7, bal); setInputSwap2(cmjBalance);
                                     } else if (gasselected === "PLUTO") {
-                                        handleSwapUni_2(8, bal)
+                                        handleSwapUni_2(8, bal); setInputSwap2(cmjBalance);
                                     } else if (gasselected === "F.BTC") {
-                                        handleSwapUni_2(9, bal)
+                                        handleSwapUni_2(9, bal); setInputSwap2(cmjBalance);
                                     } else if (gasselected === "X4") {
-                                        handleSwapUni_2(10, bal)
+                                        handleSwapUni_2(10, bal); setInputSwap2(cmjBalance);
                                     } else if (gasselected === "INF.POW") {
-                                        handleSwapUni_2(11, bal)
+                                        handleSwapUni_2(11, bal); setInputSwap2(cmjBalance);
                                     }
                                 }}
                             >
@@ -1349,7 +1357,7 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             </div>
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-                            {address !== null ?
+                            {address !== null && !lockbuy ?
                                 <div style={{width: "30px", background: "#67BAA7"}} className="pixel button" onClick={
                                     () => {
                                         if (gasselected === "JDAO") {
@@ -1390,8 +1398,8 @@ const Ammmerchant2 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     {gasselected === "PLAT" && Number(tokenBoughtPLAT).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "PLUTO" && Number(tokenBoughtPLUTO).toLocaleString('en-US', {maximumFractionDigits:3})}
                                     {gasselected === "F.BTC" && Number(tokenBoughtFBTC).toLocaleString('en-US', {maximumFractionDigits:0})}
-                                    {gasselected === "X4" && Number(tokenBoughtX4).toLocaleString('en-US', {maximumFractionDigits:0})}
-                                    {gasselected === "INF.POW" && Number(tokenBoughtINFPOW).toLocaleString('en-US', {maximumFractionDigits:0})}
+                                    {gasselected === "X4" && Number(tokenBoughtX4).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "INF.POW" && Number(tokenBoughtINFPOW).toLocaleString('en-US', {maximumFractionDigits:3})}
                                 </div>
                                 ${gasselected} ( 
                                     {gasselected === "JDAO" && Number(inputSwap2) !== 0 && <>{((((Number(inputSwap2) / (Number(reserveJdao) - ((Number(reserveJdao) * Number(reserveCmjJdao)) / (Number(reserveCmjJdao) + Number(inputSwap2))))) - (Number(reserveCmjJdao/reserveJdao))) / (Number(reserveCmjJdao/reserveJdao))) * 100).toFixed(2)}%</>}
