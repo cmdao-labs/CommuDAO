@@ -351,135 +351,141 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
 
-        const thefetch = async () => {
-            const jbcBal = address !== null ?
-                await getBalance(config, { address: address, }) :
-                {formatted: 0}
-            const data = address !== null ? await readContracts(config, {
-                contracts: [
-                    {
-                        address: cmjToken,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 8899
-                    },
-                    {
-                        address: jusdtToken,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 8899
-                    },
-                    {
-                        address: jcExchange,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 8899
-                    },
-                    {
-                        address: juExchange,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 8899
-                    },
-                ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, ]
-            const cmjBal = data[0]
-            const jusdtBal = data[1]
-            const jclpBal = data[2]
-            const julpBal = data[3]
+        const bigfetch = () => {
+            const thefetch = async () => {
+                const jbcBal = address !== null ?
+                    await getBalance(config, { address: address, }) :
+                    {formatted: 0}
+                const data = address !== null ? await readContracts(config, {
+                    contracts: [
+                        {
+                            address: cmjToken,
+                            abi: erc20Abi,
+                            functionName: 'balanceOf',
+                            args: [address],
+                            chainId: 8899
+                        },
+                        {
+                            address: jusdtToken,
+                            abi: erc20Abi,
+                            functionName: 'balanceOf',
+                            args: [address],
+                            chainId: 8899
+                        },
+                        {
+                            address: jcExchange,
+                            abi: erc20Abi,
+                            functionName: 'balanceOf',
+                            args: [address],
+                            chainId: 8899
+                        },
+                        {
+                            address: juExchange,
+                            abi: erc20Abi,
+                            functionName: 'balanceOf',
+                            args: [address],
+                            chainId: 8899
+                        },
+                    ],
+                }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, ]
+                const cmjBal = data[0]
+                const jusdtBal = data[1]
+                const jclpBal = data[2]
+                const julpBal = data[3]
 
-            const data2 = await readContracts(config, {
-                contracts: [
-                    {
-                        address: jcExchange,
-                        abi: exchangeABI,
-                        functionName: 'getReserve',
-                        chainId: 8899
-                    },
-                    {
-                        address: juExchange,
-                        abi: exchangeJulpABI,
-                        functionName: 'getReserve',
-                        chainId: 8899
-                    },
-                    {
-                        address: jcExchange,
-                        abi: erc20Abi,
-                        functionName: 'totalSupply',
-                        chainId: 8899
-                    },
-                    {
-                        address: juExchange,
-                        abi: erc20Abi,
-                        functionName: 'totalSupply',
-                        chainId: 8899
-                    },
-                ],
+                const data2 = await readContracts(config, {
+                    contracts: [
+                        {
+                            address: jcExchange,
+                            abi: exchangeABI,
+                            functionName: 'getReserve',
+                            chainId: 8899
+                        },
+                        {
+                            address: juExchange,
+                            abi: exchangeJulpABI,
+                            functionName: 'getReserve',
+                            chainId: 8899
+                        },
+                        {
+                            address: jcExchange,
+                            abi: erc20Abi,
+                            functionName: 'totalSupply',
+                            chainId: 8899
+                        },
+                        {
+                            address: juExchange,
+                            abi: erc20Abi,
+                            functionName: 'totalSupply',
+                            chainId: 8899
+                        },
+                    ],
+                })
+                const CmjJcReserv = data2[0]
+                const JusdtJuReserv = data2[1]
+                const jclpTotalSup = data2[2]
+                const julpTotalSup = data2[3]
+                const JbcJcReserv = await getBalance(config, {
+                    address: jcExchange,
+                })
+                const JbcJuReserv = await getBalance(config, {
+                    address: juExchange,
+                })
+                const oracleTHB = new ethers.Contract("0x4A6947323A1c14Cf69Dd128A2cf854364239d044", bkcOracleABI, providerBKC)
+                const usdtToTHB = await oracleTHB.latestAnswer()
+                
+                return [
+                    jbcBal, cmjBal, jusdtBal,
+                    JbcJcReserv, CmjJcReserv, JbcJuReserv, JusdtJuReserv,
+                    jclpBal, jclpTotalSup, julpBal, julpTotalSup,
+                    usdtToTHB,
+                ]
+            }
+
+            const promise = thefetch()
+
+            const getAsync = () =>
+                new Promise((resolve) => 
+                    setTimeout(
+                        () => resolve(promise), 1000
+                    )
+                )
+
+            getAsync().then(result => {
+                setJbcBalance(Number(Math.floor((result[0].formatted) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
+                const _cmjbalance = ethers.utils.formatEther(result[1].result)
+                setCmjBalanceFull(Number(_cmjbalance))
+                setCmjBalance(Number(Math.floor(_cmjbalance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
+                const _jusdtbalance = ethers.utils.formatEther(result[2].result)
+                setJusdtBalanceFull(Number(_jusdtbalance))
+                setJusdtBalance(Number(Math.floor(_jusdtbalance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
+                const _jbcreserve = ethers.utils.formatEther(result[3].value)
+                setJbcReserv(_jbcreserve)
+                const _cmjreserve = ethers.utils.formatEther(result[4].result)
+                setCmjReserv(_cmjreserve)
+                const _jbcjureserve = ethers.utils.formatEther(result[5].value)
+                setJbcJuReserv(_jbcjureserve)
+                const _jusdtjureserve = ethers.utils.formatEther(result[6].result)
+                setJusdtJuReserv(_jusdtjureserve)
+                const _lpbalance = ethers.utils.formatEther(result[7].result)
+                setLpBalance(Math.floor(_lpbalance * 1000) / 1000)
+                const _lptotalsupply = ethers.utils.formatEther(result[8].result)
+                setLpShare(Number((_lpbalance / _lptotalsupply) * 100).toFixed(4))
+                setJbcPooled((Number(_jbcreserve) * Number(_lpbalance)) / Number(_lptotalsupply))
+                setCmjPooled((Number(_cmjreserve) * Number(_lpbalance)) / Number(_lptotalsupply))
+                const _julpbalance = ethers.utils.formatEther(result[9].result)
+                setJulpBalance(Math.floor(_julpbalance * 1000) / 1000)
+                const _julptotalsupply = ethers.utils.formatEther(result[10].result)
+                setJulpShare(Number((_julpbalance / _julptotalsupply) * 100).toFixed(4))
+                setJbcjuPooled((Number(_jbcjureserve) * Number(_julpbalance)) / Number(_julptotalsupply))
+                setJusdtjuPooled((Number(_jusdtjureserve) * Number(_julpbalance)) / Number(_julptotalsupply))
+                setPriceTHB(ethers.utils.formatEther(result[11]) * (10**10))
             })
-            const CmjJcReserv = data2[0]
-            const JusdtJuReserv = data2[1]
-            const jclpTotalSup = data2[2]
-            const julpTotalSup = data2[3]
-            const JbcJcReserv = await getBalance(config, {
-                address: jcExchange,
-            })
-            const JbcJuReserv = await getBalance(config, {
-                address: juExchange,
-            })
-            const oracleTHB = new ethers.Contract("0x4A6947323A1c14Cf69Dd128A2cf854364239d044", bkcOracleABI, providerBKC)
-            const usdtToTHB = await oracleTHB.latestAnswer()
-            
-            return [
-                jbcBal, cmjBal, jusdtBal,
-                JbcJcReserv, CmjJcReserv, JbcJuReserv, JusdtJuReserv,
-                jclpBal, jclpTotalSup, julpBal, julpTotalSup,
-                usdtToTHB,
-            ]
         }
 
-        const promise = thefetch()
-
-        const getAsync = () =>
-            new Promise((resolve) => 
-                setTimeout(
-                    () => resolve(promise), 1000
-                )
-            )
-
-        getAsync().then(result => {
-            setJbcBalance(Number(Math.floor((result[0].formatted) * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
-            const _cmjbalance = ethers.utils.formatEther(result[1].result)
-            setCmjBalanceFull(Number(_cmjbalance))
-            setCmjBalance(Number(Math.floor(_cmjbalance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
-            const _jusdtbalance = ethers.utils.formatEther(result[2].result)
-            setJusdtBalanceFull(Number(_jusdtbalance))
-            setJusdtBalance(Number(Math.floor(_jusdtbalance * 1000) / 1000).toLocaleString('en-US', {minimumFractionDigits:3}))
-            const _jbcreserve = ethers.utils.formatEther(result[3].value)
-            setJbcReserv(_jbcreserve)
-            const _cmjreserve = ethers.utils.formatEther(result[4].result)
-            setCmjReserv(_cmjreserve)
-            const _jbcjureserve = ethers.utils.formatEther(result[5].value)
-            setJbcJuReserv(_jbcjureserve)
-            const _jusdtjureserve = ethers.utils.formatEther(result[6].result)
-            setJusdtJuReserv(_jusdtjureserve)
-            const _lpbalance = ethers.utils.formatEther(result[7].result)
-            setLpBalance(Math.floor(_lpbalance * 1000) / 1000)
-            const _lptotalsupply = ethers.utils.formatEther(result[8].result)
-            setLpShare(Number((_lpbalance / _lptotalsupply) * 100).toFixed(4))
-            setJbcPooled((Number(_jbcreserve) * Number(_lpbalance)) / Number(_lptotalsupply))
-            setCmjPooled((Number(_cmjreserve) * Number(_lpbalance)) / Number(_lptotalsupply))
-            const _julpbalance = ethers.utils.formatEther(result[9].result)
-            setJulpBalance(Math.floor(_julpbalance * 1000) / 1000)
-            const _julptotalsupply = ethers.utils.formatEther(result[10].result)
-            setJulpShare(Number((_julpbalance / _julptotalsupply) * 100).toFixed(4))
-            setJbcjuPooled((Number(_jbcjureserve) * Number(_julpbalance)) / Number(_julptotalsupply))
-            setJusdtjuPooled((Number(_jusdtjureserve) * Number(_julpbalance)) / Number(_julptotalsupply))
-            setPriceTHB(ethers.utils.formatEther(result[11]) * (10**10))
-        })
+        bigfetch()
+        const interval = setInterval(bigfetch, 12000);
+        return () => clearInterval(interval)
     }, [config, address, txupdate, exchangeABI, exchangeJulpABI, erc20Abi, bkcOracleABI])
 
     React.useEffect(() => {
@@ -537,7 +543,7 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
             setTSwapvol24CMJ(Number(result[3]).toFixed(0))
             */
         })
-    }, [config, address, txupdate, exchangeABI, exchangeJulpABI, erc20Abi, bkcOracleABI])
+    }, [])
 
     return (
         <>
@@ -569,7 +575,7 @@ const GameSwap = ({ config, setisLoading, callMode, navigate, txupdate, setTxupd
                     </div>
                     {mode === 0 && 
                         <>
-                            <Swap config={config} address={address} setisLoading={setisLoading} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} callMode={callMode} navigate={navigate} options={options} inputStyle={inputStyle} jcExchange={jcExchange} exchangeABI={exchangeABI} juExchange={juExchange} exchangeJulpABI={exchangeJulpABI} jcSwap={jcSwap} swapABI={swapABI} juSwap={juSwap} swapJulpABI={swapJulpABI} cmjToken={cmjToken} jusdtToken={jusdtToken} erc20Abi={erc20Abi} jbcBalance={jbcBalance} cmjBalance={cmjBalance} cmjBalanceFull={cmjBalanceFull} jusdtBalance={jusdtBalance} jusdtBalanceFull={jusdtBalanceFull} jbcReserv={jbcReserv} cmjReserv={cmjReserv} jbcJuReserv={jbcJuReserv} jusdtJuReserv={jusdtJuReserv} priceTHB={priceTHB} />
+                            <Swap config={config} address={address} setisLoading={setisLoading} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} options={options} inputStyle={inputStyle} jcExchange={jcExchange} exchangeABI={exchangeABI} juExchange={juExchange} exchangeJulpABI={exchangeJulpABI} jcSwap={jcSwap} swapABI={swapABI} juSwap={juSwap} swapJulpABI={swapJulpABI} cmjToken={cmjToken} jusdtToken={jusdtToken} erc20Abi={erc20Abi} jbcBalance={jbcBalance} cmjBalance={cmjBalance} cmjBalanceFull={cmjBalanceFull} jusdtBalance={jusdtBalance} jusdtBalanceFull={jusdtBalanceFull} jbcReserv={jbcReserv} cmjReserv={cmjReserv} jbcJuReserv={jbcJuReserv} jusdtJuReserv={jusdtJuReserv} priceTHB={priceTHB} />
                             <div style={{marginBottom: "80px", width: "750px", maxWidth: "100%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around"}}>
                                 <div style={{width: "300px", color: "black", background: "silver", border: "6px double #fff", padding: "15px 10px", boxShadow: "0 0 0 3px silver, 1em 1em 3px 0 rgba(0,0,0,.1)", textAlign: "left", fontSize: "12px", letterSpacing: "0.5px"}}>
                                     <div>Daily volume: {jbcReserv !== 0 ? <>฿{(Number(Math.floor(swapvol24USDT * priceTHB)) + Number(Math.floor(swapvol24CMJ * (jbcReserv/cmjReserv) * (jusdtJuReserv/jbcJuReserv) * priceTHB * 1) / 1)).toLocaleString('en-US', {minimumFractionDigits:0})}</> : <>฿0</>}</div>
