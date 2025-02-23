@@ -77,8 +77,6 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
             let _allDaily = 0
             let _allReward = 0
             for (let i = 0; i <= yournftstake.length - 1; i++) {
-                const response = await fetch("https://gateway.pinata.cloud/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy/" + yournftstake[i].Id + ".json")
-                const _nft = await response.json()
                 let bonus;
                 if (Number(yournftstake[i].Id) >= 61) {
                     bonus = 2;
@@ -93,9 +91,8 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
                 _allReward += Number(ethers.utils.formatEther(String(data2[i].result)))
                 nfts.push({
                     Id: Number(yournftstake[i].Id),
-                    Name: _nft.name,
+                    Name: 'CM Hexa Cat Meaw JIB JIB #' + String(yournftstake[i].Id),
                     Image: "https://gateway.pinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + yournftstake[i].Id + ".png",
-                    Attribute: _nft.attributes,
                     RewardPerSec: bonus,
                     isStaked: true,
                     Reward: String(data2[i].result)
@@ -111,8 +108,6 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
                 chainId: 8899
             }) : []
             for (let i = 0; i <= balanceofyou.length - 1; i++) {
-                const response = await fetch("https://gateway.pinata.cloud/ipfs/bafybeih4u5b5kkmc2mms5z3frywy77c4jr45u5wu67h22cdz45vlvaoqiy/" + balanceofyou[i] + ".json")
-                const _nft = await response.json()
                 let bonus;
                 if (Number(balanceofyou[i]) >= 61) {
                     bonus = 2;
@@ -125,9 +120,8 @@ const TunaLake = ({ config, intrasubModetext, callMode, navigate, setisLoading, 
                 }
                 nfts.push({
                     Id: Number(balanceofyou[i]),
-                    Name: _nft.name,
+                    Name: 'CM Hexa Cat Meaw JIB JIB #' + Number(balanceofyou[i]),
                     Image: "https://gateway.pinata.cloud/ipfs/bafybeidmedlvbae3t7gffvgakbulid4zpr7eqenx2rdsbbvkb6ol3xplpq/" + balanceofyou[i] + ".png",
-                    Attribute: _nft.attributes,
                     RewardPerSec: bonus,
                     isStaked: false,
                     Reward: 0
