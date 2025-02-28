@@ -8,8 +8,8 @@ import { ThreeDots } from 'react-loading-icons'
 const cmdaonft = '0x20724DC1D37E67B7B69B52300fDbA85E558d8F9A'
 const narutanft = '0x5E620D8980335167d9eF36cEf5d9A6Ea6607a8Cb'
 const bbnft = '0xc304195Ad2F55810EcD1e63d9D975e29138Dbd4E'
-const doijibToken = '0x7414e2D8Fb8466AfA4F85A240c57CB8615901FFB'
-const goldToken = '0x7d5346E33889580528e6F79f48BdEE94D8A9E144'
+const gasToken = '0x42F5213C7b6281FC6fb2d6F10576F70DB0a4C841'
+const rewardToken = '0x3Bd00B6cd18281E3Ef13Ba348ad2783794dcb2bD'
 const dunMo = '0xD30F5d6ABc3dBd9Df01eC0FE891114914Ee1360A'
 const mintStOPT_Router = '0xeFb6F6018F5D6c0D1e58F751a57fa716e72d1182'
 const salonRouter = '0x76B6B24BA53042A0e02Cc0e84c875d74EAeFb74a'
@@ -17,8 +17,8 @@ const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const badgeClaimer = '0x99f4FE6E420B46B7f5DeeEabFDc7604756e093d5' 
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
-const ss = 2
-const isEnd = true
+const ss = 3
+const isEnd = false
 
 const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI }) => {
     let { address, chain } = useAccount()
@@ -91,6 +91,20 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
     const [ss2ShoesSlotLevel, setSs2ShoesSlotLevel] = React.useState(null)
     const [ss2WeaponSlot, setSs2WeaponSlot] = React.useState(null)
     const [ss2WpSlotLevel, setSs2WpSlotLevel] = React.useState(null)
+    const [ss3CharacterSlot, setSs3CharacterSlot] = React.useState(null)
+    const [ss3CharacterSlotLevel, setSs3CharacterSlotLevel] = React.useState(null)
+    const [ss3HatSlot, setSs3HatSlot] = React.useState(null)
+    const [ss3HatSlotLevel, setSs3HatSlotLevel] = React.useState(null)
+    const [ss3ClothSlot, setSs3ClothSlot] = React.useState(null)
+    const [ss3ClothSlotLevel, setSs3ClothSlotLevel] = React.useState(null)
+    const [ss3AccSlot, setSs3AccSlot] = React.useState(null)
+    const [ss3AccSlotLevel, setSs3AccSlotLevel] = React.useState(null)
+    const [ss3BackSlot, setSs3BackSlot] = React.useState(null)
+    const [ss3BackSlotLevel, setSs3BackSlotLevel] = React.useState(null)
+    const [ss3ShoesSlot, setSs3ShoesSlot] = React.useState(null)
+    const [ss3ShoesSlotLevel, setSs3ShoesSlotLevel] = React.useState(null)
+    const [ss3WeaponSlot, setSs3WeaponSlot] = React.useState(null)
+    const [ss3WpSlotLevel, setSs3WpSlotLevel] = React.useState(null)
     const [allPower, setAllPower] = React.useState(0)
     const [isStakeNow, setIsStakeNow] = React.useState(null)
     const [timeToRunout, setTimeToRunout] = React.useState(null)
@@ -98,12 +112,14 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
     const [rewardPending, setRewardPending] = React.useState(0)
     const [yourSS1CMPOW, setYourSS1CMPOW] = React.useState(0)
     const [yourSS2CMPOW, setYourSS2CMPOW] = React.useState(0)
+    const [yourSS3CMPOW, setYourSS3CMPOW] = React.useState(0)
     const [lastedSTOPT, setLastedSTOPT] = React.useState(null)
     const [skinSlot1, setSkinSlot1] = React.useState(null)
     const [isClaimBadge, setIsClaimBadge] = React.useState(false)
     const [isClaimBadge2, setIsClaimBadge2] = React.useState(false)
-    const [doijibBalance, setDoijibBalance] = React.useState(0)
-    const [goldBalance, setGoldBalance] = React.useState(0)
+    const [isClaimBadge3, setIsClaimBadge3] = React.useState(false)
+    const [gasBalance, setGasBalance] = React.useState(0)
+    const [rewardBalance, setRewardBalance] = React.useState(0)
     const [landBonus, setLandBonus] = React.useState(0)
     const [myhouse, setMyhouse] = React.useState(0)
     console.log(isOp, lastedSTOPT)
@@ -415,6 +431,13 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                 args: [addr, 2],
                 chainId: 8899
             }) : [0, 0, 0, 0, 0, 0, 0]
+            const nftEQMemeSS3 = addr !== null ? await readContract(config, {
+                address: dunMo,
+                abi: dunMoABI,
+                functionName: 'nftEquipMeme',
+                args: [addr, 3],
+                chainId: 8899
+            }) : [0, 0, 0, 0, 0, 0, 0]
 
             const data = addr !== null ? await readContracts(config, {
                 contracts: [
@@ -573,14 +596,14 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                         chainId: 8899
                     },
                     {
-                        address: doijibToken,
+                        address: gasToken,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [addr],
                         chainId: 8899
                     },
                     {
-                        address: goldToken,
+                        address: rewardToken,
                         abi: erc20Abi,
                         functionName: 'balanceOf',
                         args: [addr],
@@ -663,12 +686,69 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                         args: [addr, 2],
                         chainId: 8899
                     },
+                    {
+                        address: cmdaonft,
+                        abi: erc721Abi,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS3[0])],
+                        chainId: 8899
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721Abi,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS3[1])],
+                        chainId: 8899
+                    },
+                    {
+                        address: narutanft,
+                        abi: erc721Abi,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS3[2])],
+                        chainId: 8899
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721Abi,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS3[3])],
+                        chainId: 8899
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721Abi,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS3[4])],
+                        chainId: 8899
+                    },
+                    {
+                        address: narutanft,
+                        abi: erc721Abi,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS3[5])],
+                        chainId: 8899
+                    },
+                    {
+                        address: cmdaonft,
+                        abi: erc721Abi,
+                        functionName: 'tokenURI',
+                        args: [Number(nftEQMemeSS3[6])],
+                        chainId: 8899
+                    },
+                    {
+                        address: badgeClaimer,
+                        abi: badgeClaimerABI,
+                        functionName: 'isClaimed',
+                        args: [addr, 3],
+                        chainId: 8899
+                    },
                 ],
             }) : [
                 {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
                 {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
                 {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
-                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'},
+                {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, {result: 0, status: 'yo'}, 
             ]
             const rawPending = addr !== null ? await readContract(config, {
                 address: dunMo,
@@ -1292,6 +1372,162 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                 })
             }
 
+            let memeSS3cmpow = 0
+            let res_meme_char_ss3 = null
+            try {
+                res_meme_char_ss3 = data[35].status === 'success' ? await fetch(data[35].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
+            } catch {}
+            const nft_meme_char_ss3 = res_meme_char_ss3 !== null ? await res_meme_char_ss3.json() : {image: null, name: null}
+            const nftEQ_meme_char_ss3_Img = nft_meme_char_ss3.image !== null ? nft_meme_char_ss3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
+            const nftEQ_meme_char_ss3_Name = nft_meme_char_ss3.name
+            memeSS3cmpow += res_meme_char_ss3 !== null ? Number(nftEQMemeSS3[0]) % 100000 : 0
+            if (res_meme_char_ss3 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS3[0]),
+                    Name: nftEQ_meme_char_ss3_Name,
+                    Image: nftEQ_meme_char_ss3_Img,
+                    Description: nft_meme_char_ss3.description,
+                    Attribute: nft_meme_char_ss3.attributes,
+                    RewardPerSec: Number(nftEQMemeSS3[0]) % 100000,
+                    isStaked: true,
+                    Slot: 1,
+                    Ss: 3
+                })
+            }
+            let res_meme_hat_ss3 = null
+            try {
+                res_meme_hat_ss3 = data[36].status === 'success' ? await fetch(data[36].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
+            } catch {}
+            const nft_meme_hat_ss3 = res_meme_hat_ss3 !== null ? await res_meme_hat_ss3.json() : {image: null, name: null}
+            const nftEQ_meme_hat_ss3_Img = nft_meme_hat_ss3.image !== null ? nft_meme_hat_ss3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
+            const nftEQ_meme_hat_ss3_Name = nft_meme_hat_ss3.name
+            memeSS3cmpow += res_meme_hat_ss3 !== null ? Number(nftEQMemeSS3[1]) % 100000 : 0
+            if (res_meme_hat_ss3 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS3[1]),
+                    Name: nftEQ_meme_hat_ss3_Name,
+                    Image: nftEQ_meme_hat_ss3_Img,
+                    Description: nft_meme_hat_ss3.description,
+                    Attribute: nft_meme_hat_ss3.attributes,
+                    RewardPerSec: Number(nftEQMemeSS3[1]) % 100000,
+                    isStaked: true,
+                    Slot: 2,
+                    Ss: 3
+                })
+            }
+            let res_meme_cloth_ss3 = null
+            try {
+                res_meme_cloth_ss3 = data[37].status === 'success' ? await fetch(data[37].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
+            } catch {}
+            const nft_meme_cloth_ss3 = res_meme_cloth_ss3 !== null ? await res_meme_cloth_ss3.json() : {image: null, name: null}
+            const nftEQ_meme_cloth_ss3_Img = nft_meme_cloth_ss3.image !== null ? nft_meme_cloth_ss3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
+            const nftEQ_meme_cloth_ss3_Name = nft_meme_cloth_ss3.name
+            memeSS3cmpow += res_meme_cloth_ss3 !== null ? Number(nftEQMemeSS3[2]) % 100000 : 0
+            if (res_meme_cloth_ss3 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS3[2]),
+                    Name: nftEQ_meme_cloth_ss3_Name,
+                    Image: nftEQ_meme_cloth_ss3_Img,
+                    Description: nft_meme_cloth_ss3.description,
+                    Attribute: nft_meme_cloth_ss3.attributes,
+                    RewardPerSec: Number(nftEQMemeSS3[2]) % 100000,
+                    isStaked: true,
+                    Slot: 3,
+                    Ss: 3
+                })
+            }
+            let res_meme_acc_ss3 = null
+            try {
+                res_meme_acc_ss3 = data[38].status === 'success' ? await fetch(data[38].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
+            } catch {}
+            const nft_meme_acc_ss3 = res_meme_acc_ss3 !== null ? await res_meme_acc_ss3.json() : {image: null, name: null}
+            const nftEQ_meme_acc_ss3_Name = nft_meme_acc_ss3.name
+            const nftEQ_meme_acc_ss3_Img = nft_meme_acc_ss3.image !== null ? nft_meme_acc_ss3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
+            memeSS3cmpow += res_meme_acc_ss3 !== null ? Number(nftEQMemeSS3[3]) % 100000 : 0
+            if (res_meme_acc_ss3 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS3[3]),
+                    Name: nftEQ_meme_acc_ss3_Name,
+                    Image: nftEQ_meme_acc_ss3_Img,
+                    Description: nft_meme_acc_ss3.description,
+                    Attribute: nft_meme_acc_ss3.attributes,
+                    RewardPerSec: Number(nftEQMemeSS3[3]) % 100000,
+                    isStaked: true,
+                    Slot: 4,
+                    Ss: 3
+                })
+            }
+            let res_meme_back_ss3 = null
+            try {
+                res_meme_back_ss3 = data[39].status === 'success' ? await fetch(data[39].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
+            } catch {}
+            const nft_meme_back_ss3 = res_meme_back_ss3 !== null ? await res_meme_back_ss3.json() : {image: null, name: null}
+            const nftEQ_meme_back_ss3_Img = nft_meme_back_ss3.image !== null ? nft_meme_back_ss3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
+            const nftEQ_meme_back_ss3_Name = nft_meme_back_ss3.name
+            memeSS3cmpow += res_meme_back_ss3 !== null ? Number(nftEQMemeSS3[4]) % 100000 : 0
+            if (res_meme_back_ss3 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS3[4]),
+                    Name: nftEQ_meme_back_ss3_Name,
+                    Image: nftEQ_meme_back_ss3_Img,
+                    Description: nft_meme_back_ss3.description,
+                    Attribute: nft_meme_back_ss3.attributes,
+                    RewardPerSec: Number(nftEQMemeSS3[4]) % 100000,
+                    isStaked: true,
+                    Slot: 5,
+                    Ss: 3
+                })
+            }
+            let res_meme_shoes_ss3 = null
+            try {
+                res_meme_shoes_ss3 = data[40].status === 'success' ? await fetch(data[40].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
+            } catch {}
+            const nft_meme_shoes_ss3 = res_meme_shoes_ss3 !== null ? await res_meme_shoes_ss3.json() : {image: null, name: null}
+            const nftEQ_meme_shoes_ss3_Img = nft_meme_shoes_ss3.image !== null ? nft_meme_shoes_ss3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
+            const nftEQ_meme_shoes_ss3_Name = nft_meme_shoes_ss3.name
+            memeSS3cmpow += res_meme_back_ss3 !== null ? Number(nftEQMemeSS3[5]) % 100000 : 0
+            if (res_meme_back_ss3 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS3[5]),
+                    Name: nftEQ_meme_shoes_ss3_Name,
+                    Image: nftEQ_meme_shoes_ss3_Img,
+                    Description: nft_meme_shoes_ss3.description,
+                    Attribute: nft_meme_shoes_ss3.attributes,
+                    RewardPerSec: Number(nftEQMemeSS3[5]) % 100000,
+                    isStaked: true,
+                    Slot: 6,
+                    Ss: 3
+                })
+            }
+            let res_meme_weapon_ss3 = null
+            try {
+                res_meme_weapon_ss3 = data[41].status === 'success' ? await fetch(data[41].result.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/")) : null
+            } catch {}
+            const nft_meme_weapon_ss3 = res_meme_weapon_ss3 !== null ? await res_meme_weapon_ss3.json() : {image: null, name: null}
+            const nftEQ_meme_weapon_ss3_Img = nft_meme_weapon_ss3.image !== null ? nft_meme_weapon_ss3.image.replace("ipfs://", "https://gateway.commudao.xyz/ipfs/") : null
+            const nftEQ_meme_weapon_ss3_Name = nft_meme_weapon_ss3.name
+            memeSS3cmpow += res_meme_weapon_ss3 !== null ? Number(nftEQMemeSS3[6]) % 100000 : 0
+            if (res_meme_weapon_ss3 !== null) {
+                nfts.push({
+                    Col: 1,
+                    Id: Number(nftEQMemeSS3[6]),
+                    Name: nftEQ_meme_weapon_ss3_Name,
+                    Image: nftEQ_meme_weapon_ss3_Img,
+                    Description: nft_meme_weapon_ss3.description,
+                    Attribute: nft_meme_weapon_ss3.attributes,
+                    RewardPerSec: Number(nftEQMemeSS3[6]) % 100000,
+                    isStaked: true,
+                    Slot: 7,
+                    Ss: 3
+                })
+            }
+
             const nftStatus = addr !== null ? await readContract(config, {
                 address: dunMo,
                 abi: dunMoABI,
@@ -1304,8 +1540,8 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             const refuelAt = Number(nftStatus[1])
             const isStaked = nftStatus[2]
 
-            const doijibBal = data[22].result
-            const goldBal = data[23].result
+            const gasBal = data[22].result
+            const rewardBal = data[23].result
             const stOPTClaim = isStaked ? data[24].result : 0
             const skinslot1 = data[25].result
             const isbadgeclaimed = data[26].result
@@ -1480,8 +1716,9 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                 nftEQ_main_char_Img, nftEQ_main_char_Name, nftEQ_main_acc_Img, nftEQ_main_acc_Name, nftEQ_main_back_Img, nftEQ_main_back_Name, nftEQ_main_shoes_Img, nftEQ_main_shoes_Name, nftEQ_main_wp1_Img, nftEQ_main_wp1_Name, nftEQ_main_cloth_Img, nftEQ_main_cloth_Name, nftEQ_main_hat_Img, nftEQ_main_hat_Name,
                 nftEQ_main_wp2_Img, nftEQ_main_wp2_Name, nftEQ_main_acc2_Img, nftEQ_main_acc2_Name, nftEQ_main_acc3_Img, nftEQ_main_acc3_Name, nftEQ_main_acc4_Img, nftEQ_main_acc4_Name, nftEQ_main_acc5_Img, nftEQ_main_acc5_Name, nftEQ_main_acc6_Img, nftEQ_main_acc6_Name, nftEQ_main_soul_Img, nftEQ_main_soul_Name, nftEQ_main_badge_Img, nftEQ_main_badge_Name,
                 nftEQ_meme_char_ss1_Img, nftEQ_meme_char_ss1_Name, nftEQ_meme_hat_ss1_Img, nftEQ_meme_hat_ss1_Name, nftEQ_meme_cloth_ss1_Img, nftEQ_meme_cloth_ss1_Name, nftEQ_meme_acc_ss1_Img, nftEQ_meme_back_ss1_Img, nftEQ_meme_back_ss1_Name, nftEQ_meme_shoes_ss1_Img, nftEQ_meme_shoes_ss1_Name, nftEQ_meme_weapon_ss1_Img, nftEQ_meme_weapon_ss1_Name,
-                allPow, isStaked, refuelAt, rewardpending, stOPTClaim, doijibBal, goldBal, skinslot1, myhouseMul, house, memeSS1cmpow, isbadgeclaimed,
+                allPow, isStaked, refuelAt, rewardpending, stOPTClaim, gasBal, rewardBal, skinslot1, myhouseMul, house, memeSS1cmpow, isbadgeclaimed,
                 nftEQ_meme_char_ss2_Img, nftEQ_meme_char_ss2_Name, nftEQ_meme_hat_ss2_Img, nftEQ_meme_hat_ss2_Name, nftEQ_meme_cloth_ss2_Img, nftEQ_meme_cloth_ss2_Name, nftEQ_meme_acc_ss2_Img, nftEQ_meme_acc_ss2_Name, nftEQ_meme_back_ss2_Img, nftEQ_meme_back_ss2_Name, nftEQ_meme_shoes_ss2_Img, nftEQ_meme_shoes_ss2_Name, nftEQ_meme_weapon_ss2_Img, nftEQ_meme_weapon_ss2_Name, memeSS2cmpow, isbadgeclaimed2,
+                nftEQ_meme_char_ss3_Img, nftEQ_meme_char_ss3_Name, nftEQ_meme_hat_ss3_Img, nftEQ_meme_hat_ss3_Name, nftEQ_meme_cloth_ss3_Img, nftEQ_meme_cloth_ss3_Name, nftEQ_meme_acc_ss3_Img, nftEQ_meme_acc_ss3_Name, nftEQ_meme_back_ss3_Img, nftEQ_meme_back_ss3_Name, nftEQ_meme_shoes_ss3_Img, nftEQ_meme_shoes_ss3_Name, nftEQ_meme_weapon_ss3_Img, nftEQ_meme_weapon_ss3_Name, memeSS3cmpow,
             ]
         }
 
@@ -1565,8 +1802,8 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             setRewardPending(ethers.utils.formatEther(String(result[47])))
 
             setLastedSTOPT(Number(result[46]) * 1000 === Number(result[48]) * 1000)
-            setDoijibBalance(ethers.utils.formatEther(String(result[49])))
-            setGoldBalance(ethers.utils.formatEther(String(result[50])))
+            setGasBalance(ethers.utils.formatEther(String(result[49])))
+            setRewardBalance(ethers.utils.formatEther(String(result[50])))
             setSkinSlot1(result[51])
             setLandBonus(result[52])
             setMyhouse(result[53])
@@ -1595,6 +1832,28 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             result[69] !== null && result[69].slice(-2, -1) === "+" ? setSs2WpSlotLevel(result[69].slice(-1)) : setSs2WpSlotLevel(null)
             setYourSS2CMPOW(result[70])
             setIsClaimBadge2(result[71])
+
+            setSs3CharacterSlot(result[72])
+            if (result[73] !== null && result[73].slice(-1) === "]" && result[73].slice(-3, -2) === ".") {
+                setSs3CharacterSlotLevel(result[73].slice(-2, -1))
+            } else if (result[73] !== null && result[73].slice(-1) === "]" && result[73].slice(-4, -3) === ".") {
+                setSs3CharacterSlotLevel(result[73].slice(-3, -1))
+            } else {
+                setSs3CharacterSlotLevel(null)
+            }
+            setSs3HatSlot(result[74])
+            result[75] !== null && result[75].slice(-2, -1) === "+" ? setSs3HatSlotLevel(result[75].slice(-1)) : setSs3HatSlotLevel(null)
+            setSs3ClothSlot(result[76])
+            result[77] !== null && result[77].slice(-2, -1) === "+" ? setSs3ClothSlotLevel(result[77].slice(-1)) : setSs3ClothSlotLevel(null)
+            setSs3AccSlot(result[78])
+            result[79] !== null && result[79].slice(-2, -1) === "+" ? setSs3AccSlotLevel(result[79].slice(-1)) : setSs3AccSlotLevel(null)
+            setSs3BackSlot(result[80])
+            result[81] !== null && result[81].slice(-2, -1) === "+" ? setSs3BackSlotLevel(result[81].slice(-1)) : setSs3BackSlotLevel(null)
+            setSs3ShoesSlot(result[82])
+            result[83] !== null && result[83].slice(-2, -1) === "+" ? setSs3ShoesSlotLevel(result[83].slice(-1)) : setSs3ShoesSlotLevel(null)
+            setSs3WeaponSlot(result[84])
+            result[85] !== null && result[85].slice(-2, -1) === "+" ? setSs3WpSlotLevel(result[85].slice(-1)) : setSs3WpSlotLevel(null)
+            setYourSS3CMPOW(result[86])
         })
 
     }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI])
@@ -1726,9 +1985,9 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
         try {
             let gasAddr = ''
             let gasIndex = 0
-            if (ss === 2) {
-                gasAddr = doijibToken
-                gasIndex = 2
+            if (ss === 3) {
+                gasAddr = gasToken
+                gasIndex = 3
             }
             const gasAllow = await readContract(config, {
                 address: gasAddr,
@@ -1877,8 +2136,8 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     REWARD BALANCE
                                     {!isEnd ? 
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="20" alt="$GOLD"/>
-                                            <div style={{marginLeft: "5px"}}>{Number(goldBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="20" alt="$PLAT"/>
+                                            <div style={{marginLeft: "5px"}}>{Number(rewardBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                         </div> :
                                         <div style={{color: "#5f6476"}}>SS is over</div>
                                     }
@@ -1887,7 +2146,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     REWARD PENDING
                                     {!isEnd ? 
                                         <div style={{display: "flex", flexDirection: "row", color: timeToRunout !== 0 && timeToRunout !== null  ? "#ff007a" : "#5f6476"}}>
-                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreia4zjqhbo4sbvbkvlgnit6yhhjmvo7ny4ybobuee74vqlmziskosm" height="20" alt="$GOLD"/>
+                                            <img src="https://gateway.commudao.xyz/ipfs/bafkreibf7vowyqjrcaeyslflrxxchel3b4qdpwxcxb34js2otg35vjkcaa" height="20" alt="$PLAT"/>
                                             <div style={{marginLeft: "5px"}}>{Number(rewardPending).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
                                         </div> :
                                         <div style={{color: "#5f6476"}}>SS is over</div>
@@ -1897,13 +2156,13 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     GAS USAGE
                                     {!isEnd ? 
                                         <div style={{display: "flex", flexDirection: "row"}}>
-                                            {ss === 2 &&
+                                            {ss === 3 &&
                                                 <>
-                                                    <img src="https://gateway.commudao.xyz/ipfs/bafybeicfkse4uvkhhkrhfwtap4h3v5msef6lg3t3xvb2hspw3xd5wegzfi" height="20" alt="$DOIJIB"/>
-                                                    <div style={{marginLeft: "5px"}}>{Number(doijibBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
+                                                    <img src="https://gateway.commudao.xyz/ipfs/bafkreidau3s66zmqwtyp2oimumulxeuw7qm6apcornbvxbqmafvq3nstiq" height="20" alt="$CU"/>
+                                                    <div style={{marginLeft: "5px"}}>{Number(gasBalance).toLocaleString('en-US', {maximumFractionDigits:0})}</div>
                                                 </>
                                             }
-                                            <div style={{marginLeft: "5px"}}>/500,000</div>
+                                            <div style={{marginLeft: "5px"}}>/10,000,000</div>
                                         </div> :
                                         <div style={{color: "#5f6476"}}>SS is over</div>
                                     }
@@ -1927,7 +2186,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                                         <div style={{alignSelf: "center", background: isRunout ? "#67BAA7" : "#ff007a", padding: "10px 15px"}} className="button" onClick={() => unstakeNft(0, false, ss)}>HARVEST & UNSTAKE</div>
                                                     </> :
                                                     <>
-                                                        {isStakeNow !== null && (ss === 2 && !isEnd && Number(doijibBalance) >= 500000) ?
+                                                        {isStakeNow !== null && (ss === 3 && !isEnd && Number(gasBalance) >= 10000000) ?
                                                             <>
                                                                 {allPower !== 0 ?
                                                                     <div style={{alignSelf: "center", padding: "10px 15px"}} className="button" onClick={refuelStake}>REFUEL GAS</div> :
@@ -2053,6 +2312,78 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                         <img src="https://gateway.commudao.xyz/ipfs/QmWYEwdpNYHCp4EZEJATQue72ndN162VTze9WDxzaLEqk9" width="100px" alt="Can not load metadata." />
                                     }
                                     {wpSlot2Level !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{wpSlot2Level}</div>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", overflow: "scroll"}} className="pixel mainprofile">
+                        <div style={{background: "none rgba(255, 255, 255, 0.1)", backdropFilter: "blur(14px)", boxShadow: "none", border: 0, justifyContent: "space-around", padding: "30px", width: "1140px", height: "fit-content", display: "flex", flexDirection: "row", textAlign: "left", flexWrap: "wrap"}} className="nftCard">
+                            <div style={{background: "#2f1a52", color: "#fff", width: "370px", height: "360px", margin: "20px", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", boxShadow: "3px 3px 0 #0d0a1f"}}>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
+                                    <div style={{fontSize: "22px", lineHeight: "15px"}}>L2 MEME STAKING SS 3<br></br><br></br>Songkran 2024 Flashback: Legends of VK by @whitney9452</div>
+                                </div>
+                                <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+                                    TOTAL CMPOW
+                                    <div style={{display: "flex", flexDirection: "row"}}>{yourSS3CMPOW}</div>
+                                </div>
+                                <div style={{height: "180px", width: "100%", padding: "20px 0", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", textAlign: "center", letterSpacing: 1}} className="bold">
+                                    <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 3 concludes at 11:59 PM on March 28th.</div>
+                                    <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the seasonal badge nft claiming. The season ends in 28 + 7 days.</div>
+                                    <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>                            
+                                    <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='slotbox noscroll'>
+                                <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {ss3HatSlot !== null ?
+                                        <img src={ss3HatSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmcJg97MWcc58JcTU4Z69phZr5iUDRXHc4H6kFKhy8iqL1" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss3HatSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{ss3HatSlotLevel}</div>}
+                                    {ss3ClothSlot !== null ?
+                                        <img src={ss3ClothSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmZEch1ACdpn1UdRA91wm7ky2bDH2QJXHg1tPKo683Xyv9" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss3ClothSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "237.5px", padding: "2px", fontSize: "25px"}}>+{ss3ClothSlotLevel}</div>}
+                                    {ss3ShoesSlot !== null ?
+                                        <img src={ss3ShoesSlot} width="100px" alt="" /> :
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmQBwQeRGM68cNnFWEQKxEJvxHh8GsXGgw7rze2zDkhq6Q" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss3ShoesSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{ss3ShoesSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "300px", height: "400px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
+                                    <div style={{width: "300px", height: "65px"}}></div>
+                                    {nft.length > 0 ?
+                                        <>
+                                            {ss3CharacterSlot !== null ?
+                                                <img src={ss3CharacterSlot} width="300px" alt="Can not load metadata." /> :
+                                                <img src="https://gateway.commudao.xyz/ipfs/QmRTR62zSMJiSYZ4h1HeMrcGJCnmzrphKNgaVRtM1PnxMw" width="300px" alt="Can not load metadata." />
+                                            }
+                                        </> :
+                                        <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                            <ThreeDots fill="#5f6476" />
+                                        </div>
+                                    }
+                                    {ss3CharacterSlotLevel !== null && <div style={{position: "absolute", bottom: "40px", right: "10px", padding: "2px", fontSize: "25px", color: "#000"}}>Lv.{ss3CharacterSlotLevel}</div>}
+                                </div>
+                                <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
+                                    {ss3AccSlot !== null ?
+                                        <img src={ss3AccSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmNhfFs1kSzPYMJaYjcdqu44vUrCBQk2uD4DdkFK89KvNH" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss3AccSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "85px", fontSize: "25px"}}>+{ss3AccSlotLevel}</div>}
+                                    {ss3BackSlot !== null ?
+                                        <img src={ss3BackSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmXfGctM5uGHYU8SMwWa1bUJTosvEBwFzT2gbkhc87yKKj" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss3BackSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "237.5px", fontSize: "25px"}}>+{ss3BackSlotLevel}</div>}
+                                    {ss3WeaponSlot !== null ?
+                                        <img src={ss3WeaponSlot} width="100px" alt="Can not load metadata." /> :
+                                        <img src="https://gateway.commudao.xyz/ipfs/QmS2VnY8FGWR5o1rBo8cx74t2s5SYuJE5ufPEvjEeAL1cN" width="100px" alt="Can not load metadata." />
+                                    }
+                                    {ss3WpSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{ss3WpSlotLevel}</div>}
                                 </div>
                             </div>
                         </div>
@@ -2230,6 +2561,16 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                                         (Number(item.Id) >= 600000118800 && Number(item.Id) <= 600025072800)
                                                     )
                                                 )
+                                            ) ||
+                                            (//ss === 3
+                                                (item.Col === 2 && 
+                                                    (
+                                                        (Number(item.Id) >= 290000145555 && Number(item.Id) <= 290005545555) || 
+                                                        (Number(item.Id) >= 490000145555 && Number(item.Id) <= 490005545555) ||
+                                                        (Number(item.Id) >= 690000145555 && Number(item.Id) <= 690005545555) ||
+                                                        (Number(item.Id) >= 790000145555 && Number(item.Id) <= 790005545555)
+                                                    )
+                                                )
                                             )) &&
                                                 <div style={{background: "#2f1a52", boxShadow: "none", border: 0, color: "#fff", justifyContent: "space-around", padding: "20px", margin: "10px", height: "500px"}} className="nftCard" key={index}>
                                                     <div style={{width: "150px", height: "150px", display: "flex", justifyContent: "center", overflow: "hidden"}}>
@@ -2290,13 +2631,13 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                                                                     {((item.Id / 100000000000) | 0) === 8 && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(item.Col, item.Id, 8, false)}>EQUIP L1 BADGE</div>}
                                                                                 </>
                                                                             }
-                                                                            {(false && ss === 2 && item.Col === 1 && (Number(item.Id) >= 102033419000 && Number(item.Id) <= 102066619000)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 1, true)}>EQUIP L2 SS2 MAIN CHAR</div>}
-                                                                            {(false && ss === 2 && item.Col === 1 && (Number(item.Id) >= 210000100250 && Number(item.Id) <= 210050001950)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 2, true)}>EQUIP L2 SS2 HAT</div>}
-                                                                            {(false && ss === 2 && item.Col === 2 && (Number(item.Id) >= 300000118800 && Number(item.Id) <= 300025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 3, true)}>EQUIP L2 SS2 CLOTH</div>}
-                                                                            {(false && ss === 2 && item.Col === 1 && (Number(item.Id) >= 400030010900 && Number(item.Id) <= 400039910900)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 4, true)}>EQUIP L2 SS2 ACC</div>}
-                                                                            {(false && ss === 2 && item.Col === 1 && (Number(item.Id) >= 510030010100 && Number(item.Id) <= 510039910100)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 5, true)}>EQUIP L2 SS2 BACK</div>}
-                                                                            {(false && ss === 2 && item.Col === 2 && (Number(item.Id) >= 600000118800 && Number(item.Id) <= 600025072800)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 6, true)}>EQUIP L2 SS2 SHOES</div>}
-                                                                            {(false && ss === 2 && item.Col === 1 && (Number(item.Id) >= 730010010400 && Number(item.Id) <= 730019910400)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 7, true)}>EQUIP L2 SS2 WEAPON</div>}
+                                                                            {(true && ss === 3 && item.Col === 1 && (Number(item.Id) >= 102066704500 && Number(item.Id) <= 102099904500)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 1, true)}>EQUIP L2 SS3 MAIN CHAR</div>}
+                                                                            {(true && ss === 3 && item.Col === 2 && (Number(item.Id) >= 290000145555 && Number(item.Id) <= 290005545555)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 2, true)}>EQUIP L2 SS3 HAT</div>}
+                                                                            {(true && ss === 3 && item.Col === 1 && (Number(item.Id) >= 310000102550 && Number(item.Id) <= 310199999999)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 3, true)}>EQUIP L2 SS3 CLOTH</div>}
+                                                                            {(true && ss === 3 && item.Col === 2 && (Number(item.Id) >= 490000145555 && Number(item.Id) <= 490005545555)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 4, true)}>EQUIP L2 SS3 ACC</div>}
+                                                                            {(true && ss === 3 && item.Col === 1 && (Number(item.Id) >= 511000102550 && Number(item.Id) <= 511099999999)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 5, true)}>EQUIP L2 SS3 BACK</div>}
+                                                                            {(true && ss === 3 && item.Col === 2 && (Number(item.Id) >= 690000145555 && Number(item.Id) <= 690005545555)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 6, true)}>EQUIP L2 SS3 SHOES</div>}
+                                                                            {(true && ss === 3 && item.Col === 2 && (Number(item.Id) >= 790000145555 && Number(item.Id) <= 790005545555)) && <div style={{alignSelf: "center", marginTop: "5px"}} className="pixel button" onClick={() => equipNft(0, item.Id, 7, true)}>EQUIP L2 SS3 WEAPON</div>}
                                                                             <div style={{alignSelf: "center", background: "gray", marginTop: "5px"}} className="pixel button" onClick={() => transferNFT(item.Col, item.Id)}>TRANSFER</div>
                                                                         </>
                                                                     }
