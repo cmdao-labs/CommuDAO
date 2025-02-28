@@ -2339,17 +2339,17 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                 <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 20px 20px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {ss3HatSlot !== null ?
                                         <img src={ss3HatSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://gateway.commudao.xyz/ipfs/QmcJg97MWcc58JcTU4Z69phZr5iUDRXHc4H6kFKhy8iqL1" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafybeihcaime52xjf7b2ysgsfvsrg2jb5bmwa72grvnm5yqimaar44cnv4" width="100px" alt="Can not load metadata." style={{filter: 'grayscale(1)'}} />
                                     }
                                     {ss3HatSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "85px", padding: "2px", fontSize: "25px"}}>+{ss3HatSlotLevel}</div>}
                                     {ss3ClothSlot !== null ?
                                         <img src={ss3ClothSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://gateway.commudao.xyz/ipfs/QmZEch1ACdpn1UdRA91wm7ky2bDH2QJXHg1tPKo683Xyv9" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreih5olhdb33tdz7ujof7d4ykjufay7odefvvby47jr62o275cgerta" width="100px" alt="Can not load metadata." style={{filter: 'grayscale(1)'}} />
                                     }
                                     {ss3ClothSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "237.5px", padding: "2px", fontSize: "25px"}}>+{ss3ClothSlotLevel}</div>}
                                     {ss3ShoesSlot !== null ?
                                         <img src={ss3ShoesSlot} width="100px" alt="" /> :
-                                        <img src="https://gateway.commudao.xyz/ipfs/QmQBwQeRGM68cNnFWEQKxEJvxHh8GsXGgw7rze2zDkhq6Q" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafybeiajrhbrxzhfkcsb6pazkrvgxamoij3jnlvljggi27wbidavtsbese" width="100px" alt="Can not load metadata." style={{filter: 'grayscale(1)'}} />
                                     }
                                     {ss3ShoesSlotLevel !== null && <div className="slotlevel2" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{ss3ShoesSlotLevel}</div>}
                                 </div>
@@ -2359,7 +2359,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                         <>
                                             {ss3CharacterSlot !== null ?
                                                 <img src={ss3CharacterSlot} width="300px" alt="Can not load metadata." /> :
-                                                <img src="https://gateway.commudao.xyz/ipfs/QmRTR62zSMJiSYZ4h1HeMrcGJCnmzrphKNgaVRtM1PnxMw" width="300px" alt="Can not load metadata." />
+                                                <img src="https://gateway.commudao.xyz/ipfs/bafkreibl25he5u74rw2mi24xhjl4yurmhoe6upn4qcbi5kn75e5uaz2ksa" width="300px" alt="Can not load metadata." style={{filter: 'grayscale(1)'}} />
                                             }
                                         </> :
                                         <div style={{width: "300px", height: "300px", borderRadius: "16px", border: "1px solid gray", display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -2371,17 +2371,17 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                 <div style={{position: "relative", width: "150px", height: "400px", padding: "20px 0 20px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
                                     {ss3AccSlot !== null ?
                                         <img src={ss3AccSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://gateway.commudao.xyz/ipfs/QmNhfFs1kSzPYMJaYjcdqu44vUrCBQk2uD4DdkFK89KvNH" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafybeiftowtfdkgeriogbaaoj7dhgnx5hcx2izqla3f4vnwrwtifbu2yoa" width="100px" alt="Can not load metadata." style={{filter: 'grayscale(1)'}} />
                                     }
                                     {ss3AccSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "85px", fontSize: "25px"}}>+{ss3AccSlotLevel}</div>}
                                     {ss3BackSlot !== null ?
                                         <img src={ss3BackSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://gateway.commudao.xyz/ipfs/QmXfGctM5uGHYU8SMwWa1bUJTosvEBwFzT2gbkhc87yKKj" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafkreibnpsqclgnzwv6m2lrdu6snkmduuumcdobpllkj7aaoklyvt2hqaa" width="100px" alt="Can not load metadata." style={{filter: 'grayscale(1)'}} />
                                     }
                                     {ss3BackSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "237.5px", fontSize: "25px"}}>+{ss3BackSlotLevel}</div>}
                                     {ss3WeaponSlot !== null ?
                                         <img src={ss3WeaponSlot} width="100px" alt="Can not load metadata." /> :
-                                        <img src="https://gateway.commudao.xyz/ipfs/QmS2VnY8FGWR5o1rBo8cx74t2s5SYuJE5ufPEvjEeAL1cN" width="100px" alt="Can not load metadata." />
+                                        <img src="https://gateway.commudao.xyz/ipfs/bafybeihsvjagwtvlduxlca4pkbyafl3wjqlpuur5hijy5apmdn4ldiohtq" width="100px" alt="Can not load metadata." style={{filter: 'grayscale(1)'}} />
                                     }
                                     {ss3WpSlotLevel !== null && <div className="slotlevel" style={{position: "absolute", top: "385px", padding: "2px", fontSize: "25px"}}>+{ss3WpSlotLevel}</div>}
                                 </div>
