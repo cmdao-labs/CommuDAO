@@ -694,21 +694,21 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                         chainId: 8899
                     },
                     {
-                        address: cmdaonft,
+                        address: narutanft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS3[1])],
                         chainId: 8899
                     },
                     {
-                        address: narutanft,
+                        address: cmdaonft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS3[2])],
                         chainId: 8899
                     },
                     {
-                        address: cmdaonft,
+                        address: narutanft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS3[3])],
@@ -729,7 +729,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                         chainId: 8899
                     },
                     {
-                        address: cmdaonft,
+                        address: narutanft,
                         abi: erc721Abi,
                         functionName: 'tokenURI',
                         args: [Number(nftEQMemeSS3[6])],
@@ -1899,7 +1899,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
     const equipNft = async (_nftCol, _nftid, slot, _isMeme) => {
         setisLoading(true)
         let nftaddr = cmdaonft
-        if (_isMeme && (slot === 3 || slot === 6)) {
+        if (_isMeme && (slot === 2 || slot === 4 || slot === 6 || slot === 7)) {
             nftaddr = narutanft
         }
         let colBonus = 0
@@ -1995,7 +1995,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                 functionName: 'allowance',
                 args: [address, dunMo],
             })
-            if (Number(ethers.utils.formatEther(gasAllow)) < 500000) {
+            if (Number(ethers.utils.formatEther(gasAllow)) < 10000000) {
                 let { request } = await simulateContract(config, {
                     address: gasAddr,
                     abi: erc20Abi,
