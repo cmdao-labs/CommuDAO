@@ -205,7 +205,7 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div></div>
-                        <div style={{textAlign: "right"}}>Terminated on 11.59 PM. Feb 7, 2025.</div>
+                        <div style={{textAlign: "right"}}>Terminated on 11.59 PM. Mar 7, 2025.</div>
                     </div>
                     <div style={{width: "75%", height: "80px", display: "flex", justifyContent: "space-between", border: "1px solid #fff", boxShadow: "inset -2px -2px 0px 0.25px rgba(0, 0, 0, 0.1)", padding: "15px"}}>
                         <div style={{width: "40%", fontSize: "11px",  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-around"}}>
