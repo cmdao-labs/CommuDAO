@@ -193,15 +193,15 @@ const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, 
                     <div style={{width: "100%", margin: "5px 0 10px 0", borderBottom: "2px solid #fff"}}></div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>EPOCH:</div>
-                        <div style={{textAlign: "right"}}>6</div>
+                        <div style={{textAlign: "right"}}>7</div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div>Reward distribution on:</div>
-                        <div style={{textAlign: "right"}}>8-10 Feb 2025</div>
+                        <div style={{textAlign: "right"}}>8-10 Mar 2025</div>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div></div>
-                        <a style={{display: "flex", textAlign: "right"}} href="https://vote.commudao.xyz/#/proposal/0x8839ae188fb89003f771528a9193b9fd873a77174e5fc6d6ecb8e777da16a3ea" target="_blank" rel="noreferrer">Cast vote on Snapshot latest proposal to qualify</a>
+                        <a style={{display: "flex", textAlign: "right"}} href="https://vote.commudao.xyz/#/proposal/0x6f7112cb644ed82e04ec74882e60e08ca12ab085eedd3e9038bd22c0921a5c78" target="_blank" rel="noreferrer">Cast vote on Snapshot latest proposal to qualify</a>
                     </div>
                     <div style={{width: "80%", display: "flex", justifyContent: "space-between", fontSize: "12px"}}>
                         <div></div>
