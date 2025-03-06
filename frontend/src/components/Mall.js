@@ -1778,7 +1778,7 @@ const Mall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate,
                         </div>
                         <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "flex-start", overflow: "scroll"}} className="noscroll">
                             <Ammmerchant4 config={config} setisLoading={setisLoading} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} angeloStdABI={angeloStdABI} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20Abi={erc20Abi} angbBalance={angbBalance} swarBalance={swarBalance} wjbcBalance={wjbcBalance} />
-                            <Ammmerchant5 config={config} setisLoading={setisLoading} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20Abi={erc20Abi} iiBalance={iiBalance} eeBalance={eeBalance} jtaoBalance={jtaoBalance} />
+                            <Ammmerchant5 config={config} setisLoading={setisLoading} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} cmdaoAmmNpcABI={cmdaoAmmNpcABI} erc20Abi={erc20Abi} iiBalance={iiBalance} eeBalance={eeBalance} wjbcBalance={wjbcBalance} />
                         </div>
 
                         <div style={{width: "97.5%", borderBottom: "1px solid #dddade", marginTop: "40px"}}></div>
