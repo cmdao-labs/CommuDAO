@@ -5,11 +5,12 @@ import { ethers } from 'ethers'
 
 const iiToken = '0x523AA3aB2371A6360BeC4fEea7bE1293adb32241'
 const eeToken = '0xF663c756b6D57724C3B41c8839aB9c7Af83c9751'
-const jtaoToken = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
-const taomiII = '0xbd5bff1fbbd83fecd749a328d98f860f7f343c10'
-const taomiEE = '0x3822b065e9980f6cd62fd8fa60b3ffb36866ca60'
+const wjbcToken = '0xC4B7C87510675167643e3DE6EEeD4D2c06A9e747'
+const taomiII = '0x12580365CF5DBE3f8fd5B3F6D922dF3dd8e6A22E'
+const taomiEE = '0x2b93314E2Aa9A8832C4498f2bF6EadeF1f040BE1'
 
-const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg, cmdaoAmmNpcABI, erc20Abi, iiBalance, eeBalance, jtaoBalance }) => {
+
+const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg, cmdaoAmmNpcABI, erc20Abi, iiBalance, eeBalance, wjbcBalance }) => {
     let { address } = useAccount()
     if (address === undefined) {
         address = null
@@ -21,16 +22,16 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
     const [lpSell, setLpSell] = React.useState("")
     const [tokenAdd, setTokenAdd] = React.useState("")
     const [currAdd, setCurrAdd] = React.useState("")
-    const [jtaoBoughtII, setJtaoBoughtII] = React.useState("0.000")
+    const [wjbcBoughtII, setWjbcBoughtII] = React.useState("0.000")
     const [tokenBoughtII, setTokenBoughtII] = React.useState("0.000")
     const [priceII, setPriceII] = React.useState("0.000")
-    const [reserveJtaoIi, setReserveJtaoIi] = React.useState("")
+    const [reserveWjbcIi, setReserveWjbcIi] = React.useState("")
     const [reserveII, setReserveII] = React.useState("")
     const [iiLpBalance, setIiLpBalance] = React.useState("0")
-    const [jtaoBoughtEE, setJtaoBoughtEE] = React.useState("0.000")
+    const [wjbcBoughtEE, setWjbcBoughtEE] = React.useState("0.000")
     const [tokenBoughtEE, setTokenBoughtEE] = React.useState("0.000")
-    const [priceEE, setPriceEE] = React.useState("0.000")
-    const [reserveJtaoEe, setReserveJtaoEe] = React.useState("")
+    const [priceEE, setPriceEE] = React.useState("0.000000")
+    const [reserveWjbcEe, setReserveWjbcEe] = React.useState("")
     const [reserveEE, setReserveEE] = React.useState("")
     const [eeLpBalance, setEeLpBalance] = React.useState("0")
 
@@ -66,9 +67,9 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             args: [String(_value), String(_reserveToken), String(_reserveCurr)],
         })
         if (index === 1) {
-            event.target.value !== "" ? setJtaoBoughtII(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setJtaoBoughtII("0.000")
+            event.target.value !== "" ? setWjbcBoughtII(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setWjbcBoughtII("0.000")
         } else if (index === 2) {
-            event.target.value !== "" ? setJtaoBoughtEE(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setJtaoBoughtEE("0.000")
+            event.target.value !== "" ? setWjbcBoughtEE(ethers.utils.formatEther(tokensBoughttokenTOcurr)) : setWjbcBoughtEE("0.000")
         }
     }
     const handleSwapUni_2 = async (index, event) => {
@@ -112,18 +113,18 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
     const swapTokenHandleUni = async (index, _sell) => {
         let lp = '0x0000000000000000000000000000000000000000'
         let token = '0x0000000000000000000000000000000000000000'
-        const curr = jtaoToken
+        const curr = wjbcToken
         let currBoughtToken = '0'
         let tokenBoughtCurr = '0'
         if (index === 1) {
             lp = taomiII
             token = iiToken
-            currBoughtToken = jtaoBoughtII
+            currBoughtToken = wjbcBoughtII
             tokenBoughtCurr = tokenBoughtII
         } else if (index === 2) {
             lp = taomiEE
             token = eeToken
-            currBoughtToken = jtaoBoughtEE
+            currBoughtToken = wjbcBoughtEE
             tokenBoughtCurr = tokenBoughtEE
         }
         setisLoading(true)
@@ -264,7 +265,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
     const addLpHandleUni = async (index) => {
         let lp = '0x0000000000000000000000000000000000000000'
         let token = '0x0000000000000000000000000000000000000000'
-        const curr = jtaoToken
+        const curr = wjbcToken
         if (index === 1) {
             lp = taomiII
             token = iiToken
@@ -348,9 +349,9 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                     }
                 ],
             })
-            const _reserveJtaoII = data[0].result
+            const _reserveWjbcII = data[0].result
             const _reserveII = data[1].result
-            const _reserveJtaoEE = data[2].result
+            const _reserveWjbcEE = data[2].result
             const _reserveEE = data[3].result
 
             const data2 = await readContracts(config, {
@@ -359,18 +360,18 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                         address: taomiII,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getAmountOfTokens',
-                        args: [String(10**18), String(_reserveII), String(_reserveJtaoII)],
+                        args: [String(10**18), String(_reserveII), String(_reserveWjbcII)],
                     },
                     {
                         address: taomiEE,
                         abi: cmdaoAmmNpcABI,
                         functionName: 'getAmountOfTokens',
-                        args: [String(10**18), String(_reserveEE), String(_reserveJtaoEE)],
+                        args: [String(10**18), String(_reserveEE), String(_reserveWjbcEE)],
                     }
                 ],
             })
-            const tokensBoughtiiTOjtao = data2[0].result
-            const tokensBoughteeTOjtao = data2[1].result
+            const tokensBoughtiiTOwjbc = data2[0].result
+            const tokensBoughteeTOwjbc = data2[1].result
 
             const data3 = address !== null ? await readContracts(config, {
                 contracts: [
@@ -392,8 +393,8 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
             const eelpBal = data3[1].result
 
             return [
-                tokensBoughtiiTOjtao, _reserveJtaoII, _reserveII, iilpBal,
-                tokensBoughteeTOjtao, _reserveJtaoEE, _reserveEE, eelpBal,
+                tokensBoughtiiTOwjbc, _reserveWjbcII, _reserveII, iilpBal,
+                tokensBoughteeTOwjbc, _reserveWjbcEE, _reserveEE, eelpBal,
             ]
         }
 
@@ -408,12 +409,12 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
 
         getAsync().then(result => {
             result[0] !== null && setPriceII(Number(ethers.utils.formatEther(result[0])).toFixed(3))
-            setReserveJtaoIi(ethers.utils.formatEther(result[1]))
+            setReserveWjbcIi(ethers.utils.formatEther(result[1]))
             setReserveII(ethers.utils.formatEther(result[2]))
             const _iilpbalance = ethers.utils.formatEther(result[3])
             setIiLpBalance(Math.floor(_iilpbalance * 100000) / 100000)
-            result[4] !== null && setPriceEE(Number(ethers.utils.formatEther(result[4])).toFixed(3))
-            setReserveJtaoEe(ethers.utils.formatEther(result[5]))
+            result[4] !== null && setPriceEE(Number(ethers.utils.formatEther(result[4])).toFixed(6))
+            setReserveWjbcEe(ethers.utils.formatEther(result[5]))
             setReserveEE(ethers.utils.formatEther(result[6]))
             const _eelpbalance = ethers.utils.formatEther(result[7])
             setEeLpBalance(Math.floor(_eelpbalance * 100000) / 100000)
@@ -442,7 +443,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                         &nbsp;1
                                         {gasselected === "II" && <>&nbsp;<img src="https://gateway.commudao.xyz/ipfs/bafybeiffepxbrj2zq2mrlik47tonb2mpp22ymvqmv7o5vpy57fjre4qn6q?img-width=50&img-height=50" width="22" alt="$II"/> &nbsp;=&nbsp; <div className="emp">{priceII}</div></>}
                                         {gasselected === "EE" && <>&nbsp;<img src="https://gateway.commudao.xyz/ipfs/bafybeihg7schl77eo7b4amo22htmuscipo4dfioxmajxr4feuqloz2dolm?img-width=50&img-height=50" width="22" alt="$EE"/> &nbsp;=&nbsp; <div className="emp">{priceEE}</div></>}
-                                        &nbsp;<img src="https://gateway.commudao.xyz/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" width="22" alt="$JTAO"/>
+                                        &nbsp;<img src="https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
                                     </div>
                                 </div>
                                 <div style={{width: "80px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" onClick={() => setMode(2)}>MANAGE LP</div>
@@ -494,12 +495,12 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             }
                             <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
                                 <div className="emp">
-                                    {gasselected === "II" && Number(jtaoBoughtII).toLocaleString('en-US', {maximumFractionDigits:3})}
-                                    {gasselected === "EE" && Number(jtaoBoughtEE).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "II" && Number(wjbcBoughtII).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "EE" && Number(wjbcBoughtEE).toLocaleString('en-US', {maximumFractionDigits:6})}
                                 </div>
-                                $JTAO (
-                                    {gasselected === "II" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveJtaoIi) - ((Number(reserveJtaoIi) * Number(reserveII)) / (Number(reserveII) + Number(inputSwap))))) - (Number(reserveII/reserveJtaoIi))) / (Number(reserveII/reserveJtaoIi))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "EE" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveJtaoEe) - ((Number(reserveJtaoEe) * Number(reserveEE)) / (Number(reserveEE) + Number(inputSwap))))) - (Number(reserveEE/reserveJtaoEe))) / (Number(reserveEE/reserveJtaoEe))) * 100)).toFixed(2)}%</>}
+                                $WJBC (
+                                    {gasselected === "II" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveWjbcIi) - ((Number(reserveWjbcIi) * Number(reserveII)) / (Number(reserveII) + Number(inputSwap))))) - (Number(reserveII/reserveWjbcIi))) / (Number(reserveII/reserveWjbcIi))) * 100)).toFixed(2)}%</>}
+                                    {gasselected === "EE" && Number(inputSwap) !== 0 && <>{Number(((((Number(inputSwap) / (Number(reserveWjbcEe) - ((Number(reserveWjbcEe) * Number(reserveEE)) / (Number(reserveEE) + Number(inputSwap))))) - (Number(reserveEE/reserveWjbcEe))) / (Number(reserveEE/reserveWjbcEe))) * 100)).toFixed(2)}%</>}
                                     {Number(inputSwap) === 0 && <>0.00%</>}
                                 )
                             </div>
@@ -512,7 +513,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                 type="number"
                                 step="1"
                                 min="1"
-                                placeholder="0 $JTAO"
+                                placeholder="0 $WJBC"
                                 onChange={(event) => {
                                     if (gasselected === "II") {
                                         handleSwapUni_2(1, event)
@@ -525,7 +526,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             <div
                                 style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}}
                                 onClick={() => {
-                                    const bal = {target: {value: jtaoBalance}}
+                                    const bal = {target: {value: wjbcBalance}}
                                     if (gasselected === "II") {
                                         handleSwapUni_2(1, bal)
                                     } else if (gasselected === "EE") {
@@ -533,8 +534,8 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                     }
                                 }}
                             >
-                                <img src="https://gateway.commudao.xyz/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" width="22" alt="$JTAO"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jtaoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                <img src="https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                <div style={{marginLeft: "5px"}}>{Number(wjbcBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
@@ -553,11 +554,11 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             <div style={{textAlign: "left", marginLeft: "20px", fontSize: "16px", color: "rgb(126, 128, 145)"}} className="pixel">Will get 
                                 <div style={{color: "#67BAA7"}}>
                                     {gasselected === "II" && Number(tokenBoughtII).toLocaleString('en-US', {maximumFractionDigits:3})}
-                                    {gasselected === "EE" && Number(tokenBoughtEE).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    {gasselected === "EE" && Number(tokenBoughtEE).toLocaleString('en-US', {maximumFractionDigits:6})}
                                 </div>
                                 ${gasselected} ( 
-                                    {gasselected === "II" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveII) - ((Number(reserveII) * Number(reserveJtaoIi)) / (Number(reserveJtaoIi) + Number(inputSwap2))))) - (Number(reserveJtaoIi/reserveII))) / (Number(reserveJtaoIi/reserveII))) * 100)).toFixed(2)}%</>}
-                                    {gasselected === "EE" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveEE) - ((Number(reserveEE) * Number(reserveJtaoEe)) / (Number(reserveJtaoEe) + Number(inputSwap2))))) - (Number(reserveJtaoEe/reserveEE))) / (Number(reserveJtaoEe/reserveEE))) * 100)).toFixed(2)}%</>}
+                                    {gasselected === "II" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveII) - ((Number(reserveII) * Number(reserveWjbcIi)) / (Number(reserveWjbcIi) + Number(inputSwap2))))) - (Number(reserveWjbcIi/reserveII))) / (Number(reserveWjbcIi/reserveII))) * 100)).toFixed(2)}%</>}
+                                    {gasselected === "EE" && Number(inputSwap2) !== 0 && <>{Number(((((Number(inputSwap2) / (Number(reserveEE) - ((Number(reserveEE) * Number(reserveWjbcEe)) / (Number(reserveWjbcEe) + Number(inputSwap2))))) - (Number(reserveWjbcEe/reserveEE))) / (Number(reserveWjbcEe/reserveEE))) * 100)).toFixed(2)}%</>}
                                     {Number(inputSwap2) === 0 && <>0.00%</>}
                                 )
                             </div>
@@ -568,7 +569,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                     <div style={{width: "100%", maxHeight: "350px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between"}}>
                         <div style={{maxHeight: "75px"}}>
                             <div style={{fontSize: "20px", width: "380px"}} className="pixel">AUTO TAOMI, TAOMEME TRADER</div>
-                            <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"ADD/REMOVE {gasselected}-JTAO LP</div>
+                            <div style={{fontSize: "10px", marginTop: "5px"}} className="light">"ADD/REMOVE {gasselected}-WJBC LP</div>
                             <div style={{fontSize: "10px"}} className="light">READY TO JOIN MY BUSINESS?"</div>
                             <div style={{marginTop: "5px", width: "90%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                 <div style={{width: "70%", display: "flex", flexDirection: "row"}}>
@@ -599,7 +600,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                         </div>
                         <div style={{width: "100%", borderBottom: "1px solid #dddade", margin: "15px 0 10px 0"}}></div>
                         <div style={{marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                            <input style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} type="number" placeholder={"0 " + gasselected + "-JTAO LP"} className="bold" onChange={(event) => {setLpSell(event.target.value)}} value={lpSell}></input>
+                            <input style={{width: "255px", padding: "5px", border: "1px solid #dddade", fontSize: "14px"}} type="number" placeholder={"0 " + gasselected + "-WJBC LP"} className="bold" onChange={(event) => {setLpSell(event.target.value)}} value={lpSell}></input>
                             <div 
                                 style={{width: "60px", textAlign: "center", fontSize: "16px", padding: "5px", marginLeft: "5px", background: "#ff007a", color: "#fff", border: "none", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}}
                                 className="button pixel"
@@ -653,7 +654,7 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                                 type="number"
                                 step="1"
                                 min="1"
-                                placeholder="0 $JTAO"
+                                placeholder="0 $WJBC"
                                 onChange={(event) => {
                                     if (gasselected === "II") {
                                         handleAddUni_2(1, event)
@@ -666,15 +667,15 @@ const Ammmerchant5 = ({ config, setisLoading, setTxupdate, setisError, setErrMsg
                             <div
                                 style={{width: "30%", display: "flex", flexDirection: "row", alignItems: "center", cursor: "pointer"}}
                                 onClick={() => {
-                                    const bal = {target: {value: jtaoBalance}}
+                                    const bal = {target: {value: wjbcBalance}}
                                     if (gasselected === "II") {
                                         handleAddUni_2(1, bal)
                                     } else if (gasselected === "EE") {
                                         handleAddUni_2(2, bal)
                                     }
                                 }}>
-                                <img src="https://gateway.commudao.xyz/ipfs/bafkreifydb6vy2dysudcg6x64p42enym3bhfneal62ctf33oapsmk6qjlm" width="22" alt="$JTAO"/>
-                                <div style={{marginLeft: "5px"}}>{Number(jtaoBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
+                                <img src="https://gateway.commudao.xyz/ipfs/bafkreih6o2px5oqockhsuer7wktcvoky36gpdhv7qjwn76enblpce6uokq" width="22" alt="$WJBC"/>
+                                <div style={{marginLeft: "5px"}}>{Number(wjbcBalance).toLocaleString('en-US', {maximumFractionDigits:2})}</div>
                             </div>
                         </div>
                         <div style={{width: "98%", maxHeight: "47px", marginTop: "5px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
