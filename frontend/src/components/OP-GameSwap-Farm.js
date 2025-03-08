@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 
 const cmdethlp = '0xA41F70B283b8f097112ca3Bb63cB2718EE662e49'
 const stcmdlp = '0x51f97E67B2fF5eD064Dc2B27b7A745E0d4C47Ee0'
-const epoch = 6
+const epoch = 7
    
 const OpGameSwapFarm = ({ config, address, setisLoading, setTxupdate, txupdate, setisError, setErrMsg, erc20Abi, stcmdABI }) => {
     const [lpBalance, setLpBalance] = React.useState(null)
