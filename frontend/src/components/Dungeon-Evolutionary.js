@@ -26,9 +26,10 @@ const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/'
 
 const NpcEvolutionary = ({ config, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, evolutionaryABI, fusionABI, salonABI, erc721Abi, erc20Abi }) => {
     let { address, chain } = useAccount()
-    if (address === undefined) {
-        address = null
-    }
+    // if (address === undefined) {
+    //     address = null
+    // }
+    address = '0xa46a40F7444fAA43Ef6a41C1f9D2F26405CdD07C'
     const { open } = useAppKit()
     const [nft, setNft] = React.useState([])
     const [salonNft, setSalonNft] = React.useState([])
@@ -1148,7 +1149,7 @@ const NpcEvolutionary = ({ config, navigate, callMode, setisLoading, txupdate, s
                                                     ██████╔╝██║░░██║██║░░░░░██║███████╗██║░╚███║██████╔╝ 
                                                     ╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚══╝╚═════╝░
                                                     */}
-                                                    {(((Number(String(item.Id).slice(0, 7)) >= 1300001 && Number(String(item.Id).slice(0, 7)) <= 1300100) || (Number(String(item.Id).slice(0, 7)) >= 1300101 && Number(String(item.Id).slice(0, 7)) <= 1300200) || (Number(String(item.Id).slice(0, 7)) >= 1300201 && Number(String(item.Id).slice(0, 7)) <= 1300300) || (Number(String(item.Id).slice(0, 7)) >= 1300401 && Number(String(item.Id).slice(0, 7)) <= 1300500)) && Number(item.Id) % 100000 !== 16500) &&
+                                                    {(((Number(String(item.Id).slice(0, 7)) >= 1300001 && Number(String(item.Id).slice(0, 7)) <= 1300100) || (Number(String(item.Id).slice(0, 7)) >= 1300101 && Number(String(item.Id).slice(0, 7)) <= 1300200) || (Number(String(item.Id).slice(0, 7)) >= 1300201 && Number(String(item.Id).slice(0, 7)) <= 1300300) || (Number(String(item.Id).slice(0, 7)) >= 1300401 && Number(String(item.Id).slice(0, 7)) <= 1300500)) && Number(item.Id) % 100000 !== 24500) &&
                                                         <div style={{justifyContent: "space-around", padding: "30px", marginRight: "50px"}} className="nftCard">
                                                             <div style={{marginTop: "10px", width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                                                 <div>
