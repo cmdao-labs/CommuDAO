@@ -26,10 +26,9 @@ const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/'
 
 const NpcEvolutionary = ({ config, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, evolutionaryABI, fusionABI, salonABI, erc721Abi, erc20Abi }) => {
     let { address, chain } = useAccount()
-    // if (address === undefined) {
-    //     address = null
-    // }
-    address = '0xa46a40F7444fAA43Ef6a41C1f9D2F26405CdD07C'
+    if (address === undefined) {
+        address = null
+    }
     const { open } = useAppKit()
     const [nft, setNft] = React.useState([])
     const [salonNft, setSalonNft] = React.useState([])
@@ -1158,7 +1157,7 @@ const NpcEvolutionary = ({ config, navigate, callMode, setisLoading, txupdate, s
                                                                 </div>
                                                                 <i style={{marginTop: "10px", fontSize: "30px", margin: "2.5px 10px 2.5px 5px"}} className="fa fa-caret-right"></i>
                                                                 <div>
-                                                                    {(Number(item.Id) % 100000 !== 1500 && Number(item.Id) % 100000 !== 4500 && Number(item.Id) % 100000 !== 9500) && <img src={item.Image} width="120" alt="Can not load metadata." />}
+                                                                    {(Number(item.Id) % 100000 !== 1500 && Number(item.Id) % 100000 !== 4500 && Number(item.Id) % 100000 !== 9500 && Number(item.Id) % 100000 !== 16500) && <img src={item.Image} width="120" alt="Can not load metadata." />}
                                                                     {Number(item.Id) % 100000 === 1500 && <img src="https://gateway.commudao.xyz/ipfs/bafkreidr4uq5voosuz6v4hqhiempf4a36x5aq6i4uceym2xbje65o5mwia" width="120" alt="Can not load metadata." />}
                                                                     {Number(item.Id) % 100000 === 4500 && <img src="https://gateway.commudao.xyz/ipfs/bafybeiew47pd67c3l5whmj6vhzullkqvrrsmtlssarwf5s54tnehejaxdu" width="120" alt="Can not load metadata." />}
                                                                     {Number(item.Id) % 100000 === 9500 && <img src="https://gateway.commudao.xyz/ipfs/bafkreihvuvksuylcjqb37rsgkr5z2l26iliyestxikmjsq7va6xtnnusxe" width="120" alt="Can not load metadata." />}
