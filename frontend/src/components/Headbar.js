@@ -96,7 +96,6 @@ const Headbar = ({ config, callMode, navigate, txupdate, erc20Abi }) => {
                 <div className="funcList" onClick={() => {callMode(11000); navigate('/fields/op');}}>Fields</div>
                 <div className="funcList" onClick={() => {callMode(21000); navigate('/labs/op');}}>Labs</div>
                 <div className="funcList" onClick={() => {callMode(31001); navigate('/dungeon/abandoned-temple-vault');}}>Dungeon</div>
-                <div className="funcList" onClick={() => {callMode(9); navigate('/guild/profile');}}>Guild</div>
                 <div className="funcList" onClick={() => {callMode(52); navigate('/mall/op');}}>Mall</div>
                 <div className="funcList" onClick={() => {callMode(701); navigate('/gameswap/op');}}>GameSwap</div>
                 <div className="funcList" onClick={() => {callMode(8); navigate('/tbridge');}}>tBridge</div>
@@ -104,7 +103,6 @@ const Headbar = ({ config, callMode, navigate, txupdate, erc20Abi }) => {
             }
             {chain !== undefined && chain.id === 190 &&
               <> 
-                <div className="funcList" onClick={() => {callMode(9); navigate('/guild/profile');}}>Guild</div>
                 <div className="funcList" onClick={() => {callMode(10000); navigate('/fields/bbqchain');}}>Fields</div>
                 <div className="funcList" onClick={() => {callMode(20000); navigate('/labs/bbqchain');}}>Labs</div>
                 <div className="funcList" onClick={() => {callMode(30000); navigate('/dungeon/bbqchain');}}>Dungeon</div>
