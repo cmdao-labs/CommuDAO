@@ -18,7 +18,7 @@ const badgeClaimer = '0x99f4FE6E420B46B7f5DeeEabFDc7604756e093d5'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const ss = 3
-const isEnd = false
+const isEnd = true
 
 const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI }) => {
     let { address, chain } = useAccount()
@@ -1547,6 +1547,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             const isbadgeclaimed = data[26].result
             const rewardpending = isStaked ? rawPending : 0
             const isbadgeclaimed2 = data[34].result
+            const isbadgeclaimed3 = data[42].result
             
             let walletRemoveDup = []
             if (chain !== undefined && chain.id === 8899 && addr !== null) {
@@ -1718,7 +1719,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                 nftEQ_meme_char_ss1_Img, nftEQ_meme_char_ss1_Name, nftEQ_meme_hat_ss1_Img, nftEQ_meme_hat_ss1_Name, nftEQ_meme_cloth_ss1_Img, nftEQ_meme_cloth_ss1_Name, nftEQ_meme_acc_ss1_Img, nftEQ_meme_back_ss1_Img, nftEQ_meme_back_ss1_Name, nftEQ_meme_shoes_ss1_Img, nftEQ_meme_shoes_ss1_Name, nftEQ_meme_weapon_ss1_Img, nftEQ_meme_weapon_ss1_Name,
                 allPow, isStaked, refuelAt, rewardpending, stOPTClaim, gasBal, rewardBal, skinslot1, myhouseMul, house, memeSS1cmpow, isbadgeclaimed,
                 nftEQ_meme_char_ss2_Img, nftEQ_meme_char_ss2_Name, nftEQ_meme_hat_ss2_Img, nftEQ_meme_hat_ss2_Name, nftEQ_meme_cloth_ss2_Img, nftEQ_meme_cloth_ss2_Name, nftEQ_meme_acc_ss2_Img, nftEQ_meme_acc_ss2_Name, nftEQ_meme_back_ss2_Img, nftEQ_meme_back_ss2_Name, nftEQ_meme_shoes_ss2_Img, nftEQ_meme_shoes_ss2_Name, nftEQ_meme_weapon_ss2_Img, nftEQ_meme_weapon_ss2_Name, memeSS2cmpow, isbadgeclaimed2,
-                nftEQ_meme_char_ss3_Img, nftEQ_meme_char_ss3_Name, nftEQ_meme_hat_ss3_Img, nftEQ_meme_hat_ss3_Name, nftEQ_meme_cloth_ss3_Img, nftEQ_meme_cloth_ss3_Name, nftEQ_meme_acc_ss3_Img, nftEQ_meme_acc_ss3_Name, nftEQ_meme_back_ss3_Img, nftEQ_meme_back_ss3_Name, nftEQ_meme_shoes_ss3_Img, nftEQ_meme_shoes_ss3_Name, nftEQ_meme_weapon_ss3_Img, nftEQ_meme_weapon_ss3_Name, memeSS3cmpow,
+                nftEQ_meme_char_ss3_Img, nftEQ_meme_char_ss3_Name, nftEQ_meme_hat_ss3_Img, nftEQ_meme_hat_ss3_Name, nftEQ_meme_cloth_ss3_Img, nftEQ_meme_cloth_ss3_Name, nftEQ_meme_acc_ss3_Img, nftEQ_meme_acc_ss3_Name, nftEQ_meme_back_ss3_Img, nftEQ_meme_back_ss3_Name, nftEQ_meme_shoes_ss3_Img, nftEQ_meme_shoes_ss3_Name, nftEQ_meme_weapon_ss3_Img, nftEQ_meme_weapon_ss3_Name, memeSS3cmpow, isbadgeclaimed3,
             ]
         }
 
@@ -1854,6 +1855,7 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
             setSs3WeaponSlot(result[84])
             result[85] !== null && result[85].slice(-2, -1) === "+" ? setSs3WpSlotLevel(result[85].slice(-1)) : setSs3WpSlotLevel(null)
             setYourSS3CMPOW(result[86])
+            setIsClaimBadge3(result[87])
         })
 
     }, [config, address, addr, intrasubModetext, navigate, chain, txupdate, erc721Abi, erc20Abi, dunMoABI, mintStOPTABI, salonABI, slot1ABI, badgeClaimerABI])
@@ -2331,7 +2333,9 @@ const Memeticorbit = ({ config, intrasubModetext, navigate, callMode, setisLoadi
                                     <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Season 3 concludes at 11:59 PM on March 28th.</div>
                                     <div style={{width: "100%", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- All meme slots must be filled to be eligible for the seasonal badge nft claiming. The season ends in 28 + 7 days.</div>
                                     <div style={{width: "100%", marginBottom: "10px", textAlign: "left", letterSpacing: 0.5, fontSize: "10px"}} className="light">- Warning: due to SC V1 critical bug, Shoes and weapon can't be unstake from L2 please stake with awareness!</div>                            
+                                    <img src="https://gateway.commudao.xyz/ipfs/bafkreifvhxrmsfjzwogj4owx62x6zbsywgyjx24cmdtusfjm5svk4hohji" width="100px" alt="Can not load metadata." />
                                     <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                        {(!isClaimBadge3 && ss3AccSlot !== null && ss3BackSlot !== null && ss3CharacterSlot !== null && ss3ClothSlot !== null && ss3HatSlot !== null && ss3ShoesSlot !== null && ss3WeaponSlot !== null) && <div style={{alignSelf: "center", marginTop: "10px", fontSize: "14px"}} className="button" onClick={() => claimBadge(3)}>CLAIM BADGE</div>}
                                     </div>
                                 </div>
                             </div>
