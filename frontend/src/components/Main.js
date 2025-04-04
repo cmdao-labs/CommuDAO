@@ -524,8 +524,7 @@ const Main = () => {
                     <a style={{color: "#000", textDecoration: "none"}} href="https://github.com/coshi-labs/CommuDAO" target="_blank" rel="noreferrer">Github</a>
                 </div>
                 <div className="inFooterRight">
-                <a style={{marginBottom: "10px", color: "#000", textDecoration: "none"}} href="https://vote.commudao.xyz" target="_blank" rel="noreferrer">Governance on Snapshot</a>
-                    <a style={{marginBottom: "10px", color: "#000", textDecoration: "none"}} href="https://zealy.io/c/commudao/questboard" target="_blank" rel="noreferrer">Quests on Zealy</a>
+                    <a style={{marginBottom: "10px", color: "#000", textDecoration: "none"}} href="https://vote.commudao.xyz" target="_blank" rel="noreferrer">Governance on Snapshot</a>
                     <a style={{color: "#000", textDecoration: "none"}} href="https://discord.gg/k92ReT5EYy" target="_blank" rel="noreferrer">Discord</a>
                 </div>
             </footer>
