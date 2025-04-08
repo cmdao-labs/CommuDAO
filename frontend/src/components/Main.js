@@ -113,7 +113,7 @@ import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { defineChain } from '@reown/appkit/networks';
 
-const v = '0.5.9'
+const v = '0.6.0'
 
 const Fields = React.lazy(() => import('./Fields'))
 const AncientForrest = React.lazy(() => import('./Fields-AncientForrest'))
@@ -130,11 +130,9 @@ const BadMuseum = React.lazy(() => import('./BKC-Fields-BadMuseum'))
 const FraserRiver = React.lazy(() => import('./BKC-Fields-FraserRiver'))
 const BBQFields = React.lazy(() => import('./BBQ-Fields'))
 const BBQAncientForrest = React.lazy(() => import('./BBQ-Fields-AncientForrest'))
-const OPFields = React.lazy(() => import('./OP-Fields'))
 const Labs = React.lazy(() => import('./Labs'))
 const BKCLabs = React.lazy(() => import('./BKC-Labs'))
 const BBQLabs = React.lazy(() => import('./BBQ-Labs'))
-const OPLabs = React.lazy(() => import('./OP-Labs'))
 const Dungeon = React.lazy(() => import('./Dungeon'))
 const Coppermine = React.lazy(() => import('./Dungeon-CopperMine'))
 const Jaspercave = React.lazy(() => import('./Dungeon-JasperCave'))
@@ -288,9 +286,6 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "ANCIENT-FOREST-BBQCHAIN") {
                     preset = 10001
                     document.title = "Ancient Forest [BBQ Chain] | CommuDAO"
-                } else if (modeText.toUpperCase() === "FIELDS" && subModeText.toUpperCase() === "OP") {
-                    preset = 11000
-                    document.title = "Fields [OP] | CommuDAO"
                 }
             } else {
                 preset = 1
@@ -304,9 +299,6 @@ const Main = () => {
                 } else if (modeText.toUpperCase() === "LABS" && subModeText.toUpperCase() === "BBQCHAIN") {
                     preset = 20000
                     document.title = "Labs [BBQ Chain] | CommuDAO"
-                } else if (modeText.toUpperCase() === "LABS" && subModeText.toUpperCase() === "OP") {
-                    preset = 21000
-                    document.title = "Labs [OP] | CommuDAO"
                 }
             } else {
                 preset = 2
@@ -474,11 +466,9 @@ const Main = () => {
                         {mode === 16 && <FraserRiver config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} callMode={callMode} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} erc721Abi={erc721Abi} salmFieldABI={salmFieldABI} />}
                         {mode === 10000 && <BBQFields callMode={callMode} navigate={navigate} />}
                         {mode === 10001  && <BBQAncientForrest config={wagmiAdapter.wagmiConfig} navigate={navigate} callMode={callMode} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} cmdsV2ABI={cmdsV2ABI} uplevelCMDSABI={uplevelCMDSABI} fieldWoodBBQABI={fieldWoodBBQABI} partyABI={partyABI} missionCMDBaseABI={missionCMDBaseABI} missionWoodABI={missionWoodABI} />}
-                        {mode === 11000 && <OPFields />}
                         {mode === 2 && <Labs config={wagmiAdapter.wagmiConfig} callMode={callMode} navigate={navigate} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} ctunaLabABI={ctunaLabABI} sx31LabABI={sx31LabABI} bbqLab01ABI={bbqLab01ABI} pzaLabABI={pzaLabABI} cmdao20lab01ABI={cmdao20lab01ABI} erc20Abi={erc20Abi} kycABI={kycABI} />}
                         {mode === 200 && <BKCLabs config={wagmiAdapter.wagmiConfig} callMode={callMode} navigate={navigate} setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} erc20Abi={erc20Abi} stakerMachineABI={stakerMachineABI} redeemTokenABI={redeemTokenABI} cmdaoMerchantABI={cmdaoMerchantABI} />}
                         {mode === 20000 && <BBQLabs config={wagmiAdapter.wagmiConfig} callMode={callMode} navigate={navigate} setisLoading={setisLoading} setTxupdate={setTxupdate} txupdate={txupdate} setisError={setisError} setErrMsg={setErrMsg} bbqLab01ABI={bbqLab01ABI} erc20Abi={erc20Abi} transportHubABI={transportHubABI} transportHub2ABI={transportHub2ABI} houseStakingABI={houseStakingABI} slot1ABI={slot1ABI} erc721Abi={erc721Abi} sourceThubABI={sourceThubABI} pzaLabABI={pzaLabABI} />}
-                        {mode === 21000 && <OPLabs config={wagmiAdapter.wagmiConfig} erc20Abi={erc20Abi} />}
                         {mode === 3 && <Dungeon callMode={callMode} navigate={navigate} />}
                         {mode === 33 && <Coppermine config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} callMode={callMode} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} erc20Abi={erc20Abi} dunCopperABI={dunCopperABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} ubbqABI={ubbqABI} />}
                         {mode === 31 && <Jaspercave config={wagmiAdapter.wagmiConfig} intrasubModetext={intrasubModetext} navigate={navigate} callMode={callMode} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} erc20Abi={erc20Abi} dunJasperABI={dunJasperABI} dunJasperL2ABI={dunJasperL2ABI} mintStOPTABI={mintStOPTABI} salonABI={salonABI} ubbqABI={ubbqABI} />}
