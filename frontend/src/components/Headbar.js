@@ -93,8 +93,6 @@ const Headbar = ({ config, callMode, navigate, txupdate, erc20Abi }) => {
             }
             {chain !== undefined && (chain.id === 10) &&
               <> 
-                <div className="funcList" onClick={() => {callMode(11000); navigate('/fields/op');}}>Fields</div>
-                <div className="funcList" onClick={() => {callMode(21000); navigate('/labs/op');}}>Labs</div>
                 <div className="funcList" onClick={() => {callMode(31001); navigate('/dungeon/abandoned-temple-vault');}}>Dungeon</div>
                 <div className="funcList" onClick={() => {callMode(52); navigate('/mall/op');}}>Mall</div>
                 <div className="funcList" onClick={() => {callMode(701); navigate('/gameswap/op');}}>GameSwap</div>
