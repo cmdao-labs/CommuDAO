@@ -5,6 +5,7 @@ import { useAccount } from 'wagmi'
 import OPMallT1 from  './OP-Mall-T1'
 const { ethereum } = window
 const cmdToken = "0x399fe73bb0ee60670430fd92fe25a0fdd308e142"
+const infpowToken = '0x1391a538985f2f897375219573c7f5d61ea33cdf'
 
 const OPMall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate, setisError, setErrMsg, cmdaoAmmNpcABI, erc20Abi, erc721Abi, uniNftBridgeABI, multichainMallABI }) => {
     const [mode, setMode] = React.useState(0)
@@ -13,6 +14,7 @@ const OPMall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdat
         address = null
     }
     const [cmdBalance, setCmdBalance] = React.useState(false)
+    const [infpowBalance, setInfpowBalance] = React.useState(false)
 
     React.useEffect(() => {    
         window.scrollTo(0, 0)  
@@ -29,14 +31,22 @@ const OPMall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdat
                         args: [address],
                         chainId: 10,
                     },
+                    {
+                        address: infpowToken,
+                        abi: erc20Abi,
+                        functionName: 'balanceOf',
+                        args: [address],
+                        chainId: 10,
+                    },
                 ],
             }) : [
-                {result: 0},
+                {result: 0}, {result: 0},
             ]
             const cmdBal = data[0].result
+            const infpowBal = data[1].result
 
             return [
-                cmdBal,
+                cmdBal, infpowBal, 
             ]
         }
 
@@ -51,6 +61,7 @@ const OPMall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdat
 
         getAsync().then(result => {
             setCmdBalance(ethers.utils.formatEther(result[0]))
+            setInfpowBalance(ethers.utils.formatEther(result[1]))
         })
 
     }, [config, chain, address, erc20Abi])
@@ -93,6 +104,32 @@ const OPMall = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdat
                                     }}
                                 />
                                 <div style={{marginLeft: "5px"}}>{Number(cmdBalance).toLocaleString('en-US', {maximumFractionDigits:3})}</div>
+                            </div>
+                            <div style={{width: "200px", minWidth: "200px", height: "55px", margin: "20px 10px", fontSize: "15px", border: "1px solid #dddade", boxShadow: "3px 3px 0 #dddade"}} className="items">
+                                <img 
+                                    src="https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6"
+                                    width="20"
+                                    alt="$INF.POW"
+                                    style={{cursor: "crosshair"}}
+                                    onClick={async () => {
+                                        await ethereum.request({
+                                            method: 'wallet_watchAsset',
+                                            params: {
+                                                type: 'ERC20',
+                                                options: {
+                                                    address: infpowToken,
+                                                    symbol: 'INF.POW',
+                                                    decimals: 18,
+                                                    image: 'https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6',
+                                                },
+                                            },
+                                        })
+                                    }}
+                                />
+                                <div style={{marginLeft: "5px"}}>
+                                    {Number(infpowBalance).toLocaleString('en-US', {maximumFractionDigits:3})}
+                                    <a style={{marginLeft: "5px", width: "80px", textAlign: "center", fontSize: "16px", padding: "5px 10px", background: "rgba(102, 204, 172, 0.2)", color: "rgb(102, 204, 172)", borderRadius: "8px", boxShadow: "inset 1px 1px 0 0 hsla(0,0%,100%,.65)"}} className="button pixel" href="https://velodrome.finance/swap?from=0x399fe73bb0ee60670430fd92fe25a0fdd308e142&to=0x1391a538985f2f897375219573c7f5d61ea33cdf&chain0=10&chain1=10" target="_blank" rel="noreferrer">TRADE</a>
+                                </div>
                             </div>
                     </div>
                 </div>
