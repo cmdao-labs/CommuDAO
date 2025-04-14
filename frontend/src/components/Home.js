@@ -16,14 +16,14 @@ const Home = ({ callMode, navigate }) => {
                 </div>
                 <div className='typed-out' style={{padding: "2px 8px"}}>Explore the CommuDAO Ecosystem!</div>
                 <div style={{margin: "20px 0", maxWidth: "650px", display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap"}}>
-                    <a className="hashtag" style={{margin: "2px", padding: "5px 10px", textDecoration: "none", color: "#fff"}} href="https://docs.google.com/spreadsheets/d/1S1AeshQmdQLFc4HhhNl1_Ut5F0FOEc9ixp_Is4lukig" target="_blank" rel="noreferrer">
+                    <div className="hashtag" style={{margin: "2px", padding: "5px 10px", textDecoration: "none", color: "#fff"}}>
                         <img src="../elements/proj1.png" height="25" alt="Can not load metadata."/>
                         &nbsp;CMDAO Alert
-                    </a>
-                    <a className="hashtag" style={{margin: "2px", padding: "5px 10px", textDecoration: "none", color: "#fff"}} href="https://cmdaa.lazyplayerone.xyz" target="_blank" rel="noreferrer">
+                    </div>
+                    <div className="hashtag" style={{margin: "2px", padding: "5px 10px", textDecoration: "none", color: "#fff"}}>
                         <img src="../elements/proj2.png" height="30" alt="Can not load metadata."/>
                         &nbsp;Auto Web3 Tool
-                    </a>
+                    </div>
                     <a className="hashtag" style={{margin: "2px", padding: "5px 10px", textDecoration: "none", color: "#fff"}} href="https://daobuddy.xyz" target="_blank" rel="noreferrer">
                         <img src="../elements/proj3.png" height="30" alt="Can not load metadata."/>
                         &nbsp;DaoBuddy
