@@ -1,6 +1,6 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { getBalance, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
+import { readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 
 import TBridgeCMDAONFT from  './tBridge-CMDAONFT'
@@ -11,7 +11,6 @@ const kusdt = '0x7d984C24d2499D840eB3b7016077164e15E5faA6'
 const usdtBsc = '0x55d398326f99059ff775485246999027b3197955' 
 const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
 const cmd = '0x399FE73Bb0Ee60670430FD92fE25A0Fdd308E142'
-const cmdBbq = '0x05F5B8f0089bDfDf04F64f11D532Ea103b758031'
 
 const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, tbridgeNFTABI, nativeBridgeABI, uniTokensBridgeABI, uniNftBridgeABI }) => {
     let { address, chain } = useAccount()
@@ -29,7 +28,6 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
     const [usdtBscBalance, setUsdtBscBalance] = React.useState(0)
     const [cmjBalance, setCmjBalance] = React.useState(0)
     const [cmdBalance, setCmdBalance] = React.useState(0)
-    const [cmdBbqBalance, setCmdBbqBalance] = React.useState(0)
     const [depositValue, setDepositValue] = React.useState(null)
     const [depositValueDis, setDepositValueDis] = React.useState('')
     const [withdrawValue, setWithdrawValue] = React.useState(null)
@@ -37,17 +35,12 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
     const [depositCMJ, setDepositCMJ] = React.useState('')
     const [depositValue2, setDepositValue2] = React.useState('')
     const [withdrawValue2, setWithdrawValue2] = React.useState('')
-    const [depositValue22, setDepositValue22] = React.useState('')
-    const [withdrawValue22, setWithdrawValue22] = React.useState('')
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
         console.log("Connected to " + address)
         
         const fetch = async () => {
-            const cmdBbqBal = address !== null ?
-                await getBalance(config, { address: address, chainId: 190, }) :
-                {formatted: 0}
             const data1 = await readContracts(config, {
                 contracts: [
                     {
@@ -138,7 +131,7 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             const usdtBscBal = data2[4]
 
             return [
-                Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmdBal, usdtBscBal, Balance_2, Balance2_2, cmdBbqBal, _burnedCmj,
+                Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmdBal, usdtBscBal, Balance_2, Balance2_2, _burnedCmj,
             ]
         }
 
@@ -161,8 +154,7 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             setUsdtBscBalance(Math.floor((ethers.utils.formatEther(result[6].result)) * 10000) / 10000)
             setReserve2(ethers.utils.formatEther(result[7].result))
             setSupply2(ethers.utils.formatEther(result[8].result))
-            setCmdBbqBalance(Math.floor((result[9].formatted) * 10000) / 10000)
-            setBurnedCmj(ethers.utils.formatEther(result[10].result))
+            setBurnedCmj(ethers.utils.formatEther(result[9].result))
         })
     }, [config, address, txupdate, erc20Abi])
 
@@ -227,44 +219,6 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                 functionName: 'transfer',
                 args: ["0x0000000000000000000000000000000000000042", ethers.utils.parseEther(String(depositCMJ))],
                 chainId: 8899,
-            })
-            let h = await writeContract(config, request)
-            await waitForTransactionReceipt(config, { hash: h })
-            setTxupdate(h)
-        } catch (e) {
-            setisError(true)
-            setErrMsg(String(e))
-        }
-        setisLoading(false)
-    }
-    const depositCmdHandle = async () => {
-        setisLoading(true)
-        try {
-            let { request } = await simulateContract(config, {
-                address: cmd,
-                abi: erc20Abi,
-                functionName: 'transfer',
-                args: ["0xaa3caad9e335a133d96ea3d5d73df2dcf9e360d4", ethers.utils.parseEther(String(depositValue22))],
-                chainId: 10,
-            })
-            let h = await writeContract(config, request)
-            await waitForTransactionReceipt(config, { hash: h })
-            setTxupdate(h)
-        } catch (e) {
-            setisError(true)
-            setErrMsg(String(e))
-        }
-        setisLoading(false)
-    }
-    const withdrawCmdHandle = async () => {
-        setisLoading(true)
-        try {
-            let { request } = await simulateContract(config, {
-                address: cmdBbq,
-                abi: nativeBridgeABI,
-                functionName: 'recieveTokens',
-                value: ethers.utils.parseEther(String(withdrawValue22)),
-                chainId: 190,
             })
             let h = await writeContract(config, request)
             await waitForTransactionReceipt(config, { hash: h })
@@ -600,60 +554,6 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                                 <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>Will receive: {0} CMD</div>
                                 <div style={{width: "92%", margin: "10px 0", color: "gray", textAlign: "left", paddingBottom: "5px", borderBottom: "1px dotted gray"}}>OP Mainnet Balance: {cmdBalance} CMD</div>
                                 <div style={{width: "92%", margin: "10px 0 20px 0", textAlign: "left", color: "red"}}>⚠️ WARN: This operation is one-way bridging!</div>
-                            </div>
-                        </div>
-                    </>
-                }
-                {mode === 22 &&
-                    <>
-                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
-                            <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
-                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
-                                <div style={{fontSize: "30px"}}>80 CMD/TX</div>
-                            </div>
-                        </div>
-                        <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
-                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
-                                <input
-                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
-                                    type="number"
-                                    step="1"
-                                    min="1"
-                                    placeholder="0.0 CMD [OP MAINNET]"
-                                    value={depositValue22}
-                                    onChange={(event) => setDepositValue22(event.target.value)}
-                                ></input>
-                                {(chain !== undefined && address !== null) ? 
-                                    <>
-                                        {chain.id === 10 ? 
-                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={depositCmdHandle}>BRIDGE TO BBQ CHAIN</div> : 
-                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO BBQ CHAIN</div>
-                                        }
-                                    </> :
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO BBQ CHAIN</div>
-                                }
-                                <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositValue22(cmdBalance)}>Balance: {Number(cmdBalance).toFixed(4)} CMD [OP MAINNET]</div>
-                            </div>
-                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
-                                <input
-                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
-                                    type="number"
-                                    step="1"
-                                    min="1"
-                                    placeholder="0.0 CMD [BBQ CHAIN]"
-                                    value={withdrawValue22}
-                                    onChange={(event) => setWithdrawValue22(event.target.value)}
-                                ></input>
-                                {(chain !== undefined && address !== null) ? 
-                                    <>
-                                        {chain.id === 190 ? 
-                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} className="button" onClick={withdrawCmdHandle}>BRIDGE TO OP MAINNET</div> : 
-                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
-                                        }
-                                    </> :
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">BRIDGE TO OP MAINNET</div>
-                                }
-                                <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setWithdrawValue22(cmdBbqBalance)}>Balance: {Number(cmdBbqBalance).toFixed(4)} CMD [BBQ CHAIN]</div>
                             </div>
                         </div>
                     </>
