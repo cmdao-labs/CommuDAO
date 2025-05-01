@@ -27,7 +27,7 @@ const slot1 = '0x171b341FD1B8a2aDc1299f34961e19B552238cb5'
 const houseStaking = '0xc4dB6374EeCa3743F8044ae995892827B62b14fe'
 const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
 const publicClient = createPublicClient({ chain: jbc, transport: http() })
-const startblockmonth = 5192269n
+const startblockmonth = 5393724n
 
 const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, kycABI, quest01ABI, pvp01ABI, questBBQABI, questAmbassABI, bbqLab01ABI, enderPotteryABI, dunCopperABI, dunJasperABI, dunMoABI, cmdaoNameABI, houseStakingABI, slot1ABI, erc721Abi, constructionStakingABI }) => {
     let { address, chain } = useAccount()
@@ -1266,32 +1266,6 @@ const QuesterOasis = ({ config, setisLoading, callMode, navigate, txupdate, setT
                     </div>
                 </div> :
                 <div style={{background: "rgb(0, 19, 33)", width: "100%", padding: "20px 0 80px 0", minHeight: "inherit", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", overflow: "scroll"}} className="collection noscroll pixel">
-                    <div style={{padding: "50px", margin: "50px 0", background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(20px)", border: "none", minWidth: "300px", width: "70%", height: "300px", display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", flexFlow: "row wrap", fontSize: "16px", textAlign: "left"}} className="nftCard">
-                        <div style={{width: "98%", fontSize: "30px", color: "#fff"}}>April 2025 Prize Pool 🎁</div>
-                        <div style={{width: "98%", marginTop: "10px", display: "flex", flexFlow: "column wrap", justifyContent: "space-between"}}>
-                            <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
-                                <div>Top Questers</div>
-                                <div>1,089.45 CMJ</div>
-                            </div>
-                            <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
-                                <div>Top Strongest</div>
-                                <div>1,089.45 CMJ</div>
-                            </div>
-                            <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
-                                <div>Top Spender</div>
-                                <div>1,089.45 CMJ</div>
-                            </div>
-                            <div style={{width: "230px", marginRight: "50px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px dotted"}}>
-                                <div>Top Money Mover</div>
-                                <div>363.15 CMJ</div>
-                            </div>
-                        </div>
-                        <div style={{width: "98%", marginTop: "10px", color: "#fff"}}>Snapshot on the last block of the month before 0.00 AM.<br></br>Rewards will allocated to top 20 for each leaderboard.</div>
-                        <div style={{width: "98%", marginTop: "10px", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
-                            The reward will be directly proportional to the achieved score.
-                        </div>
-                    </div>
-
                     <div style={{width: "98%", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
                         <div style={{background: "rgb(0, 26, 44)", padding: "25px", border: "1px solid rgb(54, 77, 94)", minWidth: "350px", width: "20%", height: "500px", display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-start", flexWrap: "wrap", overflow: "scroll"}} className="nftCard noscroll">
                             <div style={{width: "100%", fontSize: "22.5px", color: "rgb(0, 227, 180)", marginBottom: "30px"}} className="pixel emp">Top Questers 🗺️</div>

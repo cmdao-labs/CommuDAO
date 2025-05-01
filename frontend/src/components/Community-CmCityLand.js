@@ -18,8 +18,6 @@ const houseStaking = '0xc4dB6374EeCa3743F8044ae995892827B62b14fe'
 const transporthub = '0xC673f53b490199AF4BfE17F2d77eBc72Bde3b964'
 const weaponDepot = '0xcCbD8B881Dd8e137d41a6A02aBA2Db94f3049B35'
 const weaponDepotStaking = '0xeC661f744637778029C1EC61c39976d75Fb080b6'
-//const jusdt = '0x24599b658b57f91e7643f4f154b16bcd2884f9ac'
-//const wlMkp = '0x8E4D620a85807cBc588C2D6e8e7229968C69E1C5'
 const providerJBC = new ethers.getDefaultProvider('https://rpc-l1.jibchain.net/')
 
 const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, intrasubModetext, navigate, callMode, erc20Abi, erc721Abi, cmdaoNameABI, slot1ABI, houseABI, delegateOwner01ABI, houseStakingABI, wlMkpABI, transportHubABI, constructionABI, constructionStakingABI }) => {
@@ -58,10 +56,6 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
     const [allPowWD, setAllPowWD] = React.useState(0)
     const [nftStakeWD, setNftStakeWD] = React.useState([])
     const [thubLv, setThubLv] = React.useState(0)
-    const [nextDayThub, setNextDayThub] = React.useState(0)
-    const [thubCap, setThubCap] = React.useState(0)
-    const [thubFee, setThubFee] = React.useState(0)
-    const [changeThubFee, setChangeThubFee] = React.useState('')
 
     React.useEffect(() => {        
         window.scrollTo(0, 0)
@@ -106,13 +100,6 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                         chainId: 8899
                     },
                     {
-                        address: transporthub,
-                        abi: transportHubABI,
-                        functionName: 'baseCapacity',
-                        args: ['100' + code + '0' + intrasubModetext.slice(1, 3)],
-                        chainId: 8899
-                    },
-                    {
                         address: weaponDepot,
                         abi: constructionABI,
                         functionName: 'constructionLevel',
@@ -134,7 +121,7 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                         chainId: 8899
                     },
                 ],
-            }) : [{result: 0, status: "yo"}, {result: '0x0000000000000000000000000000000000000000', status: "yo"}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0},]
+            }) : [{result: 0, status: "yo"}, {result: '0x0000000000000000000000000000000000000000', status: "yo"}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}]
             if (data[0].result === undefined || intrasubModetext === undefined || (intrasubModetext !== undefined && intrasubModetext.length !== 3)) (
                 callMode(null)
             )
@@ -143,10 +130,9 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
             const slot1level = data[2].result
             const ospool = data[3].result
             const thubState = data[4].result
-            const thubCap = data[5].result
-            const wdlevel = data[6].result
-            const ospoolWD = data[7].result
-            const wdBonus = data[8].result
+            const wdlevel = data[5].result
+            const ospoolWD = data[6].result
+            const wdBonus = data[7].result
 
             const id = data[0].status === 'success' && data[1].status === 'success' ? await readContracts(config, {
                 contracts: [
@@ -387,7 +373,7 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
             if (nfts.length === 0) { nfts.push(null) }
 
             return [
-                landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, thubState, thubCap, null, 
+                landOwner, slot1owner, landlordname, slot1level, nfts, ospool, _allReward1, _allPow, nftstake, thubState, 
                 wdlevel, ospoolWD, _allReward1WD, _allPowWD, nftstakeWD, wdBonus, 
             ]
         }
@@ -413,20 +399,12 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
             setAllPow(result[7])
             setNftStake(result[8])
             setThubLv(Number(result[9][0]))
-            const _nextDayThub = new Date((Number(result[9][2]) * 1000) + (86400 * 1000));
-            (Date.now() <= _nextDayThub && Number(result[9][2]) !== 0) ?
-                setNextDayThub(_nextDayThub.toLocaleString('es-CL')) :
-                setNextDayThub('now')
-            setThubFee(Number(result[9][3]) / 100);
-            (Date.now() <= _nextDayThub && Number(result[9][2]) !== 0) ?
-                setThubCap(0) :
-                setThubCap(Number(ethers.utils.formatEther(String(result[10]))))
-            setWdLv(Number(result[12]))
-            setOsPoolWD(ethers.utils.formatEther(String(result[13])))
-            setAllPendingRewardWD(result[14])
-            setAllPowWD(result[15])
-            setNftStakeWD(result[16])
-            setWdBonus(result[17])
+            setWdLv(Number(result[10]))
+            setOsPoolWD(ethers.utils.formatEther(String(result[11])))
+            setAllPendingRewardWD(result[12])
+            setAllPowWD(result[13])
+            setNftStakeWD(result[14])
+            setWdBonus(result[15])
         })
 
     }, [config, address, chain, code, intrasubModetext, txupdate, erc20Abi, erc721Abi, cmdaoNameABI, slot1ABI, houseStakingABI, transportHubABI, constructionABI, constructionStakingABI, callMode])
@@ -627,72 +605,6 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                     await writeContract(config, request)
                 }
             }
-        } catch (e) {
-            setisError(true)
-            setErrMsg(String(e))
-        }
-        setisLoading(false)
-    }
-    /*const claimLandHandle = async () => {
-        setisLoading(true)
-        let id = 0
-        if (Number(houseId) === 10026002) {
-            id = 4
-        } else if (Number(houseId) === 10026006) {
-            id = 5
-        } else if (Number(houseId) === 10026011) {
-            id = 6
-        }
-        try {
-            const jusdtAllow = await readContract(config, {
-                address: jusdt,
-                abi: erc20Abi,
-                functionName: 'allowance',
-                args: [address, wlMkp],
-            })
-            if (Number(ethers.utils.parseEther(jusdtAllow)) < 100000) {
-                let { request } = await simulateContract(config, {
-                    address: jusdt,
-                    abi: erc20Abi,
-                    functionName: 'approve',
-                    args: [wlMkp, ethers.constants.MaxUint256],
-                })
-                let h = await writeContract(config, request)
-                await waitForTransactionReceipt(config, { hash: h })
-            }
-            let { request } = await simulateContract(config, {
-                address: wlMkp,
-                abi: wlMkpABI,
-                functionName: 'buyItem',
-                args: [id]
-            })
-            let h = await writeContract(config, request)
-            await waitForTransactionReceipt(config, { hash: h })
-            setTxupdate(h)
-        } catch (e) {
-            setisError(true)
-            setErrMsg(String(e))
-        }
-        setisLoading(false)
-    }*/
-    const changeThubFeeHandle = async () => {
-        setisLoading(true)
-        try {
-            let { request } = await simulateContract(config, {
-                address: transporthub,
-                abi: transportHubABI,
-                functionName: 'setHubFee',
-                args: [houseId, String(Number(changeThubFee * 100).toFixed(0))],
-            })
-            let h = await writeContract(config, request)
-            await waitForTransactionReceipt(config, { hash: h })
-            setTxupdate(h)
-            let h2 = await sendTransaction(config, {
-                chainId: 8899,
-                to: '0x336C4EaE525948C8EF79b74b549C048f07639315',
-                value: ethers.utils.parseEther('10'),
-            })
-            await waitForTransactionReceipt(config, { hash: h2 })
         } catch (e) {
             setisError(true)
             setErrMsg(String(e))
@@ -1586,74 +1498,6 @@ const CmCityLand = ({ config, setisLoading, txupdate, setTxupdate, setisError, s
                                                     </div>
                                                 </div>
                                             }
-                                        </div>
-                                        <div style={{background: "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgb(11, 11, 34)", width: "370px", height: "360px", margin: "20px 0 40px 0", padding: "20px", display: "flex", flexDirection: "column", justifyContent: "space-around", border: "1px solid", boxShadow: "inset -2px -2px 0px 0.25px #00000040"}}>
-                                            <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: "20px", borderBottom: "1px solid"}}>
-                                                <div style={{fontSize: "22px", lineHeight: "15px"}}>TRANSPORT HUB STAT</div>
-                                                <div style={{display: "flex", flexDirection: "row", alignItems: "center"}} className="emp">
-                                                    {thubCap === 0 ?
-                                                        <>
-                                                            <div style={{background: "red", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                            <div>Full</div>
-                                                        </> :
-                                                        <>
-                                                            <div style={{background: "rgb(29, 176, 35)", width: 16, height: 16, border: "3px solid #ddffdb", borderRadius: "50%", marginRight: 7}}></div>
-                                                            <div>Active</div>
-                                                        </>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                                $CURRENT CAPACITY
-                                                <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
-                                                    <img src="https://gateway.commudao.xyz/ipfs/bafkreibs763pgx6caw3vaqtzv6b2fmkqpwwzvxwe647gywkn3fsydkjlyq" height="20" alt="$BBQ"/>
-                                                    <div style={{marginLeft: "5px"}}>{(thubCap * allPow).toLocaleString()}</div>
-                                                </div>
-                                            </div>
-                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                                <div></div>
-                                                <div style={{display: "flex", flexDirection: "row", color: "#ff007a"}}>
-                                                    <img src="https://gateway.commudao.xyz/ipfs/QmbEWVgF3ZRvmDEF3RLKf7XDFr4SE5q4VEWR7taCqNnbU6" height="20" alt="$INF.POW"/>
-                                                    <div style={{marginLeft: "5px"}}>{((thubCap * allPow) / 10000).toLocaleString()}</div>
-                                                </div>
-                                            </div>
-                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                                <div></div>
-                                                <div style={{display: "flex", flexDirection: "row"}}>
-                                                    RESET ON:
-                                                    <div style={{marginLeft: "5px", color: "#ff007a"}}>{nextDayThub}</div>
-                                                </div>
-                                            </div>
-                                            <div style={{width: "350px", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                                <div></div>
-                                                <div style={{display: "flex", flexDirection: "row"}}>
-                                                    HUB FEE:
-                                                    <div style={{marginLeft: "5px", color: "#ff007a"}}>{Number(thubFee).toFixed(2)}%</div>
-                                                </div>
-                                            </div>
-                                            <div style={{width: "350px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d9d8df"}}>
-                                                HUB FEE
-                                                <input
-                                                    style={{maxHeight: "10px", width: "100px", maxWidth: "30%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
-                                                    type="number"
-                                                    step="1"
-                                                    min="0"
-                                                    max="100"
-                                                    placeholder="0.00%"
-                                                    value={changeThubFee}
-                                                    onChange={(event) => setChangeThubFee(event.target.value)}
-                                                ></input>
-                                                {thubLv !== 0 && address !== null && slot1Addr !== null && slot1Addr !== undefined ? 
-                                                    <>
-                                                        {address.toUpperCase() === slot1Addr.toUpperCase() ? 
-                                                            <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0", fontSize: "12px"}} onClick={changeThubFeeHandle} className="button">SET HUB FEE</div> : 
-                                                            <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">SET HUB FEE</div>
-                                                        }
-                                                    </> :
-                                                    <div style={{maxHeight: "10px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed", fontSize: "12px"}} className="button">SET HUB FEE</div>
-                                                }
-                                            </div>
-                                            <div style={{height: "41px"}}></div>
                                         </div>
                                     </div>
                                 </div>
