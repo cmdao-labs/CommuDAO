@@ -3,8 +3,6 @@ import { ethers } from 'ethers'
 import { getBalance, readContracts, simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core'
 import { useAccount } from 'wagmi'
 
-import TBridgeTAODUM from  './tBridge-TAODUM'
-import TBridgeHRM from  './tBridge-HRM'
 import TBridgeCMDAONFT from  './tBridge-CMDAONFT'
 import TBridgeCMDAONFT2 from  './tBridge-CMDAONFT-2'
 
@@ -12,16 +10,8 @@ const jusdt = '0x24599b658b57f91E7643f4F154B16bcd2884f9ac'
 const kusdt = '0x7d984C24d2499D840eB3b7016077164e15E5faA6'
 const usdtBsc = '0x55d398326f99059ff775485246999027b3197955' 
 const cmj = '0xE67E280f5a354B4AcA15fA7f0ccbF667CF74F97b'
-const tao = '0x6527d3D38a7Ff4E62f98fE27dd9242a36227FE23'
-const jtao = '0xdbCCc9F8920e7274eeC62e695084D3bCe443c3dd'
 const cmd = '0x399FE73Bb0Ee60670430FD92fE25A0Fdd308E142'
 const cmdBbq = '0x05F5B8f0089bDfDf04F64f11D532Ea103b758031'
-const salmBKC = '0xBc57A8D5456c145a09557e0aD0C5959948e0cf7E'
-const aguaBKC = '0x024C5bbF60b3d89AB64aC49936e9FE384f781c4b'
-const cosmosBKC = '0x8b062b96Bb689833D7870a0133650FA22302496d'
-const engyBBQ = '0xBF389F85E4F71a78850Cca36c01430bC5b20e802'
-const infpowOP = '0x1391a538985f2F897375219573c7F5D61EA33Cdf'
-const infpowJBC = '0xCCbb477D6c28892d6311ebb729b4c242C92f70FD'
 
 const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setErrMsg, erc20Abi, erc721Abi, tbridgeNFTABI, nativeBridgeABI, uniTokensBridgeABI, uniNftBridgeABI }) => {
     let { address, chain } = useAccount()
@@ -40,21 +30,11 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
     const [cmjBalance, setCmjBalance] = React.useState(0)
     const [cmdBalance, setCmdBalance] = React.useState(0)
     const [cmdBbqBalance, setCmdBbqBalance] = React.useState(0)
-    const [taoBalance, setTaoBalance] = React.useState(0)
-    const [jtaoBalance, setJtaoBalance] = React.useState(0)
-    const [salmBalance, setSalmBalance] = React.useState(0)
-    const [aguaBalance, setAguaBalance] = React.useState(0)
-    const [cosmosBalance, setCosmosBalance] = React.useState(0)
-    const [engyBalance, setEngyBalance] = React.useState(0)
-    const [infpowBalance, setInfpowBalance] = React.useState(0)
-    const [infpowJBCBalance, setInfpowJBCBalance] = React.useState(0)
     const [depositValue, setDepositValue] = React.useState(null)
     const [depositValueDis, setDepositValueDis] = React.useState('')
     const [withdrawValue, setWithdrawValue] = React.useState(null)
     const [withdrawValueDis, setWithdrawValueDis] = React.useState('')
     const [depositCMJ, setDepositCMJ] = React.useState('')
-    const [depositTAO, setDepositTAO] = React.useState('')
-    const [withdrawTAO, setWithdrawTAO] = React.useState('')
     const [depositValue2, setDepositValue2] = React.useState('')
     const [withdrawValue2, setWithdrawValue2] = React.useState('')
     const [depositValue22, setDepositValue22] = React.useState('')
@@ -144,64 +124,8 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         args: [address],
                         chainId: 56,
                     },
-                    {
-                        address: tao,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 96,
-                    },
-                    {
-                        address: jtao,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 8899,
-                    },
-                    {
-                        address: salmBKC,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 96,
-                    },
-                    {
-                        address: aguaBKC,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 96,
-                    },
-                    {
-                        address: cosmosBKC,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 96,
-                    },
-                    {
-                        address: engyBBQ,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 190,
-                    },
-                    {
-                        address: infpowOP,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 10,
-                    },
-                    {
-                        address: infpowJBC,
-                        abi: erc20Abi,
-                        functionName: 'balanceOf',
-                        args: [address],
-                        chainId: 8899,
-                    },
                 ],
-            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}, ]
+            }) : [{result: 0}, {result: 0}, {result: 0}, {result: 0}, {result: 0}]
             const Balance = data1[0]
             const Balance2 = data1[1]
             const Balance_2 = data1[2]
@@ -212,18 +136,9 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             const cmjBal = data2[2]
             const cmdBal = data2[3]
             const usdtBscBal = data2[4]
-            const taoBal = data2[5]
-            const jtaoBal = data2[6]
-            const salmBal = data2[7]
-            const aguaBal = data2[8]
-            const cosmosBal = data2[9]
-            const engyBal = data2[10]
-            const infpowOPBal = data2[11]
-            const infpowJBCBal = data2[12]
 
             return [
-                Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmdBal, usdtBscBal, Balance_2, Balance2_2, taoBal, jtaoBal, cmdBbqBal, _burnedCmj, 
-                salmBal, aguaBal, cosmosBal, engyBal, infpowOPBal, infpowJBCBal,
+                Balance, Balance2, kusdtBal, jusdtBal, cmjBal, cmdBal, usdtBscBal, Balance_2, Balance2_2, cmdBbqBal, _burnedCmj,
             ]
         }
 
@@ -246,16 +161,8 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
             setUsdtBscBalance(Math.floor((ethers.utils.formatEther(result[6].result)) * 10000) / 10000)
             setReserve2(ethers.utils.formatEther(result[7].result))
             setSupply2(ethers.utils.formatEther(result[8].result))
-            setTaoBalance(Math.floor((ethers.utils.formatEther(result[9].result)) * 10000) / 10000)
-            setJtaoBalance(Math.floor((ethers.utils.formatEther(result[10].result)) * 10000) / 10000)
-            setCmdBbqBalance(Math.floor((result[11].formatted) * 10000) / 10000)
-            setBurnedCmj(ethers.utils.formatEther(result[12].result))
-            setSalmBalance(ethers.utils.formatEther(result[13].result))
-            setAguaBalance(String(result[14].result))
-            setCosmosBalance(ethers.utils.formatEther(result[15].result))
-            setEngyBalance(ethers.utils.formatEther(result[16].result))
-            setInfpowBalance(ethers.utils.formatEther(result[17].result))
-            setInfpowJBCBalance(ethers.utils.formatEther(result[18].result))
+            setCmdBbqBalance(Math.floor((result[9].formatted) * 10000) / 10000)
+            setBurnedCmj(ethers.utils.formatEther(result[10].result))
         })
     }, [config, address, txupdate, erc20Abi])
 
@@ -369,45 +276,6 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
         setisLoading(false)
     }
 
-    const depositTaoHandle = async () => {
-        setisLoading(true)
-        try {
-            let { request } = await simulateContract(config, {
-                address: tao,
-                abi: erc20Abi,
-                functionName: 'transfer',
-                args: ["0x4dBf2aB8a10329d59238220ddB829F4F1555B263", ethers.utils.parseEther(String(depositTAO))],
-                chainId: 96,
-            })
-            let h = await writeContract(config, request)
-            await waitForTransactionReceipt(config, { hash: h })
-            setTxupdate(h)
-        } catch (e) {
-            setisError(true)
-            setErrMsg(String(e))
-        }
-        setisLoading(false)
-    }
-    const withdrawTaoHandle = async () => {
-        setisLoading(true)
-        try {
-            let { request } = await simulateContract(config, {
-                address: jtao,
-                abi: erc20Abi,
-                functionName: 'transfer',
-                args: ["0xc5F389ba93CF37F3Eed6C3C7107e0f869FCb27aB", ethers.utils.parseEther(String(withdrawTAO))],
-                chainId: 8899,
-            })
-            let h = await writeContract(config, request)
-            await waitForTransactionReceipt(config, { hash: h })
-            setTxupdate(h)
-        } catch (e) {
-            setisError(true)
-            setErrMsg(String(e))
-        }
-        setisLoading(false)
-    }
-
     const depositHandle2 = async () => {
         setisLoading(true)
         if (Number(depositValue2) <= Number(supply2)) {
@@ -460,9 +328,6 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         <div className='hashtag' style={{margin: "10px 10px 10px 0", color: "#fff"}} onClick={() => setMode(1)}>$USDT</div>
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(2)}>$CMD</div>
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(6)}>CMDAO NFT</div>
-                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(3)}>$TAOMEME</div>
-                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(4)}>TAODUM NFT</div>
-                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(5)}>HRM SYSTEM</div>
                     </div>
                     {(mode === 1 || mode === 12) &&
                         <>
@@ -793,62 +658,6 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                         </div>
                     </>
                 }
-                {mode === 3 &&
-                    <>
-                        <div style={{width: "70%", padding: "40px 45px 40px 0", margin: "10px 0", background: "transparent", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
-                            <div style={{height: "80%", padding: "40px", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center"}}>
-                                <div style={{width: "300px", marginBottom: "20px", textAlign: "initial", color: "#bdc2c4"}}>Bridging Fee</div>
-                                <div style={{fontSize: "30px"}}>888 TAO/TX</div>
-                            </div>
-                        </div>
-                        <div style={{height: "290px", width: "1200px", maxWidth: "90%", display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between", overflow: "scroll", fontSize: "16px"}} className='noscroll'>
-                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px",  background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
-                                <input
-                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
-                                    type="number"
-                                    step="1"
-                                    min="1"
-                                    placeholder="0.0 TAO"
-                                    value={depositTAO}
-                                    onChange={(event) => setDepositTAO(event.target.value)}
-                                ></input>
-                                {(chain !== undefined && address !== null) ? 
-                                    <>
-                                        {chain.id === 96 ? 
-                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={depositTaoHandle}>BRIDGE TO JBC</div> : 
-                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start",background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
-                                        }
-                                    </> :
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start",background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO JBC</div>
-                                }
-                                <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setDepositTAO(taoBalance)}>Balance: {Number(taoBalance).toFixed(4)} TAO</div>
-                            </div>
-                            <div style={{minWidth: "500px", maxWidth: "500px", padding: "40px 10px", background: "rgb(206, 208, 207)", boxShadow: "rgba(0, 0, 0, 0.35) 4px 4px 10px 0px, rgb(255, 255, 255) 1px 1px 0px 1px inset, rgb(136, 140, 143) -1px -1px 0px 1px inset", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", flexWrap: "wrap"}}>
-                                <input
-                                    style={{width: "250px", maxWidth: "70%", padding: "10px", margin: "10px 0", backgroundColor: "#fff", color: "#000", border: "2px solid", borderColor: "rgb(136, 140, 143) rgb(255, 255, 255) rgb(255, 255, 255) rgb(136, 140, 143)"}}
-                                    type="number"
-                                    step="1"
-                                    min="1"
-                                    placeholder="0.0 JTAO"
-                                    value={withdrawTAO}
-                                    onChange={(event) => setWithdrawTAO(event.target.value)}
-                                ></input>
-                                {(chain !== undefined && address !== null) ? 
-                                    <>
-                                        {chain.id === 8899 ?
-                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", borderRadius: "0"}} className="button" onClick={withdrawTaoHandle}>BRIDGE TO BKC</div> :
-                                            <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
-                                        }
-                                    </> :
-                                    <div style={{maxHeight: "47px", maxWidth: "fit-content", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-start", background: "rgb(206, 208, 207)", border: "2px solid", borderColor: "rgb(255, 255, 255) rgb(5, 6, 8) rgb(5, 6, 8) rgb(255, 255, 255)", textShadow: "rgb(255, 255, 255) 1px 1px", borderRadius: "0", color: "rgb(136, 140, 143)", cursor: "not-allowed"}} className="button">BRIDGE TO BKC</div>
-                                }
-                                <div style={{width: "92%", margin: "20px 0", color: "#000", textAlign: "left", cursor: "pointer"}} onClick={() => setWithdrawTAO(jtaoBalance)}>Balance: {Number(jtaoBalance).toFixed(4)} JTAO</div>
-                            </div>
-                        </div>
-                    </>
-                }
-                {mode === 4 && <TBridgeTAODUM config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />}
-                {mode === 5 && <TBridgeHRM config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} salmBalance={salmBalance} aguaBalance={aguaBalance} cosmosBalance={cosmosBalance} engyBalance={engyBalance} infpowBalance={infpowBalance} infpowJBCBalance={infpowJBCBalance} erc20Abi={erc20Abi} uniTokensBridgeABI={uniTokensBridgeABI} />}
                 {mode === 6 && <TBridgeCMDAONFT config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} />}
                 {mode === 60 && <TBridgeCMDAONFT2 config={config} setisLoading={setisLoading} txupdate={txupdate} setTxupdate={setTxupdate} setisError={setisError} setErrMsg={setErrMsg} erc721Abi={erc721Abi} tbridgeNFTABI={tbridgeNFTABI} uniNftBridgeABI={uniNftBridgeABI} />}
                 <div style={{width: "1200px", maxWidth: "90%", textAlign: "left", fontSize: "18px", letterSpacing: "1px", marginBottom: "200px"}}>🛟 <a style={{textDecoration: "underline", color: "#fff"}} href="https://discord.com/invite/k92ReT5EYy" target="_blank" rel="noreferrer">Get Help in CommuDAO Discord</a></div>
