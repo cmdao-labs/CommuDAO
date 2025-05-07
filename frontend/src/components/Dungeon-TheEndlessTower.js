@@ -6846,6 +6846,8 @@ const TheEndlessTower = ({ config, intrasubModetext, navigate, callMode, setisLo
         setisLoading(false)
     }
 
+    console.log(nft)
+
     return (
         <>
             {isTransferModal &&

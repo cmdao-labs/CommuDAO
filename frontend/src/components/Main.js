@@ -176,39 +176,18 @@ const bkc = defineChain({
     },
 })
 
-const bbqchain = defineChain({
-    id: 190,
-    caipNetworkId: 'eip155:190',
-    chainNamespace: 'eip155',
-    name: 'CMDAO BBQ Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'CMD',
-      symbol: 'CMD',
-    },
-    rpcUrls: {
-      default: {
-        http: ['https://bbqchain-rpc.commudao.xyz'],
-        webSocket: ['https://bbqchain-rpc.commudao.xyz'],
-      },
-    },
-    blockExplorers: {
-      default: { name: 'CMDAO BBQ Chain Explorer', url: 'https://bbqchain-exp.commudao.xyz' },
-    },
-})
-
 const projectId = '7bc383f9e6957c93f54da557603631b4'
 const queryClient = new QueryClient()
 
 const wagmiAdapter = new WagmiAdapter({
-    networks: [jbc, bkc, bbqchain, optimism, bsc],
+    networks: [jbc, bkc, optimism, bsc],
     projectId,
     ssr: true
 })
 
 createAppKit({
     adapters: [wagmiAdapter],
-    networks: [jbc, bkc, bbqchain, optimism, bsc],
+    networks: [jbc, bkc, optimism, bsc],
     projectId,
     themeMode: 'light',
     themeVariables: {
@@ -221,7 +200,6 @@ createAppKit({
         56: 'https://gateway.commudao.xyz/ipfs/bafkreibujxj6b6i3n4xtdywo3dp33hhdf6yilwkx42cmm4goxpduy5mvte?img-width=100&img-height=100',
         96: 'https://gateway.commudao.xyz/ipfs/bafkreien2xny3ki3a4qqfem74vvucreppp6rpe7biozr4jiaom7shmv47a?img-width=100&img-height=100',
         8899: 'https://gateway.commudao.xyz/ipfs/bafkreihdmsnmmzhepcfxuvoflht2iqv5w73hg5kbgrc33jrhk7il5ddpgu?img-width=100&img-height=100',
-        190: 'https://gateway.commudao.xyz/ipfs/bafkreibohxkmaxa3h2pln37pasuppobhqoilncvtxnk7k7oaid7fqyg5ce?img-width=100&img-height=100',
         10: 'https://gateway.commudao.xyz/ipfs/bafkreid53xlgsjlqosyyyxzbozfavoi2f4i6vnqxjwdxq32y7jsly3ckly?img-width=100&img-height=100',
     },
     features: {
