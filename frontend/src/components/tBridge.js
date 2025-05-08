@@ -280,7 +280,6 @@ const TBridge = ({ config, setisLoading, txupdate, setTxupdate, setisError, setE
                     <div style={{color: "#bdc2c4", fontSize: "18px"}}>{'// CHOOSE TOKEN/NFTs TO BRIDGE'}</div>
                     <div style={{width: "100%", padding: "20px 0", display: "flex", flexDirection: "row", fontSize: "16px", borderBottom: "2px solid #fff", overflow: "scroll"}} className='noscroll'>
                         <div className='hashtag' style={{margin: "10px 10px 10px 0", color: "#fff"}} onClick={() => setMode(1)}>$USDT</div>
-                        <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(2)}>$CMD</div>
                         <div className='hashtag' style={{color: "#fff"}} onClick={() => setMode(6)}>CMDAO NFT</div>
                     </div>
                     {(mode === 1 || mode === 12) &&
